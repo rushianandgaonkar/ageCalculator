@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Agewise</title>
+  <meta name="description" content="About Agewise: free age and date calculators for the Gregorian, Hijri, Bikram Sambat and Japanese calendars, and how the calculations work.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.example.com/about/">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Agewise">
+  <meta property="og:title" content="About">
+  <meta property="og:description" content="About Agewise: free age and date calculators for the Gregorian, Hijri, Bikram Sambat and Japanese calendars, and how the calculations work.">
+  <meta property="og:url" content="https://www.example.com/about/">
+  <meta property="og:image" content="https://www.example.com/assets/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css?v=a3dc06fe24">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "name": "About",
+   "url": "https://www.example.com/about/",
+   "description": "About Agewise: free age and date calculators for the Gregorian, Hijri, Bikram Sambat and Japanese calendars, and how the calculations work.",
+   "inLanguage": "en"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://www.example.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "About",
+     "item": "https://www.example.com/about/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to calculator</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" lang="en"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="5" width="28" height="25" rx="3" fill="#0f62fe"/><rect x="2" y="5" width="28" height="7" rx="3" fill="#0043ce"/><rect x="8" y="2" width="3" height="7" rx="1.5" fill="#161616"/><rect x="21" y="2" width="3" height="7" rx="1.5" fill="#161616"/><rect x="7" y="17" width="18" height="3" fill="#fff"/><rect x="7" y="23" width="11" height="3" fill="#fff"/></svg><span>Agewise</span></a>
+    <nav class="tool-nav" aria-label="Calculators">
+      <ul>
+<li><a href="/" lang="en">Age calculator</a></li>
+<li><a href="/ar/" lang="ar" dir="rtl">حساب العمر</a></li>
+<li><a href="/ja/" lang="ja">年齢早見表</a></li>
+<li><a href="/age-limit/" lang="en">Exam age limits</a></li>
+<li><a href="/nepali-age-calculator/" lang="en">Nepali age</a></li>
+<li><a href="/nepali-date-converter/" lang="en">Nepali date</a></li>
+<li><a href="/age-difference/" lang="en">Age difference</a></li>
+<li><a href="/chronological-age-calculator/" lang="en">Chronological age</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/">Home</a> / About</p>
+    <h1>About Agewise</h1>
+    <p class="lede">Free age and date calculators for people who don’t all use the same calendar.</p>
+  </div>
+</section>
+<section class="page">
+  <div class="wrap prose">
+    <h2>What this site does</h2>
+    <p>Agewise works out exact ages and dates. Most age calculators assume one calendar and one date format. This site is built for the ones they leave out: Hijri dates in Arabic, Bikram Sambat dates in Nepal, Japanese era years, and day-month-year dates for exam and job forms in India.</p>
+    <ul>
+      <li><a href="/">Age calculator</a>: exact age on any date, with an exam age-limit check.</li>
+      <li><a href="/ar/" lang="ar" dir="rtl">حساب العمر بالهجري والميلادي</a>: age in the Hijri (Umm al-Qura) and Gregorian calendars.</li>
+      <li><a href="/ja/" lang="ja">年齢早見表</a>: Japanese age chart by era year, with zodiac animals.</li>
+      <li><a href="/nepali-age-calculator/">Nepali age calculator</a>: age in Bikram Sambat and AD.</li>
+      <li><a href="/chronological-age-calculator/">Chronological age calculator</a>: years;months;days for test scoring.</li>
+    </ul>
+
+    <h2>How the calculations work</h2>
+    <p>Ages are counted in whole years, then whole months, then the days left over. When a birth date doesn’t exist in a month (the 31st, or 29 February), the last day of that month is used. Totals in days count every calendar day, including leap days.</p>
+    <ul>
+      <li><strong>Hijri dates</strong> use the Umm al-Qura calendar from your browser’s built-in calendar data (the Unicode ICU library used by all major browsers).</li>
+      <li><strong>Bikram Sambat dates</strong> use the published month lengths for 2000 to 2090 BS.</li>
+      <li><strong>Japanese eras</strong> switch on their official start dates, for example 1 May 2019 for Reiwa.</li>
+    </ul>
+    <p>Every calculation is checked against automated tests covering leap years, month ends and calendar boundaries.</p>
+
+    <h2>Who runs it</h2>
+    <p>Agewise is an independent site, built and maintained by a software test engineer. If you spot a wrong result, please <a href="/contact/">get in touch</a> with the dates you entered and what you expected. Corrections are usually made within a few days.</p>
+
+    <h2>Your privacy</h2>
+    <p>The calculators run entirely in your browser. Dates you enter are never sent to a server or stored by this site. See the <a href="/privacy/">privacy policy</a> for details.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h2 lang="en">Agewise</h2>
+        <p>Free date and age calculators in several languages and calendars. Everything is calculated in your browser; nothing you enter is sent or stored.</p>
+      </div>
+      <div>
+        <h2>Calculators</h2>
+        <ul>
+<li><a href="/">Age calculator</a></li>
+<li><a href="/ar/" lang=ar dir=rtl>حساب العمر</a></li>
+<li><a href="/ja/" lang=ja>年齢早見表</a></li>
+<li><a href="/ar/age-difference/" lang=ar dir=rtl>حساب فرق العمر</a></li>
+<li><a href="/ja/gakunen/" lang=ja>学年早見表</a></li>
+<li><a href="/age-limit/">Exam age limits</a></li>
+<li><a href="/nepali-age-calculator/">Nepali age</a></li>
+<li><a href="/nepali-date-converter/">Nepali date</a></li>
+<li><a href="/age-difference/">Age difference</a></li>
+<li><a href="/chronological-age-calculator/">Chronological age</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Site</h2>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-base" lang="en">© 2026 Agewise</p>
+  </div>
+</footer>
+<script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}})();</script>
+
+</body>
+</html>

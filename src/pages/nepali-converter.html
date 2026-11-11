@@ -1,0 +1,117 @@
+<!--meta
+{
+  "path": "/nepali-date-converter/",
+  "lang": "en",
+  "nav": "neconv",
+  "kind": "tool",
+  "title": "Nepali Date Converter – BS to AD and AD to BS",
+  "description": "Convert Nepali (Bikram Sambat) dates to English (AD) dates and back, with the weekday. See today's Nepali date. Covers 2000–2090 BS.",
+  "app_name": "Nepali date converter (BS to AD, AD to BS)",
+  "crumb": "Nepali date converter",
+  "scripts": ["datecore.js", "bs-data.js", "conv.js"],
+  "og": "og-neconv.png",
+  "priority": "0.8",
+  "changefreq": "monthly",
+  "faq": [
+    ["How do I convert a Nepali date to an English date?", "Choose “BS to AD”, pick the Nepali month, and enter the day and year. The English (AD) date and weekday appear straight away."],
+    ["How do I convert an English date to a Nepali date?", "Choose “AD to BS” and enter the English date. The result shows the Bikram Sambat date in English and in Nepali (Devanagari)."],
+    ["What is today's date in the Nepali calendar?", "Today's Bikram Sambat date is shown at the top of the converter. It uses Nepal time, so it changes at midnight in Kathmandu."],
+    ["Why can't I just add 56 years and 8 months?", "Bikram Sambat months have 29 to 32 days and the pattern changes every year, so a fixed offset is often a day or more out. The converter uses the actual month lengths for each year."],
+    ["Can I convert my citizenship or passport date of birth?", "Yes. Enter the BS date of birth from your document to get the AD date, or the other way round. Always check the converted date against your official records."],
+    ["Which years are supported?", "2000 BS to 2090 BS, which is 14 April 1943 to April 2034 AD."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Nepali date converter (BS to AD and AD to BS)</h1>
+    <p class="lede">Convert any Bikram Sambat date to an English date, or an English date to Nepali, with the day of the week.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Nepali date converter">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div class="today-strip" id="today-ne" aria-live="polite"></div>
+
+      <div>
+        <p class="label" id="dir-label">Convert</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dir-label">
+          <input type="radio" name="dir" id="dir-bs" value="bs" checked><label for="dir-bs">BS to AD</label>
+          <input type="radio" name="dir" id="dir-ad" value="ad"><label for="dir-ad">AD to BS</label>
+        </div>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend id="date-legend">Nepali date (BS)</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off"></label>
+          <label class="p-m is-select"><span>Month</span><select data-part="m"></select></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">You can type Nepali digits (१२३) too. <button type="button" class="btn-link" id="use-today">Use today</button></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>The converted date will appear here</strong>Enter a date. The result updates as you type.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big conv-big" id="r-main"></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row">
+          <button class="btn btn-primary" type="button" id="copy-date">Copy date</button>
+          <a class="btn btn-tertiary" id="to-age" href="/nepali-age-calculator/">Age from this date</a>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>How to convert a date</h2>
+    <ol>
+      <li>Choose the direction: BS to AD (Nepali to English) or AD to BS (English to Nepali).</li>
+      <li>Enter the day, pick the month and type the year.</li>
+      <li>The converted date and its weekday appear immediately. Use “Age from this date” to see someone’s exact age.</li>
+    </ol>
+
+    <h2>Nepali months and their English dates</h2>
+    <p>Each BS month starts around the middle of an English month. The exact start day moves by a day or two from year to year.</p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th scope="col">BS month</th><th scope="col">Nepali</th><th scope="col">Roughly</th><th scope="col">Days</th></tr></thead>
+        <tbody>
+          <tr><td>1. Baisakh</td><td>बैशाख</td><td>mid-April to mid-May</td><td>30–31</td></tr>
+          <tr><td>2. Jestha</td><td>जेठ</td><td>mid-May to mid-June</td><td>31–32</td></tr>
+          <tr><td>3. Asar</td><td>असार</td><td>mid-June to mid-July</td><td>31–32</td></tr>
+          <tr><td>4. Shrawan</td><td>साउन</td><td>mid-July to mid-August</td><td>31–32</td></tr>
+          <tr><td>5. Bhadra</td><td>भदौ</td><td>mid-August to mid-September</td><td>30–32</td></tr>
+          <tr><td>6. Asoj</td><td>असोज</td><td>mid-September to mid-October</td><td>30–31</td></tr>
+          <tr><td>7. Kartik</td><td>कात्तिक</td><td>mid-October to mid-November</td><td>29–30</td></tr>
+          <tr><td>8. Mangsir</td><td>मंसिर</td><td>mid-November to mid-December</td><td>29–30</td></tr>
+          <tr><td>9. Poush</td><td>पुस</td><td>mid-December to mid-January</td><td>29–30</td></tr>
+          <tr><td>10. Magh</td><td>माघ</td><td>mid-January to mid-February</td><td>29–30</td></tr>
+          <tr><td>11. Falgun</td><td>फागुन</td><td>mid-February to mid-March</td><td>29–30</td></tr>
+          <tr><td>12. Chaitra</td><td>चैत</td><td>mid-March to mid-April</td><td>30–31</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Why a converter is needed</h2>
+    <p>Bikram Sambat is roughly 56 years and 8 months ahead of AD, but its months don’t have fixed lengths. Each year’s month lengths are set in advance, between 29 and 32 days, so the gap between the two calendars shifts by a few days from month to month. This converter uses the published month lengths for every year from 2000 to 2090 BS.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

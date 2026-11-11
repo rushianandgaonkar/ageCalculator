@@ -1,0 +1,61 @@
+{
+ "exam": "Agniveer (Agnipath scheme)",
+ "short": "Agniveer",
+ "rule": "window",
+ "cycles": [
+  {
+   "id": "army2627",
+   "label": "Army Agniveer 2026–27",
+   "status": "official",
+   "mode": "window",
+   "ref": null,
+   "source": "Indian Army Agniveer recruitment 2026–27 (registration 13 February to 1 April 2026), via joinindianarmy.nic.in",
+   "note": "Upper age raised to 22 for this cycle. Registration closed on 1 April 2026; the next cycle usually opens in February.",
+   "entries": [
+    {
+     "id": "all",
+     "label": "Agniveer (General Duty, Technical, Clerk / Store Keeper Technical, Tradesman)",
+     "from": "2005-07-01",
+     "to": "2009-07-01",
+     "note": "Age 17½ to 22. Unmarried men; women for Agniveer (GD) Women Military Police."
+    }
+   ]
+  },
+  {
+   "id": "iaf0227",
+   "label": "Air Force Agniveervayu 02/2027",
+   "status": "official",
+   "mode": "window",
+   "ref": null,
+   "source": "Agniveervayu Intake 02/2027 notice (registration 6 to 26 July 2026)",
+   "note": "Registration closed on 26 July 2026; online exam 22–23 September 2026.",
+   "entries": [
+    {
+     "id": "all",
+     "label": "Agniveervayu (science and other than science subjects)",
+     "from": "2005-07-01",
+     "to": "2010-01-01",
+     "note": "Unmarried men and women. Both dates inclusive."
+    }
+   ]
+  },
+  {
+   "id": "iaf0127",
+   "label": "Air Force Agniveervayu 01/2027",
+   "status": "official",
+   "mode": "window",
+   "ref": null,
+   "source": "Agniveervayu Intake 01/2027 advertisement (registration 12 January to 1 February 2026)",
+   "note": "Registration closed on 1 February 2026; online exam 30–31 March 2026. Upper age at enrolment 21.",
+   "entries": [
+    {
+     "id": "all",
+     "label": "Agniveervayu (science and other than science subjects)",
+     "from": "2006-01-01",
+     "to": "2009-07-01",
+     "note": "Unmarried men and women. Both dates inclusive."
+    }
+   ]
+  }
+ ]
+}

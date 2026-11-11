@@ -1,0 +1,62 @@
+{
+ "exam": "NDA and NA Examination",
+ "short": "NDA",
+ "rule": "window",
+ "cycles": [
+  {
+   "id": "nda1-2027",
+   "label": "NDA (I) 2027",
+   "status": "expected",
+   "mode": "window",
+   "ref": "2028-01-01",
+   "refLabel": "expected course start",
+   "note": "Not notified yet. UPSC's calendar puts the notification on 2 December 2026 and the exam on 11 April 2027. Dates assume the NDA (II) 2026 pattern, six months later.",
+   "entries": [
+    {
+     "id": "all",
+     "label": "Army, Navy and Air Force wings of NDA, and Naval Academy (10+2 Cadet Entry)",
+     "from": "2008-07-01",
+     "to": "2011-07-01",
+     "note": "Unmarried men and women."
+    }
+   ]
+  },
+  {
+   "id": "nda2-2027",
+   "label": "NDA (II) 2027",
+   "status": "expected",
+   "mode": "window",
+   "ref": "2028-07-01",
+   "refLabel": "expected course start",
+   "note": "Not notified yet. UPSC's calendar puts the notification on 12 May 2027 and the exam on 19 September 2027. Dates assume the NDA (II) 2026 pattern, one year later.",
+   "entries": [
+    {
+     "id": "all",
+     "label": "Army, Navy and Air Force wings of NDA, and Naval Academy (10+2 Cadet Entry)",
+     "from": "2009-01-01",
+     "to": "2012-01-01",
+     "note": "Unmarried men and women."
+    }
+   ]
+  },
+  {
+   "id": "nda2-2026",
+   "label": "NDA (II) 2026",
+   "status": "official",
+   "mode": "window",
+   "ref": "2027-07-01",
+   "refLabel": "course start",
+   "source": "UPSC Examination Notice No. 10/2026-NDA-II, 20 May 2026",
+   "note": "Exam held on 13 September 2026; courses start 1 July 2027.",
+   "entries": [
+    {
+     "id": "all",
+     "label": "Army, Navy and Air Force wings of NDA, and Naval Academy (10+2 Cadet Entry)",
+     "from": "2008-01-01",
+     "to": "2011-01-01",
+     "note": "Unmarried men and women."
+    }
+   ]
+  }
+ ]
+}

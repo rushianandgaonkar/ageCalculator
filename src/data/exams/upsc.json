@@ -1,0 +1,130 @@
+{
+ "exam": "UPSC Civil Services Examination",
+ "short": "CSE",
+ "rule": "notattained",
+ "cycles": [
+  {
+   "id": "cse2027",
+   "label": "CSE 2027",
+   "status": "expected",
+   "mode": "age",
+   "cutoff": "2027-08-01",
+   "yearly": true,
+   "note": "Not notified yet. UPSC's 2027 calendar puts the notification on 13 January 2027 and prelims on 23 May 2027. Shown with the 2026 rules, which have not changed for years.",
+   "bands": [
+    {
+     "id": "all",
+     "label": "All services",
+     "min": 21,
+     "max": 32
+    }
+   ],
+   "cats": [
+    {
+     "id": "gen",
+     "label": "General / EWS",
+     "relax": 0
+    },
+    {
+     "id": "obc",
+     "label": "OBC",
+     "relax": 3
+    },
+    {
+     "id": "scst",
+     "label": "SC / ST",
+     "relax": 5
+    },
+    {
+     "id": "pwbd",
+     "label": "PwBD (General / EWS)",
+     "relax": 10
+    },
+    {
+     "id": "pwbdobc",
+     "label": "PwBD (OBC)",
+     "relax": 13
+    },
+    {
+     "id": "pwbdscst",
+     "label": "PwBD (SC / ST)",
+     "relax": 15
+    },
+    {
+     "id": "exsm",
+     "label": "Ex-servicemen (General / EWS)",
+     "relax": 5,
+     "note": "Needs at least 5 years of military service and release on specified grounds; see the notice."
+    },
+    {
+     "id": "defdis",
+     "label": "Defence personnel disabled in operations",
+     "relax": 3,
+     "note": "Disabled in operations during hostilities and released as a result; see the notice."
+    }
+   ]
+  },
+  {
+   "id": "cse2026",
+   "label": "CSE 2026",
+   "status": "official",
+   "mode": "age",
+   "cutoff": "2026-08-01",
+   "yearly": true,
+   "source": "UPSC Examination Notice No. 05/2026-CSE, 4 February 2026",
+   "note": "Prelims were held on 24 May 2026.",
+   "bands": [
+    {
+     "id": "all",
+     "label": "All services",
+     "min": 21,
+     "max": 32
+    }
+   ],
+   "cats": [
+    {
+     "id": "gen",
+     "label": "General / EWS",
+     "relax": 0
+    },
+    {
+     "id": "obc",
+     "label": "OBC",
+     "relax": 3
+    },
+    {
+     "id": "scst",
+     "label": "SC / ST",
+     "relax": 5
+    },
+    {
+     "id": "pwbd",
+     "label": "PwBD (General / EWS)",
+     "relax": 10
+    },
+    {
+     "id": "pwbdobc",
+     "label": "PwBD (OBC)",
+     "relax": 13
+    },
+    {
+     "id": "pwbdscst",
+     "label": "PwBD (SC / ST)",
+     "relax": 15
+    },
+    {
+     "id": "exsm",
+     "label": "Ex-servicemen (General / EWS)",
+     "relax": 5,
+     "note": "Needs at least 5 years of military service and release on specified grounds; see the notice."
+    },
+    {
+     "id": "defdis",
+     "label": "Defence personnel disabled in operations",
+     "relax": 3,
+     "note": "Disabled in operations during hostilities and released as a result; see the notice."
+    }
+   ]
+  }
+ ]
+}

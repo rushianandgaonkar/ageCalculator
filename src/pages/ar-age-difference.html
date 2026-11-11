@@ -1,0 +1,109 @@
+<!--meta
+{
+  "path": "/ar/age-difference/",
+  "lang": "ar",
+  "dir": "rtl",
+  "nav": "ar",
+  "id": "ardiff",
+  "kind": "tool",
+  "hreflang": "agediff",
+  "title": "حساب فرق العمر بين شخصين بالهجري والميلادي",
+  "description": "احسب فرق العمر بين شخصين بالسنوات والأشهر والأيام بالتقويم الميلادي والهجري. أدخل تاريخَي الميلاد لتعرف من الأكبر وبكم.",
+  "app_name": "حاسبة فرق العمر",
+  "breadcrumb": [["الرئيسية", "/"], ["حساب العمر", "/ar/"], ["حساب فرق العمر", "/ar/age-difference/"]],
+  "scripts": ["datecore.js", "diff.js"],
+  "og": "og-ardiff.png",
+  "priority": "0.7",
+  "changefreq": "monthly",
+  "faq": [
+    ["كيف أحسب فرق العمر بين شخصين؟", "أدخل تاريخ ميلاد كل منهما. تحسب الأداة السنوات الكاملة ثم الأشهر الكاملة ثم الأيام المتبقية بين التاريخين، وتوضح من الأكبر."],
+    ["هل يمكن إدخال التواريخ بالهجري؟", "نعم. اختر «هجري» وأدخل التاريخين بالتقويم الهجري، وسيظهر الفرق بالتقويمين الميلادي والهجري."],
+    ["لماذا يختلف الفرق بالهجري عن الفرق بالميلادي؟", "لأن السنة الهجرية أقصر من الميلادية بنحو 11 يومًا، فيكون عدد السنوات والأشهر الهجرية بين التاريخين أكبر قليلًا، مع أن عدد الأيام هو نفسه."],
+    ["هل يهم ترتيب إدخال الشخصين؟", "لا. تحدد الأداة الأكبر سنًا تلقائيًا وتعرض الفرق بالطريقة نفسها."],
+    ["هل تُحفظ الأسماء أو التواريخ؟", "لا. تتم جميع العمليات داخل متصفحك، ولا تُحفظ الأسماء ولا تُضاف إلى عنوان الصفحة."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ar/">حساب العمر</a> / فرق العمر</p>
+    <h1>حساب فرق العمر بين شخصين</h1>
+    <p class="lede">اعرف فرق العمر الدقيق بين شخصين بالسنوات والأشهر والأيام، بالتقويمين الميلادي والهجري.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="حاسبة فرق العمر">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div>
+        <p class="label" id="cal-label">تقويم التواريخ</p>
+        <div class="switch" role="radiogroup" aria-labelledby="cal-label">
+          <input type="radio" name="cal" id="cal-g" value="g" checked><label for="cal-g">ميلادي</label>
+          <input type="radio" name="cal" id="cal-h" value="h"><label for="cal-h">هجري</label>
+        </div>
+      </div>
+
+      <fieldset class="datefield" id="dob-a">
+        <legend>الشخص الأول</legend>
+        <label class="name-field"><span>الاسم (اختياري)</span><input type="text" id="name-a" maxlength="40" autocomplete="off" placeholder="مثال: أحمد"></label>
+        <div class="dateparts">
+          <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" data-part="d" autocomplete="off"></label>
+          <label class="p-m is-select"><span>الشهر</span><select data-part="m"></select></label>
+          <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="dob-b">
+        <legend>الشخص الثاني</legend>
+        <label class="name-field"><span>الاسم (اختياري)</span><input type="text" id="name-b" maxlength="40" autocomplete="off" placeholder="مثال: سارة"></label>
+        <div class="dateparts">
+          <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" data-part="d" autocomplete="off"></label>
+          <label class="p-m is-select"><span>الشهر</span><select data-part="m"></select></label>
+          <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>سيظهر فرق العمر هنا</strong>أدخل تاريخَي الميلاد، وستتحدث النتيجة أثناء الكتابة.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit">سنة</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="age-alt">
+          <p class="age-caption">الفرق بالتقويم الهجري</p>
+          <p class="age-big"><span id="r-hyears"></span><span class="unit">سنة</span></p>
+          <p class="age-sub" id="r-hsub"></p>
+        </div>
+        <div class="callout" id="r-who"></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">نسخ رابط النتيجة</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>كيف يُحسب فرق العمر؟</h2>
+    <p>تبدأ الأداة من تاريخ ميلاد الأكبر سنًا وتعدّ حتى تاريخ ميلاد الأصغر: السنوات الكاملة أولًا، ثم الأشهر الكاملة، ثم الأيام المتبقية. فإذا وُلد أحمد في 10 مارس 1990 ووُلدت سارة في 25 يوليو 1993، فأحمد أكبر من سارة بثلاث سنوات وأربعة أشهر و15 يومًا.</p>
+
+    <h2>استخدامات شائعة</h2>
+    <ul>
+      <li>معرفة فرق العمر بين الإخوة أو الأقارب بدقة.</li>
+      <li>حساب فرق العمر بين الزوجين لأغراض الأوراق الرسمية أو الفضول.</li>
+      <li>معرفة عمر الأب أو الأم عند ولادة الطفل.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">آخر تحديث: <time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>

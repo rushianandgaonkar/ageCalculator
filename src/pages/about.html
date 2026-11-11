@@ -1,0 +1,46 @@
+<!--meta
+{
+  "path": "/about/",
+  "kind": "page",
+  "title": "About",
+  "crumb": "About",
+  "description": "About {{SITE_NAME}}: free age and date calculators for the Gregorian, Hijri, Bikram Sambat and Japanese calendars, and how the calculations work.",
+  "priority": "0.3",
+  "changefreq": "yearly"
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/">Home</a> / About</p>
+    <h1>About {{SITE_NAME}}</h1>
+    <p class="lede">Free age and date calculators for people who don’t all use the same calendar.</p>
+  </div>
+</section>
+<section class="page">
+  <div class="wrap prose">
+    <h2>What this site does</h2>
+    <p>{{SITE_NAME}} works out exact ages and dates. Most age calculators assume one calendar and one date format. This site is built for the ones they leave out: Hijri dates in Arabic, Bikram Sambat dates in Nepal, Japanese era years, and day-month-year dates for exam and job forms in India.</p>
+    <ul>
+      <li><a href="/">Age calculator</a>: exact age on any date, with an exam age-limit check.</li>
+      <li><a href="/ar/" lang="ar" dir="rtl">حساب العمر بالهجري والميلادي</a>: age in the Hijri (Umm al-Qura) and Gregorian calendars.</li>
+      <li><a href="/ja/" lang="ja">年齢早見表</a>: Japanese age chart by era year, with zodiac animals.</li>
+      <li><a href="/nepali-age-calculator/">Nepali age calculator</a>: age in Bikram Sambat and AD.</li>
+      <li><a href="/chronological-age-calculator/">Chronological age calculator</a>: years;months;days for test scoring.</li>
+    </ul>
+
+    <h2>How the calculations work</h2>
+    <p>Ages are counted in whole years, then whole months, then the days left over. When a birth date doesn’t exist in a month (the 31st, or 29 February), the last day of that month is used. Totals in days count every calendar day, including leap days.</p>
+    <ul>
+      <li><strong>Hijri dates</strong> use the Umm al-Qura calendar from your browser’s built-in calendar data (the Unicode ICU library used by all major browsers).</li>
+      <li><strong>Bikram Sambat dates</strong> use the published month lengths for 2000 to 2090 BS.</li>
+      <li><strong>Japanese eras</strong> switch on their official start dates, for example 1 May 2019 for Reiwa.</li>
+    </ul>
+    <p>Every calculation is checked against automated tests covering leap years, month ends and calendar boundaries.</p>
+
+    <h2>Who runs it</h2>
+    <p>{{SITE_NAME}} is an independent site, built and maintained by a software test engineer. If you spot a wrong result, please <a href="/contact/">get in touch</a> with the dates you entered and what you expected. Corrections are usually made within a few days.</p>
+
+    <h2>Your privacy</h2>
+    <p>The calculators run entirely in your browser. Dates you enter are never sent to a server or stored by this site. See the <a href="/privacy/">privacy policy</a> for details.</p>
+  </div>
+</section>

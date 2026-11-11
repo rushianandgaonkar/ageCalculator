@@ -1,0 +1,114 @@
+{
+ "exam": "Combined Defence Services Examination",
+ "short": "CDS",
+ "rule": "window",
+ "cycles": [
+  {
+   "id": "cds1-2027",
+   "label": "CDS (I) 2027",
+   "status": "expected",
+   "mode": "window",
+   "ref": "2028-01-01",
+   "refLabel": "expected course start",
+   "note": "Not notified yet. UPSC's calendar puts the notification on 2 December 2026 and the exam on 11 April 2027. Dates assume the CDS (II) 2026 pattern, six months later.",
+   "entries": [
+    {
+     "id": "ima",
+     "label": "IMA (Indian Military Academy)",
+     "from": "2004-01-01",
+     "to": "2009-01-01",
+     "note": "Unmarried men, 19 to 24."
+    },
+    {
+     "id": "ina",
+     "label": "INA (Indian Naval Academy)",
+     "from": "2004-01-01",
+     "to": "2009-01-01",
+     "note": "Unmarried men, 19 to 24."
+    },
+    {
+     "id": "afa",
+     "label": "AFA (Air Force Academy)",
+     "from": "2004-01-01",
+     "to": "2008-01-01",
+     "note": "20 to 24. Candidates under 25 must be unmarried."
+    },
+    {
+     "id": "afacpl",
+     "label": "AFA with a valid Commercial Pilot Licence",
+     "from": "2002-01-01",
+     "to": "2008-01-01",
+     "note": "Upper age relaxed to 26 for current CPL holders. Candidates under 25 must be unmarried."
+    },
+    {
+     "id": "otam",
+     "label": "OTA (SSC men)",
+     "from": "2003-01-01",
+     "to": "2009-01-01",
+     "note": "Unmarried men, 19 to 25."
+    },
+    {
+     "id": "otaw",
+     "label": "OTA (SSC women, non-technical)",
+     "from": "2003-01-01",
+     "to": "2009-01-01",
+     "note": "Unmarried women, and issueless widows or divorcees who have not remarried, 19 to 25."
+    }
+   ]
+  },
+  {
+   "id": "cds2-2026",
+   "label": "CDS (II) 2026",
+   "status": "official",
+   "mode": "window",
+   "ref": "2027-07-01",
+   "refLabel": "course start (IMA, INA, AFA)",
+   "source": "UPSC Examination Notice No. 11/2026-CDS-II, 20 May 2026",
+   "note": "Exam held on 13 September 2026. IMA, INA and AFA courses start in July 2027; OTA in October 2027.",
+   "entries": [
+    {
+     "id": "ima",
+     "label": "IMA (Indian Military Academy)",
+     "from": "2003-07-01",
+     "to": "2008-07-01",
+     "note": "Unmarried men, 19 to 24."
+    },
+    {
+     "id": "ina",
+     "label": "INA (Indian Naval Academy)",
+     "from": "2003-07-01",
+     "to": "2008-07-01",
+     "note": "Unmarried men, 19 to 24."
+    },
+    {
+     "id": "afa",
+     "label": "AFA (Air Force Academy)",
+     "from": "2003-07-01",
+     "to": "2007-07-01",
+     "note": "20 to 24. Candidates under 25 must be unmarried."
+    },
+    {
+     "id": "afacpl",
+     "label": "AFA with a valid Commercial Pilot Licence",
+     "from": "2001-07-01",
+     "to": "2007-07-01",
+     "note": "Upper age relaxed to 26 for current CPL holders. Candidates under 25 must be unmarried."
+    },
+    {
+     "id": "otam",
+     "label": "OTA (SSC men)",
+     "from": "2002-07-01",
+     "to": "2008-07-01",
+     "note": "Unmarried men, 19 to 25."
+    },
+    {
+     "id": "otaw",
+     "label": "OTA (SSC women, non-technical)",
+     "from": "2002-07-01",
+     "to": "2008-07-01",
+     "note": "Unmarried women, and issueless widows or divorcees who have not remarried, 19 to 25."
+    }
+   ]
+  }
+ ]
+}

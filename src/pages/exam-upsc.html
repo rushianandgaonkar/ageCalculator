@@ -1,0 +1,77 @@
+<!--meta
+{
+  "path": "/age-limit/upsc/",
+  "lang": "en",
+  "nav": "exam",
+  "id": "upsc",
+  "exam": "upsc",
+  "kind": "tool",
+  "title": "UPSC Age Limit 2026–27 Calculator – Category Relaxation and Attempts",
+  "description": "UPSC Civil Services age limit: 21 to under 32 on 1 August, plus 3 years for OBC, 5 for SC/ST and 10 for PwBD. Check your eligibility and exam years by date of birth.",
+  "app_name": "UPSC age limit calculator",
+  "breadcrumb": [["Home", "/"], ["Exam age limits", "/age-limit/"], ["UPSC age limit", "/age-limit/upsc/"]],
+  "scripts": ["datecore.js", "exam.js"],
+  "og": "og-exam.png",
+  "priority": "0.8",
+  "changefreq": "weekly",
+  "faq": [
+    ["What is the age limit for UPSC CSE 2027?", "If the 2026 rules continue, General and EWS candidates must be at least 21 and under 32 on 1 August 2027, which means born between 2 August 1995 and 1 August 2006. UPSC plans to publish the CSE 2027 notification on 13 January 2027."],
+    ["Can I apply if I turn 32 on 1 August?", "No. The notice says you “must not have attained the age of 32 years on the 1st of August”, so turning 32 on that day makes you ineligible for that year."],
+    ["What is the UPSC age limit for OBC and SC/ST?", "OBC candidates get 3 extra years (under 35) and SC/ST candidates 5 extra years (under 37). For CSE 2026 that means OBC candidates born on or after 2 August 1991 and SC/ST candidates born on or after 2 August 1989."],
+    ["How many attempts do I get?", "Six for General and EWS, nine for OBC, and unlimited for SC/ST, all within the age limit. PwBD candidates in General, EWS or OBC get nine. You need both: an attempt left and an age within the limit."],
+    ["Which date of birth does UPSC accept?", "The one recorded in your Class 10 (matriculation) or equivalent certificate. UPSC does not accept a change of date of birth later."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/age-limit/">Exam age limits</a> / UPSC</p>
+    <h1>UPSC age limit calculator (CSE 2026 and 2027)</h1>
+    <p class="lede">Check if you meet the Civil Services age limit for your category, and see which exam years your age allows.</p>
+  </div>
+</section>
+
+{{EXAM_TOOL}}
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>UPSC age limit at a glance</h2>
+    <p>You must be at least 21 and under 32 on 1 August of the exam year. Reserved categories get extra years on the upper limit: 3 for OBC, 5 for SC/ST and 10 for persons with benchmark disabilities (13 for OBC and 15 for SC/ST PwBD candidates). Ex-servicemen get 5 years and defence personnel disabled in operations 3 years, with conditions set out in the notice.</p>
+
+    <h2>Age limit and dates of birth by category</h2>
+    {{EXAM_TABLE}}
+
+    <h2>Number of attempts</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th scope="col">Category</th><th scope="col">Attempts</th></tr></thead>
+        <tbody>
+          <tr><td>General / EWS</td><td>6</td></tr>
+          <tr><td>OBC</td><td>9</td></tr>
+          <tr><td>SC / ST</td><td>Unlimited, within the age limit</td></tr>
+          <tr><td>PwBD (General / EWS / OBC)</td><td>9</td></tr>
+          <tr><td>PwBD (SC / ST)</td><td>Unlimited, within the age limit</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Appearing in even one paper of the preliminary exam counts as an attempt. Applying without appearing does not.</p>
+
+    <h2>How UPSC counts your age</h2>
+    <p>Age is counted on 1 August of the exam year, not on the exam date. “21 to 32” means you must have turned 21 by that day and must not yet have turned 32. The calculator above works out the exact range of birth dates for your category and every exam year you fit, assuming the rules stay the same.</p>
+
+    {{FAQ}}
+
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://www.upsc.gov.in/examinations/Civil%20Services%20%28Preliminary%29%20Examination%2C%202026" rel="nofollow noopener">UPSC: Civil Services (Preliminary) Examination 2026</a>, Examination Notice No. 05/2026-CSE, 4 February 2026.</li>
+      <li><a href="https://upsc.gov.in" rel="nofollow noopener">UPSC calendar 2027</a>: CSE 2027 notification 13 January 2027, prelims 23 May 2027.</li>
+    </ul>
+
+    {{RELATED}}
+
+    <p class="page-meta">Rules last checked <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time>. Always confirm with the official notification before applying.</p>
+  </div>
+</section>

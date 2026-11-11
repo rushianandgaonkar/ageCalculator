@@ -1,0 +1,31 @@
+﻿priority,page,status,market,primary_keyword,monthly_volume,kd,cpc_usd,secondary_keywords
+1,/ar/,existing,Saudi,حساب العمر,550000,21,0.41,حاسبة العمر; حساب العمر بالهجري; حساب العمر بالميلادي والهجري; حساب العمر هجري; حساب العمر بالتاريخ الهجري
+1,/ar/,existing,Saudi,حساب العمر بالميلادي,49500,2,0.20,حاسبة العمر بالميلادي; حساب العمر ميلادي
+1,/ar/,existing,Egypt,حساب العمر,33100,13,0.07,حساب العمر بالميلادي; حساب العمر بالهجري والميلادي
+1,/ar/ (add zodiac to result),existing - add feature,Saudi,حساب العمر بالهجري والميلادي والبرج,2400,19,,حساب العمر والبرج
+1,/ar/ (add minutes to result),existing - add feature,Saudi,حساب العمر بالدقائق,1000,13,,حساب العمر بالايام
+2,/ar/age-difference/ (new),new page,Saudi,حساب فرق العمر,5400,0,,حساب العمر بين شخصين; حساب فرق العمر بين شخصين; حاسبة فرق العمر; حساب العمر بين تاريخين
+1,/ja/,existing,Japan,年齢早見表,201000,6,0.04,年齢早見表 2026; 年齢早見表 わかりやすい; 無料年齢早見表
+1,/ja/,existing,Japan,干支 年齢早見表,27100,0,0.08,年齢早見表 干支; 干支の年齢早見表
+1,/ja/,existing,Japan,西暦 年齢早見表,9900,13,0.03,和暦西暦 年齢早見表; 年齢早見表 西暦 和暦
+1,/ja/,existing,Japan,年齢計算,49500,11,0.03,年齢 計算 早見表; 年齢計算 生年月日; 満年齢計算
+2,/ja/ (add 長寿祝い section),existing - add feature,Japan,年齢 お祝い 早見表,6600,0,0.04,お祝い 年齢早見表
+2,/ja/gakunen/ (new),new page,Japan,年齢学年早見表,4400,0,,学年 年齢 早見表; 高校卒業 年齢早見表
+3,/ja/ (reverse lookup),existing - add feature,Japan,年齢から生年月日 計算,4400,11,0.07,
+3,/ja/excel/ (article),new article,Japan,年齢計算 エクセル,5400,0,0.08,エクセルで年齢の計算; エクセル 年齢 自動計算
+1,/,existing,India,age calculator,9140000,13,0.11,age as on calculator; online age calculator; age calculator by date of birth; age calculator 2026
+2,/age-difference/ (new),new page,India,difference in age calculator,22200,1,0.35,calculator of age difference
+2,/age-difference/ (new),new page,US,difference in age calculator,12100,2,,calculator for age difference
+2,/age-limit/upsc/ (new),new page,India,upsc age limit,74000,0,0.11,age limit in upsc; upsc general age limit; upsc age limit for obc; age limit ias; upsc cse age limit
+2,/age-limit/ssc/ (new),new page,India,age limit for staff selection commission exam,49500,0,0.03,ssc gd age limit; cgl exam age limit
+2,/age-limit/nda/ (new),new page,India,n d a age limit,49500,0,0.98,nda test age limit; national defence academy exam age limit
+2,/age-limit/agniveer/ (new),new page,India,agniveer age limit,33100,0,,agniveer age limit 2026
+2,/age-limit/cds/ (new),new page,India,age limit for cds examination,27100,0,3.45,age limit of cds exam
+3,/age-limit/ (more exams later),new page,India,neet age limit,18100,0,,sbi po age limit; age limit for bank exam; age limit for air force; ugc net age limit; gate age limit; ctet age limit
+1,/chronological-age-calculator/,existing,US,chronological age calculator,49500,17,2.15,chronological age calculator online; pearson chronological age calculator; chronological age calculator for testing
+2,/chronological-age-calculator/ (adjusted age wording),existing - add feature,US,age adjustment calculator,1900,0,7.75,age calculator asq; chronological age calculator with prematurity adjustment
+1,/nepali-age-calculator/,existing,Nepal,nepali age calculator,8100,,0.19,nepali to english age converter
+1,/nepali-date-converter/ (new),new page,Nepal,date converter english to nepali,22200,,,date change nepali to english; english to nepali converter date; english to nepali date; nepali to english date; nepali to english birth date converter
+3,/nepali-date-today/ (new),new page,Nepal,nepali date today,246000,,,nepal calendar date today; nepali calendar
+3,/dog-age-calculator/ (new),new page,US,dog age calculator,49500,20,0.58,dog age calculator in dog years; dog's age in human years calculator
+3,/cat-age-calculator/ (new),new page,US,cat age calculator,5400,8,0.68,

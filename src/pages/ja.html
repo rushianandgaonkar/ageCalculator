@@ -1,0 +1,159 @@
+<!--meta
+{
+  "path": "/ja/",
+  "lang": "ja",
+  "nav": "ja",
+  "kind": "tool",
+  "hreflang": "age",
+  "title": "年齢早見表 {{JA_YEAR}}年（令和{{JA_REIWA}}年）版｜年齢計算・干支・和暦",
+  "description": "{{JA_YEAR}}年（令和{{JA_REIWA}}年）の年齢早見表。生まれ年ごとの満年齢・和暦（令和・平成・昭和）・干支が一覧でわかります。生年月日から満年齢と数え年も計算できます。",
+  "app_name": "年齢早見表・年齢計算",
+  "crumb": "年齢早見表",
+  "scripts": ["datecore.js", "ja.js"],
+  "og": "og-ja.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["満年齢とは何ですか？", "生まれた日を0歳とし、誕生日を迎えるたびに1歳ずつ加える数え方です。役所や学校、各種書類で使われる年齢は満年齢です。"],
+    ["数え年とは何ですか？", "生まれた年を1歳とし、元日（1月1日）を迎えるたびに1歳ずつ加える数え方です。厄年や七五三、長寿のお祝いなどで使われることがあります。"],
+    ["平成31年と令和元年は何年ですか？", "どちらも2019年です。2019年4月30日までが平成31年、5月1日からが令和元年です。同じように1989年は1月7日までが昭和64年、1月8日からが平成元年です。"],
+    ["早見表の「誕生日前」と「誕生日後」はどう見ればいいですか？", "今年の誕生日をまだ迎えていない人は「誕生日前」、すでに迎えた人は「誕生日後」の年齢を見てください。"],
+    ["法律上、年齢はいつ1歳増えますか？", "「年齢計算ニ関スル法律」により、法律上は誕生日の前日が終わる時点で1歳加算されます。4月1日生まれの人が一つ上の学年になるのはこのためです。"],
+    ["入力した生年月日は保存されますか？", "いいえ。計算はすべてブラウザの中で行われ、入力内容がサーバーに送信されることはありません。"]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>年齢早見表 <span class="nowrap"><span data-ja-year>{{JA_YEAR}}</span>年（令和<span data-ja-reiwa>{{JA_REIWA}}</span>年）版</span></h1>
+    <p class="lede">生まれ年から今年の満年齢・和暦・干支がひと目でわかります。生年月日を入力すると、今日時点の正確な年齢も計算できます。</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="年齢計算">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <fieldset class="datefield" id="dob">
+        <legend>生年月日</legend>
+        <div class="dateparts">
+          <label class="p-era is-select"><span>暦</span>
+            <select id="era">
+              <option value="ad">西暦</option>
+              <option value="reiwa">令和</option>
+              <option value="heisei">平成</option>
+              <option value="showa">昭和</option>
+              <option value="taisho">大正</option>
+            </select>
+          </label>
+          <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="1994" data-part="y" autocomplete="bday-year"></label>
+          <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" placeholder="8" data-part="m" autocomplete="bday-month"></label>
+          <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" placeholder="15" data-part="d" autocomplete="bday-day"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">元年は「1」と入力してください。全角数字でも入力できます。</p>
+      </fieldset>
+
+      <details class="more" id="other-date">
+        <summary>別の日付時点の年齢を計算する</summary>
+        <div class="more-body">
+          <fieldset class="datefield" id="on">
+            <legend>計算する日（西暦）</legend>
+            <div class="dateparts">
+              <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="2026" data-part="y" autocomplete="off"></label>
+              <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" data-part="m" autocomplete="off"></label>
+              <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" data-part="d" autocomplete="off"></label>
+            </div>
+            <p class="field-error" hidden></p>
+            <p class="hint">初期値は今日です。<button type="button" class="btn-link" id="reset-today">今日に戻す</button></p>
+          </fieldset>
+        </div>
+      </details>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>ここに年齢が表示されます</strong>生年月日を入力すると、自動で計算されます。</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit">歳</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="ruler" id="r-ruler" role="img"><div class="ruler-track"></div><div class="ruler-legend"></div></div>
+        <div class="callout" id="r-note" hidden></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">この結果のリンクをコピー</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="hayami">
+  <div class="wrap">
+    <div class="prose">
+      <h2>年齢早見表（<span data-ja-year>{{JA_YEAR}}</span>年・令和<span data-ja-reiwa>{{JA_REIWA}}</span>年）</h2>
+      <p>今年の誕生日を迎えた人は「誕生日後」、まだの人は「誕生日前」の年齢です。生まれ年を入力すると、その行に移動します。</p>
+    </div>
+    <div class="table-tools">
+      <label class="find-field">生まれ年（西暦）で探す
+        <input type="text" inputmode="numeric" maxlength="4" id="find-year" placeholder="例：1985" autocomplete="off">
+      </label>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <caption class="visually-hidden">生まれ年ごとの満年齢・和暦・干支</caption>
+        <thead><tr><th scope="col">生まれ年</th><th scope="col">和暦</th><th scope="col">干支</th><th scope="col">誕生日後</th><th scope="col">誕生日前</th></tr></thead>
+        <tbody id="hayami-body" data-year="{{JA_YEAR}}">
+{{JA_TABLE}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-table"></div>
+
+<section class="content" id="choju">
+  <div class="wrap">
+    <div class="prose">
+      <h2>長寿祝い早見表（<span data-ja-year>{{JA_YEAR}}</span>年）</h2>
+      <p>今年お祝いを迎える方の生まれ年です。長寿祝いは伝統的には数え年で祝いますが、最近は満年齢で祝う家庭も増えています。還暦だけは満60歳（数え61歳）で祝うのが一般的です。</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <caption class="visually-hidden">長寿祝いの名称と、今年迎える人の生まれ年</caption>
+        <thead><tr><th scope="col">お祝い</th><th scope="col">年齢</th><th scope="col">数え年で祝う場合</th><th scope="col">満年齢で祝う場合</th></tr></thead>
+        <tbody id="choju-body">
+{{JA_CHOJU}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>使い方</h2>
+    <p>上の計算フォームに生年月日を入力すると、今日時点の満年齢（年・か月・日）、数え年、和暦、干支、次の誕生日までの日数が表示されます。生年月日は西暦でも和暦（令和・平成・昭和・大正）でも入力できます。</p>
+    <p>入学・卒業の年や、書類に記入する年齢を確認したいときは、「別の日付時点の年齢を計算する」で日付を変更してください。</p>
+
+    <h2>満年齢と数え年の違い</h2>
+    <p>満年齢は生まれた日を0歳として、誕生日ごとに1歳ずつ増やす数え方です。数え年は生まれた年を1歳として、元日ごとに1歳ずつ増やします。数え年は満年齢より1〜2歳多くなります。</p>
+
+    <h2>和暦の切り替わり</h2>
+    <ul>
+      <li>令和：2019年5月1日から</li>
+      <li>平成：1989年1月8日〜2019年4月30日</li>
+      <li>昭和：1926年12月25日〜1989年1月7日</li>
+      <li>大正：1912年7月30日〜1926年12月24日</li>
+    </ul>
+    <p>元号が変わった年は、早見表に両方の元号を表示しています。生年月日の計算では、日付から正しい元号を判定します。</p>
+
+    <h2>干支について</h2>
+    <p>早見表の干支は、その年（1月1日〜12月31日）の十二支です。計算フォームでは十干と組み合わせた干支（例：甲戌）も表示します。立春を年の始まりとする考え方もあるため、1月1日〜2月3日ごろ生まれの方は前年の干支とされる場合があります。</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">最終更新：<time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>

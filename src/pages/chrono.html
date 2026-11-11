@@ -1,0 +1,122 @@
+<!--meta
+{
+  "path": "/chronological-age-calculator/",
+  "lang": "en",
+  "nav": "chrono",
+  "kind": "tool",
+  "title": "Chronological Age Calculator – Years;Months;Days for Testing",
+  "description": "Find chronological age in years;months;days (e.g. 8;5;19) from birth date and test date, with the 30-day method and adjusted age for prematurity.",
+  "app_name": "Chronological age calculator",
+  "crumb": "Chronological age calculator",
+  "scripts": ["datecore.js", "chrono.js"],
+  "og": "og-chrono.png",
+  "priority": "0.8",
+  "changefreq": "monthly",
+  "faq": [
+    ["What is chronological age?", "Chronological age is the exact time since birth, in years, months and days. It is used to pick the correct age norms when scoring standardised tests in psychology, speech therapy and education."],
+    ["How is chronological age written?", "Usually as years;months;days, so 8;5;19 means 8 years, 5 months and 19 days. Some forms ask for years and months only, written 8:5 or 8-5."],
+    ["Should I round chronological age up?", "Most test manuals say not to round days up to a whole month, but rules differ. Always follow the scoring instructions for the test you are using."],
+    ["What is the 30-day method?", "It is the hand-calculation method printed on many test record forms: subtract the date of birth from the test date, borrowing 30 days for a month and 12 months for a year. It can differ from the exact calendar method by a day or two."],
+    ["What is adjusted (corrected) age?", "For babies born before 37 weeks, adjusted or corrected age is counted from the due date instead of the birth date. Enter the gestational age at birth to see it. Many clinicians use corrected age until about 2 years old; follow your test's guidance."],
+    ["Is anything I enter saved?", "No. The calculation runs in your browser and nothing is sent to a server."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Chronological age calculator</h1>
+    <p class="lede">Get a child’s exact age in years, months and days, ready for test scoring. Enter the date of birth and the test date.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Chronological age calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <fieldset class="datefield" id="on">
+        <legend>Test date</legend>
+        <div class="dateparts">
+          <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off"></label>
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off"></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">Today by default. <button type="button" class="btn-link" id="reset-today">Reset to today</button></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="dob">
+        <legend>Date of birth</legend>
+        <div class="dateparts">
+          <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off"></label>
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off"></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Calculation method</legend>
+        <div class="switch">
+          <input type="radio" name="method" id="m-exact" value="exact" checked><label for="m-exact">Exact calendar</label>
+          <input type="radio" name="method" id="m-30" value="30"><label for="m-30">30-day month</label>
+        </div>
+        <p class="hint">Use the method your test manual or record form specifies.</p>
+      </fieldset>
+
+      <details class="more" id="premature">
+        <summary>Born early? Add adjusted age</summary>
+        <div class="more-body">
+          <div class="inline-fields">
+            <label>Weeks at birth<input type="text" inputmode="numeric" maxlength="2" id="ga-weeks" placeholder="32" autocomplete="off"></label>
+            <label>Extra days<input type="text" inputmode="numeric" maxlength="1" id="ga-days" placeholder="0" autocomplete="off"></label>
+          </div>
+          <p class="hint">Gestational age at birth. Corrected age is shown for births before 37 weeks.</p>
+        </div>
+      </details>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Chronological age will appear here</strong>Enter the date of birth. The result updates as you type.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big" id="r-code"></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="callout" id="r-corrected" hidden></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row">
+          <button class="btn btn-primary" type="button" id="copy-code">Copy y;m;d</button>
+          <button class="btn btn-tertiary" type="button" id="copy">Copy link</button>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>How to calculate chronological age by hand</h2>
+    <p>Write the test date above the date of birth as year, month and day, then subtract each column starting with days. If the days don’t subtract, borrow a month; if the months don’t subtract, borrow a year.</p>
+    <p>Example: a child born on 20 May 2018 and tested on 8 November 2026.</p>
+    <ul>
+      <li>Days: 8 − 20 doesn’t work, so borrow one month. With the 30-day method that adds 30 days: 38 − 20 = 18. With the exact method it adds the 31 days of October: 39 − 20 = 19.</li>
+      <li>Months: 10 − 5 = 5 (11 became 10 after borrowing).</li>
+      <li>Years: 2026 − 2018 = 8.</li>
+    </ul>
+    <p>The chronological age is 8;5;18 with the 30-day method, or 8;5;19 with the exact calendar method. The calculator above shows both, so you can match your record form.</p>
+
+    <h2>Exact calendar or 30-day month?</h2>
+    <p>The exact method counts real calendar months, so it never drifts. The 30-day method is the shortcut printed on many record forms, and some scoring software uses it too. The two can differ by a day or two, which matters only when a child is close to the boundary between two norm tables. When in doubt, follow the test publisher’s instructions.</p>
+
+    <h2>Age adjustment for premature babies</h2>
+    <p>For a baby born before 37 weeks, adjusted age (also called corrected age) is counted from the due date (40 weeks) rather than the birth date. A baby born at 32 weeks is 8 weeks premature, so at 6 months old their adjusted age is about 4 months. Developmental screeners such as the ASQ ask for adjusted age up to 24 months. Open “Born early?” and enter the weeks at birth to see it.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

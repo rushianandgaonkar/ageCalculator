@@ -1,0 +1,133 @@
+<!--meta
+{
+  "path": "/ar/",
+  "lang": "ar",
+  "dir": "rtl",
+  "nav": "ar",
+  "kind": "tool",
+  "hreflang": "age",
+  "title": "حساب العمر بالهجري والميلادي | احسب عمرك بدقة",
+  "no_suffix": true,
+  "description": "احسب عمرك بالهجري والميلادي بدقة وسهولة. اكتشف عمرك بالسنوات والأشهر والأيام، وتاريخ ميلادك بالهجري، وكم باقي على عيد ميلادك القادم.",
+  "app_name": "حاسبة العمر بالهجري والميلادي",
+  "crumb": "حساب العمر",
+  "scripts": ["datecore.js", "ar.js"],
+  "og": "og-ar.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["كيف أحسب عمري بالهجري؟", "اختر «هجري» ثم أدخل تاريخ ميلادك الهجري، أو أدخل تاريخ ميلادك الميلادي وستحوّله الحاسبة تلقائيًا. يظهر عمرك بالسنوات والأشهر والأيام الهجرية إلى جانب عمرك الميلادي."],
+    ["كيف أحوّل تاريخ ميلادي من الميلادي إلى الهجري؟", "أدخل تاريخ ميلادك الميلادي، وستجد التاريخ الهجري المقابل في النتيجة تحت «تاريخ الميلاد (هجري)». ويعمل التحويل في الاتجاه المعاكس أيضًا."],
+    ["كم الفرق بين العمر الهجري والعمر الميلادي؟", "السنة الهجرية أقصر من الميلادية بنحو 11 يومًا، لذلك تعادل كل 33 سنة ميلادية نحو 34 سنة هجرية. فإذا كان عمرك 33 سنة ميلادية فعمرك بالهجري نحو 34 سنة."],
+    ["هل الحساب دقيق؟", "العمر الميلادي دقيق باليوم. أما العمر الهجري فيعتمد على تقويم أم القرى، وقد يختلف بيوم واحد عن التقويم المعتمد على رؤية الهلال في بعض الدول."],
+    ["هل يمكن عرض الأرقام بالأرقام العربية المشرقية (١٢٣)؟", "نعم. اختر «١٢٣» من خيار الأرقام في الحاسبة، وسيُحفظ اختيارك على جهازك للمرة القادمة."],
+    ["هل تحفظون تاريخ ميلادي؟", "لا. تتم جميع العمليات الحسابية داخل متصفحك، ولا يُرسل أي شيء تدخله إلى أي خادم."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>حساب العمر - حاسبة العمر بالهجري والميلادي</h1>
+    <p class="lede">احسب عمرك بدقة بالسنوات والأشهر والأيام بالتقويمين الهجري (أم القرى) والميلادي. أدخل تاريخ ميلادك بأيٍّ من التقويمين.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="حاسبة العمر">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div>
+        <p class="label" id="cal-label">تقويم تاريخ الميلاد</p>
+        <div class="switch" role="radiogroup" aria-labelledby="cal-label">
+          <input type="radio" name="cal" id="cal-g" value="g" checked><label for="cal-g">ميلادي</label>
+          <input type="radio" name="cal" id="cal-h" value="h"><label for="cal-h">هجري</label>
+        </div>
+        <p class="field-error" id="hijri-unsupported" hidden>متصفحك لا يدعم التقويم الهجري. حدّث المتصفح أو استخدم التاريخ الميلادي.</p>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend>تاريخ الميلاد</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" data-part="d" autocomplete="off"></label>
+          <label class="p-m is-select"><span>الشهر</span><select data-part="m"></select></label>
+          <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+
+      <details class="more" id="other-date">
+        <summary>حساب العمر في تاريخ آخر</summary>
+        <div class="more-body">
+          <fieldset class="datefield" id="on">
+            <legend>العمر في تاريخ</legend>
+            <div class="dateparts">
+              <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" data-part="d" autocomplete="off"></label>
+              <label class="p-m is-select"><span>الشهر</span><select data-part="m"></select></label>
+              <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" data-part="y" autocomplete="off"></label>
+            </div>
+            <p class="field-error" hidden></p>
+            <p class="hint">التاريخ الافتراضي هو اليوم. <button type="button" class="btn-link" id="reset-today">العودة إلى اليوم</button></p>
+          </fieldset>
+        </div>
+      </details>
+
+      <div>
+        <p class="label" id="dig-label">الأرقام</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dig-label">
+          <input type="radio" name="dig" id="dig-latn" value="latn" checked><label for="dig-latn">123</label>
+          <input type="radio" name="dig" id="dig-arab" value="arab"><label for="dig-arab">١٢٣</label>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>سيظهر عمرك هنا</strong>أدخل تاريخ ميلادك، وستتحدث النتيجة أثناء الكتابة.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit">سنة</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="ruler" id="r-ruler" role="img"><div class="ruler-track"></div><div class="ruler-legend"></div></div>
+        <div class="age-alt">
+          <p class="age-caption">العمر بالتقويم الهجري</p>
+          <p class="age-big"><span id="r-hyears"></span><span class="unit">سنة</span></p>
+          <p class="age-sub" id="r-hsub"></p>
+        </div>
+        <div class="callout" id="r-note" hidden></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">نسخ رابط النتيجة</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>كيف تستخدم الحاسبة</h2>
+    <ol>
+      <li>اختر التقويم الذي تعرف به تاريخ ميلادك: ميلادي أو هجري.</li>
+      <li>أدخل اليوم والشهر والسنة.</li>
+      <li>يظهر عمرك فورًا بالتقويمين، مع تاريخ ميلادك المقابل في التقويم الآخر، وعمرك بالأيام والساعات والدقائق، وبرجك، وموعد عيد ميلادك القادم.</li>
+    </ol>
+    <p>لمعرفة عمرك في تاريخ محدد، مثل آخر موعد للتقديم على وظيفة أو منحة دراسية، افتح «حساب العمر في تاريخ آخر» وأدخل ذلك التاريخ.</p>
+
+    <h2>لماذا يختلف العمر بالهجري عن العمر بالميلادي؟</h2>
+    <p>السنة الهجرية قمرية، وطولها 354 أو 355 يومًا، أي أقصر من السنة الميلادية بنحو 11 يومًا. لذلك يكون عمرك بالهجري أكبر قليلًا من عمرك بالميلادي، ويزداد الفرق سنة كاملة تقريبًا كل 33 سنة.</p>
+
+    <h2>ما هو تقويم أم القرى؟</h2>
+    <p>تقويم أم القرى هو التقويم الهجري الرسمي في المملكة العربية السعودية، ويُحسب فلكيًا مسبقًا. تعتمد عليه هذه الحاسبة في تحويل التواريخ بين التقويمين. وقد يختلف التاريخ الهجري بيوم واحد عن التقويم المعتمد على رؤية الهلال في بعض الدول.</p>
+
+    <h2>كيف تُحسب الأشهر والأيام؟</h2>
+    <p>تَعُدّ الحاسبة السنوات الكاملة منذ تاريخ ميلادك، ثم الأشهر الكاملة، ثم الأيام المتبقية. وإذا لم يكن يوم ميلادك موجودًا في شهر ما، مثل اليوم الحادي والثلاثين أو التاسع والعشرين من فبراير، يُعتمد آخر يوم من ذلك الشهر.</p>
+
+    <h2>بياناتك لا تغادر جهازك</h2>
+    <p>تتم جميع العمليات الحسابية داخل متصفحك، ولا يُرسل تاريخ ميلادك إلى أي خادم. يضيف زر «نسخ رابط النتيجة» التاريخ إلى عنوان الصفحة فقط إذا اخترت استخدامه.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">آخر تحديث: <time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>

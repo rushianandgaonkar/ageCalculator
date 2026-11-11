@@ -1,0 +1,105 @@
+<!--meta
+{
+  "path": "/ja/gakunen/",
+  "lang": "ja",
+  "nav": "ja",
+  "id": "gakunen",
+  "kind": "tool",
+  "title": "学年早見表 {{JA_FY}}年度（令和{{JA_FY_REIWA}}年度）｜生年月日から学年・入学卒業年",
+  "description": "{{JA_FY}}年度（令和{{JA_FY_REIWA}}年度）の学年早見表。年少から大学4年生まで、学年ごとの生年月日の範囲がわかります。生年月日を入れると今の学年と小学校・中学校・高校・大学の入学・卒業年を計算します。",
+  "app_name": "学年早見表・入学卒業年計算",
+  "breadcrumb": [["ホーム", "/"], ["年齢早見表", "/ja/"], ["学年早見表", "/ja/gakunen/"]],
+  "scripts": ["datecore.js", "gakunen.js"],
+  "og": "og-gakunen.png",
+  "priority": "0.7",
+  "changefreq": "monthly",
+  "faq": [
+    ["学年は何月何日生まれで区切られますか？", "4月2日から翌年4月1日までに生まれた子どもが同じ学年になります。小学校には、満6歳になった後の最初の4月に入学します。"],
+    ["4月1日生まれはなぜ一つ上の学年になるのですか？", "「年齢計算ニ関スル法律」により、年齢は誕生日の前日が終わる時点で加算されます。4月1日生まれの子は3月31日に満6歳となるため、その年の4月に入学します。"],
+    ["早生まれとは何ですか？", "1月1日から4月1日までに生まれた人のことです。同じ学年の中では、4月2日〜12月31日生まれの人より年が若くなります。"],
+    ["年少・年中・年長は何歳ですか？", "4月1日時点で満3歳の子が年少、満4歳が年中、満5歳が年長です。年長の翌年度に小学校へ入学します。"],
+    ["大学の入学・卒業年はどう計算していますか？", "浪人や留年がなく、4年制大学に進んだ場合の年です。短大・専門学校や6年制の学部では卒業年が変わります。"]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ja/">年齢早見表</a> / 学年早見表</p>
+    <h1>学年早見表 <span class="nowrap"><span data-ja-fy>{{JA_FY}}</span>年度（令和<span data-ja-fy-reiwa>{{JA_FY_REIWA}}</span>年度）</span></h1>
+    <p class="lede">生年月日から今の学年と、小学校・中学校・高校・大学の入学・卒業年がわかります。</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="学年計算">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <fieldset class="datefield" id="dob">
+        <legend>生年月日</legend>
+        <div class="dateparts">
+          <label class="p-era is-select"><span>暦</span>
+            <select id="era">
+              <option value="ad">西暦</option>
+              <option value="reiwa">令和</option>
+              <option value="heisei">平成</option>
+              <option value="showa">昭和</option>
+            </select>
+          </label>
+          <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="2015" data-part="y" autocomplete="off"></label>
+          <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" placeholder="8" data-part="m" autocomplete="off"></label>
+          <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" placeholder="15" data-part="d" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">元年は「1」と入力してください。全角数字でも入力できます。</p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>ここに学年が表示されます</strong>生年月日を入力すると、自動で計算されます。</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big conv-big" id="r-grade"></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">この結果のリンクをコピー</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap">
+    <div class="prose">
+      <h2>学年早見表（<span data-ja-fy>{{JA_FY}}</span>年度）</h2>
+      <p>{{JA_FY}}年4月から翌年3月までの学年と、その学年にあたる生年月日の範囲です。大学は浪人・留年なしの場合です。</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <caption class="visually-hidden">学年ごとの生年月日の範囲</caption>
+        <thead><tr><th scope="col">学年</th><th scope="col">生年月日（西暦）</th><th scope="col">生年月日（和暦）</th></tr></thead>
+        <tbody id="gakunen-body" data-fy="{{JA_FY}}">
+{{GAKUNEN_TABLE}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-table"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>学年の決まり方</h2>
+    <p>日本の学校は4月に始まり、4月2日から翌年4月1日までに生まれた子どもが同じ学年になります。満6歳になった日の後の最初の4月に小学校へ入学し、6年後に中学校、さらに3年後に高校へ進みます。</p>
+    <p>1月1日〜4月1日生まれは「早生まれ」と呼ばれ、同じ学年の中で最も年下になります。4月1日生まれが早生まれに入るのは、法律上、誕生日の前日に年を取るためです。</p>
+
+    <h2>二十歳のつどい（成人式）について</h2>
+    <p>多くの自治体では、成人年齢が18歳になった後も、その年度に20歳になる人を対象に1月に式典を開いています。計算結果の年月はこの方式によるもので、自治体によって異なる場合があります。</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">最終更新：<time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>

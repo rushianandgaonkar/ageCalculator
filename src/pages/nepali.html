@@ -1,0 +1,119 @@
+<!--meta
+{
+  "path": "/nepali-age-calculator/",
+  "lang": "en",
+  "nav": "ne",
+  "kind": "tool",
+  "title": "Nepali Age Calculator – Age in BS and AD (Bikram Sambat)",
+  "description": "Calculate your exact age in Bikram Sambat (BS) and AD. Enter a BS or AD date of birth to convert it and see your age in years, months and days.",
+  "app_name": "Nepali age calculator (BS and AD)",
+  "crumb": "Nepali age calculator",
+  "scripts": ["datecore.js", "bs-data.js", "ne.js"],
+  "og": "og-ne.png",
+  "priority": "0.8",
+  "changefreq": "monthly",
+  "faq": [
+    ["How do I calculate my age in the Nepali calendar?", "Choose BS, pick your birth month, and enter the day and year. Your age appears in Bikram Sambat years, months and days, with your age in AD underneath."],
+    ["How do I convert my BS date of birth to AD?", "Enter your date of birth in BS. The matching AD date appears in the result under “Date of birth (AD)”. It also works the other way: choose AD to find your BS date of birth."],
+    ["Why can my age in BS differ from my age in AD?", "Both count the same number of days, but BS months are 29 to 32 days long and the BS year starts in mid-April. Around your birthday, your BS and AD ages can be a few days apart, so one may have gone up by a year before the other."],
+    ["Is BS always 56 years and 8 months ahead of AD?", "Roughly, but not exactly. BS month lengths change from year to year, so the gap varies by a few days. Use a converter for exact dates."],
+    ["Which dates are supported?", "From 1 Baisakh 2000 BS (14 April 1943) to the end of 2090 BS (April 2034)."],
+    ["Is my date of birth saved?", "No. The calculation runs in your browser and nothing you enter is sent to a server."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Nepali age calculator (BS and AD)</h1>
+    <p class="lede">Find your exact age in Bikram Sambat and in AD. Enter your date of birth in either calendar and the other date is converted for you.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Nepali age calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div>
+        <p class="label" id="cal-label">Date of birth is in</p>
+        <div class="switch" role="radiogroup" aria-labelledby="cal-label">
+          <input type="radio" name="cal" id="cal-bs" value="bs" checked><label for="cal-bs">BS (बि.सं.)</label>
+          <input type="radio" name="cal" id="cal-ad" value="ad"><label for="cal-ad">AD</label>
+        </div>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend>Date of birth</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off"></label>
+          <label class="p-m is-select"><span>Month</span><select data-part="m"></select></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">You can type Nepali digits (१२३) too.</p>
+      </fieldset>
+
+      <details class="more" id="other-date">
+        <summary>Age on another date</summary>
+        <div class="more-body">
+          <fieldset class="datefield" id="on">
+            <legend>Age on</legend>
+            <div class="dateparts">
+              <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off"></label>
+              <label class="p-m is-select"><span>Month</span><select data-part="m"></select></label>
+              <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off"></label>
+            </div>
+            <p class="field-error" hidden></p>
+            <p class="hint">Uses the same calendar as your date of birth. Today by default. <button type="button" class="btn-link" id="reset-today">Reset to today</button></p>
+          </fieldset>
+        </div>
+      </details>
+
+      <label class="check"><input type="checkbox" id="ne-digits"> Show BS dates in Nepali digits (२०८३)</label>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Your age will appear here</strong>Enter your date of birth. The result updates as you type.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit" id="r-years-unit"></span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="ruler" id="r-ruler" role="img"><div class="ruler-track"></div><div class="ruler-legend"></div></div>
+        <div class="age-alt">
+          <p class="age-caption">Age in AD</p>
+          <p class="age-big"><span id="r-ad-years"></span><span class="unit" id="r-ad-years-unit"></span></p>
+          <p class="age-sub" id="r-ad-sub"></p>
+        </div>
+        <div class="callout" id="r-note" hidden></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>How to use it</h2>
+    <ol>
+      <li>Choose whether you know your date of birth in BS or AD.</li>
+      <li>Enter the day, pick the month and type the year.</li>
+      <li>Your age appears in BS and in AD, with your date of birth in both calendars and your next birthday.</li>
+    </ol>
+    <p>To find your age on a particular day, such as the closing date of a Lok Sewa or job application, open “Age on another date” and enter that date.</p>
+
+    <h2>How Bikram Sambat dates work</h2>
+    <p>Bikram Sambat (BS, बिक्रम सम्बत्) is the official calendar of Nepal. Its year begins on 1 Baisakh, in mid-April, and runs roughly 56 years and 8 months ahead of AD. Unlike AD months, BS months don’t have fixed lengths: each one has 29 to 32 days, and the pattern changes from year to year. That is why you can’t convert a BS date by adding or subtracting a fixed number of days.</p>
+    <p>This calculator uses the published month lengths for 2000 to 2090 BS. Ages in BS are counted the same way as in AD: whole years, then whole months, then the days left over.</p>
+
+    <h2>Your data stays on your device</h2>
+    <p>Everything is calculated in your browser. Your date of birth is never sent to a server.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

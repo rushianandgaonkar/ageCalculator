@@ -1,0 +1,95 @@
+<!--meta
+{
+  "path": "/age-difference/",
+  "lang": "en",
+  "nav": "diff",
+  "kind": "tool",
+  "hreflang": "agediff",
+  "x_default": true,
+  "title": "Age Difference Calculator – Years, Months and Days Between Two People",
+  "description": "Find the exact age difference between two people in years, months and days. Enter two dates of birth to see who is older and by how much.",
+  "app_name": "Age difference calculator",
+  "crumb": "Age difference calculator",
+  "scripts": ["datecore.js", "diff.js"],
+  "og": "og-diff.png",
+  "priority": "0.8",
+  "changefreq": "monthly",
+  "faq": [
+    ["How do I calculate the age difference between two people?", "Enter both dates of birth. The calculator counts whole years, then whole months, then the remaining days from the older person’s birthday to the younger person’s."],
+    ["Does it matter which person I enter first?", "No. The calculator works out who is older and shows the difference the same way either way round."],
+    ["Is the age difference the same as subtracting birth years?", "Not always. Two people born in 1990 and 1993 can be 2 or 3 years apart, depending on their birthdays. This calculator uses the full dates, so the result is exact."],
+    ["Does the age difference ever change?", "No. The gap between two birth dates is fixed. What changes is how big it feels: 5 years matters more at 10 than at 50."],
+    ["Are the names or dates saved?", "No. Everything is calculated in your browser. Names are never stored or added to the page address."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Age difference calculator</h1>
+    <p class="lede">Find the exact age gap between two people in years, months and days. Enter both dates of birth.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Age difference calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <fieldset class="datefield" id="dob-a">
+        <legend>Person 1</legend>
+        <label class="name-field"><span>Name (optional)</span><input type="text" id="name-a" maxlength="40" autocomplete="off" placeholder="e.g. Asha"></label>
+        <div class="dateparts">
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off"></label>
+          <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off"></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="dob-b">
+        <legend>Person 2</legend>
+        <label class="name-field"><span>Name (optional)</span><input type="text" id="name-b" maxlength="40" autocomplete="off" placeholder="e.g. Rohan"></label>
+        <div class="dateparts">
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off"></label>
+          <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off"></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>The age difference will appear here</strong>Enter both dates of birth. The result updates as you type.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit">years</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="callout" id="r-who"></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>How the age difference is calculated</h2>
+    <p>The calculator starts from the older person’s date of birth and counts forward to the younger person’s: first whole years, then whole months, then the days left over. If Asha was born on 10 March 1990 and Rohan on 25 July 1993, Asha is older by 3 years, 4 months and 15 days.</p>
+    <p>The total in days counts every calendar day between the two dates, including 29 February in leap years.</p>
+
+    <h2>Common uses</h2>
+    <ul>
+      <li>Siblings, twins born either side of midnight, or cousins: who is older and by exactly how much.</li>
+      <li>Couples: the age gap for a wedding speech, a card or a form.</li>
+      <li>Parents and children: how old a parent was when a child was born.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

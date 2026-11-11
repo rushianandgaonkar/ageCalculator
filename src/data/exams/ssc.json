@@ -1,0 +1,239 @@
+{
+ "exam": "SSC CGL and SSC GD",
+ "short": "SSC",
+ "rule": "notattained",
+ "cycles": [
+  {
+   "id": "gd2027",
+   "label": "SSC GD 2027",
+   "status": "expected",
+   "mode": "age",
+   "cutoff": "2027-01-01",
+   "yearly": true,
+   "note": "Not notified yet. Shown with the GD 2026 rules and a 1 January 2027 crucial date, following the usual pattern.",
+   "bands": [
+    {
+     "id": "gd",
+     "label": "Constable (GD) / Rifleman (GD)",
+     "min": 18,
+     "max": 23
+    }
+   ],
+   "cats": [
+    {
+     "id": "gen",
+     "label": "General / EWS",
+     "relax": 0
+    },
+    {
+     "id": "obc",
+     "label": "OBC",
+     "relax": 3
+    },
+    {
+     "id": "scst",
+     "label": "SC / ST",
+     "relax": 5
+    },
+    {
+     "id": "riot",
+     "label": "Children/dependents of 1984 riot victims (UR / EWS)",
+     "relax": 5
+    },
+    {
+     "id": "riotobc",
+     "label": "Children/dependents of 1984 riot victims (OBC)",
+     "relax": 8
+    },
+    {
+     "id": "riotscst",
+     "label": "Children/dependents of 1984 riot victims (SC / ST)",
+     "relax": 10
+    }
+   ]
+  },
+  {
+   "id": "cgl2027",
+   "label": "SSC CGL 2027",
+   "status": "expected",
+   "mode": "age",
+   "cutoff": "2027-08-01",
+   "yearly": true,
+   "note": "Not notified yet. Shown with the CGL 2026 rules and a 1 August 2027 crucial date, following the usual pattern.",
+   "bands": [
+    {
+     "id": "b27",
+     "label": "18–27 years (e.g. Auditor, Accountant, Tax Assistant, Postal Assistant)",
+     "min": 18,
+     "max": 27
+    },
+    {
+     "id": "b30",
+     "label": "18–30 years (e.g. Inspector of Income Tax, Central Excise, Examiner, AEO)",
+     "min": 18,
+     "max": 30
+    },
+    {
+     "id": "b32",
+     "label": "18–32 years (Junior Statistical Officer)",
+     "min": 18,
+     "max": 32
+    },
+    {
+     "id": "b2030",
+     "label": "20–30 years (e.g. Assistant Section Officer, Sub-Inspector CBI)",
+     "min": 20,
+     "max": 30
+    }
+   ],
+   "cats": [
+    {
+     "id": "gen",
+     "label": "General / EWS",
+     "relax": 0
+    },
+    {
+     "id": "obc",
+     "label": "OBC",
+     "relax": 3
+    },
+    {
+     "id": "scst",
+     "label": "SC / ST",
+     "relax": 5
+    },
+    {
+     "id": "pwbd",
+     "label": "PwBD (General / EWS)",
+     "relax": 10
+    },
+    {
+     "id": "pwbdobc",
+     "label": "PwBD (OBC)",
+     "relax": 13
+    },
+    {
+     "id": "pwbdscst",
+     "label": "PwBD (SC / ST)",
+     "relax": 15
+    }
+   ]
+  },
+  {
+   "id": "gd2026",
+   "label": "SSC GD 2026",
+   "status": "official",
+   "mode": "age",
+   "cutoff": "2026-01-01",
+   "yearly": true,
+   "source": "SSC notice for Constable (GD) Examination 2026, 1 December 2025",
+   "bands": [
+    {
+     "id": "gd",
+     "label": "Constable (GD) / Rifleman (GD)",
+     "min": 18,
+     "max": 23
+    }
+   ],
+   "cats": [
+    {
+     "id": "gen",
+     "label": "General / EWS",
+     "relax": 0
+    },
+    {
+     "id": "obc",
+     "label": "OBC",
+     "relax": 3
+    },
+    {
+     "id": "scst",
+     "label": "SC / ST",
+     "relax": 5
+    },
+    {
+     "id": "riot",
+     "label": "Children/dependents of 1984 riot victims (UR / EWS)",
+     "relax": 5
+    },
+    {
+     "id": "riotobc",
+     "label": "Children/dependents of 1984 riot victims (OBC)",
+     "relax": 8
+    },
+    {
+     "id": "riotscst",
+     "label": "Children/dependents of 1984 riot victims (SC / ST)",
+     "relax": 10
+    }
+   ]
+  },
+  {
+   "id": "cgl2026",
+   "label": "SSC CGL 2026",
+   "status": "official",
+   "mode": "age",
+   "cutoff": "2026-08-01",
+   "yearly": true,
+   "source": "SSC CGL Examination 2026 notice, May 2026 (applications closed 22 June 2026)",
+   "bands": [
+    {
+     "id": "b27",
+     "label": "18–27 years (e.g. Auditor, Accountant, Tax Assistant, Postal Assistant)",
+     "min": 18,
+     "max": 27
+    },
+    {
+     "id": "b30",
+     "label": "18–30 years (e.g. Inspector of Income Tax, Central Excise, Examiner, AEO)",
+     "min": 18,
+     "max": 30
+    },
+    {
+     "id": "b32",
+     "label": "18–32 years (Junior Statistical Officer)",
+     "min": 18,
+     "max": 32
+    },
+    {
+     "id": "b2030",
+     "label": "20–30 years (e.g. Assistant Section Officer, Sub-Inspector CBI)",
+     "min": 20,
+     "max": 30
+    }
+   ],
+   "cats": [
+    {
+     "id": "gen",
+     "label": "General / EWS",
+     "relax": 0
+    },
+    {
+     "id": "obc",
+     "label": "OBC",
+     "relax": 3
+    },
+    {
+     "id": "scst",
+     "label": "SC / ST",
+     "relax": 5
+    },
+    {
+     "id": "pwbd",
+     "label": "PwBD (General / EWS)",
+     "relax": 10
+    },
+    {
+     "id": "pwbdobc",
+     "label": "PwBD (OBC)",
+     "relax": 13
+    },
+    {
+     "id": "pwbdscst",
+     "label": "PwBD (SC / ST)",
+     "relax": 15
+    }
+   ]
+  }
+ ]
+}
