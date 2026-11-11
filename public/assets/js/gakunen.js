@@ -45,6 +45,7 @@
   var field = new DC.DateField($("dob"));
   var eraSel = $("era");
   var result = $("result");
+  var share = null;
 
   function readDob() {
     var p = field.parts;
@@ -60,6 +61,7 @@
   }
 
   function update() {
+    share = null;
     var old = tbody.querySelector("tr.is-you"); if (old) old.classList.remove("is-you");
     var b = readDob();
     if (!b) { result.setAttribute("data-state", "empty"); return; }
@@ -78,7 +80,7 @@
     ];
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
-    DC.writeParams({ dob: DC.iso(b) });
+    share = { dob: DC.iso(b) };
   }
 
   eraSel.addEventListener("change", function () {
@@ -91,6 +93,6 @@
   if (pd) { field.parts.y.value = pd.y; field.parts.m.value = pd.m; field.parts.d.value = pd.d; }
   field.on(update);
   DC.autoReveal(field, result, "生年月日を変更");
-  $("copy").addEventListener("click", function () { DC.copyLink(this, "コピーしました"); });
+  $("copy").addEventListener("click", function () { DC.copyLink(this, "コピーしました", share); });
   update();
 })();

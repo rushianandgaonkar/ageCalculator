@@ -198,10 +198,12 @@ def json_ld(page):
         graph.append({"@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q,
              "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in page["faq"]]})
-    if page["path"] != "/":
-        crumbs = page.get("breadcrumb") or [[UI[ui_lang(page)]["home"], "/"], [page.get("crumb", page["title"]), page["path"]]]
-        graph.append({"@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": i + 1, "name": n, "item": abs_url(p)} for i, (n, p) in enumerate(crumbs)]})
+    home_path = "/ar/" if ui_lang(page) == "ar" else "/"
+    if page["path"] != home_path:
+        crumbs = page.get("breadcrumb") or [[UI[ui_lang(page)]["home"], home_path], [page.get("crumb", page["title"]), page["path"]]]
+        if len(crumbs) >= 2:
+            graph.append({"@type": "BreadcrumbList", "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "name": n, "item": abs_url(p)} for i, (n, p) in enumerate(crumbs)]})
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
 
 

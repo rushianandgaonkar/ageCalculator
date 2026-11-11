@@ -20,6 +20,7 @@
   var dob = new DC.DateField($("dob")), on = new DC.DateField($("on"));
   var result = $("result");
   var F = {};
+  var share = null;
 
   function makeFormats() {
     F.num = new Intl.NumberFormat("ar-SA-u-nu-" + digits);
@@ -69,6 +70,7 @@
   function setFromDays(field, n) { field.set(n == null ? null : cal().fromDays(n)); }
 
   function update() {
+    share = null;
     var bn = validate(dob), onN = validate(on);
     if (bn === null || onN === null) { result.setAttribute("data-state", "empty"); return; }
     if (bn > onN) { dob.error("تاريخ الميلاد بعد تاريخ الحساب."); result.setAttribute("data-state", "empty"); return; }
@@ -88,18 +90,29 @@
       "<span><b>" + num(ga.y + 1) + "</b> في " + F.gs.format(DC.dateObj(G.toDays(next.y, next.m, next.d))) + "</span>");
     $("r-ruler").setAttribute("aria-label", "مضى " + count(ga.m, "month") + " من السنة الحالية من عمرك");
 
+    var hijriBirthInRange = hijriOK && H.inRange(bn);
+    var hijriInRange = hijriBirthInRange && H.inRange(onN);
     var nbG = DC.nextBirthday(G, gB, gO), nbH = null, ha = null;
-    if (hijriOK) {
+    $("r-hijri").hidden = !hijriInRange;
+    if (hijriInRange) {
       var hB = H.fromDays(bn), hO = H.fromDays(onN);
       ha = DC.age(H, hB, hO);
       nbH = DC.nextBirthday(H, hB, hO);
+      if (nbH && !H.inRange(nbH.dayNum)) nbH = null;
       $("r-hyears").textContent = num(ha.y);
       $("r-hsub").textContent = count(ha.m, "month") + " و" + count(ha.d, "day");
     }
+    var hNote = $("r-hijri-note");
+    if (hijriOK && !hijriInRange) {
+      hNote.hidden = false;
+      hNote.innerHTML = "<p><strong>التاريخ الهجري غير معروض</strong></p><p>التواريخ قبل " +
+        DC.esc(F.g.format(DC.dateObj(H.minDays))) + " أو بعد " + DC.esc(F.g.format(DC.dateObj(H.maxDays))) +
+        " تقع خارج النطاق الرسمي لتقويم أم القرى (" + DC.toDigits("1300", digits) + "–" + DC.toDigits("1600", digits) + " هـ).</p>";
+    } else hNote.hidden = true;
 
     var note = $("r-note");
     if (nbG && nbG.isToday && ga.y > 0) { note.hidden = false; note.className = "callout ok"; note.innerHTML = "<p>عيد ميلاد سعيد! أتممت اليوم " + count(ga.y, "year") + " بالتقويم الميلادي.</p>"; }
-    else if (nbH && nbH.isToday && ha.y > 0) { note.hidden = false; note.className = "callout ok"; note.innerHTML = "<p>عيد ميلاد سعيد! أتممت اليوم " + count(ha.y, "year") + " بالتقويم الهجري.</p>"; }
+    else if (hijriInRange && nbH && nbH.isToday && ha.y > 0) { note.hidden = false; note.className = "callout ok"; note.innerHTML = "<p>عيد ميلاد سعيد! أتممت اليوم " + count(ha.y, "year") + " بالتقويم الهجري.</p>"; }
     else note.hidden = true;
 
     function when(nb) {
@@ -108,22 +121,22 @@
       return null;
     }
     var weeks = Math.floor(ga.days / 7);
-    var rows = [
-      ["تاريخ الميلاد (ميلادي)", F.g.format(DC.dateObj(bn))],
-      ["تاريخ الميلاد (هجري)", hijriOK ? F.h.format(DC.dateObj(bn)) : "–"],
-      ["يوم الميلاد", F.w.format(DC.dateObj(bn))],
-      ["عيد الميلاد القادم (ميلادي)", when(nbG) || F.g.format(DC.dateObj(nbG.dayNum)) + "، بعد " + count(nbG.days, "day")],
-      ["عيد الميلاد القادم (هجري)", hijriOK ? (when(nbH) || F.h.format(DC.dateObj(nbH.dayNum)) + "، بعد " + count(nbH.days, "day")) : "–"],
+    var rows = [["تاريخ الميلاد (ميلادي)", F.g.format(DC.dateObj(bn))]];
+    if (hijriBirthInRange) rows.push(["تاريخ الميلاد (هجري)", F.h.format(DC.dateObj(bn))]);
+    rows.push(["يوم الميلاد", F.w.format(DC.dateObj(bn))]);
+    rows.push(["عيد الميلاد القادم (ميلادي)", when(nbG) || F.g.format(DC.dateObj(nbG.dayNum)) + "، بعد " + count(nbG.days, "day")]);
+    if (hijriInRange) rows.push(["عيد الميلاد القادم (هجري)", nbH ? (when(nbH) || F.h.format(DC.dateObj(nbH.dayNum)) + "، بعد " + count(nbH.days, "day")) : "–"]);
+    rows.push(
       ["العمر بالأشهر", count(ga.months, "month")],
       ["العمر بالأسابيع", count(weeks, "week")],
       ["العمر بالأيام", count(ga.days, "day")],
       ["العمر بالساعات", count(ga.days * 24, "hour")],
       ["العمر بالدقائق", count(ga.days * 1440, "minute")],
       ["البرج", zodiac(gB)]
-    ];
+    );
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
-    DC.writeParams({ dob: DC.iso(gB), on: isToday ? "" : DC.iso(gO) });
+    share = { dob: DC.iso(gB), on: isToday ? "" : DC.iso(gO) };
   }
 
   function switchMode(newMode) {
@@ -148,6 +161,10 @@
   // ---- init ----
   makeFormats();
   fillMonths(dob.parts.m); fillMonths(on.parts.m);
+  if (hijriOK && H.isFallback()) {
+    $("hijri-fallback").hidden = false;
+    $("r-hfallback").hidden = false;
+  }
   if (digits === "arab") $("dig-arab").checked = true;
   var p = DC.readParams();
   var pOn = DC.parseIso(p.on), pDob = DC.parseIso(p.dob);
@@ -165,6 +182,6 @@
   $("reset-today").addEventListener("click", function () {
     var t = DC.todayParts(); setFromDays(on, G.toDays(t.y, t.m, t.d)); update();
   });
-  $("copy").addEventListener("click", function () { DC.copyLink(this, "تم نسخ الرابط"); });
+  $("copy").addEventListener("click", function () { DC.copyLink(this, "تم نسخ الرابط", share); });
   update();
 })();

@@ -145,6 +145,7 @@ a:hover { color: var(--primary-hover); }
 @media (min-width: 672px) { .hero { padding-block: var(--s-7) var(--s-6); } }
 .hero h1 { margin: 0; font-weight: 300; font-size: clamp(32px, 5vw, 42px); line-height: 1.2; letter-spacing: 0; max-width: 30ch; }
 :lang(ja) .hero h1 { max-width: none; font-weight: 400; }
+:lang(ar) .hero h1, :lang(ar) .age-big { font-weight: 400; }
 .hero .lede { margin: var(--s-3) 0 0; font-size: 18px; line-height: 1.5; color: var(--ink-muted); max-width: 60ch; }
 .breadcrumb { font-size: 13px; color: var(--ink-muted); margin: 0 0 var(--s-3); }
 .breadcrumb a { color: var(--ink-muted); }
@@ -243,6 +244,7 @@ details.more > .more-body { margin-block-start: var(--s-4); display: grid; gap: 
 .age-sub { font-size: 20px; margin: var(--s-1) 0 0; font-variant-numeric: tabular-nums; }
 .age-alt { margin-block-start: var(--s-5); padding-block-start: var(--s-4); border-block-start: 1px solid var(--hairline); }
 .age-alt .age-big { font-size: clamp(32px, 6vw, 40px); }
+.age-alt .hint { margin-block-start: var(--s-2); }
 
 /* The year-of-life ruler: 12 segments = 12 months between birthdays */
 .ruler { margin-block-start: var(--s-5); }
@@ -282,7 +284,8 @@ details.more > .more-body { margin-block-start: var(--s-4); display: grid; gap: 
 /* Exam age-limit calculators */
 .x-row[hidden] { display: none; }
 .select-field { display: flex; flex-direction: column; gap: var(--s-1); font-size: 12px; color: var(--ink-muted); }
-.status-note { margin: 0; font-size: 13px; line-height: 1.5; padding: var(--s-3) var(--s-3); background: var(--surface-1); border-inline-start: 3px solid var(--hairline-strong); border-radius: 0 var(--radius) var(--radius) 0; color: var(--ink-muted); }
+.status-note { margin: 0; font-size: 13px; line-height: 1.5; padding: var(--s-3) var(--s-3); background: var(--surface-1); border-inline-start: 3px solid var(--hairline-strong); border-radius: 0; border-start-end-radius: var(--radius); border-end-end-radius: var(--radius); color: var(--ink-muted); }
+.cal-note { margin-block-start: var(--s-3); }
 .status-note strong { color: var(--ink); }
 .status-note.official { border-inline-start-color: var(--success); }
 .status-note.expected { border-inline-start-color: var(--warning); }

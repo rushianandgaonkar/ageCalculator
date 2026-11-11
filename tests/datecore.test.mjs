@@ -97,6 +97,7 @@ test("randomised: months + leftover days always rebuild the exact day count", ()
 test("the engine uses the Umm al-Qura calendar", () => {
   assert.equal(H.supported(), true);
   assert.equal(H.calendarName(), "islamic-umalqura");
+  assert.equal(H.isFallback(), false);
 });
 
 test("known Saudi Umm al-Qura dates", () => {
@@ -117,6 +118,16 @@ test("Hijri to Gregorian conversion matches the anchors", () => {
 test("supported Umm al-Qura range: 1 Muharram 1300 to 30 Dhu al-Hijjah 1600", () => {
   assert.equal(H.toDays(1300, 1, 1), gd("1882-11-12"));
   assert.equal(H.toDays(1600, 12, 30), gd("2174-11-25"));
+});
+
+test("Hijri official range check covers 1882-11-12 through 2174-11-25", () => {
+  assert.equal(H.minDays, gd("1882-11-12"));
+  assert.equal(H.maxDays, gd("2174-11-25"));
+  assert.equal(H.inRange(gd("1882-11-11")), false);
+  assert.equal(H.inRange(gd("1882-11-12")), true);
+  assert.equal(H.inRange(gd("2174-11-25")), true);
+  assert.equal(H.inRange(gd("2174-11-26")), false);
+  assert.equal(H.inRange(null), false);
 });
 
 test("every Umm al-Qura month has 29 or 30 days and every year 354 or 355", () => {

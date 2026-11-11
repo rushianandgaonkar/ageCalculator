@@ -40,6 +40,7 @@
   var on = new DC.DateField($("on"));
   var eraSel = $("era");
   var result = $("result");
+  var share = null;
 
   function readDob() {
     var p = dobField.parts;
@@ -76,6 +77,7 @@
   }
 
   function update() {
+    share = null;
     var bn = readDob(), onN = readOn();
     markRow(bn === null ? null : G.fromDays(bn).y);
     if (bn === null || onN === null) { result.setAttribute("data-state", "empty"); return; }
@@ -109,7 +111,7 @@
     ];
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
-    DC.writeParams({ dob: DC.iso(b), on: isToday ? "" : DC.iso(o) });
+    share = { dob: DC.iso(b), on: isToday ? "" : DC.iso(o) };
   }
 
   function onEraChange() {
@@ -188,6 +190,6 @@
   on.on(update);
   eraSel.addEventListener("change", onEraChange);
   $("reset-today").addEventListener("click", function () { var t = DC.todayParts(); on.set(t); on.parts.m.value = t.m; on.parts.d.value = t.d; update(); });
-  $("copy").addEventListener("click", function () { DC.copyLink(this, "コピーしました"); });
+  $("copy").addEventListener("click", function () { DC.copyLink(this, "コピーしました", share); });
   update();
 })();

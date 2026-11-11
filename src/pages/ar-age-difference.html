@@ -10,7 +10,7 @@
   "title": "حساب فرق العمر بين شخصين بالهجري والميلادي",
   "description": "احسب فرق العمر بين شخصين بالسنوات والأشهر والأيام بالتقويم الميلادي والهجري. أدخل تاريخَي الميلاد لتعرف من الأكبر وبكم.",
   "app_name": "حاسبة فرق العمر",
-  "breadcrumb": [["الرئيسية", "/"], ["حساب العمر", "/ar/"], ["حساب فرق العمر", "/ar/age-difference/"]],
+  "breadcrumb": [["الرئيسية", "/ar/"], ["حساب فرق العمر", "/ar/age-difference/"]],
   "scripts": ["datecore.js", "diff.js"],
   "og": "og-ardiff.png",
   "priority": "0.7",
@@ -41,6 +41,8 @@
           <input type="radio" name="cal" id="cal-g" value="g" checked><label for="cal-g">ميلادي</label>
           <input type="radio" name="cal" id="cal-h" value="h"><label for="cal-h">هجري</label>
         </div>
+        <p class="field-error" id="hijri-unsupported" hidden>متصفحك لا يدعم التقويم الهجري. حدّث المتصفح أو استخدم التاريخ الميلادي.</p>
+        <p class="status-note cal-note" id="hijri-fallback" hidden>متصفحك لا يدعم تقويم أم القرى، لذا تُعرض التواريخ الهجرية بتقويم بديل وقد تختلف بيوم واحد.</p>
       </div>
 
       <fieldset class="datefield" id="dob-a">
@@ -72,11 +74,13 @@
         <p class="age-caption" id="r-caption"></p>
         <p class="age-big"><span id="r-years"></span><span class="unit">سنة</span></p>
         <p class="age-sub" id="r-sub"></p>
-        <div class="age-alt">
+        <div class="age-alt" id="r-hijri">
           <p class="age-caption">الفرق بالتقويم الهجري</p>
           <p class="age-big"><span id="r-hyears"></span><span class="unit">سنة</span></p>
           <p class="age-sub" id="r-hsub"></p>
+          <p class="hint" id="r-hfallback" hidden>يعتمد على تقويم هجري بديل عن أم القرى وقد يختلف بيوم واحد.</p>
         </div>
+        <div class="callout" id="r-hijri-note" hidden></div>
         <div class="callout" id="r-who"></div>
         <dl class="stats" id="r-stats"></dl>
         <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">نسخ رابط النتيجة</button><span class="copied" aria-live="polite"></span></div>

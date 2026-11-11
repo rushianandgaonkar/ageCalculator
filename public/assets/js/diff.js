@@ -9,6 +9,7 @@
   var result = $("result");
   var mode = "g";
   var hijriOK = H.supported();
+  var share = null;
 
   /* ---------- language ---------- */
   var nf = new Intl.NumberFormat(AR ? "ar-SA-u-nu-latn" : "en-US");
@@ -60,6 +61,7 @@
   }
 
   function update() {
+    share = null;
     var an = validate(A), bn = validate(B);
     if (an === null || bn === null) { result.setAttribute("data-state", "empty"); return; }
     var n1 = nameOf("name-a", T.p1), n2 = nameOf("name-b", T.p2);
@@ -72,13 +74,26 @@
     who.className = "callout";
     who.innerHTML = an === bn ? "<p><strong>" + T.same + "</strong></p>"
       : (an < bn ? T.older(n1, n2, ymd(d)) : T.older(n2, n1, ymd(d)));
-    if (AR && hijriOK) {
-      var hd = DC.age(H, H.fromDays(olderN), H.fromDays(youngerN));
-      $("r-hyears").textContent = nf.format(hd.y);
-      $("r-hsub").textContent = count(hd.m, "month") + " و" + count(hd.d, "day");
+    if (AR) {
+      var hijriInRange = hijriOK && H.inRange(an) && H.inRange(bn);
+      if ($("r-hijri")) $("r-hijri").hidden = !hijriInRange;
+      if (hijriInRange) {
+        var hd = DC.age(H, H.fromDays(olderN), H.fromDays(youngerN));
+        $("r-hyears").textContent = nf.format(hd.y);
+        $("r-hsub").textContent = count(hd.m, "month") + " و" + count(hd.d, "day");
+      }
+      var hNote = $("r-hijri-note");
+      if (hNote) {
+        if (hijriOK && !hijriInRange) {
+          hNote.hidden = false;
+          hNote.innerHTML = "<p><strong>التاريخ الهجري غير معروض</strong></p><p>التواريخ قبل " +
+            DC.esc(df.format(DC.dateObj(H.minDays))) + " أو بعد " + DC.esc(df.format(DC.dateObj(H.maxDays))) +
+            " تقع خارج النطاق الرسمي لتقويم أم القرى (1300–1600 هـ).</p>";
+        } else hNote.hidden = true;
+      }
     }
     var t = todayN();
-    function born(n) { return wf.format(DC.dateObj(n)) + (AR ? "، " : ", ") + df.format(DC.dateObj(n)) + (AR && hf ? " (" + hf.format(DC.dateObj(n)) + ")" : ""); }
+    function born(n) { return wf.format(DC.dateObj(n)) + (AR ? "، " : ", ") + df.format(DC.dateObj(n)) + (AR && hf && H.inRange(n) ? " (" + hf.format(DC.dateObj(n)) + ")" : ""); }
     function ageNow(n) { if (n > t) return T.future; var a = DC.age(G, G.fromDays(n), G.fromDays(t)); return ymd(a); }
     var rows = [
       [T.rows[0], count(d.months, "month") + (d.d ? (AR ? " و" : ", ") + count(d.d, "day") : "")],
@@ -91,7 +106,7 @@
     ];
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
-    DC.writeParams({ a: DC.iso(G.fromDays(an)), b: DC.iso(G.fromDays(bn)) });
+    share = { a: DC.iso(G.fromDays(an)), b: DC.iso(G.fromDays(bn)) };
   }
 
   /* ---------- Arabic: calendar switch with month names ---------- */
@@ -106,7 +121,7 @@
   }
   function switchMode(m) {
     if (m === mode) return;
-    if (m === "h" && !hijriOK) { $("cal-g").checked = true; return; }
+    if (m === "h" && !hijriOK) { if ($("hijri-unsupported")) $("hijri-unsupported").hidden = false; $("cal-g").checked = true; return; }
     var an = validate(A), bn = validate(B);
     mode = m;
     fillMonths(A); fillMonths(B);
@@ -117,6 +132,10 @@
 
   // ---- init ----
   fillMonths(A); fillMonths(B);
+  if (AR && hijriOK && H.isFallback()) {
+    if ($("hijri-fallback")) $("hijri-fallback").hidden = false;
+    if ($("r-hfallback")) $("r-hfallback").hidden = false;
+  }
   var p = DC.readParams(), pa = DC.parseIso(p.a), pb = DC.parseIso(p.b);
   if (pa) A.set(pa);
   if (pb) B.set(pb);
@@ -132,6 +151,6 @@
     $("cal-g").addEventListener("change", function () { switchMode("g"); });
     $("cal-h").addEventListener("change", function () { switchMode("h"); });
   }
-  $("copy").addEventListener("click", function () { DC.copyLink(this, AR ? "تم نسخ الرابط" : "Link copied"); });
+  $("copy").addEventListener("click", function () { DC.copyLink(this, AR ? "تم نسخ الرابط" : "Link copied", share); });
   update();
 })();

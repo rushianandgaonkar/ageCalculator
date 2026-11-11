@@ -16,6 +16,7 @@
   var neDigits = DC.store.get("ac-ne-digits") === "1";
   var dob = new DC.DateField($("dob")), on = new DC.DateField($("on"));
   var result = $("result");
+  var share = null;
 
   function cal() { return mode === "bs" ? BS : G; }
   function plural(n, w) { return nf.format(n) + " " + w + (n === 1 ? "" : "s"); }
@@ -51,6 +52,7 @@
   }
 
   function update() {
+    share = null;
     var bn = validate(dob), onN = validate(on);
     if (bn === null || onN === null) { result.setAttribute("data-state", "empty"); return; }
     if (bn > onN) { dob.error("Date of birth is after the “Age on” date."); result.setAttribute("data-state", "empty"); return; }
@@ -86,7 +88,7 @@
     ];
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
-    DC.writeParams({ dob: DC.iso(gB), on: isToday ? "" : DC.iso(gO) });
+    share = { dob: DC.iso(gB), on: isToday ? "" : DC.iso(gO) };
   }
 
   function switchMode(m) {
@@ -116,6 +118,6 @@
   $("cal-ad").addEventListener("change", function () { switchMode("ad"); });
   $("ne-digits").addEventListener("change", function () { neDigits = this.checked; DC.store.set("ac-ne-digits", neDigits ? "1" : "0"); update(); });
   $("reset-today").addEventListener("click", function () { on.set(cal().fromDays(todayN())); update(); });
-  $("copy").addEventListener("click", function () { DC.copyLink(this, "Link copied"); });
+  $("copy").addEventListener("click", function () { DC.copyLink(this, "Link copied", share); });
   update();
 })();

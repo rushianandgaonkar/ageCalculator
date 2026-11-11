@@ -14,6 +14,7 @@
   var nf = new Intl.NumberFormat("en-IN");
   var df = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", day: "numeric", month: "long", year: "numeric" });
   var sel = { cycle: $("x-cycle"), band: $("x-band"), cat: $("x-cat"), entry: $("x-entry") };
+  var share = null;
 
   function fmt(n) { return df.format(DC.dateObj(n)); }
   function plural(n, w) { return nf.format(n) + " " + w + (n === 1 ? "" : "s"); }
@@ -64,6 +65,7 @@
   }
 
   function update() {
+    share = null;
     var c = cycle(), bn = validate();
     if (bn === null) { result.setAttribute("data-state", "empty"); return; }
     var w = windowFor(c), ok = bn >= w.from && bn <= w.to;
@@ -92,8 +94,8 @@
     rows.push(["Status", c.status === "official" ? "Official notification" : "Expected, confirm when notified"]);
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
-    DC.writeParams({ dob: DC.iso(b), c: c.id === R.cycles[0].id ? "" : c.id, b: c.mode === "age" && c.bands.length > 1 ? sel.band.value : "",
-                     k: c.mode === "age" && sel.cat.value !== "gen" ? sel.cat.value : "", e: c.mode === "window" && c.entries.length > 1 ? sel.entry.value : "" });
+    share = { dob: DC.iso(b), c: c.id === R.cycles[0].id ? "" : c.id, b: c.mode === "age" && c.bands.length > 1 ? sel.band.value : "",
+              k: c.mode === "age" && sel.cat.value !== "gen" ? sel.cat.value : "", e: c.mode === "window" && c.entries.length > 1 ? sel.entry.value : "" };
   }
 
   // ---- init ----
@@ -109,6 +111,6 @@
   [sel.band, sel.cat, sel.entry].forEach(function (s) { s.addEventListener("change", update); });
   dob.on(update);
   DC.autoReveal(dob, result, "Change date of birth");
-  $("copy").addEventListener("click", function () { DC.copyLink(this, "Link copied"); });
+  $("copy").addEventListener("click", function () { DC.copyLink(this, "Link copied", share); });
   update();
 })();

@@ -8,6 +8,7 @@
   var nf = new Intl.NumberFormat("en-US");
   var df = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "long", day: "numeric", year: "numeric" });
   var code = "";
+  var share = null;
 
   function plural(n, w) { return nf.format(n) + " " + w + (n === 1 ? "" : "s"); }
   function words(a) { return plural(a.y, "year") + ", " + plural(a.m, "month") + ", " + plural(a.d, "day"); }
@@ -26,6 +27,7 @@
   }
 
   function update() {
+    share = null;
     var b = validate(dob), o = validate(on);
     if (!b || !o) { result.setAttribute("data-state", "empty"); return; }
     var bn = G.toDays(b.y, b.m, b.d), onN = G.toDays(o.y, o.m, o.d);
@@ -65,7 +67,7 @@
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
     var t = DC.todayParts();
-    DC.writeParams({ dob: DC.iso(b), on: DC.iso(o) === DC.iso(t) ? "" : DC.iso(o), method: method() === "30" ? "30" : "", ga: gw !== null ? gw + (gd ? "+" + gd : "") : "" });
+    share = { dob: DC.iso(b), on: DC.iso(o) === DC.iso(t) ? "" : DC.iso(o), method: method() === "30" ? "30" : "", ga: gw !== null ? gw + (gd ? "+" + gd : "") : "" };
   }
 
   var p = DC.readParams();
@@ -79,7 +81,7 @@
   ["m-exact", "m-30"].forEach(function (id) { $(id).addEventListener("change", update); });
   ["ga-weeks", "ga-days"].forEach(function (id) { $(id).addEventListener("input", update); });
   $("reset-today").addEventListener("click", function () { on.set(DC.todayParts()); update(); });
-  $("copy").addEventListener("click", function () { DC.copyLink(this, "Link copied"); });
+  $("copy").addEventListener("click", function () { DC.copyLink(this, "Link copied", share); });
   $("copy-code").addEventListener("click", function () {
     var btn = this;
     if (navigator.clipboard) navigator.clipboard.writeText(code).then(function () {

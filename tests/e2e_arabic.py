@@ -43,7 +43,9 @@ def main():
         ctx = b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, locale="ar-SA")
         pg = ctx.new_page()
         errors = []
+        fonts = []
         pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.on("request", lambda req: fonts.append(req.url) if "/assets/fonts/" in req.url else None)
 
         def txt(sel):
             return pg.inner_text(sel)
@@ -52,15 +54,23 @@ def main():
         pg.goto(B + "/ar/")
         meta = pg.evaluate("""() => ({lang: document.documentElement.lang, dir: document.documentElement.dir, title: document.title,
             h1: document.querySelector('h1').innerText, desc: document.querySelector('meta[name=description]').content,
-            canon: !!document.querySelector('link[rel=canonical]'), ld: [...document.querySelectorAll('script[type="application/ld+json"]')].map(s => s.textContent)})""")
+            canon: !!document.querySelector('link[rel=canonical]'),
+            hreflangs: [...document.querySelectorAll('link[rel=alternate][hreflang]')].map(l => l.getAttribute('hreflang')),
+            body: document.body.innerText,
+            ld: [...document.querySelectorAll('script[type="application/ld+json"]')].map(s => s.textContent)})""")
         check("Arabic page is lang=ar, dir=rtl", meta["lang"] == "ar" and meta["dir"] == "rtl", meta)
         check("SEO title", meta["title"] == "حساب العمر بالهجري والميلادي | احسب عمرك بدقة", meta["title"])
         check("H1", meta["h1"] == "حساب العمر - حاسبة العمر بالهجري والميلادي", meta["h1"])
         check("meta description mentions Hijri and the next birthday", "بالهجري" in meta["desc"] and "عيد ميلادك" in meta["desc"], meta["desc"])
         check("canonical link present", meta["canon"])
+        check("hreflang links only en, ar, x-default (no ja)", set(meta["hreflangs"]) == {"en", "ar", "x-default"}, meta["hreflangs"])
+        check("Arabic keywords 'حسب العمر' and 'كم عمري' appear on page", "حسب العمر" in meta["body"] and "كم عمري" in meta["body"])
         try:
-            types = [g["@type"] for s in meta["ld"] for g in json.loads(s)["@graph"]]
+            graph = [g for s in meta["ld"] for g in json.loads(s)["@graph"]]
+            types = [g["@type"] for g in graph]
             check("structured data parses (WebApplication, FAQPage)", "WebApplication" in types and "FAQPage" in types, types)
+            crumbs = [g for g in graph if g.get("@type") == "BreadcrumbList"]
+            check("/ar/ has no BreadcrumbList pointing to English /", not crumbs, crumbs)
         except Exception as e:
             check("structured data parses", False, e)
 
@@ -113,21 +123,130 @@ def main():
         check("Arabic-Indic digits switch (٣٢)", txt("#r-years") == "٣٢", txt("#r-years"))
         pg.click("label[for=dig-latn]")
 
-        # 9. Arabic age difference
+        # 9. Arabic age difference & breadcrumb root
         pg.goto(B + "/ar/age-difference/?a=1990-03-10&b=1993-07-25"); pg.wait_for_timeout(300)
         check("age difference: 3 years, 4 months, 15 days", txt("#r-years") == "3" and txt("#r-sub") == "4 أشهر و15 يومًا", (txt("#r-years"), txt("#r-sub")))
+        diff_crumbs = pg.evaluate("""() => {
+            const g = [...document.querySelectorAll('script[type="application/ld+json"]')]
+                .flatMap(s => JSON.parse(s.textContent)['@graph'])
+                .find(x => x['@type'] === 'BreadcrumbList');
+            return g ? g.itemListElement : [];
+        }""")
+        check("/ar/age-difference/ breadcrumb root is /ar/ (الرئيسية)",
+              len(diff_crumbs) == 2 and diff_crumbs[0]["name"] == "الرئيسية" and diff_crumbs[0]["item"].endswith("/ar/"),
+              diff_crumbs)
 
-        # 10. Layout and errors
+        # 10. Gregorian dates outside official Umm al-Qura range (1882-11-12 to 2174-11-25) hide Hijri & explain why
+        pg.goto(B + "/ar/?on=2026-11-10")
+        pg.fill("#dob [data-part=d]", "1"); pg.select_option("#dob [data-part=m]", "5"); pg.fill("#dob [data-part=y]", "1850")
+        pg.dispatch_event("#dob [data-part=y]", "input"); pg.wait_for_timeout(200)
+        check("Gregorian date before 1882 hides Hijri age and explains why",
+              pg.get_attribute("#result", "data-state") == "ready"
+              and pg.is_hidden("#r-hijri")
+              and pg.is_visible("#r-hijri-note")
+              and "أم القرى" in txt("#r-hijri-note")
+              and "تاريخ الميلاد (هجري)" not in txt("#r-stats"),
+              txt("#r-hijri-note"))
+
+        pg.goto(B + "/ar/?on=2180-01-01")
+        pg.fill("#dob [data-part=d]", "1"); pg.select_option("#dob [data-part=m]", "1"); pg.fill("#dob [data-part=y]", "2175")
+        pg.dispatch_event("#dob [data-part=y]", "input"); pg.wait_for_timeout(200)
+        check("Gregorian date after 2174 hides Hijri age and explains why",
+              pg.get_attribute("#result", "data-state") == "ready"
+              and pg.is_hidden("#r-hijri")
+              and pg.is_visible("#r-hijri-note"),
+              txt("#r-hijri-note"))
+
+        pg.goto(B + "/ar/age-difference/")
+        pg.fill("#dob-a [data-part=d]", "1"); pg.select_option("#dob-a [data-part=m]", "5"); pg.fill("#dob-a [data-part=y]", "1850")
+        pg.fill("#dob-b [data-part=d]", "1"); pg.select_option("#dob-b [data-part=m]", "1"); pg.fill("#dob-b [data-part=y]", "1900")
+        pg.dispatch_event("#dob-b [data-part=y]", "input"); pg.wait_for_timeout(200)
+        check("age difference before 1882 hides Hijri part and explains why",
+              pg.get_attribute("#result", "data-state") == "ready"
+              and pg.is_hidden("#r-hijri")
+              and pg.is_visible("#r-hijri-note"),
+              txt("#r-hijri-note"))
+
+        # 11. Fallback Hijri calendar notice (simulate browser without islamic-umalqura)
+        fb_ctx = b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True, locale="ar-SA")
+        fb_pg = fb_ctx.new_page()
+        fb_pg.add_init_script("""(() => {
+            const Orig = Intl.DateTimeFormat;
+            Intl.DateTimeFormat = function(locale, opts) {
+                const norm = typeof locale === "string" ? locale.replace("islamic-umalqura", "islamic-civil") : locale;
+                return new Orig(norm, opts);
+            };
+            Intl.DateTimeFormat.prototype = Orig.prototype;
+            Intl.DateTimeFormat.supportedLocalesOf = Orig.supportedLocalesOf.bind(Orig);
+        })();""")
+        fb_pg.goto(B + "/ar/?dob=1994-08-15&on=2026-11-10"); fb_pg.wait_for_timeout(200)
+        check("Hijri fallback notice shown when browser lacks Umm al-Qura",
+              fb_pg.is_visible("#hijri-fallback") and fb_pg.is_visible("#r-hfallback"),
+              (fb_pg.is_visible("#hijri-fallback"), fb_pg.is_visible("#r-hfallback")))
+        fb_ctx.close()
+
+        # 12. P1-7: 300-weight font files are not loaded on Arabic pages
+        fonts_300 = [u for u in fonts if "-300-" in u]
+        check("no 300-weight font files loaded on Arabic pages", not fonts_300, fonts_300)
+
+        # 13. Layout and errors
         for path in ["/ar/", "/ar/age-difference/"]:
             pg.goto(B + path)
             check(f"no sideways scrolling on a phone {path}", not pg.evaluate("document.documentElement.scrollWidth > innerWidth"))
-        check("no JavaScript errors", not errors, errors)
 
-        # Known issue (fix planned in Phase 1): the date of birth is written to the address bar while typing
+        # 14. P1-1: date of birth stays out of URL until 'copy link' is pressed (across all calculators)
         pg.goto(B + "/ar/")
         pg.fill("#dob [data-part=d]", "15"); pg.select_option("#dob [data-part=m]", "8"); pg.fill("#dob [data-part=y]", "1994")
         pg.dispatch_event("#dob [data-part=y]", "input"); pg.wait_for_timeout(200)
-        known_issue("date of birth stays out of the URL until 'copy link' is pressed", "dob=" not in pg.url, pg.url.replace(B, ""))
+        check("date of birth stays out of the URL until 'copy link' is pressed", "dob=" not in pg.url, pg.url.replace(B, ""))
+        pg.click("#copy"); pg.wait_for_timeout(150)
+        check("pressing 'copy link' puts dob= into the URL", "dob=1994-08-15" in pg.url, pg.url.replace(B, ""))
+
+        pg.goto(B + "/ar/age-difference/")
+        pg.fill("#dob-a [data-part=d]", "10"); pg.select_option("#dob-a [data-part=m]", "3"); pg.fill("#dob-a [data-part=y]", "1990")
+        pg.fill("#dob-b [data-part=d]", "25"); pg.select_option("#dob-b [data-part=m]", "7"); pg.fill("#dob-b [data-part=y]", "1993")
+        pg.dispatch_event("#dob-b [data-part=y]", "input"); pg.wait_for_timeout(200)
+        check("/ar/age-difference/ keeps dates out of URL until 'copy link'", "a=" not in pg.url and "b=" not in pg.url, pg.url.replace(B, ""))
+        pg.click("#copy"); pg.wait_for_timeout(150)
+        check("/ar/age-difference/ 'copy link' puts a= and b= into URL", "a=1990-03-10" in pg.url and "b=1993-07-25" in pg.url, pg.url.replace(B, ""))
+
+        other_calcs = [
+            ("/", "dob=1994-08-15", lambda: (
+                pg.fill("#dob [data-part=d]", "15"), pg.fill("#dob [data-part=m]", "8"), pg.fill("#dob [data-part=y]", "1994"),
+                pg.dispatch_event("#dob [data-part=y]", "input"))),
+            ("/chronological-age-calculator/", "dob=2018-05-20", lambda: (
+                pg.fill("#dob [data-part=m]", "5"), pg.fill("#dob [data-part=d]", "20"), pg.fill("#dob [data-part=y]", "2018"),
+                pg.dispatch_event("#dob [data-part=y]", "input"))),
+            ("/age-difference/", "a=1990-03-10", lambda: (
+                pg.fill("#dob-a [data-part=d]", "10"), pg.fill("#dob-a [data-part=m]", "3"), pg.fill("#dob-a [data-part=y]", "1990"),
+                pg.fill("#dob-b [data-part=d]", "25"), pg.fill("#dob-b [data-part=m]", "7"), pg.fill("#dob-b [data-part=y]", "1993"),
+                pg.dispatch_event("#dob-b [data-part=y]", "input"))),
+            ("/age-limit/upsc/", "dob=2000-01-15", lambda: (
+                pg.fill("#dob [data-part=d]", "15"), pg.fill("#dob [data-part=m]", "1"), pg.fill("#dob [data-part=y]", "2000"),
+                pg.dispatch_event("#dob [data-part=y]", "input"))),
+            ("/nepali-age-calculator/", "dob=", lambda: (
+                pg.fill("#dob [data-part=d]", "15"), pg.select_option("#dob [data-part=m]", "4"), pg.fill("#dob [data-part=y]", "2051"),
+                pg.dispatch_event("#dob [data-part=y]", "input"))),
+            ("/ja/", "dob=1994-08-15", lambda: (
+                pg.fill("#dob [data-part=y]", "1994"), pg.fill("#dob [data-part=m]", "8"), pg.fill("#dob [data-part=d]", "15"),
+                pg.dispatch_event("#dob [data-part=d]", "input"))),
+            ("/ja/gakunen/", "dob=2015-08-15", lambda: (
+                pg.fill("#dob [data-part=y]", "2015"), pg.fill("#dob [data-part=m]", "8"), pg.fill("#dob [data-part=d]", "15"),
+                pg.dispatch_event("#dob [data-part=d]", "input"))),
+        ]
+        for path, expected, fill_fn in other_calcs:
+            pg.goto(B + path)
+            fill_fn()
+            pg.wait_for_timeout(150)
+            before = pg.url
+            pg.click("#copy"); pg.wait_for_timeout(100)
+            after = pg.url
+            check(f"URL privacy + copy link on {path}", ("dob=" not in before and "a=" not in before) and (expected in after), (before.replace(B, ""), after.replace(B, "")))
+
+        pg.goto(B + "/ja/")
+        ja_hreflangs = pg.evaluate("[...document.querySelectorAll('link[rel=alternate][hreflang]')].length")
+        check("/ja/ has no hreflang=age link to /ar/ or /", ja_hreflangs == 0, ja_hreflangs)
+        check("no JavaScript errors", not errors, errors)
         b.close()
     httpd.shutdown()
     failed = [r for r in results if not r[1]]

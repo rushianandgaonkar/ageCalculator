@@ -12,6 +12,7 @@
   var wf = new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", weekday: "long" });
   var pr = new Intl.PluralRules("en-US", { type: "ordinal" });
   var SUF = { one: "st", two: "nd", few: "rd", other: "th" };
+  var share = null;
 
   function ord(n) { return n + SUF[pr.select(n)]; }
   function plural(n, w) { return nf.format(n) + " " + w + (n === 1 ? "" : "s"); }
@@ -35,6 +36,7 @@
   }
 
   function update() {
+    share = null;
     var b = validate(dob, "date");
     var o = validate(on, "date");
     if (!b || !o) { result.setAttribute("data-state", "empty"); return; }
@@ -104,7 +106,7 @@
     }).join("");
 
     result.setAttribute("data-state", "ready");
-    DC.writeParams({ dob: DC.iso(b), on: isToday ? "" : DC.iso(o), min: minA, max: maxA });
+    share = { dob: DC.iso(b), on: isToday ? "" : DC.iso(o), min: minA, max: maxA };
   }
 
   // Initial state: today, or values from a shared link
@@ -124,6 +126,6 @@
   $("min-age").addEventListener("input", update);
   $("max-age").addEventListener("input", update);
   $("reset-today").addEventListener("click", function () { on.set(DC.todayParts()); update(); });
-  $("copy").addEventListener("click", function () { DC.copyLink(this, "Link copied"); });
+  $("copy").addEventListener("click", function () { DC.copyLink(this, "Link copied", share); });
   update();
 })();

@@ -79,10 +79,15 @@
       }
       return null;
     }
+    var MIN_DAYS = utcDays(1882, 11, 12); // 1 Muharram 1300 AH (start of Umm al-Qura data)
+    var MAX_DAYS = utcDays(2174, 11, 25); // 30 Dhu al-Hijjah 1600 AH (end of Umm al-Qura data)
     function dim(y, m) { return toDays(y, m, 30) === null ? 29 : 30; }
     return {
       id: "hijri", dim: dim, toDays: toDays, fromDays: fromDays,
+      minDays: MIN_DAYS, maxDays: MAX_DAYS,
+      inRange: function (n) { return n !== null && n >= MIN_DAYS && n <= MAX_DAYS; },
       calendarName: function () { formatter(); return calName; },
+      isFallback: function () { formatter(); return !!calName && calName !== "islamic-umalqura"; },
       supported: function () { return !!formatter(); }
     };
   })();
@@ -319,7 +324,8 @@
       history.replaceState(null, "", location.pathname + (q ? "?" + q : ""));
     } catch (e) { /* ignore */ }
   }
-  function copyLink(btn, doneText) {
+  function copyLink(btn, doneText, params) {
+    if (params) writeParams(typeof params === "function" ? params() : params);
     var url = location.href;
     function done() {
       var note = btn.parentNode.querySelector(".copied");

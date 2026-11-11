@@ -28,7 +28,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/site.css?v=a3dc06fe24">
+  <link rel="stylesheet" href="/assets/css/site.css?v=61b9132df7">
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -101,17 +101,11 @@
      "@type": "ListItem",
      "position": 1,
      "name": "الرئيسية",
-     "item": "https://www.example.com/"
-    },
-    {
-     "@type": "ListItem",
-     "position": 2,
-     "name": "حساب العمر",
      "item": "https://www.example.com/ar/"
     },
     {
      "@type": "ListItem",
-     "position": 3,
+     "position": 2,
      "name": "حساب فرق العمر",
      "item": "https://www.example.com/ar/age-difference/"
     }
@@ -159,6 +153,8 @@
           <input type="radio" name="cal" id="cal-g" value="g" checked><label for="cal-g">ميلادي</label>
           <input type="radio" name="cal" id="cal-h" value="h"><label for="cal-h">هجري</label>
         </div>
+        <p class="field-error" id="hijri-unsupported" hidden>متصفحك لا يدعم التقويم الهجري. حدّث المتصفح أو استخدم التاريخ الميلادي.</p>
+        <p class="status-note cal-note" id="hijri-fallback" hidden>متصفحك لا يدعم تقويم أم القرى، لذا تُعرض التواريخ الهجرية بتقويم بديل وقد تختلف بيوم واحد.</p>
       </div>
 
       <fieldset class="datefield" id="dob-a">
@@ -190,11 +186,13 @@
         <p class="age-caption" id="r-caption"></p>
         <p class="age-big"><span id="r-years"></span><span class="unit">سنة</span></p>
         <p class="age-sub" id="r-sub"></p>
-        <div class="age-alt">
+        <div class="age-alt" id="r-hijri">
           <p class="age-caption">الفرق بالتقويم الهجري</p>
           <p class="age-big"><span id="r-hyears"></span><span class="unit">سنة</span></p>
           <p class="age-sub" id="r-hsub"></p>
+          <p class="hint" id="r-hfallback" hidden>يعتمد على تقويم هجري بديل عن أم القرى وقد يختلف بيوم واحد.</p>
         </div>
+        <div class="callout" id="r-hijri-note" hidden></div>
         <div class="callout" id="r-who"></div>
         <dl class="stats" id="r-stats"></dl>
         <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">نسخ رابط النتيجة</button><span class="copied" aria-live="polite"></span></div>
@@ -276,7 +274,7 @@
   </div>
 </footer>
 <script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}})();</script>
-<script src="/assets/js/datecore.js?v=a482efb08c" defer></script>
-<script src="/assets/js/diff.js?v=93a7688a43" defer></script>
+<script src="/assets/js/datecore.js?v=f7daf97d36" defer></script>
+<script src="/assets/js/diff.js?v=ca5b4ab356" defer></script>
 </body>
 </html>
