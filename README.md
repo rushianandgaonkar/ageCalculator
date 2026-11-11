@@ -85,3 +85,10 @@ Upper age limits follow the notices' "must not have attained" rule: 21–32 on 1
 - Bikram Sambat month lengths are in `bs-data.js` (2000–2090 BS), shared by both Nepali pages, verified date-by-date against the
   `nepali-date-converter` library. Extend the table when 2091 BS data is published.
 - Fonts: IBM Plex (SIL Open Font License, see `assets/fonts/OFL-LICENSE.txt`).
+
+## Tests (run before every deploy)
+1. Date maths (Gregorian, 29 Feb, month ends, Umm al-Qura range 1300–1600 AH), needs Node 18+:
+   `node --test tests/datecore.test.mjs`
+2. Arabic pages in a phone-sized browser, needs `pip install playwright` then `playwright install chromium`:
+   `python build.py` then `python tests/e2e_arabic.py`
+Both should end with 0 failures. "KNOWN ISSUE" lines are tracked problems, not failures.
