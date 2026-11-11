@@ -1,0 +1,32 @@
+name: Ageason site checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build static site
+        run: python build.py
+      - name: Check brand, canonicals, sitemap and accessibility markup
+        run: python tests/test_ageason_build.py
+      - name: Unit test calendar calculations
+        run: node --test tests/datecore.test.mjs
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Arabic browser regression tests
+        run: python tests/e2e_arabic.py
