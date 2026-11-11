@@ -1,4 +1,4 @@
-# Agewise — multilingual age calculator site
+# Ageason — multilingual age and date calculators
 
 A static website (no server code, no database) with sixteen calculators:
 
@@ -32,18 +32,21 @@ public/             ← THE WEBSITE. Deploy this folder. (Generated — don't ed
 
 ## Before you go live (5 minutes)
 1. Open `build.py` and set:
-   - `SITE_URL` — your domain, e.g. `https://www.yourdomain.com` (it's `example.com` now; the build warns you)
-   - `SITE_NAME` — "Agewise" is a working name, change it to your brand
-   - `CONTACT_EMAIL`
-2. If you changed `SITE_NAME`: `python tools/make_images.py` (redraws the share images with the new name).
-3. Run `python build.py` — the site is rebuilt into `public/`.
-4. Read `about/`, `privacy/` and `terms/` once and personalise them (the About page says the site is run by "a software test engineer").
+   - `SITE_URL` — preconfigured to `https://ageason.com` (the domain must be purchased and connected to hosting before launch)
+   - `SITE_NAME` — configured to `Ageason`
+   - `CONTACT_EMAIL` — still `hello@example.com`; replace only after a real mailbox is configured (do not deploy a placeholder contact address).
+2. Regenerate the favicons, app icons and **all** per-page social images for the Ageason brand: `python tools/make_images.py` (requires `pip install playwright pillow` and `playwright install chromium`).
+3. Run `python build.py` — the site is rebuilt into `public/`. Do not manually edit generated files.
+4. Run `node --test tests/datecore.test.mjs` and `python tests/e2e_arabic.py` (Playwright required), and inspect 375px and 390px RTL layouts plus keyboard navigation.
+5. Read `about/`, `privacy/` and `terms/` once and personalise them (the About page says the site is run by "a software test engineer").
 
 ## Deploy (Cloudflare Pages)
 - Create a Pages project → upload the `public` folder (or connect the GitHub repo with build command `python build.py` and output directory `public`).
 - `public/_headers` sets caching and security headers; `404.html` is picked up automatically.
-- Add the domain, then in **Google Search Console** add the property and submit `https://yourdomain/sitemap.xml`.
+- Add the domain, then in **Google Search Console** add the property and submit `https://ageason.com/sitemap.xml`.
 - Bing Webmaster Tools: import from Search Console.
+
+The canonical host is `https://ageason.com` (no `www`). Once the domain is active, configure Cloudflare to redirect `www.ageason.com` to `ageason.com` using a permanent redirect. Domain purchase, DNS and mailbox setup are **not** performed by this repository.
 
 ## SEO files included
 - `robots.txt` (points to the sitemap) and `sitemap.xml` (with hreflang alternates)
