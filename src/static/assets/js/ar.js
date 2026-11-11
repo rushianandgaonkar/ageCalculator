@@ -19,6 +19,7 @@
   var digits = DC.store.get("ac-digits") === "arab" ? "arab" : "latn";
   var dob = new DC.DateField($("dob")), on = new DC.DateField($("on"));
   var result = $("result");
+  var resultStatus = $("result-status");
   var F = {};
   var share = null;
 
@@ -79,8 +80,8 @@
   function update() {
     share = null;
     var bn = validate(dob), onN = validate(on);
-    if (bn === null || onN === null) { result.setAttribute("data-state", "empty"); return; }
-    if (bn > onN) { dob.error("تاريخ الميلاد بعد تاريخ الحساب."); result.setAttribute("data-state", "empty"); return; }
+    if (bn === null || onN === null) { result.setAttribute("data-state", "empty"); if (resultStatus) resultStatus.textContent = ""; return; }
+    if (bn > onN) { dob.error("تاريخ الميلاد بعد تاريخ الحساب."); result.setAttribute("data-state", "empty"); if (resultStatus) resultStatus.textContent = ""; return; }
 
     var gB = G.fromDays(bn), gO = G.fromDays(onN);
     var ga = DC.age(G, gB, gO);
@@ -153,6 +154,10 @@
     );
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
+    if (resultStatus) {
+      resultStatus.textContent = (isToday ? "عمرك اليوم: " : "عمرك في التاريخ المحدد: ") +
+        count(ga.y, "year") + " و" + count(ga.m, "month") + " و" + count(ga.d, "day") + ".";
+    }
     share = { dob: DC.iso(gB), on: isToday ? "" : DC.iso(gO) };
     var wa = $("whatsapp");
     if (wa) {
