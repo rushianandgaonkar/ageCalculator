@@ -1,0 +1,136 @@
+<!--meta
+{
+  "path": "/ar/hijri-converter/",
+  "lang": "ar",
+  "dir": "rtl",
+  "nav": "arconv",
+  "id": "arconv",
+  "kind": "tool",
+  "title": "تحويل التاريخ من هجري إلى ميلادي والعكس | تقويم أم القرى",
+  "no_suffix": true,
+  "description": "محوّل التاريخ الهجري والميلادي بدقة وفق تقويم أم القرى. حوّل أي تاريخ من هجري إلى ميلادي أو من ميلادي إلى هجري، واعرف تاريخ اليوم بالهجري والميلادي وعدد أيام أشهر السنة الهجرية.",
+  "app_name": "محوّل التاريخ الهجري والميلادي (أم القرى)",
+  "crumb": "تحويل التاريخ",
+  "scripts": ["datecore.js", "arconv.js"],
+  "og": "og-arconv.png",
+  "priority": "0.8",
+  "changefreq": "monthly",
+  "faq": [
+    ["كيف أحوّل التاريخ من هجري إلى ميلادي؟", "اختر «من هجري إلى ميلادي»، ثم أدخل اليوم والشهر والسنة الهجرية. يظهر التاريخ الميلادي المقابل ويوم الأسبوع فورًا أثناء الكتابة."],
+    ["كيف أحوّل التاريخ من ميلادي إلى هجري؟", "اختر «من ميلادي إلى هجري»، ثم أدخل التاريخ الميلادي لتظهر نتيجته في تقويم أم القرى مع عدد أيام الشهر الهجري."],
+    ["ما هو النطاق الزمني المدعوم؟", "يدعم المحوّل التواريخ الهجرية من 1300 إلى 1600 هـ، الموافقة للتواريخ الميلادية من 12 نوفمبر 1882 إلى 25 نوفمبر 2174 وفق بيانات تقويم أم القرى."],
+    ["لماذا يختلف طول الشهر الهجري بين 29 و30 يومًا؟", "يعتمد الشهر الهجري على دورة القمر (نحو 29.53 يومًا)، لذلك يكون كل شهر إما 29 يومًا أو 30 يومًا، وتكون السنة الهجرية 354 يومًا في السنة البسيطة أو 355 يومًا في السنة الكبيسة."],
+    ["هل يغني المحوّل عن قاعدة طرح أو إضافة 622 سنة؟", "لا؛ لأن السنة الهجرية أقصر من الميلادية بنحو 11 يومًا، فيتغيّر الفارق بين التقويمين باستمرار ولا يمكن تحويل التواريخ بدقة إلا باستخدام جدول أم القرى."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ar/">الرئيسية</a> / تحويل التاريخ</p>
+    <h1>تحويل التاريخ من هجري إلى ميلادي والعكس</h1>
+    <p class="lede">حوّل أي تاريخ بين التقويم الهجري (أم القرى) والتقويم الميلادي فورًا، مع تاريخ اليوم وجدول أطوال أشهر السنة الهجرية.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="محوّل التاريخ الهجري والميلادي">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div class="today-strip" id="today-ar" aria-live="polite"></div>
+
+      <div>
+        <p class="label" id="dir-label">اتجاه التحويل</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dir-label">
+          <input type="radio" name="dir" id="dir-h2g" value="h2g" checked><label for="dir-h2g">من هجري إلى ميلادي</label>
+          <input type="radio" name="dir" id="dir-g2h" value="g2h"><label for="dir-g2h">من ميلادي إلى هجري</label>
+        </div>
+        <p class="field-error" id="hijri-unsupported" hidden>متصفحك لا يدعم التقويم الهجري. حدّث المتصفح لتتمكن من استخدام المحوّل.</p>
+        <p class="status-note cal-note" id="hijri-fallback" hidden>متصفحك لا يدعم تقويم أم القرى، لذا تُعرض التواريخ الهجرية بتقويم بديل وقد تختلف بيوم واحد.</p>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend id="date-legend">التاريخ الهجري</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" data-part="d" autocomplete="off"></label>
+          <label class="p-m is-select"><span>الشهر</span><select data-part="m"></select></label>
+          <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" data-part="y" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">يدعم الأرقام العربية المشرقية (١٢٣). <button type="button" class="btn-link" id="use-today">استخدام تاريخ اليوم</button></p>
+      </fieldset>
+
+      <div>
+        <p class="label" id="dig-label">الأرقام</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dig-label">
+          <input type="radio" name="dig" id="dig-latn" value="latn" checked><label for="dig-latn">123</label>
+          <input type="radio" name="dig" id="dig-arab" value="arab"><label for="dig-arab">١٢٣</label>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>سيظهر التاريخ المحوّل هنا</strong>أدخل التاريخ، وستظهر النتيجة أثناء الكتابة.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big conv-big" id="r-main"></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row">
+          <button class="btn btn-primary" type="button" id="copy-date">نسخ التاريخ</button>
+          <button class="btn btn-tertiary" type="button" id="copy">نسخ رابط النتيجة</button>
+          <a class="btn btn-tertiary" id="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">مشاركة عبر واتساب</a>
+          <a class="btn btn-tertiary" id="to-age" href="/ar/">احسب العمر من هذا التاريخ</a>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="year-months">
+  <div class="wrap">
+    <div class="prose">
+      <h2>أشهر السنة الهجرية <span id="tbl-year"></span> هـ</h2>
+      <p id="year-summary">عدد أيام كل شهر هجري وبدايته ونهايته في التقويم الميلادي وفق تقويم أم القرى.</p>
+    </div>
+    <div class="table-tools">
+      <div class="year-nav">
+        <button class="btn btn-tertiary" type="button" id="prev-year">السنة السابقة</button>
+        <label class="find-field">السنة الهجرية
+          <input type="text" inputmode="numeric" maxlength="4" id="table-year" placeholder="1448" autocomplete="off">
+        </label>
+        <button class="btn btn-tertiary" type="button" id="next-year">السنة التالية</button>
+      </div>
+    </div>
+    <div class="table-wrap auto">
+      <table class="data">
+        <caption class="visually-hidden">أطوال أشهر السنة الهجرية وما يقابلها بالتقويم الميلادي</caption>
+        <thead><tr><th scope="col">الشهر الهجري</th><th scope="col">عدد الأيام</th><th scope="col">بداية الشهر (ميلادي)</th><th scope="col">نهاية الشهر (ميلادي)</th></tr></thead>
+        <tbody id="months-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-table"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>كيف يعمل محوّل التاريخ؟</h2>
+    <ol>
+      <li>اختر اتجاه التحويل: من هجري إلى ميلادي أو من ميلادي إلى هجري.</li>
+      <li>أدخل اليوم والشهر والسنة، أو اضغط «استخدام تاريخ اليوم».</li>
+      <li>يظهر التاريخ المحوّل فورًا مع يوم الأسبوع وتفاصيل الشهر الهجري في الجدول أعلاه.</li>
+    </ol>
+
+    <h2>تقويم أم القرى</h2>
+    <p>تقويم أم القرى هو التقويم الرسمي المعتمد في المملكة العربية السعودية، وتغطي بياناته الرسمية السنوات من 1300 إلى 1600 هـ (12 نوفمبر 1882 إلى 25 نوفمبر 2174 م). تتم جميع التحويلات داخل متصفحك دون إرسال أي بيانات.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">آخر تحديث: <time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>
+

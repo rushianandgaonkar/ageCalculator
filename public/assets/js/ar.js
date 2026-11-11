@@ -47,6 +47,13 @@
     if (md >= 1222) best = SIGNS[0];
     return "برج " + best[0] + " " + best[1];
   }
+  function season(g) {
+    var md = g.m * 100 + g.d;
+    if (md >= 321 && md <= 620) return "الربيع";
+    if (md >= 621 && md <= 922) return "الصيف";
+    if (md >= 923 && md <= 1220) return "الخريف";
+    return "الشتاء";
+  }
   function fillMonths(sel) {
     var cur = sel.value, names = mode === "h" ? HM : GM;
     var html = '<option value="">الشهر</option>';
@@ -92,10 +99,11 @@
 
     var hijriBirthInRange = hijriOK && H.inRange(bn);
     var hijriInRange = hijriBirthInRange && H.inRange(onN);
-    var nbG = DC.nextBirthday(G, gB, gO), nbH = null, ha = null;
+    var nbG = DC.nextBirthday(G, gB, gO), nbH = null, ha = null, hO = null;
     $("r-hijri").hidden = !hijriInRange;
     if (hijriInRange) {
-      var hB = H.fromDays(bn), hO = H.fromDays(onN);
+      var hB = H.fromDays(bn);
+      hO = H.fromDays(onN);
       ha = DC.age(H, hB, hO);
       nbH = DC.nextBirthday(H, hB, hO);
       if (nbH && !H.inRange(nbH.dayNum)) nbH = null;
@@ -115,28 +123,43 @@
     else if (hijriInRange && nbH && nbH.isToday && ha.y > 0) { note.hidden = false; note.className = "callout ok"; note.innerHTML = "<p>عيد ميلاد سعيد! أتممت اليوم " + count(ha.y, "year") + " بالتقويم الهجري.</p>"; }
     else note.hidden = true;
 
-    function when(nb) {
+    function countdown(calObj, onDate, nb, fmt) {
       if (!nb) return "–";
       if (nb.isToday) return "اليوم";
-      return null;
+      var rem = DC.age(calObj, onDate, nb.date);
+      var months = rem ? rem.y * 12 + rem.m : 0;
+      var days = rem ? rem.d : nb.days;
+      var parts = [];
+      if (months > 0) parts.push(count(months, "month"));
+      if (days > 0 || !parts.length) parts.push(count(days, "day"));
+      var text = "بعد " + parts.join(" و");
+      if (months > 0) text += " (" + count(nb.days, "day") + ")";
+      return fmt.format(DC.dateObj(nb.dayNum)) + "، " + text;
     }
     var weeks = Math.floor(ga.days / 7);
     var rows = [["تاريخ الميلاد (ميلادي)", F.g.format(DC.dateObj(bn))]];
     if (hijriBirthInRange) rows.push(["تاريخ الميلاد (هجري)", F.h.format(DC.dateObj(bn))]);
     rows.push(["يوم الميلاد", F.w.format(DC.dateObj(bn))]);
-    rows.push(["عيد الميلاد القادم (ميلادي)", when(nbG) || F.g.format(DC.dateObj(nbG.dayNum)) + "، بعد " + count(nbG.days, "day")]);
-    if (hijriInRange) rows.push(["عيد الميلاد القادم (هجري)", nbH ? (when(nbH) || F.h.format(DC.dateObj(nbH.dayNum)) + "، بعد " + count(nbH.days, "day")) : "–"]);
+    rows.push(["عيد الميلاد القادم (ميلادي)", countdown(G, gO, nbG, F.g)]);
+    if (hijriInRange) rows.push(["عيد الميلاد القادم (هجري)", countdown(H, hO, nbH, F.h)]);
     rows.push(
       ["العمر بالأشهر", count(ga.months, "month")],
       ["العمر بالأسابيع", count(weeks, "week")],
       ["العمر بالأيام", count(ga.days, "day")],
       ["العمر بالساعات", count(ga.days * 24, "hour")],
       ["العمر بالدقائق", count(ga.days * 1440, "minute")],
-      ["البرج", zodiac(gB)]
+      ["البرج", zodiac(gB)],
+      ["فصل الميلاد", season(gB)]
     );
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
     share = { dob: DC.iso(gB), on: isToday ? "" : DC.iso(gO) };
+    var wa = $("whatsapp");
+    if (wa) {
+      var waText = "عمري: " + count(ga.y, "year") + " و" + count(ga.m, "month") + " و" + count(ga.d, "day") + " بالميلادي" +
+        (hijriInRange ? " (" + count(ha.y, "year") + " و" + count(ha.m, "month") + " و" + count(ha.d, "day") + " بالهجري)" : "");
+      wa.href = "https://wa.me/?text=" + encodeURIComponent(waText + "\n" + DC.shareUrl(share));
+    }
   }
 
   function switchMode(newMode) {

@@ -316,11 +316,21 @@
     try { new URLSearchParams(location.search).forEach(function (v, k) { out[k] = v; }); } catch (e) { /* old browser */ }
     return out;
   }
+  function buildQuery(obj) {
+    var sp = new URLSearchParams();
+    if (obj) Object.keys(obj).forEach(function (k) { if (obj[k] != null && obj[k] !== "") sp.set(k, obj[k]); });
+    return sp.toString();
+  }
+  function shareUrl(obj) {
+    try {
+      var q = buildQuery(obj);
+      var base = location.origin && location.origin !== "null" ? location.origin + location.pathname : String(location.href).split("?")[0];
+      return base + (q ? "?" + q : "");
+    } catch (e) { return String(location.href || ""); }
+  }
   function writeParams(obj) {
     try {
-      var sp = new URLSearchParams();
-      Object.keys(obj).forEach(function (k) { if (obj[k] != null && obj[k] !== "") sp.set(k, obj[k]); });
-      var q = sp.toString();
+      var q = buildQuery(obj);
       history.replaceState(null, "", location.pathname + (q ? "?" + q : ""));
     } catch (e) { /* ignore */ }
   }
@@ -360,7 +370,7 @@
     age: age, age30: age30, addMonths: addMonths, nextBirthday: nextBirthday,
     todayParts: todayParts, weekday: weekday, dateObj: dateObj, iso: iso, parseIso: parseIso, pad: pad,
     toLatinDigits: toLatinDigits, toDigits: toDigits,
-    DateField: DateField, autoReveal: autoReveal, partComplete: partComplete, readParams: readParams, writeParams: writeParams, copyLink: copyLink,
+    DateField: DateField, autoReveal: autoReveal, partComplete: partComplete, readParams: readParams, writeParams: writeParams, shareUrl: shareUrl, copyLink: copyLink,
     store: store, renderRuler: renderRuler, esc: esc
   };
 })(typeof window !== "undefined" ? window : globalThis);

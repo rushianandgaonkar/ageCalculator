@@ -76,9 +76,10 @@
       : (an < bn ? T.older(n1, n2, ymd(d)) : T.older(n2, n1, ymd(d)));
     if (AR) {
       var hijriInRange = hijriOK && H.inRange(an) && H.inRange(bn);
+      var hd = null;
       if ($("r-hijri")) $("r-hijri").hidden = !hijriInRange;
       if (hijriInRange) {
-        var hd = DC.age(H, H.fromDays(olderN), H.fromDays(youngerN));
+        hd = DC.age(H, H.fromDays(olderN), H.fromDays(youngerN));
         $("r-hyears").textContent = nf.format(hd.y);
         $("r-hsub").textContent = count(hd.m, "month") + " و" + count(hd.d, "day");
       }
@@ -107,6 +108,11 @@
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");
     result.setAttribute("data-state", "ready");
     share = { a: DC.iso(G.fromDays(an)), b: DC.iso(G.fromDays(bn)) };
+    var wa = AR && $("whatsapp");
+    if (wa) {
+      var waText = an === bn ? T.same : ("فرق العمر: " + ymd(d) + (hd ? " (" + ymd(hd) + " بالهجري)" : ""));
+      wa.href = "https://wa.me/?text=" + encodeURIComponent(waText + "\n" + DC.shareUrl(share));
+    }
   }
 
   /* ---------- Arabic: calendar switch with month names ---------- */

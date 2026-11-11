@@ -1,22 +1,24 @@
 # Agewise — multilingual age calculator site
 
-A static website (no server code, no database) with fourteen calculators:
+A static website (no server code, no database) with sixteen calculators:
 
 | Page | URL | Language |
 |---|---|---|
 | Age calculator + exam age-limit check | `/` | English (India-friendly DD/MM) |
 | حساب العمر بالهجري والميلادي | `/ar/` | Arabic, RTL, Hijri (Umm al-Qura) + Gregorian |
+| تحويل التاريخ من هجري إلى ميلادي | `/ar/hijri-converter/` | Arabic, Hijri ↔ Gregorian + Hijri year month-length table |
+| حساب فرق العمر | `/ar/age-difference/` | Arabic, Hijri + Gregorian (hreflang pair with `/age-difference/`) |
+| جدول الأعمار بالهجري والميلادي | `/ar/ages/` | Arabic, 100-year Hijri & Gregorian birth-year age tables |
 | 年齢早見表 + 年齢計算 | `/ja/` | Japanese, eras, 干支, 数え年 |
 | Nepali age calculator | `/nepali-age-calculator/` | English + Nepali, Bikram Sambat 2000–2090 |
 | Chronological age calculator | `/chronological-age-calculator/` | English (US), y;m;d, adjusted (corrected) age |
 | Nepali date converter | `/nepali-date-converter/` | BS ↔ AD, today's Nepali date (Nepal time) |
 | Age difference calculator | `/age-difference/` | English; two people, who is older and by how much |
-| حساب فرق العمر | `/ar/age-difference/` | Arabic, Hijri + Gregorian (hreflang pair with `/age-difference/`) |
 | 学年早見表 | `/ja/gakunen/` | Japanese school year (年度) table + 入学・卒業 years |
 | Exam age limits hub | `/age-limit/` | English (India) |
 | UPSC / SSC / NDA / CDS / Agniveer | `/age-limit/upsc/` etc. | Eligibility by date of birth from official notices |
 
-Plus About, Privacy (AdSense-ready), Terms, Contact and a 404 page.
+Plus About, Privacy (AdSense-ready), Terms, Contact (in English and Arabic under `/ar/`) and a 404 page.
 
 ## Folder layout
 ```

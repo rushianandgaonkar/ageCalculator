@@ -1,0 +1,134 @@
+<!--meta
+{
+  "path": "/ar/ages/",
+  "lang": "ar",
+  "dir": "rtl",
+  "nav": "arages",
+  "id": "arages",
+  "kind": "tool",
+  "title": "جدول الأعمار بالهجري والميلادي {{AR_HYEAR}} هـ / {{AR_GYEAR}} م | كم عمرك حسب سنة الميلاد",
+  "no_suffix": true,
+  "description": "جدول الأعمار بالهجري والميلادي لعام {{AR_HYEAR}} هـ ({{AR_GYEAR}} م). اعرف عمر مواليد أي سنة هجرية أو ميلادية (مثل مواليد 1420 هـ أو 1995 م) قبل عيد الميلاد وبعده.",
+  "app_name": "جدول الأعمار بالهجري والميلادي",
+  "crumb": "جدول الأعمار",
+  "scripts": ["datecore.js", "arages.js"],
+  "og": "og-arages.png",
+  "priority": "0.8",
+  "changefreq": "monthly",
+  "faq": [
+    ["مواليد 1420 هـ كم عمرهم الآن؟", "في عام {{AR_HYEAR}} هـ يبلغ عمر مواليد 1420 هـ بالهجري {{AGE_H_1420}} بعد دخول يوم ميلادهم الهجري، أو {{AGE_H_1420_PRE}} إذا لم يحن بعد (وتوافق سنة 1420 هـ عامَي 1999–2000 م)."],
+    ["مواليد 1995 م كم عمرهم الآن؟", "في عام {{AR_GYEAR}} م يبلغ عمر مواليد 1995 م بالميلادي {{AGE_G_1995}} بعد عيد ميلادهم، أو {{AGE_G_1995_PRE}} قبل عيد ميلادهم."],
+    ["ما الفرق بين «بعد عيد الميلاد» و«قبل عيد الميلاد»؟", "إذا كنت قد أتممت يوم ميلادك في السنة الحالية فانظر إلى عمود «بعد عيد الميلاد»، وإذا لم يأتِ يوم ميلادك بعد هذا العام فانظر إلى عمود «قبل عيد الميلاد»."],
+    ["لماذا تقابل كل سنة هجرية سنتين ميلاديتين في الجدول؟", "لأن بداية السنة الهجرية تتقدّم بنحو 11 يومًا كل سنة ميلادية، فتقع أشهر السنة الهجرية الواحدة غالبًا ضمن سنتين ميلاديتين متتاليتين (والعكس صحيح)."],
+    ["كيف أحسب عمري باليوم والشهر؟", "انتقل إلى <a href=\"/ar/\">حاسبة العمر بالهجري والميلادي</a> وأدخل اليوم والشهر والسنة لتحصل على عمرك الدقيق بالسنوات والأشهر والأيام."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ar/">الرئيسية</a> / جدول الأعمار</p>
+    <h1>جدول الأعمار بالهجري والميلادي <span class="nowrap">(<span data-ar-hyear>{{AR_HYEAR}}</span> هـ / <span data-ar-gyear>{{AR_GYEAR}}</span> م)</span></h1>
+    <p class="lede">اعرف عمر مواليد أي سنة هجرية أو ميلادية بسرعة، أو أدخل سنة الميلاد للبحث الفوري في الجدول.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="البحث عن العمر بسنة الميلاد">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div>
+        <p class="label" id="cal-label">تقويم سنة الميلاد</p>
+        <div class="switch" role="radiogroup" aria-labelledby="cal-label">
+          <input type="radio" name="cal" id="cal-h" value="h" checked><label for="cal-h">هجري</label>
+          <input type="radio" name="cal" id="cal-g" value="g"><label for="cal-g">ميلادي</label>
+        </div>
+        <p class="status-note cal-note" id="hijri-fallback" hidden>متصفحك لا يدعم تقويم أم القرى، لذا قد يختلف الحساب الهجري بيوم واحد.</p>
+      </div>
+
+      <fieldset class="datefield" id="year-field">
+        <legend id="year-legend">سنة الميلاد (هجري)</legend>
+        <div class="dateparts">
+          <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" id="birth-year" placeholder="1420" autocomplete="off"></label>
+        </div>
+        <p class="field-error" id="year-err" hidden></p>
+        <p class="hint">أدخل سنة من أربعة أرقام (مثل 1420 أو 1995) للانتقال إليها في الجدول.</p>
+      </fieldset>
+
+      <div>
+        <p class="label" id="dig-label">الأرقام</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dig-label">
+          <input type="radio" name="dig" id="dig-latn" value="latn" checked><label for="dig-latn">123</label>
+          <input type="radio" name="dig" id="dig-arab" value="arab"><label for="dig-arab">١٢٣</label>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>سيظهر العمر هنا</strong>أدخل سنة الميلاد لمعرفة العمر التقريبي قبل عيد الميلاد وبعده.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit">سنة</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row">
+          <button class="btn btn-tertiary" type="button" id="copy">نسخ رابط النتيجة</button>
+          <a class="btn btn-tertiary" id="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">مشاركة عبر واتساب</a>
+          <a class="btn btn-tertiary" href="/ar/">احسب العمر باليوم والشهر</a>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="table-hijri">
+  <div class="wrap">
+    <div class="prose">
+      <h2>جدول الأعمار بالهجري (<span data-ar-hyear>{{AR_HYEAR}}</span> هـ)</h2>
+      <p>العمر في السنة الهجرية <span data-ar-hyear>{{AR_HYEAR}}</span> هـ لمواليد السنوات الهجرية خلال آخر مئة عام، مع السنوات الميلادية المقابلة.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <caption class="visually-hidden">جدول الأعمار حسب سنة الميلاد الهجرية</caption>
+        <thead><tr><th scope="col">سنة الميلاد (هجري)</th><th scope="col">الموافق (ميلادي)</th><th scope="col">بعد عيد الميلاد</th><th scope="col">قبل عيد الميلاد</th></tr></thead>
+        <tbody id="hijri-body" data-hyear="{{AR_HYEAR}}">
+{{AR_HIJRI_TABLE}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-table"></div>
+
+<section class="content" id="table-gregorian">
+  <div class="wrap">
+    <div class="prose">
+      <h2>جدول الأعمار بالميلادي (<span data-ar-gyear>{{AR_GYEAR}}</span> م)</h2>
+      <p>العمر في السنة الميلادية <span data-ar-gyear>{{AR_GYEAR}}</span> م لمواليد السنوات الميلادية خلال آخر مئة عام، مع السنوات الهجرية المقابلة.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <caption class="visually-hidden">جدول الأعمار حسب سنة الميلاد الميلادية</caption>
+        <thead><tr><th scope="col">سنة الميلاد (ميلادي)</th><th scope="col">الموافق (هجري)</th><th scope="col">بعد عيد الميلاد</th><th scope="col">قبل عيد الميلاد</th></tr></thead>
+        <tbody id="greg-body" data-year="{{AR_GYEAR}}">
+{{AR_GREG_TABLE}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>كيف تقرأ جدول الأعمار؟</h2>
+    <p>يعطيك الجدول العمر التقريبي بسرعة دون إدخال اليوم والشهر. لمعرفة عمرك الدقيق بالسنوات والأشهر والأيام والعد التنازلي لعيد ميلادك القادم استخدم <a href="/ar/">حاسبة العمر بالهجري والميلادي</a>.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">آخر تحديث: <time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>
+

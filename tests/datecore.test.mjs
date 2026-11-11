@@ -9,7 +9,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ctx = { console, Intl, Date, Math, JSON, String, Number, Object, Array, globalThis: null, location: { search: "" } };
+const ctx = { console, Intl, Date, Math, JSON, String, Number, Object, Array, URLSearchParams, globalThis: null, location: { origin: "https://www.example.com", pathname: "/ar/", href: "https://www.example.com/ar/", search: "" } };
 ctx.globalThis = ctx; ctx.window = ctx;
 vm.createContext(ctx);
 for (const f of ["datecore.js", "bs-data.js"]) vm.runInContext(fs.readFileSync(path.join(root, "src/static/assets/js", f), "utf8"), ctx);
@@ -175,4 +175,9 @@ test("Arabic-Indic, Persian, Devanagari and full-width digits are accepted", () 
   assert.equal(DC.toLatinDigits("२०८३"), "2083");
   assert.equal(DC.toLatinDigits("１９９４"), "1994");
   assert.equal(DC.toDigits("1994", "arab"), "١٩٩٤");
+});
+
+test("shareUrl formats query parameters without modifying location", () => {
+  assert.equal(DC.shareUrl({ dob: "1994-08-15", on: "" }), "https://www.example.com/ar/?dob=1994-08-15");
+  assert.equal(DC.shareUrl({}), "https://www.example.com/ar/");
 });

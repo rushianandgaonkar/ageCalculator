@@ -14,6 +14,7 @@ import html
 import json
 import re
 import shutil
+from bisect import bisect_right
 from pathlib import Path
 
 # ============================== CONFIG ==============================
@@ -47,9 +48,16 @@ EXAMS = [("upsc", "/age-limit/upsc/", "UPSC age limit", "Civil Services: 21 to u
          ("agniveer", "/age-limit/agniveer/", "Agniveer age limit", "Army Agniveer and Air Force Agniveervayu date-of-birth windows.")]
 # every calculator page (menu items plus sub-pages), used by the footer and "related" lists
 ALL_TOOLS = TOOLS[:3] + [("ardiff", "/ar/age-difference/", "حساب فرق العمر"), ("gakunen", "/ja/gakunen/", "学年早見表")] + TOOLS[3:]
+AR_TOOLS = [
+    ("ar",     "/ar/",                 "حساب العمر"),
+    ("arconv", "/ar/hijri-converter/", "تحويل التاريخ"),
+    ("ardiff", "/ar/age-difference/",  "فرق العمر"),
+    ("arages", "/ar/ages/",            "جدول الأعمار"),
+]
 PATHS = {k: p for k, p, _ in ALL_TOOLS}
+PATHS.update({k: p for k, p, _ in AR_TOOLS})
 PATHS.update({k: p for k, p, _, _ in EXAMS})
-TOOL_LANG = {"ar": "ar", "ardiff": "ar", "ja": "ja", "gakunen": "ja"}
+TOOL_LANG = {"ar": "ar", "ardiff": "ar", "arconv": "ar", "arages": "ar", "ja": "ja", "gakunen": "ja"}
 
 RELATED = {
     "en": [
@@ -64,11 +72,9 @@ RELATED = {
     ],
     "ar": [
         ("ar", "حساب العمر بالهجري والميلادي", "احسب عمرك بالسنوات والأشهر والأيام بالتقويمين الهجري والميلادي."),
+        ("arconv", "تحويل التاريخ من هجري إلى ميلادي", "حوّل أي تاريخ بين التقويم الهجري (أم القرى) والميلادي مع جدول أشهر السنة."),
         ("ardiff", "حساب فرق العمر بين شخصين", "اعرف فرق العمر بين شخصين بالهجري والميلادي."),
-        ("home", "Age calculator (English)", "حاسبة العمر بالإنجليزية مع التحقق من شروط السن."),
-        ("ja", "年齢早見表", "جدول الأعمار الياباني حسب العهود الإمبراطورية."),
-        ("ne", "Nepali age calculator", "حساب العمر بالتقويم النيبالي (بكرم سمبت)."),
-        ("chrono", "Chronological age calculator", "العمر الزمني بالسنوات والأشهر والأيام لأغراض الاختبارات."),
+        ("arages", "جدول الأعمار بالهجري والميلادي", "اعرف عمر مواليد أي سنة هجرية أو ميلادية من جدول 100 عام."),
     ],
     "ja": [
         ("ja", "年齢早見表", "生まれ年ごとの満年齢・和暦・干支と長寿祝いの早見表。"),
@@ -90,8 +96,8 @@ UI = {
     },
     "ar": {
         "skip": "انتقل إلى الحاسبة", "tools": "الحاسبات", "site": "الموقع",
-        "about": "من نحن (EN)", "privacy": "الخصوصية (EN)", "terms": "الشروط (EN)", "contact": "اتصل بنا (EN)",
-        "tagline": "حاسبات مجانية للتاريخ والعمر بعدة لغات وتقاويم. تتم جميع العمليات داخل متصفحك، ولا يُرسل أو يُحفظ أي شيء تدخله.",
+        "about": "من نحن", "privacy": "الخصوصية", "terms": "الشروط", "contact": "اتصل بنا",
+        "tagline": "حاسبات مجانية للتاريخ والعمر بالتقويمين الهجري والميلادي. تتم جميع العمليات داخل متصفحك، ولا يُرسل أو يُحفظ أي شيء تدخله.",
         "faq": "أسئلة شائعة", "related": "حاسبات أخرى", "updated": "آخر تحديث",
         "home": "الرئيسية",
     },
@@ -144,8 +150,9 @@ def ui_lang(page):
 
 
 def render_nav(page):
+    menu = AR_TOOLS if ui_lang(page) == "ar" else TOOLS
     items = []
-    for key, path, label in TOOLS:
+    for key, path, label in menu:
         cur = ' aria-current="page"' if page.get("nav") == key else ""
         lang_attr = {"ar": ' lang="ar" dir="rtl"', "ja": ' lang="ja"'}.get(TOOL_LANG.get(key), ' lang="en"')
         items.append(f'<li><a href="{path}"{cur}{lang_attr}>{html.escape(label)}</a></li>')
@@ -393,30 +400,110 @@ def choju_table(year):
     return "\n".join(rows)
 
 
+# ---------------- Arabic age tables (Umm al-Qura 1300–1600 AH) ----------------
+AR_MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
+HIJRI_EPOCH = dt.date(1882, 11, 12)  # 1 Muharram 1300 AH
+# Year lengths (354 + bit) for 1300–1600 AH from Unicode ICU islamic-umalqura
+HIJRI_BITS = (
+    "0010101000101010001101000101000101010001010000110100010110000101000101100001101000011000011010000101"
+    "0001011000011010001010000110100001010001010100011001001101000011000101010000110000110100010101000101"
+    "00010110000110100001100001011000010100010110000110100010100010101000011000010110000111000010101000110"
+)
+HIJRI_STARTS = [HIJRI_EPOCH]
+for _b in HIJRI_BITS:
+    HIJRI_STARTS.append(HIJRI_STARTS[-1] + dt.timedelta(days=354 + int(_b)))
+
+
+def hijri_year_span(hy):
+    i = hy - 1300
+    return HIJRI_STARTS[i], HIJRI_STARTS[i + 1] - dt.timedelta(days=1)
+
+
+def hijri_year_of(d):
+    return bisect_right(HIJRI_STARTS, d) + 1299
+
+
+def ar_years(n):
+    if n < 0:
+        return "—"
+    if n == 0:
+        return "أقل من سنة"
+    if n == 1:
+        return "سنة واحدة"
+    if n == 2:
+        return "سنتان"
+    if 3 <= (n % 100) <= 10:
+        return f"{n} سنوات"
+    return f"{n} سنة"
+
+
+def ar_year_range(a, b, suffix):
+    return f"{a} {suffix}" if a == b else f"{a}–{b} {suffix}"
+
+
+def ar_hijri_table(h_year):
+    rows = []
+    for hy in range(h_year, max(1299, h_year - 101), -1):
+        s, e = hijri_year_span(hy)
+        after, before = h_year - hy, h_year - hy - 1
+        rows.append(
+            f'<tr data-hy="{hy}"><td>{hy} هـ</td><td>{ar_year_range(s.year, e.year, "م")}</td>'
+            f'<td>{ar_years(after)}</td><td>{"—" if before < 0 else ar_years(before)}</td></tr>')
+    return "\n".join(rows)
+
+
+def ar_gregorian_table(g_year):
+    rows = []
+    for gy in range(g_year, g_year - 101, -1):
+        d1, d2 = dt.date(gy, 1, 1), dt.date(gy, 12, 31)
+        h_span = ar_year_range(hijri_year_of(d1), hijri_year_of(d2), "هـ") if d1 >= HIJRI_EPOCH else "خارج نطاق أم القرى"
+        after, before = g_year - gy, g_year - gy - 1
+        rows.append(
+            f'<tr data-gy="{gy}"><td>{gy} م</td><td>{h_span}</td>'
+            f'<td>{ar_years(after)}</td><td>{"—" if before < 0 else ar_years(before)}</td></tr>')
+    return "\n".join(rows)
+
+
 def page_html(page, pages, vers):
-    t = UI[ui_lang(page)]
+    lang = ui_lang(page)
+    is_ar = lang == "ar"
+    t = UI[lang]
     body = page["body"]
     reiwa = JA_TABLE_YEAR - 2018
-    repl = {
+    ar_hyear = hijri_year_of(BUILD_DATE)
+    ar_gyear = BUILD_DATE.year
+    tokens = {
         "{{SITE_NAME}}": SITE_NAME, "{{SITE_URL}}": SITE_URL, "{{CONTACT_EMAIL}}": CONTACT_EMAIL,
-        "{{FAQ}}": render_faq(page), "{{RELATED}}": render_related(page),
         "{{UPDATED_ISO}}": BUILD_DATE.isoformat(),
         "{{UPDATED}}": BUILD_DATE.strftime("%d %B %Y").lstrip("0"),
+        "{{UPDATED_AR}}": f"{BUILD_DATE.day} {AR_MONTHS[BUILD_DATE.month - 1]} {BUILD_DATE.year}",
         "{{JA_YEAR}}": str(JA_TABLE_YEAR), "{{JA_REIWA}}": str(reiwa),
         "{{JA_FY}}": str(JA_FY), "{{JA_FY_REIWA}}": str(JA_FY - 2018),
+        "{{AR_HYEAR}}": str(ar_hyear), "{{AR_GYEAR}}": str(ar_gyear),
+        "{{AGE_H_1420}}": ar_years(ar_hyear - 1420), "{{AGE_H_1420_PRE}}": ar_years(ar_hyear - 1421),
+        "{{AGE_G_1995}}": ar_years(ar_gyear - 1995), "{{AGE_G_1995_PRE}}": ar_years(ar_gyear - 1996),
+    }
+    def fill(text):
+        for k, v in tokens.items():
+            if k in text:
+                text = text.replace(k, v)
+        return text
+    if page.get("faq"):
+        page["faq"] = [[fill(q), fill(a)] for q, a in page["faq"]]
+    repl = dict(tokens)
+    repl.update({
+        "{{FAQ}}": render_faq(page), "{{RELATED}}": render_related(page),
         "{{GAKUNEN_TABLE}}": gakunen_table(JA_FY) if "{{GAKUNEN_TABLE}}" in body else "",
         "{{JA_TABLE}}": japanese_table(JA_TABLE_YEAR) if "{{JA_TABLE}}" in body else "",
         "{{JA_CHOJU}}": choju_table(JA_TABLE_YEAR) if "{{JA_CHOJU}}" in body else "",
+        "{{AR_HIJRI_TABLE}}": ar_hijri_table(ar_hyear) if "{{AR_HIJRI_TABLE}}" in body else "",
+        "{{AR_GREG_TABLE}}": ar_gregorian_table(ar_gyear) if "{{AR_GREG_TABLE}}" in body else "",
         "{{EXAM_TOOL}}": exam_tool(page["exam"]) if page.get("exam") else "",
         "{{EXAM_TABLE}}": exam_table(page["exam"]) if page.get("exam") else "",
         "{{EXAM_INDEX}}": exam_index() if "{{EXAM_INDEX}}" in body else "",
-    }
+    })
     for k, v in repl.items():
         body = body.replace(k, v)
-    def fill(text):
-        for k in ("{{JA_YEAR}}", "{{JA_REIWA}}", "{{JA_FY}}", "{{JA_FY_REIWA}}", "{{SITE_NAME}}"):
-            text = text.replace(k, repl[k] if k in repl else SITE_NAME)
-        return text
     title, desc = fill(page["title"]), fill(page["description"])
     page["title_rendered"], page["description"] = title, desc
     full_title = title if page.get("no_suffix") else f"{title} | {SITE_NAME}"
@@ -433,9 +520,12 @@ def page_html(page, pages, vers):
                if ADSENSE_PUB_ID and not page.get("noindex") else "")
     canonical = "" if page.get("noindex") else f'<link rel="canonical" href="{url}">'
     css = f'/assets/css/site.css?v={vers.get("/assets/css/site.css", "1")}'
+    footer_list = AR_TOOLS if is_ar else ALL_TOOLS
     footer_tools = "\n".join(
         f'<li><a href="{p}"{ {"ar": " lang=ar dir=rtl", "ja": " lang=ja"}.get(TOOL_LANG.get(k), "") }>{html.escape(l)}</a></li>'
-        for k, p, l in ALL_TOOLS)
+        for k, p, l in footer_list)
+    brand_href = "/ar/" if is_ar else "/"
+    site_prefix = "/ar" if is_ar else ""
 
     return f"""<!doctype html>
 <html lang="{page['lang']}" dir="{page['dir']}">
@@ -474,7 +564,7 @@ def page_html(page, pages, vers):
 <a class="skip-link" href="#main">{t['skip']}</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/" lang="en">{BRAND_SVG}<span>{html.escape(SITE_NAME)}</span></a>
+    <a class="brand" href="{brand_href}" lang="en">{BRAND_SVG}<span>{html.escape(SITE_NAME)}</span></a>
     <nav class="tool-nav" aria-label="{t['tools']}">
       <ul>
 {render_nav(page)}
@@ -501,10 +591,10 @@ def page_html(page, pages, vers):
       <div>
         <h2>{t['site']}</h2>
         <ul>
-          <li><a href="/about/">{t['about']}</a></li>
-          <li><a href="/privacy/">{t['privacy']}</a></li>
-          <li><a href="/terms/">{t['terms']}</a></li>
-          <li><a href="/contact/">{t['contact']}</a></li>
+          <li><a href="{site_prefix}/about/">{t['about']}</a></li>
+          <li><a href="{site_prefix}/privacy/">{t['privacy']}</a></li>
+          <li><a href="{site_prefix}/terms/">{t['terms']}</a></li>
+          <li><a href="{site_prefix}/contact/">{t['contact']}</a></li>
         </ul>
       </div>
     </div>
@@ -573,7 +663,8 @@ def main():
     for p in sorted(pages, key=lambda q: -float(q.get("priority", 0))):
         if p.get("kind") == "tool":
             lines.append(f"- [{p['title_rendered']}]({abs_url(p['path'])}): {p['description']}")
-    lines += ["", "## About", "", f"- [About]({abs_url('/about/')})", f"- [Privacy]({abs_url('/privacy/')})", ""]
+    lines += ["", "## About", "", f"- [About]({abs_url('/about/')})", f"- [Privacy]({abs_url('/privacy/')})",
+              f"- [من نحن]({abs_url('/ar/about/')})", f"- [سياسة الخصوصية]({abs_url('/ar/privacy/')})", ""]
     write(OUT / "llms.txt", "\n".join(lines))
 
     # ---- web manifest ----

@@ -86,7 +86,11 @@ def main():
         stats = txt("#r-stats")
         check("Hijri birth date shown (7 Rabi al-Awwal 1415)", "7 ربيع الأول 1415" in stats, stats[:200])
         check("zodiac shown (Leo)", "برج الأسد" in stats, stats[-80:])
+        check("birth season shown (Summer)", "الصيف" in stats, stats[-120:])
         check("both birthday countdowns shown", stats.count("بعد") >= 2, stats)
+        check("countdown also shows months and days", "9 أشهر" in stats and "5 أيام" in stats, stats)
+        wa_href = pg.get_attribute("#whatsapp", "href")
+        check("WhatsApp share link contains summary + dob=", wa_href.startswith("https://wa.me/?text=") and "dob%3D1994-08-15" in wa_href, wa_href)
 
         # 3. Hijri input converts to Gregorian
         pg.goto(B + "/ar/?on=2026-11-10")
@@ -185,14 +189,80 @@ def main():
               (fb_pg.is_visible("#hijri-fallback"), fb_pg.is_visible("#r-hfallback")))
         fb_ctx.close()
 
-        # 12. P1-7: 300-weight font files are not loaded on Arabic pages
+        # 12. Arabic chrome & Phase 2 pages
+        pg.goto(B + "/ar/")
+        chrome = pg.evaluate("""() => ({
+            brandHref: document.querySelector('.brand').getAttribute('href'),
+            navHrefs: [...document.querySelectorAll('.tool-nav a')].map(a => a.getAttribute('href')),
+            footerText: document.querySelector('.site-footer').innerText,
+            footerLinks: [...document.querySelectorAll('.site-footer a')].map(a => a.getAttribute('href'))
+        })""")
+        check("Arabic header brand links to /ar/", chrome["brandHref"] == "/ar/", chrome["brandHref"])
+        check("Arabic nav has the 4 Arabic tools", chrome["navHrefs"] == ["/ar/", "/ar/hijri-converter/", "/ar/age-difference/", "/ar/ages/"], chrome["navHrefs"])
+        check("Arabic footer has Arabic legal pages and no '(EN)'", "(EN)" not in chrome["footerText"] and "/ar/privacy/" in chrome["footerLinks"] and "/ar/about/" in chrome["footerLinks"], chrome["footerLinks"])
+
+        for path in ["/ar/", "/ar/age-difference/", "/ar/hijri-converter/", "/ar/ages/", "/ar/about/", "/ar/privacy/", "/ar/terms/", "/ar/contact/"]:
+            resp = pg.goto(B + path)
+            check(f"Arabic page {path} loads 200 in Arabic RTL with no sideways scroll",
+                  resp.status == 200
+                  and pg.evaluate("document.documentElement.lang === 'ar' && document.documentElement.dir === 'rtl'")
+                  and not pg.evaluate("document.documentElement.scrollWidth > innerWidth"),
+                  resp.status)
+
+        # Arabic legal pages have valid BreadcrumbList starting at /ar/ and hreflang pairs
+        pg.goto(B + "/ar/privacy/")
+        priv_info = pg.evaluate("""() => ({
+            crumbs: [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(s => JSON.parse(s.textContent)['@graph']).find(x => x['@type'] === 'BreadcrumbList').itemListElement,
+            hreflangs: [...document.querySelectorAll('link[rel=alternate][hreflang]')].map(l => l.getAttribute('hreflang'))
+        })""")
+        check("/ar/privacy/ breadcrumb root is /ar/ and hreflang pairs en+ar+x-default",
+              len(priv_info["crumbs"]) == 2 and priv_info["crumbs"][0]["item"].endswith("/ar/") and set(priv_info["hreflangs"]) == {"en", "ar", "x-default"},
+              priv_info)
+
+        # Hijri converter (/ar/hijri-converter/)
+        pg.goto(B + "/ar/hijri-converter/")
+        check("Hijri converter shows today's date in both calendars", "تاريخ اليوم" in txt("#today-ar") and "هـ" in txt("#today-ar"))
+        pg.fill("#dob [data-part=d]", "8"); pg.select_option("#dob [data-part=m]", "3"); pg.fill("#dob [data-part=y]", "1415")
+        pg.dispatch_event("#dob [data-part=y]", "input"); pg.wait_for_timeout(200)
+        check("Hijri converter 8 Rabi al-Awwal 1415 = 16 August 1994",
+              "16 أغسطس 1994" in txt("#r-main") and txt("#tbl-year") == "1415",
+              (txt("#r-main"), txt("#tbl-year")))
+        check("Hijri year table has 12 months and highlights active month",
+              pg.locator("#months-body tr").count() == 12 and pg.locator("#months-body tr.is-you").count() == 1)
+        pg.click("#next-year"); pg.wait_for_timeout(100)
+        check("Hijri year table next-year advances to 1416", txt("#tbl-year") == "1416", txt("#tbl-year"))
+        check("Hijri converter keeps date out of URL until copy link", "date=" not in pg.url, pg.url.replace(B, ""))
+        pg.click("#copy"); pg.wait_for_timeout(100)
+        check("Hijri converter copy link adds date= to URL", "date=1994-08-16" in pg.url, pg.url.replace(B, ""))
+        check("Hijri converter WhatsApp link includes wa.me", pg.get_attribute("#whatsapp", "href").startswith("https://wa.me/?text="))
+
+        # Gregorian -> Hijri conversion on /ar/hijri-converter/
+        pg.goto(B + "/ar/hijri-converter/")
+        pg.click("label[for=dir-g2h]")
+        pg.fill("#dob [data-part=d]", "15"); pg.select_option("#dob [data-part=m]", "8"); pg.fill("#dob [data-part=y]", "1994")
+        pg.dispatch_event("#dob [data-part=y]", "input"); pg.wait_for_timeout(200)
+        check("Gregorian -> Hijri 15 Aug 1994 = 7 Rabi al-Awwal 1415", "7 ربيع الأول 1415" in txt("#r-main"), txt("#r-main"))
+
+        # Age table (/ar/ages/)
+        pg.goto(B + "/ar/ages/")
+        check("Age table pre-renders Hijri and Gregorian 100-year tables",
+              pg.locator("#hijri-body tr").count() >= 100 and pg.locator("#greg-body tr").count() >= 100)
+        pg.fill("#birth-year", "1420"); pg.dispatch_event("#birth-year", "input"); pg.wait_for_timeout(150)
+        check("Age table lookup for 1420 AH highlights row and stays out of URL",
+              pg.get_attribute("#result", "data-state") == "ready"
+              and pg.locator('#hijri-body tr[data-hy="1420"].is-you').count() == 1
+              and "y=" not in pg.url,
+              (pg.get_attribute("#result", "data-state"), pg.url.replace(B, "")))
+        pg.click("#copy"); pg.wait_for_timeout(100)
+        check("Age table copy link puts y=1420 into URL", "y=1420" in pg.url, pg.url.replace(B, ""))
+        pg.click("label[for=cal-g]"); pg.fill("#birth-year", "1995"); pg.dispatch_event("#birth-year", "input"); pg.wait_for_timeout(150)
+        check("Age table lookup for 1995 AD highlights Gregorian row",
+              pg.locator('#greg-body tr[data-gy="1995"].is-you').count() == 1
+              and pg.get_attribute("#whatsapp", "href").startswith("https://wa.me/?text="))
+
+        # 13. P1-7: 300-weight font files are not loaded on any Arabic page
         fonts_300 = [u for u in fonts if "-300-" in u]
         check("no 300-weight font files loaded on Arabic pages", not fonts_300, fonts_300)
-
-        # 13. Layout and errors
-        for path in ["/ar/", "/ar/age-difference/"]:
-            pg.goto(B + path)
-            check(f"no sideways scrolling on a phone {path}", not pg.evaluate("document.documentElement.scrollWidth > innerWidth"))
 
         # 14. P1-1: date of birth stays out of URL until 'copy link' is pressed (across all calculators)
         pg.goto(B + "/ar/")

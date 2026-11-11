@@ -27,6 +27,8 @@ OG = [
     ("og-neconv.png", "en", "ltr", "Nepali date converter", "BS to AD and AD to BS, with today's Nepali date"),
     ("og-diff.png", "en", "ltr", "Age difference calculator", "The exact age gap between two people"),
     ("og-ardiff.png", "ar", "rtl", "حساب فرق العمر بين شخصين", "بالسنوات والأشهر والأيام، هجري وميلادي"),
+    ("og-arconv.png", "ar", "rtl", "تحويل التاريخ هجري ميلادي", "التحويل في الاتجاهين وفق تقويم أم القرى"),
+    ("og-arages.png", "ar", "rtl", "جدول الأعمار بالهجري والميلادي", "اعرف عمرك حسب سنة الميلاد لمئة عام"),
     ("og-gakunen.png", "ja", "ltr", "学年早見表", "生年月日から学年と入学・卒業年がわかる"),
     ("og-exam.png", "en", "ltr", "Exam age limit calculators", "UPSC, SSC, NDA, CDS and Agniveer, by date of birth"),
 ]
