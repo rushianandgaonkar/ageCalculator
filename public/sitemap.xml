@@ -1,189 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.example.com/about/</loc>
+    <loc>https://ageason.com/about/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/about/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/about/"/>
   </url>
   <url>
-    <loc>https://www.example.com/age-difference/</loc>
+    <loc>https://ageason.com/age-difference/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/age-difference/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/age-difference/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/age-difference/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/age-difference/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/age-difference/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/age-difference/"/>
   </url>
   <url>
-    <loc>https://www.example.com/ar/about/</loc>
+    <loc>https://ageason.com/ar/about/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/about/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/about/"/>
   </url>
   <url>
-    <loc>https://www.example.com/ar/age-difference/</loc>
+    <loc>https://ageason.com/ar/age-difference/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/age-difference/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/age-difference/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/age-difference/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/age-difference/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/age-difference/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/age-difference/"/>
   </url>
   <url>
-    <loc>https://www.example.com/ar/ages/</loc>
+    <loc>https://ageason.com/ar/ages/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/ar/contact/</loc>
+    <loc>https://ageason.com/ar/contact/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/contact/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/contact/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/contact/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/contact/"/>
   </url>
   <url>
-    <loc>https://www.example.com/ar/hijri-converter/</loc>
+    <loc>https://ageason.com/ar/hijri-converter/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/ar/privacy/</loc>
+    <loc>https://ageason.com/ar/privacy/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/privacy/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/privacy/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/privacy/"/>
   </url>
   <url>
-    <loc>https://www.example.com/ar/terms/</loc>
+    <loc>https://ageason.com/ar/terms/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/terms/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/terms/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/terms/"/>
   </url>
   <url>
-    <loc>https://www.example.com/ar/</loc>
+    <loc>https://ageason.com/ar/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/"/>
   </url>
   <url>
-    <loc>https://www.example.com/chronological-age-calculator/</loc>
+    <loc>https://ageason.com/chronological-age-calculator/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/contact/</loc>
+    <loc>https://ageason.com/contact/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/contact/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/contact/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/contact/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/contact/"/>
   </url>
   <url>
-    <loc>https://www.example.com/age-limit/agniveer/</loc>
+    <loc>https://ageason.com/age-limit/agniveer/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/age-limit/cds/</loc>
+    <loc>https://ageason.com/age-limit/cds/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/age-limit/</loc>
+    <loc>https://ageason.com/age-limit/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/age-limit/nda/</loc>
+    <loc>https://ageason.com/age-limit/nda/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/age-limit/ssc/</loc>
+    <loc>https://ageason.com/age-limit/ssc/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/age-limit/upsc/</loc>
+    <loc>https://ageason.com/age-limit/upsc/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/</loc>
+    <loc>https://ageason.com/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/"/>
   </url>
   <url>
-    <loc>https://www.example.com/ja/gakunen/</loc>
+    <loc>https://ageason.com/ja/gakunen/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.example.com/ja/</loc>
+    <loc>https://ageason.com/ja/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.example.com/nepali-date-converter/</loc>
+    <loc>https://ageason.com/nepali-date-converter/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/nepali-age-calculator/</loc>
+    <loc>https://ageason.com/nepali-age-calculator/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.example.com/privacy/</loc>
+    <loc>https://ageason.com/privacy/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/privacy/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/privacy/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/privacy/"/>
   </url>
   <url>
-    <loc>https://www.example.com/terms/</loc>
+    <loc>https://ageason.com/terms/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.example.com/ar/terms/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.example.com/terms/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.example.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ageason.com/ar/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ageason.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ageason.com/terms/"/>
   </url>
 </urlset>
