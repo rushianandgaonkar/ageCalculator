@@ -18,8 +18,8 @@ from bisect import bisect_right
 from pathlib import Path
 
 # ============================== CONFIG ==============================
-SITE_URL = "https://www.example.com"      # <-- your domain, no trailing slash
-SITE_NAME = "Agewise"                      # <-- working name; change freely
+SITE_URL = "https://ageason.com"         # Canonical domain (enable after purchase and DNS setup)
+SITE_NAME = "Ageason"                      # Public brand
 CONTACT_EMAIL = "hello@example.com"        # <-- shown on the contact page
 ADSENSE_PUB_ID = ""                        # e.g. "pub-1234567890123456" (fills ads.txt + ad script)
 BUILD_DATE = dt.date.today()
@@ -616,6 +616,8 @@ def write(path, text):
 def main():
     if "example.com" in SITE_URL:
         print("WARNING: SITE_URL is still the placeholder. Set your domain in build.py before deploying.")
+    if CONTACT_EMAIL.lower().endswith("@example.com"):
+        print("WARNING: CONTACT_EMAIL is a placeholder. Set up a real mailbox before going live.")
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(SRC / "static", OUT)
