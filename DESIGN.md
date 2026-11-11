@@ -1,7 +1,7 @@
-# DESIGN.md — Agewise age calculators
+# DESIGN.md — Ageason age calculators
 
 Give this file to any coding agent (Claude Code, Cursor…) before it changes the UI.
-Based on IBM's Carbon language (opendesignmd.com/designs/ibm, MIT), adapted for a
+Based on IBM's Carbon-inspired language (reference: getdesign.md), adapted for a
 multilingual calculator site: slightly rounded controls, RTL support, dark mode.
 
 ## Principles
@@ -70,3 +70,11 @@ Test sizes before shipping a layout change: 375×667 (iPhone SE), 390×844, 412�
 - No drop shadows, gradients, glassmorphism or hover lifts.
 - No all-caps labels, no "→" on links, no emoji in UI chrome.
 - No layout that pushes the calculator below the fold at 375px wide.
+
+## Accessibility and international layout checklist
+- Prefer meaningful labels and visible field errors; connect each invalid date input to its current error message with `aria-describedby` and `aria-invalid`.
+- Announce only a concise calculation summary via a dedicated `role="status"` element; do not announce the whole results panel each time an input changes.
+- Make the horizontally scrolling tool navigation discoverable and keep focused tabs visible; keyboard and touch input must both work.
+- Allow long localized date and number values to wrap rather than clip at 375px wide and in RTL layouts.
+- Before merging, inspect light/dark mode, Arabic/English/Japanese/Nepali, browser zoom, reduced motion, and mobile keyboard behavior.
+- Brand: Ageason, canonical host: `https://ageason.com`. Regenerate the per-page PNG social cards when branding changes.
