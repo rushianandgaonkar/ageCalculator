@@ -751,3 +751,187 @@ body.landing-v2 {
   .landing-v2 .timeline-card p { color: #cad1e3; }
   .landing-v2 .timeline-card a { color: #c9caff; }
 }
+
+
+/* ==========================================================================
+   FAQ Sections — illustrated editorial intro + native single-open accordion.
+   Adapted to Ageason from the user's FAQ Sections design reference.
+   These styles are contained to the FAQ and leave other <details> controls
+   (such as optional age-limit and date fields) untouched.
+   ========================================================================== */
+.landing-v2 .content .wrap.prose:has(> .faq-section) {
+  max-width: 1100px;
+}
+.landing-v2 .content .wrap.prose:has(> .faq-section) > :not(.faq-section) {
+  max-width: 74ch;
+}
+.landing-v2 .faq-section {
+  display: grid;
+  grid-template-columns: minmax(0, .84fr) minmax(0, 1.16fr);
+  align-items: start;
+  gap: clamp(27px, 5.2vw, 75px);
+  margin-block: clamp(46px, 6vw, 83px) clamp(38px, 5vw, 65px);
+  padding-block-start: clamp(40px, 5vw, 61px);
+  border-block-start: 1px solid #e5e9f4;
+}
+.landing-v2 .faq-section .faq-intro { min-width: 0; }
+.landing-v2 .faq-section .faq-eyebrow {
+  color: #5955c6;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .9px;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+.landing-v2 .faq-section .faq-intro h2 {
+  font-size: clamp(28px, 3.3vw, 40px);
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -.9px;
+  color: #263253;
+  margin: 0;
+}
+.landing-v2 .faq-section .faq-blurb {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #657289;
+  margin: 14px 0 0;
+  max-width: 40ch;
+}
+.landing-v2 .faq-section .faq-art {
+  display: grid;
+  place-items: center;
+  margin-block-start: 26px;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 5 / 3.6;
+  border-radius: 21px;
+  background: radial-gradient(circle at 78% 16%, #ebe3ff, transparent 61%),
+              radial-gradient(circle at 12% 87%, #e4efff, transparent 63%),
+              #f6f7ff;
+  border: 1px solid #e6e7f8;
+  overflow: hidden;
+}
+.landing-v2 .faq-section .faq-art svg {
+  width: min(95%, 340px);
+  height: auto;
+}
+.landing-v2 .faq-section .faq-accordion {
+  min-width: 0;
+  margin: 0;
+  padding: 2px clamp(17px, 2.4vw, 25px);
+  border: 1px solid #e0e6f4;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 40px #28345c0a;
+}
+.landing-v2 .faq-section .faq-accordion details {
+  border: 0;
+  border-block-end: 1px solid #e8ebf5;
+  margin: 0;
+  padding: 0;
+}
+.landing-v2 .faq-section .faq-accordion details:last-child {
+  border-block-end: 0;
+}
+.landing-v2 .faq-section .faq-accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding-block: 21px;
+  margin: 0;
+  color: #293653;
+  font-size: 15px;
+  line-height: 1.48;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.landing-v2 .faq-section .faq-accordion summary::-webkit-details-marker {
+  display: none;
+}
+.landing-v2 .faq-section .faq-accordion summary::after {
+  display: none;
+  content: none;
+}
+.landing-v2 .faq-section .faq-question {
+  min-width: 0;
+  flex: 1;
+}
+.landing-v2 .faq-section .faq-chevron {
+  flex: none;
+  color: #6972a7;
+  transition: transform .24s ease, color .24s ease;
+}
+.landing-v2 .faq-section .faq-accordion details[open] .faq-chevron {
+  transform: rotate(180deg);
+  color: #5855c8;
+}
+.landing-v2 .faq-section .faq-accordion summary:hover {
+  color: #5153bf;
+}
+.landing-v2 .faq-section .faq-accordion summary:focus-visible {
+  outline: 2px solid #5d56d2;
+  outline-offset: -2px;
+  border-radius: 7px;
+}
+.landing-v2 .faq-section .faq-accordion .answer {
+  padding: 0 28px 21px 0;
+  color: #606e87;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.landing-v2 .faq-section .faq-accordion .answer p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+[dir="rtl"] .landing-v2 .faq-section .faq-eyebrow,
+[dir="rtl"] .landing-v2 .faq-section .faq-intro h2 {
+  letter-spacing: 0;
+}
+[dir="rtl"] .landing-v2 .faq-section .faq-accordion .answer {
+  padding: 0 0 21px 28px;
+  line-height: 1.9;
+}
+:lang(ja) .landing-v2 .faq-section .faq-intro h2 { letter-spacing: 0; line-height: 1.4; }
+@media (max-width: 760px) {
+  .landing-v2 .faq-section {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-block: 42px;
+    padding-block-start: 32px;
+  }
+  .landing-v2 .faq-section .faq-art { display: none; }
+  .landing-v2 .faq-section .faq-intro h2 { font-size: clamp(27px, 7vw, 34px); }
+  .landing-v2 .faq-section .faq-blurb { margin-block-start: 8px; }
+  .landing-v2 .faq-section .faq-accordion { border-radius: 16px; }
+  .landing-v2 .faq-section .faq-accordion summary { padding-block: 17px; font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-v2 .faq-section .faq-chevron { transition: none; }
+}
+@media (prefers-color-scheme: dark) {
+  .landing-v2 .faq-section { border-block-start-color: #3f4965; }
+  .landing-v2 .faq-section .faq-eyebrow { color: #b8b5ff; }
+  .landing-v2 .faq-section .faq-intro h2 { color: #f6f5ff; }
+  .landing-v2 .faq-section .faq-blurb { color: #c5cce1; }
+  .landing-v2 .faq-section .faq-art {
+    background: radial-gradient(circle at 78% 16%, #413759, transparent 64%),
+                radial-gradient(circle at 12% 87%, #293f62, transparent 65%), #242944;
+    border-color: #474968;
+  }
+  .landing-v2 .faq-section .faq-accordion {
+    background: #242b42;
+    border-color: #434e68;
+    box-shadow: none;
+  }
+  .landing-v2 .faq-section .faq-accordion details { border-block-end-color: #404960; }
+  .landing-v2 .faq-section .faq-accordion summary { color: #e9ebff; }
+  .landing-v2 .faq-section .faq-accordion summary:hover { color: #c8c7ff; }
+  .landing-v2 .faq-section .faq-chevron { color: #c0c6ee; }
+  .landing-v2 .faq-section .faq-accordion details[open] .faq-chevron { color: #c3bdff; }
+  .landing-v2 .faq-section .faq-accordion .answer { color: #c4ccdf; }
+  .landing-v2 .faq-section .faq-accordion summary:focus-visible { outline-color: #d1caff; }
+}
