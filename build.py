@@ -648,26 +648,27 @@ def page_html(page, pages, vers):
 <main id="main">
 {body.strip()}
 </main>
-<footer class="site-footer footer-v2">
-  <div class="wrap">
+<footer class="site-footer footer-v2 footer-rounded" data-slot="footer">
+  <div class="wrap footer-inner" data-slot="footer-inner">
     <div class="footer-grid">
-      <div class="footer-brand-column">
+      <div class="footer-brand-column" data-slot="footer-brand">
         <a class="footer-brand" href="{brand_href}" lang="en">{BRAND_SVG}<span>{html.escape(SITE_NAME)}</span></a>
         <p class="footer-description">{t['tagline']}</p>
+        <p class="footer-note">{footer['foot_note']}</p>
       </div>
-      <nav class="footer-column" aria-label="{footer['local_heading']}">
+      <nav class="footer-column" aria-label="{footer['local_heading']}" data-slot="footer-column">
         <h2>{footer['local_heading']}</h2>
         <ul>
 {footer['local_links']}
         </ul>
       </nav>
-      <nav class="footer-column" aria-label="{footer['other_heading']}">
+      <nav class="footer-column" aria-label="{footer['other_heading']}" data-slot="footer-column">
         <h2>{footer['other_heading']}</h2>
         <ul>
 {footer['other_links']}
         </ul>
       </nav>
-      <nav class="footer-column" aria-label="{footer['site_heading']}">
+      <nav class="footer-column" aria-label="{footer['site_heading']}" data-slot="footer-column">
         <h2>{footer['site_heading']}</h2>
         <ul>
           <li><a href="{site_prefix}/about/">{t['about']}</a></li>
@@ -678,9 +679,13 @@ def page_html(page, pages, vers):
         </ul>
       </nav>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" data-slot="footer-meta">
       <p class="footer-base" lang="en">© {BUILD_DATE.year} {html.escape(SITE_NAME)}. All rights reserved.</p>
-      <p class="footer-note">{footer['foot_note']}</p>
+      <nav class="footer-legal" aria-label="{t['site']}">
+        <a href="{site_prefix}/terms/">{t['terms']}</a>
+        <a href="{site_prefix}/privacy/">{t['privacy']}</a>
+        <a href="{site_prefix}/contact/">{t['contact']}</a>
+      </nav>
     </div>
   </div>
 </footer>
