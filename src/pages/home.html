@@ -23,16 +23,28 @@
   ]
 }
 -->
-<section class="hero">
+<section class="hero" aria-labelledby="landing-title">
   <div class="wrap">
-    <h1>Age calculator</h1>
-    <p class="lede">Find your exact age in years, months and days from your date of birth. Change the “Age as on” date to check your age on any day, such as an exam cutoff.</p>
+    <div class="hero-copy">
+      <p class="hero-eyebrow">Free age &amp; date tools</p>
+      <h1 id="landing-title">Your age, <span class="hero-title-accent">beautifully calculated.</span></h1>
+      <p class="lede">Find your exact age in years, months and days. Explore your next birthday or calculate your age on any date — effortlessly.</p>
+      <ul class="hero-benefits" aria-label="Calculator highlights">
+        <li>Precise to the day</li>
+        <li>Instant results</li>
+        <li>Private, browser-based</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <section class="tool" aria-label="Age calculator">
   <div class="wrap tool-grid">
     <form class="panel" id="calc" novalidate autocomplete="on" onsubmit="return false">
+      <div>
+        <h2 class="landing-form-heading">Let's calculate your age</h2>
+        <p class="landing-form-subtitle">Enter your birthday to see the details.</p>
+      </div>
       <fieldset class="datefield" id="dob">
         <legend>Date of birth</legend>
         <div class="dateparts">
@@ -79,6 +91,40 @@
         <dl class="stats" id="r-stats"></dl>
         <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button><span class="copied" aria-live="polite"></span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap landing-proof" aria-label="Why use Ageason">
+  <strong>Simple by design.</strong>
+  <span>Multiple calendars. No sign-up. Your dates stay on your device.</span>
+</div>
+
+<section class="landing-explore" aria-labelledby="explore-title">
+  <div class="wrap">
+    <div class="landing-section-heading">
+      <h2 id="explore-title">More ways to explore time</h2>
+      <p>Helpful calculators for milestones, everyday questions and important dates.</p>
+    </div>
+    <div class="landing-links">
+      <a class="landing-link-card" href="/age-difference/">
+        <span class="landing-card-icon" aria-hidden="true">↔</span>
+        <strong>Age difference</strong>
+        <span class="description">Find the exact age gap between two people, down to the day.</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="landing-link-card" href="/chronological-age-calculator/">
+        <span class="landing-card-icon" aria-hidden="true">◇</span>
+        <strong>Chronological age</strong>
+        <span class="description">Calculate age in years, months and days for assessments.</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="landing-link-card" href="/ar/" lang="ar" dir="rtl">
+        <span class="landing-card-icon" aria-hidden="true">هـ</span>
+        <strong>حساب العمر بالهجري</strong>
+        <span class="description">احسب عمرك بالتقويمين الهجري والميلادي.</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
     </div>
   </div>
 </section>
