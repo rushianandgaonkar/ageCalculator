@@ -460,20 +460,6 @@ body.landing-v2 {
   line-height: 1.8;
   color: #b9c4dc;
 }
-.landing-v2 .footer-v2 .footer-github {
-  display: inline-flex;
-  gap: 9px;
-  align-items: center;
-  color: #dce3fc;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  border: 1px solid #596383;
-  padding: 9px 12px;
-  border-radius: 11px;
-  transition: border-color .18s ease, background-color .18s ease;
-}
-.landing-v2 .footer-v2 .footer-github:hover { background: #ffffff13; border-color: #a4a9d5; color: #fff; }
 .landing-v2 .footer-v2 .footer-column { min-width: 0; }
 .landing-v2 .footer-v2 .footer-column h2 {
   margin: 6px 0 19px;
@@ -663,7 +649,7 @@ body.landing-v2 {
   .landing-v2 .timeline-steps::after { transition: none; }
   .landing-v2 .timeline-card { transition: none; }
   .landing-v2 .timeline-step.is-in-view .timeline-card { transform: none; }
-  .landing-v2 .footer-v2 .footer-github, .landing-v2 .footer-v2 .footer-column li a { transition: none; }
+  .landing-v2 .footer-v2 .footer-column li a { transition: none; }
 }
 @media (prefers-color-scheme: dark) {
   .landing-v2 .ageason-timeline {
