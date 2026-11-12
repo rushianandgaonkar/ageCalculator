@@ -548,7 +548,6 @@ body.landing-v2 {
 .landing-v2 .timeline-heading h2 span { color: #6256cb; }
 .landing-v2 .timeline-heading > p:last-child { color: #647089; margin: 18px auto 0; font-size: 16px; line-height: 1.7; }
 .landing-v2 .timeline-steps {
-  --timeline-progress: 0%;
   list-style: none;
   max-width: 790px;
   margin: 54px auto 0;
