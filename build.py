@@ -22,6 +22,7 @@ SITE_URL = "https://ageason.com"         # Canonical domain (enable after purcha
 SITE_NAME = "Ageason"                      # Public brand
 CONTACT_EMAIL = "info@ageason.com"        # <-- shown on the contact page
 ADSENSE_PUB_ID = ""                        # e.g. "pub-1234567890123456" (fills ads.txt + ad script)
+GOOGLE_SITE_VERIFICATION = "tuYlfj3YHw96MOt78BtkEj36livlQ0tqAvIgtF8rMT4"
 BUILD_DATE = dt.date.today()
 JA_TABLE_YEAR = BUILD_DATE.year            # set to next year in late December for the 年齢早見表 rush
 JA_FY = BUILD_DATE.year if BUILD_DATE.month >= 4 else BUILD_DATE.year - 1   # Japanese school year (年度) for 学年早見表
@@ -662,6 +663,7 @@ def page_html(page, pages, vers):
   <title>{html.escape(full_title)}</title>
   <meta name="description" content="{html.escape(desc)}">
   <meta name="robots" content="{robots}">
+  <meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">
   {canonical}
   {hreflang_links(page, pages)}
   <meta property="og:type" content="website">
