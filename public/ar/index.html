@@ -29,6 +29,7 @@
   <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css?v=ageason1">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=ageason-v2">
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -115,7 +116,7 @@
   </script>
   
 </head>
-<body>
+<body class="landing-v2">
 <a class="skip-link" href="#main">انتقل إلى الحاسبة</a>
 <header class="site-header">
   <div class="wrap">
@@ -131,16 +132,25 @@
   </div>
 </header>
 <main id="main">
-<section class="hero">
+<section class="hero" aria-labelledby="landing-title">
   <div class="wrap">
-    <h1>حساب العمر - حاسبة العمر بالهجري والميلادي</h1>
-    <p class="lede">احسب عمرك بدقة بالسنوات والأشهر والأيام بالتقويمين الهجري (أم القرى) والميلادي. أدخل تاريخ ميلادك بأيٍّ من التقويمين.</p>
+    <div class="hero-copy">
+      <p class="hero-eyebrow">حاسبات مجانية للعمر والتاريخ</p>
+      <h1 id="landing-title">حساب العمر <span class="hero-title-accent">بالهجري والميلادي بدقة وسهولة</span></h1>
+      <p class="lede">احسب عمرك بالسنوات والأشهر والأيام، وتعرّف على عيد ميلادك القادم بالتقويمين الهجري (أم القرى) والميلادي.</p>
+      <ul class="hero-benefits" aria-label="مميزات الحاسبة">
+        <li>نتائج دقيقة</li>
+        <li>تحديث فوري</li>
+        <li>حسابات خاصة داخل المتصفح</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <section class="tool" aria-label="حاسبة العمر">
   <div class="wrap tool-grid">
     <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div><h2 class="landing-form-heading">احسب عمرك الآن</h2><p class="landing-form-subtitle">أدخل تاريخ ميلادك لتظهر النتيجة فورًا.</p></div>
       <div>
         <p class="label" id="cal-label">تقويم تاريخ الميلاد</p>
         <div class="switch" role="radiogroup" aria-labelledby="cal-label">
@@ -209,6 +219,40 @@
           <span class="copied" aria-live="polite"></span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap landing-proof" aria-label="مميزات الموقع">
+  <strong>حسابات بسيطة ودقيقة.</strong>
+  <span>لا حاجة للتسجيل، وتبقى تواريخك داخل متصفحك.</span>
+</div>
+
+<section class="landing-explore" aria-labelledby="explore-title">
+  <div class="wrap">
+    <div class="landing-section-heading">
+      <h2 id="explore-title">اكتشف المزيد من الحاسبات</h2>
+      <p>أدوات مجانية للتاريخ والعمر بالتقويمين الهجري والميلادي.</p>
+    </div>
+    <div class="landing-links">
+      <a class="landing-link-card" href="/ar/hijri-converter/">
+        <span class="landing-card-icon" aria-hidden="true">↔</span>
+        <strong>تحويل التاريخ</strong>
+        <span class="description">حوّل التاريخ الهجري إلى ميلادي أو العكس بسهولة.</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="landing-link-card" href="/ar/age-difference/">
+        <span class="landing-card-icon" aria-hidden="true">◇</span>
+        <strong>حساب فرق العمر</strong>
+        <span class="description">اعرف فرق العمر الدقيق بين شخصين بالهجري والميلادي.</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="landing-link-card" href="/ar/ages/">
+        <span class="landing-card-icon" aria-hidden="true">١٢</span>
+        <strong>جدول الأعمار</strong>
+        <span class="description">تعرف على عمر مواليد أي سنة هجرية أو ميلادية.</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
     </div>
   </div>
 </section>
