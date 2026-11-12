@@ -24,7 +24,7 @@ This is an original Ageason visual system inspired by the clean, product-focused
 - Timeline content remains visible without JavaScript. `prefers-reduced-motion` disables motion and shows a completed line.
 
 ## Footer information architecture
-- Site-wide responsive four-column footer: Ageason identity and description, calculators in the **current page language**, **other languages** in a separate column, and site/help links. **Never expose a GitHub repository link on public pages.**
+- Site-wide rounded-top, softly tinted footer adapted from the Hirael Footer 02 visual reference: Ageason identity/description, calculators in the **current page language**, **other languages** in a separate column, and site/help links. A subtle radial top glow, three legal links along the bottom, responsive grid and dark mode support match the rest of Ageason. **Never expose a GitHub repository link on public pages.**
 - On Arabic pages, the main calculator column lists only the four Arabic tools; English, Japanese and Nepali tools are explicitly grouped under a separate Arabic-language heading.
 - Japanese and Nepali calendar pages similarly prioritize their relevant tools.
 - Never add placeholder social profiles, telephone numbers, postal addresses or an unconfigured email address. Use the working Contact page until a verified mailbox is configured.
