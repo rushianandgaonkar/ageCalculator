@@ -240,8 +240,9 @@ def footer_navigation(page):
                          "ja": "ja", "gakunen": "ja"}
     def render_links(entries):
         return "\n".join(
-            '<li><a href="{}" lang="{}">{}</a></li>'.format(
+            '<li><a href="{}" lang="{}" hreflang="{}">{}</a></li>'.format(
                 html.escape(PATHS[key], quote=True),
+                "en" if group == "ne" else lang,
                 language_for_link.get(key, "en"),
                 html.escape(label))
             for key, label in entries
