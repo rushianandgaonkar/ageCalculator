@@ -25,6 +25,16 @@ def verify():
         assert 'Ageason' in page, f"new brand missing: {rel}"
         assert re.search(r'<link rel="canonical" href="https://ageason.com/', page), f"canonical missing: {rel}"
 
+    # V2 visual system is scoped to the English and Arabic calculator homepages.
+    en = (OUT / "index.html").read_text(encoding="utf-8")
+    for label, html_page in (("English", en), ("Arabic", (OUT / "ar/index.html").read_text(encoding="utf-8"))):
+        assert '<body class="landing-v2">' in html_page, f"V2 body class missing: {label}"
+        assert '/assets/css/landing.css?v=' in html_page, f"V2 styles missing: {label}"
+        assert 'class="hero-title-accent"' in html_page, f"V2 hero missing: {label}"
+        assert html_page.count('class="landing-link-card"') == 3, f"V2 discovery cards missing: {label}"
+    assert (OUT / "assets/css/landing.css").exists()
+    assert 'landing-v2' not in (OUT / "ja/index.html").read_text(encoding="utf-8"), "Landing styles must not affect Japanese pages"
+
     ar = (OUT / "ar/index.html").read_text(encoding="utf-8")
     assert '<html lang="ar" dir="rtl">' in ar
     assert 'id="result-status"' in ar
