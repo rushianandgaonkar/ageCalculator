@@ -32,7 +32,11 @@ with sync_playwright() as playwright:
             expected_class = "landing-v2" if name in ("english-home", "arabic-home") else "landing-v2 inner-v2"
             assert page.locator("body").get_attribute("class") == expected_class, name
             assert page.locator('link[href*="/assets/css/landing.css"]').count() == 1, name
-            assert page.locator(".site-footer.footer-v2").count() == 1, name
+            assert page.locator(".site-footer.footer-v2.footer-rounded").count() == 1, name
+            footer_radius = page.locator(".footer-rounded").evaluate(
+                "(el) => getComputedStyle(el).borderTopLeftRadius")
+            assert footer_radius != "0px", "Footer should have rounded top corners: " + name
+            assert page.locator(".footer-rounded .footer-legal a").count() == 3, name
             assert page.locator(".site-footer .footer-column").count() == 3, name
             if name in ("english-home", "arabic-home"):
                 assert page.locator("canvas[data-hero-shader]").count() == 0, name
