@@ -44,6 +44,29 @@ def verify():
             assert '<body class="landing-v2 inner-v2">' in page, f"Inner-page layout missing: {rel}"
     assert (OUT / "assets/css/landing.css").exists()
 
+    # Footer navigation groups the current language separately from alternatives.
+    footer_cases = [
+        ("index.html", "English calculators", "Other languages"),
+        ("ar/index.html", "الحاسبات بالعربية", "حاسبات بلغات أخرى"),
+        ("ja/index.html", "日本語のツール", "ほかの言語"),
+        ("nepali-age-calculator/index.html", "Nepali calendar tools", "Other languages"),
+    ]
+    for rel, own_label, others_label in footer_cases:
+        html_text = (OUT / rel).read_text(encoding="utf-8")
+        assert 'class="site-footer footer-v2"' in html_text, rel
+        assert own_label in html_text and others_label in html_text, rel
+        assert html_text.count('class="footer-column"') == 3, rel
+        assert 'href="/contact/"' in html_text or 'href="/ar/contact/"' in html_text, rel
+        assert 'hello@example.com' not in html_text.split('<footer class="site-footer footer-v2">')[1], rel
+
+    # Timeline progress is an accessible enhancement, not a dependency for using calculators.
+    for rel in ("index.html", "ar/index.html"):
+        html_text = (OUT / rel).read_text(encoding="utf-8")
+        assert 'data-timeline' in html_text, rel
+        assert html_text.count('data-timeline-step') == 3, rel
+        assert '/assets/js/scroll-timeline.js?v=' in html_text, rel
+    assert (OUT / "assets/js/scroll-timeline.js").exists()
+
     ar = (OUT / "ar/index.html").read_text(encoding="utf-8")
     assert '<html lang="ar" dir="rtl">' in ar
     assert 'id="result-status"' in ar
