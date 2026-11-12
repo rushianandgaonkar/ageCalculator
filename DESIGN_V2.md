@@ -33,6 +33,6 @@ This is an original Ageason visual system inspired by the clean, product-focused
 ## Acceptance checklist
 1. `python build.py`, `python tests/test_ageason_build.py`, `node --test tests/datecore.test.mjs`.
 2. Run `python tests/e2e_arabic.py`; confirm accurate Gregorian/Hijri results.
-3. Review 18 screenshots (1440px desktop and 390px mobile) from GitHub Actions artifacts, including the chronological calculator, Arabic converter, Japanese/Nepali pages and About.
+3. Review 26 screenshots (1440px desktop and 390px mobile) from GitHub Actions artifacts: 18 representative full pages plus eight dedicated timeline/footer views. Check the chronological calculator, Arabic converter, Japanese/Nepali pages and About.
 4. Verify focus, contrast, overflow, year/month/day input and form-result interactions in light and dark mode.
 5. Do not merge without visual approval. Domain purchase and Cloudflare setup are separate.
