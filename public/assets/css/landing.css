@@ -260,6 +260,8 @@ body.landing-v2 {
   .landing-v2 .landing-section-heading p {color:#b9c2d8;}
   .landing-v2 .landing-link-card{background:#20283c;border-color:#3b455e;color:#f2f3ff;} .landing-v2 .landing-link-card:hover{color:#fff;border-color:#7981a3;} .landing-v2 .landing-link-card .description{color:#c2c9d9;} .landing-v2 .landing-link-card .card-arrow{color:#b5bdff;}
   .landing-v2 .content{background:#171d30;border-color:#343b53;} .landing-v2 .content .prose h2{color:#e3e5ff;}
+  .landing-v2 .btn-primary{background:#606de1;color:#ffffff;}
+  .landing-v2 .btn-primary:hover{background:#7681ed;color:#ffffff;}
   .landing-v2 .btn-tertiary{background:#323956;border-color:#727aaa;color:#d8ddff;}
 }
 
