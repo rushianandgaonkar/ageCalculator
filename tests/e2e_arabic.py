@@ -59,9 +59,9 @@ def main():
             body: document.body.innerText,
             ld: [...document.querySelectorAll('script[type="application/ld+json"]')].map(s => s.textContent)})""")
         check("Arabic page is lang=ar, dir=rtl", meta["lang"] == "ar" and meta["dir"] == "rtl", meta)
-        check("SEO title", meta["title"] == "حساب العمر بالهجري والميلادي | احسب عمرك بدقة", meta["title"])
+        check("SEO title", meta["title"] == "حساب العمر بالهجري والميلادي | حاسبة العمر الدقيقة", meta["title"])
         check("H1 keeps Arabic age + Gregorian/Hijri intent", "حساب العمر" in meta["h1"] and "بالهجري والميلادي" in meta["h1"], meta["h1"])
-        check("meta description mentions Hijri and the next birthday", "بالهجري" in meta["desc"] and "عيد ميلادك" in meta["desc"], meta["desc"])
+        check("meta description mentions Hijri and the next birthday", "بالهجري" in meta["desc"] and "عيد ميلادي" in meta["desc"], meta["desc"])
         check("canonical link present", meta["canon"])
         check("hreflang links only en, ar, x-default (no ja)", set(meta["hreflangs"]) == {"en", "ar", "x-default"}, meta["hreflangs"])
         check("Arabic keywords 'حسب العمر' and 'كم عمري' appear on page", "حسب العمر" in meta["body"] and "كم عمري" in meta["body"])
