@@ -183,6 +183,80 @@ def render_related(page):
     return f'<h2>{t["related"]}</h2>\n<ul class="related">\n{lis}\n</ul>'
 
 
+# Footer navigation: local tools are always first; tools in other languages
+# have their own column so no visitor must navigate a mixed-language link list.
+FOOTER_SECTIONS = {
+    "en": {
+        "local_title": "English calculators",
+        "local": [("home", "Age calculator"), ("diff", "Age difference"),
+                  ("chrono", "Chronological age"), ("exam", "Exam age limits")],
+        "other_title": "Other languages",
+        "other": [("ar", "العربية — حاسبة العمر"), ("ja", "日本語 — 年齢早見表"),
+                  ("ne", "Nepali — Age calculator"), ("neconv", "Nepali — Date converter")],
+        "site_title": "Explore Ageason",
+        "foot_note": "Free tools · No account required",
+        "github_label": "Ageason on GitHub",
+    },
+    "ar": {
+        "local_title": "الحاسبات بالعربية",
+        "local": [("ar", "حساب العمر"), ("arconv", "تحويل التاريخ"),
+                  ("ardiff", "فرق العمر"), ("arages", "جدول الأعمار")],
+        "other_title": "حاسبات بلغات أخرى",
+        "other": [("home", "English — حاسبة العمر"), ("ja", "日本語 — حاسبة العمر اليابانية"),
+                  ("ne", "Nepali — حاسبة العمر النيبالية"), ("neconv", "Nepali — تحويل التاريخ")],
+        "site_title": "تعرف على Ageason",
+        "foot_note": "أدوات مجانية · لا تحتاج إلى تسجيل",
+        "github_label": "Ageason على GitHub",
+    },
+    "ja": {
+        "local_title": "日本語のツール",
+        "local": [("ja", "年齢早見表"), ("gakunen", "学年早見表")],
+        "other_title": "ほかの言語",
+        "other": [("home", "English — Age calculator"), ("ar", "العربية — حساب العمر"),
+                  ("ne", "Nepali — Age calculator"), ("neconv", "Nepali — Date converter")],
+        "site_title": "サイト案内",
+        "foot_note": "無料の計算ツール · 登録不要",
+        "github_label": "GitHub の Ageason",
+    },
+    "ne": {
+        "local_title": "Nepali calendar tools",
+        "local": [("ne", "Nepali age calculator"), ("neconv", "Nepali date converter")],
+        "other_title": "Other languages",
+        "other": [("home", "English — Age calculator"), ("ar", "العربية — حاسبة العمر"),
+                  ("ja", "日本語 — 年齢早見表")],
+        "site_title": "Explore Ageason",
+        "foot_note": "Free tools · No account required",
+        "github_label": "Ageason on GitHub",
+    }
+}
+
+
+def footer_navigation(page):
+    lang = ui_lang(page)
+    # Nepali calendar tools currently have English-language interfaces.
+    group = "ne" if page.get("nav") in ("ne", "neconv") else lang
+    config = FOOTER_SECTIONS[group]
+    language_for_link = {"ar": "ar", "arconv": "ar", "ardiff": "ar", "arages": "ar",
+                         "ja": "ja", "gakunen": "ja"}
+    def render_links(entries):
+        return "\\n".join(
+            '<li><a href="{}" lang="{}">{}</a></li>'.format(
+                html.escape(PATHS[key], quote=True),
+                language_for_link.get(key, "en"),
+                html.escape(label))
+            for key, label in entries
+        )
+    return {
+        "local_heading": html.escape(config["local_title"]),
+        "local_links": render_links(config["local"]),
+        "other_heading": html.escape(config["other_title"]),
+        "other_links": render_links(config["other"]),
+        "site_heading": html.escape(config["site_title"]),
+        "foot_note": html.escape(config["foot_note"]),
+        "github_label": html.escape(config["github_label"]),
+    }
+
+
 def json_ld(page):
     url = abs_url(page["path"])
     graph = []
@@ -525,10 +599,7 @@ def page_html(page, pages, vers):
     is_primary_landing = page.get("nav") in ("home", "ar") and page.get("kind") == "tool"
     landing_css = f'<link rel="stylesheet" href="/assets/css/landing.css?v={vers.get("/assets/css/landing.css", "1")}">'
     body_class = ' class="landing-v2"' if is_primary_landing else ' class="landing-v2 inner-v2"'
-    footer_list = AR_TOOLS if is_ar else ALL_TOOLS
-    footer_tools = "\n".join(
-        f'<li><a href="{p}"{ {"ar": " lang=ar dir=rtl", "ja": " lang=ja"}.get(TOOL_LANG.get(k), "") }>{html.escape(l)}</a></li>'
-        for k, p, l in footer_list)
+    footer = footer_navigation(page)
     brand_href = "/ar/" if is_ar else "/"
     site_prefix = "/ar" if is_ar else ""
 
@@ -581,30 +652,44 @@ def page_html(page, pages, vers):
 <main id="main">
 {body.strip()}
 </main>
-<footer class="site-footer">
+<footer class="site-footer footer-v2">
   <div class="wrap">
     <div class="footer-grid">
-      <div>
-        <h2 lang="en">{html.escape(SITE_NAME)}</h2>
-        <p>{t['tagline']}</p>
+      <div class="footer-brand-column">
+        <a class="footer-brand" href="{brand_href}" lang="en">{BRAND_SVG}<span>{html.escape(SITE_NAME)}</span></a>
+        <p class="footer-description">{t['tagline']}</p>
+        <a class="footer-github" href="https://github.com/rushianandgaonkar/ageCalculator" target="_blank" rel="noopener noreferrer" aria-label="{footer['github_label']}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.16c-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 .1.77 2.07 3.24 1.47.1-.72.4-1.22.71-1.5-2.5-.29-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.97 0 0 .95-.3 3.09 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.09-1.15 3.09-1.15.61 1.54.23 2.69.11 2.97.72.79 1.16 1.79 1.16 3.02 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.08c0 .3.2.64.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg>
+          <span>GitHub</span>
+        </a>
       </div>
-      <div>
-        <h2>{t['tools']}</h2>
+      <nav class="footer-column" aria-label="{footer['local_heading']}">
+        <h2>{footer['local_heading']}</h2>
         <ul>
-{footer_tools}
+{footer['local_links']}
         </ul>
-      </div>
-      <div>
-        <h2>{t['site']}</h2>
+      </nav>
+      <nav class="footer-column" aria-label="{footer['other_heading']}">
+        <h2>{footer['other_heading']}</h2>
+        <ul>
+{footer['other_links']}
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-label="{footer['site_heading']}">
+        <h2>{footer['site_heading']}</h2>
         <ul>
           <li><a href="{site_prefix}/about/">{t['about']}</a></li>
           <li><a href="{site_prefix}/privacy/">{t['privacy']}</a></li>
           <li><a href="{site_prefix}/terms/">{t['terms']}</a></li>
           <li><a href="{site_prefix}/contact/">{t['contact']}</a></li>
+          <li><a href="{('/ar/#faq' if is_ar else '/ja/#faq' if lang == 'ja' else '/#faq')}">{t['faq']}</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
-    <p class="footer-base" lang="en">© {BUILD_DATE.year} {html.escape(SITE_NAME)}</p>
+    <div class="footer-bottom">
+      <p class="footer-base" lang="en">© {BUILD_DATE.year} {html.escape(SITE_NAME)}. All rights reserved.</p>
+      <p class="footer-note">{footer['foot_note']}</p>
+    </div>
   </div>
 </footer>
 <script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){{var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){{n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}}}})();</script>
