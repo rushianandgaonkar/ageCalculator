@@ -81,6 +81,9 @@ def main():
         pg.click("#dob [data-part=y]"); pg.keyboard.type("1994"); pg.wait_for_timeout(300)
         check("result appears without a Calculate button", pg.get_attribute("#result", "data-state") == "ready")
         check("Gregorian age 32 years", txt("#r-years") == "32", txt("#r-years"))
+        check("result uses concise screen-reader summary", "32" in txt("#result-status") and "سنة" in txt("#result-status"))
+        check("results panel avoids announcing the entire calculation", pg.get_attribute("#result", "aria-live") is None)
+        check("date fields have stable name attributes", pg.get_attribute("#dob [data-part=y]", "name") == "dob_year")
         check("Arabic grammar: 'شهران و26 يومًا' (2 months, 26 days)", txt("#r-sub") == "شهران و26 يومًا", txt("#r-sub"))
         check("Hijri age shown (33 years)", txt("#r-hyears") == "33", txt("#r-hyears"))
         stats = txt("#r-stats")
@@ -109,6 +112,8 @@ def main():
         pg.fill("#dob [data-part=d]", "1"); pg.select_option("#dob [data-part=m]", "1"); pg.fill("#dob [data-part=y]", "2035")
         pg.dispatch_event("#dob [data-part=y]", "input"); pg.wait_for_timeout(200)
         check("future date of birth shows an error", "بعد تاريخ الحساب" in txt("#dob .field-error"), txt("#dob .field-error"))
+        err_id = pg.get_attribute("#dob .field-error", "id")
+        check("invalid date is announced and linked to inputs", pg.get_attribute("#dob [data-part=y]", "aria-invalid") == "true" and err_id in (pg.get_attribute("#dob [data-part=y]", "aria-describedby") or ""))
 
         # 6. Invalid Hijri day (30th of a 29-day month)
         pg.goto(B + "/ar/"); pg.click("label[for=cal-h]")

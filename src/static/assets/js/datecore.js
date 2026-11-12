@@ -226,6 +226,12 @@
     this.parts = {};
     this.order = Array.prototype.slice.call(root.querySelectorAll("[data-part]"));
     this.err = root.querySelector(".field-error");
+    this.errorId = null;
+    if (this.err) {
+      this.errorId = this.err.id || (root.id ? root.id + "-date-error" : "date-error-" + (++DateField.errorCounter));
+      this.err.id = this.errorId;
+      this.err.setAttribute("aria-live", "polite");
+    }
     var self = this;
     this.order.forEach(function (el, i) {
       self.parts[el.getAttribute("data-part")] = el;
@@ -260,9 +266,22 @@
     this.parts.m.value = v ? (this.parts.m.tagName === "SELECT" ? String(v.m) : pad(v.m)) : "";
     this.parts.d.value = v ? pad(v.d) : "";
   };
+  DateField.errorCounter = 0;
   DateField.prototype.error = function (msg) {
-    this.root.classList.toggle("has-error", !!msg);
-    if (this.err) { this.err.textContent = msg || ""; this.err.hidden = !msg; }
+    var invalid = !!msg;
+    this.root.classList.toggle("has-error", invalid);
+    if (this.err) { this.err.textContent = msg || ""; this.err.hidden = !invalid; }
+    var errorId = this.errorId;
+    this.order.forEach(function (el) {
+      if (!errorId) return;
+      var ids = (el.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+      ids = ids.filter(function (id) { return id !== errorId; });
+      if (invalid) ids.push(errorId);
+      if (ids.length) el.setAttribute("aria-describedby", ids.join(" "));
+      else el.removeAttribute("aria-describedby");
+      if (invalid) el.setAttribute("aria-invalid", "true");
+      else el.removeAttribute("aria-invalid");
+    });
   };
   DateField.prototype.on = function (fn) {
     var self = this;

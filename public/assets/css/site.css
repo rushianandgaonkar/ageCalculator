@@ -139,6 +139,8 @@ a:hover { color: var(--primary-hover); }
 }
 .tool-nav a:hover { color: var(--ink); background: var(--surface-1); }
 .tool-nav a[aria-current="page"] { color: var(--ink); font-weight: 600; border-block-end-color: var(--primary); }
+.tool-nav a:focus-visible { outline-offset: -3px; scroll-margin-inline: 16px; }
+.tool-nav:focus-within { scrollbar-width: thin; }
 
 /* ---------- Hero ---------- */
 .hero { background: var(--surface-1); padding-block: var(--s-6) var(--s-6); }
@@ -196,7 +198,7 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--focus); out
 .btn {
   font: inherit; font-size: 14px; letter-spacing: 0.16px; cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
-  min-height: 40px; padding: 9px var(--s-4); border-radius: var(--radius);
+  min-height: 44px; padding: 9px var(--s-4); border-radius: var(--radius);
   border: 1px solid transparent; text-decoration: none;
 }
 .btn-primary { background: var(--primary); color: var(--on-primary); }
@@ -214,7 +216,7 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--focus); out
 /* Segmented switch (calendar choice) */
 .switch { display: inline-flex; border: 1px solid var(--hairline-strong); border-radius: var(--radius); overflow: hidden; }
 .switch input { position: absolute; opacity: 0; pointer-events: none; }
-.switch label { padding: 9px var(--s-4); font-size: 14px; cursor: pointer; color: var(--ink-muted); min-height: 40px; display: inline-flex; align-items: center; }
+.switch label { padding: 9px var(--s-4); font-size: 14px; cursor: pointer; color: var(--ink-muted); min-height: 44px; display: inline-flex; align-items: center; }
 .switch label:not(:first-of-type) { border-inline-start: 1px solid var(--hairline-strong); }
 .switch input:checked + label { background: var(--ink); color: var(--canvas); }
 .switch input:focus-visible + label { outline: 2px solid var(--focus); outline-offset: -2px; }
@@ -266,6 +268,7 @@ details.more > .more-body { margin-block-start: var(--s-4); display: grid; gap: 
 .stats div { display: flex; justify-content: space-between; gap: var(--s-3); padding-block: 10px; border-block-end: 1px solid var(--hairline); font-size: 15px; }
 .stats dt { color: var(--ink-muted); }
 .stats dd { margin: 0; font-weight: 600; text-align: end; font-variant-numeric: tabular-nums; }
+.stats dt, .stats dd { min-width: 0; overflow-wrap: anywhere; }
 
 .share-row { margin-block-start: var(--s-5); display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center; }
 .share-row .copied { font-size: 13px; color: var(--success); }
@@ -370,6 +373,12 @@ table.data td.era-change { color: var(--ink-muted); font-size: 13px; }
    Phones (one-column layout, < 720px)
    ========================================================================== */
 .result-edit { display: none; }
+@media (max-width: 480px) {
+  /* Long localized dates and calendar labels must not overflow the viewport. */
+  .stats div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .stats dd { text-align: start; }
+}
+
 @media (max-width: 719px) {
   /* Shorter title band so the form starts higher on small screens */
   .hero { padding-block: var(--s-5) var(--s-5); }

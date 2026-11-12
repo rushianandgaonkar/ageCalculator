@@ -49,9 +49,9 @@
       <fieldset class="datefield" id="dob">
         <legend>تاريخ الميلاد</legend>
         <div class="dateparts">
-          <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" data-part="d" autocomplete="off"></label>
-          <label class="p-m is-select"><span>الشهر</span><select data-part="m"></select></label>
-          <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" data-part="y" autocomplete="off"></label>
+          <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" name="dob_day" data-part="d" autocomplete="off"></label>
+          <label class="p-m is-select"><span>الشهر</span><select name="dob_month" data-part="m"></select></label>
+          <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" name="dob_year" data-part="y" autocomplete="off"></label>
         </div>
         <p class="field-error" hidden></p>
       </fieldset>
@@ -62,9 +62,9 @@
           <fieldset class="datefield" id="on">
             <legend>العمر في تاريخ</legend>
             <div class="dateparts">
-              <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" data-part="d" autocomplete="off"></label>
-              <label class="p-m is-select"><span>الشهر</span><select data-part="m"></select></label>
-              <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" data-part="y" autocomplete="off"></label>
+              <label class="p-d"><span>اليوم</span><input type="text" inputmode="numeric" maxlength="2" placeholder="يوم" name="on_day" data-part="d" autocomplete="off"></label>
+              <label class="p-m is-select"><span>الشهر</span><select name="on_month" data-part="m"></select></label>
+              <label class="p-y"><span>السنة</span><input type="text" inputmode="numeric" maxlength="4" placeholder="سنة" name="on_year" data-part="y" autocomplete="off"></label>
             </div>
             <p class="field-error" hidden></p>
             <p class="hint">التاريخ الافتراضي هو اليوم. <button type="button" class="btn-link" id="reset-today">العودة إلى اليوم</button></p>
@@ -81,7 +81,8 @@
       </div>
     </form>
 
-    <div class="result" id="result" data-state="empty" aria-live="polite">
+    <p class="visually-hidden" id="result-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    <div class="result" id="result" data-state="empty">
       <p class="result-empty"><strong>سيظهر عمرك هنا</strong>أدخل تاريخ ميلادك، وستتحدث النتيجة أثناء الكتابة.</p>
       <div class="result-body">
         <p class="age-caption" id="r-caption"></p>
