@@ -72,7 +72,7 @@ def verify():
         assert own_label in html_text and others_label in html_text, rel
         assert html_text.count('class="footer-column"') == 3, rel
         assert 'href="/contact/"' in html_text or 'href="/ar/contact/"' in html_text, rel
-        assert 'hello@example.com' not in html_text.split('<footer class="site-footer footer-v2">')[1], rel
+        assert 'hello@example.com' not in html_text.split('<footer class="site-footer footer-v2 footer-rounded"')[1], rel
 
     # Timeline progress is an accessible enhancement, not a dependency for using calculators.
     for rel in ("index.html", "ar/index.html"):
