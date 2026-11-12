@@ -24,6 +24,10 @@ jobs:
         run: python tests/test_ageason_build.py
       - name: Unit test calendar calculations
         run: node --test tests/datecore.test.mjs
+      - name: Verify visual-effect JavaScript syntax
+        run: |
+          node --check public/assets/js/hero-shader.js
+          node --check public/assets/js/scroll-timeline.js
       - name: Install browser test dependencies
         run: |
           python -m pip install playwright
