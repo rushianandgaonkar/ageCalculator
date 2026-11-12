@@ -34,6 +34,13 @@ with sync_playwright() as playwright:
             assert page.locator('link[href*="/assets/css/landing.css"]').count() == 1, name
             assert page.locator(".site-footer.footer-v2").count() == 1, name
             assert page.locator(".site-footer .footer-column").count() == 3, name
+            if name in ("english-home", "arabic-home"):
+                assert page.locator("canvas[data-hero-shader]").count() == 1, name
+                assert page.locator(".tool .beam-frame").count() == 1, name
+                frame_style = page.locator(".tool .beam-frame").evaluate(
+                    "(el) => getComputedStyle(el).boxShadow")
+                assert frame_style != "none", "No fallback beam border: " + name
+            assert not page.locator(".site-footer a[href*='github.com']").count(), name
             if name == "arabic-home":
                 assert page.get_by_text("الحاسبات بالعربية", exact=True).count() == 1
                 assert page.get_by_text("حاسبات بلغات أخرى", exact=True).count() == 1
@@ -58,6 +65,17 @@ with sync_playwright() as playwright:
                 page.locator(".site-footer.footer-v2").screenshot(
                     path=str(out / (name + "-" + device + "-footer.png")),
                     animations="disabled")
+                if device == "desktop":
+                    reduced = browser.new_page(viewport={"width": 1440, "height": 900},
+                                               reduced_motion="reduce")
+                    reduced.goto("http://127.0.0.1:8000" + path, wait_until="networkidle")
+                    shader_display = reduced.locator("[data-hero-shader]").evaluate(
+                        "(el) => getComputedStyle(el).display")
+                    beam_animation = reduced.locator(".tool .beam-frame").evaluate(
+                        "(el) => getComputedStyle(el, '::after').animationName")
+                    assert shader_display == "none", f"Reduced motion shader still visible: {name}"
+                    assert beam_animation == "none", f"Reduced motion border is animating: {name}"
+                    reduced.close()
             page.close()
     browser.close()
 print("Saved 26 visual screenshots for Ageason Design V2 (including timelines and footers).")
