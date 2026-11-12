@@ -66,6 +66,20 @@ with sync_playwright() as playwright:
                 page.locator(".site-footer.footer-v2").screenshot(
                     path=str(out / (name + "-" + device + "-footer.png")),
                     animations="disabled")
+            # Native accordion: keyboard-accessible, one open item per group.
+            faq = page.locator(".faq-section")
+            if faq.count():
+                details = faq.locator("details[name='ageason-faq']")
+                assert details.count() >= 2, "FAQ rows missing: " + name
+                assert faq.locator("#faq").count() == 1, "FAQ heading anchor missing: " + name
+                details.nth(0).locator("summary").click()
+                assert details.nth(0).get_attribute("open") is not None, name
+                details.nth(1).locator("summary").click()
+                assert details.nth(1).get_attribute("open") is not None, name
+                assert details.nth(0).get_attribute("open") is None, "FAQ did not close previous item: " + name
+                if name in ("english-home", "arabic-home", "chronological", "japanese", "arabic-hijri-converter"):
+                    faq.screenshot(path=str(out / (name + "-" + device + "-faq.png")),
+                                   animations="disabled")
             page.close()
     browser.close()
-print("Saved 26 visual screenshots for Ageason Design V2 (including timelines and footers).")
+print("Saved 36 visual screenshots for Ageason Design V2 (including FAQ, timeline and footer views).")
