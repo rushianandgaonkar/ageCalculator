@@ -24,11 +24,15 @@ This is an original Ageason visual system inspired by the clean, product-focused
 - Timeline content remains visible without JavaScript. `prefers-reduced-motion` disables motion and shows a completed line.
 
 ## Footer information architecture
-- Site-wide responsive four-column footer: Ageason identity + GitHub, calculators in the **current page language**, **other languages** in a separate column, and site/help links.
+- Site-wide responsive four-column footer: Ageason identity and description, calculators in the **current page language**, **other languages** in a separate column, and site/help links. **Never expose a GitHub repository link on public pages.**
 - On Arabic pages, the main calculator column lists only the four Arabic tools; English, Japanese and Nepali tools are explicitly grouped under a separate Arabic-language heading.
 - Japanese and Nepali calendar pages similarly prioritize their relevant tools.
 - Never add placeholder social profiles, telephone numbers, postal addresses or an unconfigured email address. Use the working Contact page until a verified mailbox is configured.
 - All footer links are actual Ageason routes. Link labels follow the current page language and `hreflang` identifies the destination.
+
+- Primary English hero H1 explicitly includes high-intent **Age Calculator** and **Calculate Your Exact Age**, replacing generic marketing copy. Search volumes are third-party estimates; keep language natural and do not keyword-stuff.
+- Only the English and Arabic main calculator homepages have the masked, animated border beam around the calculator/results area and the original soft pastel WebGL shader behind the hero. CSS gradient remains the fallback if GPU/WebGL is unavailable.
+- Both decorative effects avoid React/Tailwind, honor `prefers-reduced-motion`, and the WebGL animation throttles to at most 25 fps and pauses outside the viewport/background tab.
 
 ## Acceptance checklist
 1. `python build.py`, `python tests/test_ageason_build.py`, `node --test tests/datecore.test.mjs`.
