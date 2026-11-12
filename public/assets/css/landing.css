@@ -422,3 +422,266 @@ body.landing-v2 {
   .landing-v2.inner-v2 table.data tr.is-you { background: #343560; }
   .landing-v2.inner-v2 .today-strip { background: #2a3352; border-color: #555d80; }
 }
+
+
+/* ==========================================================================
+   Locale-first footer — inspired by the provided four-column footer reference.
+   No fabricated company address, phone number or social accounts.
+   ========================================================================== */
+.landing-v2 .footer-v2 {
+  background: linear-gradient(137deg, #172442 0%, #1c2344 58%, #29244a 100%);
+  border-block-start: 1px solid #343d62;
+  padding-block: clamp(46px, 5vw, 76px) 22px;
+  color: #d5dcee;
+}
+.landing-v2 .footer-v2 .wrap { max-width: 1210px; }
+.landing-v2 .footer-v2 .footer-grid {
+  display: grid;
+  grid-template-columns: minmax(215px, 1.5fr) repeat(3, minmax(0, 1fr));
+  gap: clamp(25px, 3.2vw, 52px);
+  align-items: start;
+}
+.landing-v2 .footer-v2 .footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #fff;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -.65px;
+  text-decoration: none;
+}
+.landing-v2 .footer-v2 .footer-brand:hover { color: #fff; }
+.landing-v2 .footer-v2 .footer-brand svg { width: 29px; height: 29px; }
+.landing-v2 .footer-v2 .footer-description {
+  max-width: 35ch;
+  margin: 17px 0 22px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #b9c4dc;
+}
+.landing-v2 .footer-v2 .footer-github {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  color: #dce3fc;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid #596383;
+  padding: 9px 12px;
+  border-radius: 11px;
+  transition: border-color .18s ease, background-color .18s ease;
+}
+.landing-v2 .footer-v2 .footer-github:hover { background: #ffffff13; border-color: #a4a9d5; color: #fff; }
+.landing-v2 .footer-v2 .footer-column { min-width: 0; }
+.landing-v2 .footer-v2 .footer-column h2 {
+  margin: 6px 0 19px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .1px;
+  line-height: 1.4;
+  color: #fff;
+}
+.landing-v2 .footer-v2 .footer-column ul { display: grid; list-style: none; gap: 12px; margin: 0; padding: 0; }
+.landing-v2 .footer-v2 .footer-column li { margin: 0; padding: 0; min-width: 0; }
+.landing-v2 .footer-v2 .footer-column li a {
+  color: #bdc8e0;
+  text-decoration: none;
+  line-height: 1.5;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  transition: color .16s ease;
+}
+.landing-v2 .footer-v2 .footer-column li a:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: #8699fa;
+  text-underline-offset: 5px;
+}
+.landing-v2 .footer-v2 .footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  border-block-start: 1px solid #495171;
+  padding-block-start: 20px;
+  margin-block-start: 47px;
+  color: #aebbd5;
+}
+.landing-v2 .footer-v2 .footer-base { border: 0; padding: 0; margin: 0; color: inherit; font-size: 12px; }
+.landing-v2 .footer-v2 .footer-note { margin: 0; color: #acb8d1; font-size: 12px; }
+[dir="rtl"] .landing-v2 .footer-v2 .footer-brand { letter-spacing: 0; }
+[dir="rtl"] .landing-v2 .footer-v2 .footer-column li a { font-size: 14px; }
+@media (min-width: 680px) and (max-width: 1000px) {
+  .landing-v2 .footer-v2 .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 34px; }
+}
+@media (max-width: 679px) {
+  .landing-v2 .footer-v2 { padding-block-start: 42px; }
+  .landing-v2 .footer-v2 .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 20px;
+  }
+  .landing-v2 .footer-v2 .footer-brand-column { grid-column: 1 / -1; }
+  .landing-v2 .footer-v2 .footer-column h2 { margin-block-end: 14px; }
+  .landing-v2 .footer-v2 .footer-bottom { margin-block-start: 34px; }
+}
+@media (max-width: 340px) {
+  .landing-v2 .footer-v2 .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Scroll-linked timeline — real progress line and softly emphasized steps.
+   Static, readable content without JS; respects reduced-motion settings.
+   ========================================================================== */
+.landing-v2 .ageason-timeline {
+  background:
+    radial-gradient(ellipse 480px 440px at 93% 76%, #eeeaff8c, transparent 80%),
+    linear-gradient(180deg, #fff 0%, #f7f8ff 100%);
+  border-block-start: 1px solid #e8ebf5;
+  padding-block: clamp(46px, 7vw, 88px) clamp(32px, 5vw, 70px);
+}
+.landing-v2 .timeline-heading { text-align: center; margin-inline: auto; max-width: 650px; }
+.landing-v2 .timeline-eyebrow { margin: 0 0 12px; color: #5858b9; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 12px; }
+.landing-v2 .timeline-heading h2 { font-size: clamp(28px, 4vw, 44px); letter-spacing: -1.2px; font-weight: 600; line-height: 1.17; margin: 0; color: #202a49; }
+.landing-v2 .timeline-heading h2 span { color: #6256cb; }
+.landing-v2 .timeline-heading > p:last-child { color: #647089; margin: 18px auto 0; font-size: 16px; line-height: 1.7; }
+.landing-v2 .timeline-steps {
+  list-style: none;
+  max-width: 790px;
+  margin: 54px auto 0;
+  padding: 0;
+  position: relative;
+  isolation: isolate;
+}
+.landing-v2 .ageason-timeline { --timeline-progress: 0%; }
+.landing-v2 .timeline-steps::before,
+.landing-v2 .timeline-steps::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 23px;
+  top: 0;
+  width: 3px;
+  border-radius: 100px;
+  z-index: -1;
+  pointer-events: none;
+}
+.landing-v2 .timeline-steps::before { bottom: 0; background: #d9dded; }
+.landing-v2 .timeline-steps::after {
+  height: var(--timeline-progress);
+  background: linear-gradient(to bottom, #7771dd, #435fe0 68%, #aa76d9);
+  box-shadow: 0 0 13px #7771dd55;
+  transition: height .13s linear;
+}
+.landing-v2 .timeline-step {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 28px);
+  margin: 0;
+  padding: 0 0 clamp(35px, 5vw, 65px);
+  min-height: 222px;
+}
+.landing-v2 .timeline-step:last-child { padding-block-end: 0; min-height: 0; }
+.landing-v2 .timeline-marker {
+  position: sticky;
+  top: 90px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  color: #5d5dc5;
+  background: #fff;
+  border: 2px solid #cdd2ef;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 4px 13px #25306710;
+}
+.landing-v2 .timeline-card {
+  border: 1px solid #e0e5f4;
+  border-radius: 22px;
+  padding: clamp(22px, 3.5vw, 33px);
+  background: #fff;
+  box-shadow: 0 10px 35px #26327309;
+  transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+}
+.landing-v2 .timeline-step.is-in-view .timeline-card {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px #26327312;
+  border-color: #cbd1f4;
+}
+.landing-v2 .timeline-card-tag {
+  display: inline-flex;
+  background: #f0f0ff;
+  color: #5e58bd;
+  border: 1px solid #e4e2fc;
+  border-radius: 99px;
+  padding: 5px 11px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.landing-v2 .timeline-card h3 {
+  font-size: clamp(21px, 2.5vw, 27px);
+  color: #263456;
+  margin: 13px 0 11px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -.4px;
+}
+.landing-v2 .timeline-card p { color: #66728a; font-size: 15px; line-height: 1.7; margin: 0; }
+.landing-v2 .timeline-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-block-start: 19px;
+  color: #4355c1;
+  text-underline-offset: 4px;
+}
+[dir="rtl"] .landing-v2 .timeline-eyebrow,
+[dir="rtl"] .landing-v2 .timeline-heading h2,
+[dir="rtl"] .landing-v2 .timeline-card h3 { letter-spacing: 0; }
+[dir="rtl"] .landing-v2 .timeline-card p { line-height: 1.9; }
+@media (max-width: 719px) {
+  .landing-v2 .ageason-timeline { padding-block: 45px; }
+  .landing-v2 .timeline-heading { text-align: start; }
+  .landing-v2 .timeline-heading h2 { font-size: 29px; }
+  .landing-v2 .timeline-steps { margin-block-start: 31px; }
+  .landing-v2 .timeline-step { grid-template-columns: 38px minmax(0, 1fr); gap: 12px; min-height: 0; padding-block-end: 28px; }
+  .landing-v2 .timeline-marker { height: 38px; width: 38px; top: 68px; font-size: 12px; }
+  .landing-v2 .timeline-steps::before, .landing-v2 .timeline-steps::after { inset-inline-start: 18px; }
+  .landing-v2 .timeline-card { border-radius: 16px; padding: 19px; }
+  .landing-v2 .timeline-card h3 { font-size: 20px; }
+  .landing-v2 .timeline-card p { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-v2 .timeline-steps::after { transition: none; }
+  .landing-v2 .timeline-card { transition: none; }
+  .landing-v2 .timeline-step.is-in-view .timeline-card { transform: none; }
+  .landing-v2 .footer-v2 .footer-github, .landing-v2 .footer-v2 .footer-column li a { transition: none; }
+}
+@media (prefers-color-scheme: dark) {
+  .landing-v2 .ageason-timeline {
+    background: radial-gradient(ellipse at 93% 76%, #3c36644d, transparent 70%),
+                linear-gradient(180deg, #181e31 0%, #1d2139 100%);
+    border-color: #39425c;
+  }
+  .landing-v2 .timeline-eyebrow { color: #bcb9ff; }
+  .landing-v2 .timeline-heading h2 { color: #f6f6ff; }
+  .landing-v2 .timeline-heading h2 span { color: #bcb6ff; }
+  .landing-v2 .timeline-heading > p:last-child { color: #c2c9dd; }
+  .landing-v2 .timeline-steps::before { background: #444d6a; }
+  .landing-v2 .timeline-marker { background: #242c46; border-color: #7775ac; color: #e8e2ff; }
+  .landing-v2 .timeline-card, .landing-v2 .timeline-step.is-in-view .timeline-card {
+    background: #232b43; border-color: #454e6c; box-shadow: none;
+  }
+  .landing-v2 .timeline-card-tag { background: #35365d; border-color: #555784; color: #e3e0ff; }
+  .landing-v2 .timeline-card h3 { color: #f3f2ff; }
+  .landing-v2 .timeline-card p { color: #cad1e3; }
+  .landing-v2 .timeline-card a { color: #c9caff; }
+}
