@@ -34,6 +34,13 @@ This is an original Ageason visual system inspired by the clean, product-focused
 - The animated WebGL hero and border beam were removed after visual review. They competed with readability and did not align cleanly with the calculator cards.
 - The English and Arabic hero sections retain the original lightweight **static pastel CSS gradient**, and calculator/result panels retain their clean rounded outlines and subtle elevation. No GPU animation or additional frontend framework is required.
 
+## FAQ sections
+- All existing calculator FAQs retain their original, language-specific questions and answers. Do not replace them with generic component library marketing copy.
+- Use a two-column layout: compact editorial heading and an original, inline SVG calendar illustration beside a quiet accordion; collapse to a text-and-accordion stack on mobile.
+- Keep the original FAQ anchor `#faq` for site-footer links. Render native `<details name="ageason-faq">` accordions for one-open-at-a-time behavior without a JavaScript framework.
+- Preserve localized FAQPage structured data sourced from the original FAQ array, semantic headings, keyboard accessibility, dark mode and reduced-motion support. Use the existing local fonts and no external stock imagery or Google Fonts requests.
+- Review close-up FAQ screenshots for English, Arabic, chronological-age, Japanese and Hijri converter pages on desktop and mobile.
+
 ## Acceptance checklist
 1. `python build.py`, `python tests/test_ageason_build.py`, `node --test tests/datecore.test.mjs`.
 2. Run `python tests/e2e_arabic.py`; confirm accurate Gregorian/Hijri results.
