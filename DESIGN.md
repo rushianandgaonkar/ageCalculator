@@ -4,6 +4,8 @@ Give this file to any coding agent (Claude Code, Cursor…) before it changes th
 Based on IBM's Carbon-inspired language (reference: getdesign.md), adapted for a
 multilingual calculator site: slightly rounded controls, RTL support, dark mode.
 
+> **Current design:** See [DESIGN_V2.md](DESIGN_V2.md) for the approved Cal.com + Stripe-inspired site-wide redesign. The Carbon rules below document the legacy base components; V2 overrides their visuals where necessary.
+
 ## Principles
 - The result is the hero. Inputs on the left (right in RTL), result panel beside them; stacked on phones.
 - One accent colour (blue) for actions, links, focus and progress. No second brand colour.
@@ -67,7 +69,7 @@ Phone input flow (datecore.js `autoReveal`):
 Test sizes before shipping a layout change: 375×667 (iPhone SE), 390×844, 412×915, 768×1024, 1366×768, 1920×1080.
 
 ## Don'ts
-- No drop shadows, gradients, glassmorphism or hover lifts.
+- In the legacy base components, avoid ornamental shadows and gradients. Design V2 intentionally uses restrained atmospheric gradients, subtle card elevation and hover affordances; follow DESIGN_V2.md for the current site.
 - No all-caps labels, no "→" on links, no emoji in UI chrome.
 - No layout that pushes the calculator below the fold at 375px wide.
 
