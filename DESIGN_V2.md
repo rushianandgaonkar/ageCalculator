@@ -12,14 +12,14 @@ This is an original Ageason visual system inspired by the clean, product-focused
 
 ## Implementation
 - `src/static/assets/css/landing.css` contains styles scoped to `body.landing-v2`.
-- `build.py` includes this file with cache-busting only on the English (`/`) and Arabic (`/ar/`) age calculator homepages.
+- `build.py` includes this file with cache-busting on **every** page. English (`/`) and Arabic (`/ar/`) retain the expansive landing hero; all other pages use a compact `inner-v2` treatment.
 - `src/pages/home.html` and `src/pages/ar.html` provide the semantic hero and related-tool cards.
-- All other calculator pages retain the existing CSS and JavaScript functionality.
+- All other calculator, date-conversion, exam, Japanese, Nepali, and informational pages share the V2 aesthetic while retaining their specialized HTML content and JavaScript.
 - Preserve Arabic `dir=rtl`, keyboard controls, accessible validation, dark-mode support, mobile widths and reduced-motion preferences.
 
 ## Acceptance checklist
 1. `python build.py`, `python tests/test_ageason_build.py`, `node --test tests/datecore.test.mjs`.
 2. Run `python tests/e2e_arabic.py`; confirm accurate Gregorian/Hijri results.
-3. Review 1440px desktop and 390px mobile screenshots from GitHub Actions artifacts.
+3. Review 18 screenshots (1440px desktop and 390px mobile) from GitHub Actions artifacts, including the chronological calculator, Arabic converter, Japanese/Nepali pages and About.
 4. Verify focus, contrast, overflow, year/month/day input and form-result interactions in light and dark mode.
 5. Do not merge without visual approval. Domain purchase and Cloudflare setup are separate.
