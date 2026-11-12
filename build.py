@@ -520,9 +520,11 @@ def page_html(page, pages, vers):
                if ADSENSE_PUB_ID and not page.get("noindex") else "")
     canonical = "" if page.get("noindex") else f'<link rel="canonical" href="{url}">'
     css = f'/assets/css/site.css?v={vers.get("/assets/css/site.css", "1")}'
-    landing = page.get("nav") in ("home", "ar") and page.get("kind") == "tool"
-    landing_css = f'<link rel="stylesheet" href="/assets/css/landing.css?v={vers.get("/assets/css/landing.css", "1")}">' if landing else ""
-    body_class = ' class="landing-v2"' if landing else ""
+    # Ageason Design V2 is site-wide. Main landing pages retain a larger hero;
+    # specialty calculators, tables and informational pages use a compact variant.
+    is_primary_landing = page.get("nav") in ("home", "ar") and page.get("kind") == "tool"
+    landing_css = f'<link rel="stylesheet" href="/assets/css/landing.css?v={vers.get("/assets/css/landing.css", "1")}">'
+    body_class = ' class="landing-v2"' if is_primary_landing else ' class="landing-v2 inner-v2"'
     footer_list = AR_TOOLS if is_ar else ALL_TOOLS
     footer_tools = "\n".join(
         f'<li><a href="{p}"{ {"ar": " lang=ar dir=rtl", "ja": " lang=ja"}.get(TOOL_LANG.get(k), "") }>{html.escape(l)}</a></li>'
