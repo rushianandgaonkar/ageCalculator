@@ -25,15 +25,24 @@ def verify():
         assert 'Ageason' in page, f"new brand missing: {rel}"
         assert re.search(r'<link rel="canonical" href="https://ageason.com/', page), f"canonical missing: {rel}"
 
-    # V2 visual system is scoped to the English and Arabic calculator homepages.
+    # V2 visual system now spans every generated page, with compact inner-page heroes.
     en = (OUT / "index.html").read_text(encoding="utf-8")
-    for label, html_page in (("English", en), ("Arabic", (OUT / "ar/index.html").read_text(encoding="utf-8"))):
-        assert '<body class="landing-v2">' in html_page, f"V2 body class missing: {label}"
-        assert '/assets/css/landing.css?v=' in html_page, f"V2 styles missing: {label}"
-        assert 'class="hero-title-accent"' in html_page, f"V2 hero missing: {label}"
-        assert html_page.count('class="landing-link-card"') == 3, f"V2 discovery cards missing: {label}"
+    ar_home = (OUT / "ar/index.html").read_text(encoding="utf-8")
+    for label, html_page in (("English", en), ("Arabic", ar_home)):
+        assert '<body class="landing-v2">' in html_page, f"Homepage V2 class missing: {label}"
+        assert 'class="hero-title-accent"' in html_page, f"Hero accent missing: {label}"
+        assert html_page.count('class="landing-link-card"') == 3, f"Discovery cards missing: {label}"
+
+    all_pages = list(OUT.rglob("*.html"))
+    assert len(all_pages) >= 20, f"Unexpectedly few pages: {len(all_pages)}"
+    for page_path in all_pages:
+        page = page_path.read_text(encoding="utf-8")
+        rel = page_path.relative_to(OUT)
+        assert 'class="landing-v2' in page, f"Missing V2 design: {rel}"
+        assert '/assets/css/landing.css?v=' in page, f"Missing V2 stylesheet: {rel}"
+        if rel not in (Path("index.html"), Path("ar/index.html")):
+            assert '<body class="landing-v2 inner-v2">' in page, f"Inner-page layout missing: {rel}"
     assert (OUT / "assets/css/landing.css").exists()
-    assert 'landing-v2' not in (OUT / "ja/index.html").read_text(encoding="utf-8"), "Landing styles must not affect Japanese pages"
 
     ar = (OUT / "ar/index.html").read_text(encoding="utf-8")
     assert '<html lang="ar" dir="rtl">' in ar
