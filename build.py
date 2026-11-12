@@ -792,7 +792,21 @@ def main():
           + "\n".join(urls) + "\n</urlset>\n")
 
     # ---- robots.txt ----
-    write(OUT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {abs_url('/sitemap.xml')}\n")
+    robots_content = (
+        "User-Agent: *\n"
+        "Allow: /\n\n"
+        "User-Agent: GPTBot\n"
+        "User-Agent: ClaudeBot\n"
+        "User-Agent: PerplexityBot\n"
+        "User-Agent: Google-Extended\n"
+        "User-Agent: Applebot-Extended\n"
+        "User-Agent: CCBot\n"
+        "User-Agent: cohere-ai\n"
+        "Allow: /\n\n"
+        f"Host: {SITE_URL}\n"
+        f"Sitemap: {abs_url('/sitemap.xml')}\n"
+    )
+    write(OUT / "robots.txt", robots_content)
 
     # ---- ads.txt ----
     if ADSENSE_PUB_ID:

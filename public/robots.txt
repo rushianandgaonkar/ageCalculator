@@ -1,4 +1,14 @@
-User-agent: *
+User-Agent: *
 Allow: /
 
+User-Agent: GPTBot
+User-Agent: ClaudeBot
+User-Agent: PerplexityBot
+User-Agent: Google-Extended
+User-Agent: Applebot-Extended
+User-Agent: CCBot
+User-Agent: cohere-ai
+Allow: /
+
+Host: https://ageason.com
 Sitemap: https://ageason.com/sitemap.xml
