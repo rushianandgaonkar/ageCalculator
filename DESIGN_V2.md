@@ -31,8 +31,8 @@ This is an original Ageason visual system inspired by the clean, product-focused
 - All footer links are actual Ageason routes. Link labels follow the current page language and `hreflang` identifies the destination.
 
 - Primary English hero H1 explicitly includes high-intent **Age Calculator** and **Calculate Your Exact Age**, replacing generic marketing copy. Search volumes are third-party estimates; keep language natural and do not keyword-stuff.
-- Only the English and Arabic main calculator homepages have the masked, animated border beam around the calculator/results area and the original soft pastel WebGL shader behind the hero. CSS gradient remains the fallback if GPU/WebGL is unavailable.
-- Both decorative effects avoid React/Tailwind, honor `prefers-reduced-motion`, and the WebGL animation throttles to at most 25 fps and pauses outside the viewport/background tab.
+- The animated WebGL hero and border beam were removed after visual review. They competed with readability and did not align cleanly with the calculator cards.
+- The English and Arabic hero sections retain the original lightweight **static pastel CSS gradient**, and calculator/result panels retain their clean rounded outlines and subtle elevation. No GPU animation or additional frontend framework is required.
 
 ## Acceptance checklist
 1. `python build.py`, `python tests/test_ageason_build.py`, `node --test tests/datecore.test.mjs`.

@@ -33,9 +33,10 @@ def verify():
         assert '<body class="landing-v2">' in html_page, f"Homepage V2 class missing: {label}"
         assert 'class="hero-title-accent"' in html_page, f"Hero accent missing: {label}"
         assert html_page.count('class="landing-link-card"') == 3, f"Discovery cards missing: {label}"
-        assert 'class="wrap tool-grid beam-frame"' in html_page, f"Beam frame missing: {label}"
-        assert 'data-hero-shader' in html_page, f"Pastel shader canvas missing: {label}"
-        assert '/assets/js/hero-shader.js?v=' in html_page, f"Shader script missing: {label}"
+        assert 'class="wrap tool-grid"' in html_page, f"Calculator layout missing: {label}"
+        assert 'data-hero-shader' not in html_page, f"Unwanted shader remains: {label}"
+        assert 'beam-frame' not in html_page, f"Unwanted border effect remains: {label}"
+        assert '/assets/js/hero-shader.js' not in html_page, f"Unwanted shader script remains: {label}"
 
     all_pages = list(OUT.rglob("*.html"))
     assert len(all_pages) >= 20, f"Unexpectedly few pages: {len(all_pages)}"
@@ -47,7 +48,7 @@ def verify():
         if rel not in (Path("index.html"), Path("ar/index.html")):
             assert '<body class="landing-v2 inner-v2">' in page, f"Inner-page layout missing: {rel}"
     assert (OUT / "assets/css/landing.css").exists()
-    assert (OUT / "assets/js/hero-shader.js").exists()
+    assert not (OUT / "assets/js/hero-shader.js").exists()
     assert "Age Calculator" in en and "Calculate Your Exact Age" in en
     assert "Your age, beautifully calculated." not in en
 
