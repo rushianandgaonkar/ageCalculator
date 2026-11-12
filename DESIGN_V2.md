@@ -17,6 +17,19 @@ This is an original Ageason visual system inspired by the clean, product-focused
 - All other calculator, date-conversion, exam, Japanese, Nepali, and informational pages share the V2 aesthetic while retaining their specialized HTML content and JavaScript.
 - Preserve Arabic `dir=rtl`, keyboard controls, accessible validation, dark-mode support, mobile widths and reduced-motion preferences.
 
+
+## Motion and interaction
+- Both primary homepages contain a three-step *how the calculator works* timeline.
+- `src/static/assets/js/scroll-timeline.js` updates the scroll-progress rail and visually emphasizes steps as they enter view. It uses browser APIs directly and requires no React, Tailwind, shadcn or framer-motion build pipeline.
+- Timeline content remains visible without JavaScript. `prefers-reduced-motion` disables motion and shows a completed line.
+
+## Footer information architecture
+- Site-wide responsive four-column footer: Ageason identity + GitHub, calculators in the **current page language**, **other languages** in a separate column, and site/help links.
+- On Arabic pages, the main calculator column lists only the four Arabic tools; English, Japanese and Nepali tools are explicitly grouped under a separate Arabic-language heading.
+- Japanese and Nepali calendar pages similarly prioritize their relevant tools.
+- Never add placeholder social profiles, telephone numbers, postal addresses or an unconfigured email address. Use the working Contact page until a verified mailbox is configured.
+- All footer links are actual Ageason routes. Link labels follow the current page language and `hreflang` identifies the destination.
+
 ## Acceptance checklist
 1. `python build.py`, `python tests/test_ageason_build.py`, `node --test tests/datecore.test.mjs`.
 2. Run `python tests/e2e_arabic.py`; confirm accurate Gregorian/Hijri results.
