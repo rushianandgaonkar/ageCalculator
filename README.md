@@ -34,7 +34,7 @@ public/             ← THE WEBSITE. Deploy this folder. (Generated — don't ed
 1. Open `build.py` and set:
    - `SITE_URL` — preconfigured to `https://ageason.com` (the domain must be purchased and connected to hosting before launch)
    - `SITE_NAME` — configured to `Ageason`
-   - `CONTACT_EMAIL` — still `hello@example.com`; replace only after a real mailbox is configured (do not deploy a placeholder contact address).
+   - `CONTACT_EMAIL` — configured to `info@ageason.com`
 2. Regenerate the favicons, app icons and **all** per-page social images for the Ageason brand: `python tools/make_images.py` (requires `pip install playwright pillow` and `playwright install chromium`).
 3. Run `python build.py` — the site is rebuilt into `public/`. Do not manually edit generated files.
 4. Run `node --test tests/datecore.test.mjs` and `python tests/e2e_arabic.py` (Playwright required), and inspect 375px and 390px RTL layouts plus keyboard navigation.

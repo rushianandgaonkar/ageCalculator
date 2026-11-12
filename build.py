@@ -20,7 +20,7 @@ from pathlib import Path
 # ============================== CONFIG ==============================
 SITE_URL = "https://ageason.com"         # Canonical domain (enable after purchase and DNS setup)
 SITE_NAME = "Ageason"                      # Public brand
-CONTACT_EMAIL = "hello@example.com"        # <-- shown on the contact page
+CONTACT_EMAIL = "info@ageason.com"        # <-- shown on the contact page
 ADSENSE_PUB_ID = ""                        # e.g. "pub-1234567890123456" (fills ads.txt + ad script)
 BUILD_DATE = dt.date.today()
 JA_TABLE_YEAR = BUILD_DATE.year            # set to next year in late December for the 年齢早見表 rush
