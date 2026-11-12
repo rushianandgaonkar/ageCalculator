@@ -520,6 +520,9 @@ def page_html(page, pages, vers):
                if ADSENSE_PUB_ID and not page.get("noindex") else "")
     canonical = "" if page.get("noindex") else f'<link rel="canonical" href="{url}">'
     css = f'/assets/css/site.css?v={vers.get("/assets/css/site.css", "1")}'
+    landing = page.get("nav") in ("home", "ar") and page.get("kind") == "tool"
+    landing_css = f'<link rel="stylesheet" href="/assets/css/landing.css?v={vers.get("/assets/css/landing.css", "1")}">' if landing else ""
+    body_class = ' class="landing-v2"' if landing else ""
     footer_list = AR_TOOLS if is_ar else ALL_TOOLS
     footer_tools = "\n".join(
         f'<li><a href="{p}"{ {"ar": " lang=ar dir=rtl", "ja": " lang=ja"}.get(TOOL_LANG.get(k), "") }>{html.escape(l)}</a></li>'
@@ -555,12 +558,13 @@ def page_html(page, pages, vers):
   <link rel="manifest" href="/site.webmanifest">
   {chr(10).join("  " + x for x in preload).strip()}
   <link rel="stylesheet" href="{css}">
+  {landing_css}
   <script type="application/ld+json">
 {json_ld(page)}
   </script>
   {adsense}
 </head>
-<body>
+<body{body_class}>
 <a class="skip-link" href="#main">{t['skip']}</a>
 <header class="site-header">
   <div class="wrap">
