@@ -53,6 +53,11 @@ with sync_playwright() as playwright:
                 page.wait_for_timeout(220)
                 end = float(timeline.evaluate("(el) => parseFloat(el.style.getPropertyValue('--timeline-progress')) || 0"))
                 assert end > start, f"Scroll timeline not progressing: {name} {device} {start}->{end}"
+                timeline.screenshot(path=str(out / (name + "-" + device + "-timeline.png")),
+                                    animations="disabled")
+                page.locator(".site-footer.footer-v2").screenshot(
+                    path=str(out / (name + "-" + device + "-footer.png")),
+                    animations="disabled")
             page.close()
     browser.close()
-print("Saved 18 visual screenshots for Ageason Design V2.")
+print("Saved 26 visual screenshots for Ageason Design V2 (including timelines and footers).")
