@@ -48,6 +48,9 @@ def verify():
         if rel not in (Path("index.html"), Path("ar/index.html")):
             assert '<body class="landing-v2 inner-v2">' in page, f"Inner-page layout missing: {rel}"
     assert (OUT / "assets/css/landing.css").exists()
+    footer_css = (OUT / "assets/css/landing.css").read_text(encoding="utf-8")
+    assert ".footer-v2.footer-rounded" in footer_css
+    assert "border-radius: 30px 30px 0 0" in footer_css
     assert not (OUT / "assets/js/hero-shader.js").exists()
     assert "Age Calculator" in en and "Calculate Your Exact Age" in en
     assert "Your age, beautifully calculated." not in en
@@ -61,7 +64,11 @@ def verify():
     ]
     for rel, own_label, others_label in footer_cases:
         html_text = (OUT / rel).read_text(encoding="utf-8")
-        assert 'class="site-footer footer-v2"' in html_text, rel
+        assert 'class="site-footer footer-v2 footer-rounded"' in html_text, rel
+        assert 'data-slot="footer-inner"' in html_text, rel
+        assert 'class="footer-legal"' in html_text, rel
+        assert 'class="footer-brand-column"' in html_text, rel
+        assert 'href="https://github.com/' not in html_text, rel
         assert own_label in html_text and others_label in html_text, rel
         assert html_text.count('class="footer-column"') == 3, rel
         assert 'href="/contact/"' in html_text or 'href="/ar/contact/"' in html_text, rel
