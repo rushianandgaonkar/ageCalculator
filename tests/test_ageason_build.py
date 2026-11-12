@@ -74,6 +74,24 @@ def verify():
         assert 'href="/contact/"' in html_text or 'href="/ar/contact/"' in html_text, rel
         assert 'hello@example.com' not in html_text.split('<footer class="site-footer footer-v2 footer-rounded"')[1], rel
 
+    # Existing localized FAQs must render as a two-column, accessible native accordion.
+    faq_pages = []
+    for public_html in all_pages:
+        html_page = public_html.read_text(encoding="utf-8")
+        if 'id="faq"' not in html_page:
+            continue
+        faq_pages.append(public_html)
+        assert 'class="faq-section"' in html_page, public_html
+        assert 'class="faq-intro"' in html_page, public_html
+        assert 'class="faq-art" aria-hidden="true"' in html_page, public_html
+        assert 'class="faq faq-accordion"' in html_page, public_html
+        assert '<details name="ageason-faq">' in html_page, public_html
+        assert 'class="faq-chevron"' in html_page, public_html
+        assert 'fonts.googleapis.com' not in html_page, public_html
+    assert len(faq_pages) >= 10, f"Not enough FAQ pages: {len(faq_pages)}"
+    assert 'COMMON QUESTIONS' in en
+    assert 'إجابات على استفساراتك' in ar_home
+
     # Timeline progress is an accessible enhancement, not a dependency for using calculators.
     for rel in ("index.html", "ar/index.html"):
         html_text = (OUT / rel).read_text(encoding="utf-8")
