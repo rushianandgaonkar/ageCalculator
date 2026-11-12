@@ -32,12 +32,27 @@ with sync_playwright() as playwright:
             expected_class = "landing-v2" if name in ("english-home", "arabic-home") else "landing-v2 inner-v2"
             assert page.locator("body").get_attribute("class") == expected_class, name
             assert page.locator('link[href*="/assets/css/landing.css"]').count() == 1, name
+            assert page.locator(".site-footer.footer-v2").count() == 1, name
+            assert page.locator(".site-footer .footer-column").count() == 3, name
+            if name == "arabic-home":
+                assert page.get_by_text("الحاسبات بالعربية", exact=True).count() == 1
+                assert page.get_by_text("حاسبات بلغات أخرى", exact=True).count() == 1
+            if name == "japanese":
+                assert page.get_by_text("日本語のツール", exact=True).count() == 1
             if device == "mobile" and name not in ("japanese", "exam-age-limits"):
                 overflow = page.evaluate("document.documentElement.scrollWidth > window.innerWidth + 2")
                 assert not overflow, "Horizontal viewport overflow: " + name
             # Tall Japanese tables are internally scrollable; capture the first viewport.
             page.screenshot(path=str(out / (name + "-" + device + ".png")),
                             full_page=name not in ("japanese", "exam-age-limits"))
+            if name in ("english-home", "arabic-home"):
+                timeline = page.locator("[data-timeline]")
+                assert timeline.count() == 1
+                start = float(timeline.evaluate("(el) => parseFloat(el.style.getPropertyValue('--timeline-progress')) || 0"))
+                page.locator(".timeline-step").last.scroll_into_view_if_needed()
+                page.wait_for_timeout(220)
+                end = float(timeline.evaluate("(el) => parseFloat(el.style.getPropertyValue('--timeline-progress')) || 0"))
+                assert end > start, f"Scroll timeline not progressing: {name} {device} {start}->{end}"
             page.close()
     browser.close()
 print("Saved 18 visual screenshots for Ageason Design V2.")
