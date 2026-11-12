@@ -989,6 +989,10 @@ body.landing-v2 {
 .landing-v2 .age-big {
   font-size: clamp(72px, 10vw, 136px); font-weight: 300; line-height: 1; letter-spacing: -3px; color: var(--primary);
 }
+:lang(ar) .landing-v2 .age-big { font-weight: 400; letter-spacing: 0; }
+:lang(ar) .landing-v2 .hero h1, :lang(ar).landing-v2 .hero h1 { letter-spacing: 0; }
+:lang(ja) .landing-v2 .age-big { letter-spacing: 0; }
+:lang(ja) .landing-v2 .hero h1, :lang(ja).landing-v2 .hero h1 { letter-spacing: 0; }
 .landing-v2 .age-big .unit { font-size: 20px; font-weight: 400; letter-spacing: 0; margin-inline-start: .3em; color: var(--ink-muted); }
 .landing-v2 .age-alt .age-big { font-size: clamp(40px, 5vw, 56px); letter-spacing: -1.5px; }
 .landing-v2 .age-sub { font-size: 22px; color: var(--ink); }
