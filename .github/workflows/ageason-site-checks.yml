@@ -30,3 +30,13 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Arabic browser regression tests
         run: python tests/e2e_arabic.py
+      - name: Capture desktop and mobile design previews
+        run: |
+          python -m http.server 8000 --bind 127.0.0.1 --directory public >/tmp/ageason-server.log 2>&1 &
+          python tests/create_design_previews.py
+      - name: Upload design previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: ageason-design-v2-previews
+          path: artifacts/design-v2/*.png
+          if-no-files-found: error
