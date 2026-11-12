@@ -24,6 +24,7 @@ def verify():
         assert 'Agewise' not in page, f"legacy brand in: {rel}"
         assert 'Ageason' in page, f"new brand missing: {rel}"
         assert re.search(r'<link rel="canonical" href="https://ageason.com/', page), f"canonical missing: {rel}"
+        assert "github.com/rushianandgaonkar/ageCalculator" not in page, f"Repository link exposed: {rel}"
 
     # V2 visual system now spans every generated page, with compact inner-page heroes.
     en = (OUT / "index.html").read_text(encoding="utf-8")
@@ -32,6 +33,9 @@ def verify():
         assert '<body class="landing-v2">' in html_page, f"Homepage V2 class missing: {label}"
         assert 'class="hero-title-accent"' in html_page, f"Hero accent missing: {label}"
         assert html_page.count('class="landing-link-card"') == 3, f"Discovery cards missing: {label}"
+        assert 'class="wrap tool-grid beam-frame"' in html_page, f"Beam frame missing: {label}"
+        assert 'data-hero-shader' in html_page, f"Pastel shader canvas missing: {label}"
+        assert '/assets/js/hero-shader.js?v=' in html_page, f"Shader script missing: {label}"
 
     all_pages = list(OUT.rglob("*.html"))
     assert len(all_pages) >= 20, f"Unexpectedly few pages: {len(all_pages)}"
@@ -43,6 +47,9 @@ def verify():
         if rel not in (Path("index.html"), Path("ar/index.html")):
             assert '<body class="landing-v2 inner-v2">' in page, f"Inner-page layout missing: {rel}"
     assert (OUT / "assets/css/landing.css").exists()
+    assert (OUT / "assets/js/hero-shader.js").exists()
+    assert "Age Calculator" in en and "Calculate Your Exact Age" in en
+    assert "Your age, beautifully calculated." not in en
 
     # Footer navigation groups the current language separately from alternatives.
     footer_cases = [
@@ -79,6 +86,8 @@ def verify():
     assert 'https://ageason.com/ar/' in sitemap
     assert 'https://www.example.com' not in sitemap
     assert 'Sitemap: https://ageason.com/sitemap.xml' in robots
+    for public_html in OUT.rglob("*.html"):
+        assert "github.com/rushianandgaonkar/ageCalculator" not in public_html.read_text(encoding="utf-8"), f"Repository link in {public_html}"
     assert manifest["short_name"] == "Ageason"
     print("Ageason domain, generated branding, language and accessibility smoke checks passed.")
 
