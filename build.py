@@ -195,7 +195,6 @@ FOOTER_SECTIONS = {
                   ("ne", "Nepali — Age calculator"), ("neconv", "Nepali — Date converter")],
         "site_title": "Explore Ageason",
         "foot_note": "Free tools · No account required",
-        "github_label": "Ageason on GitHub",
     },
     "ar": {
         "local_title": "الحاسبات بالعربية",
@@ -206,7 +205,6 @@ FOOTER_SECTIONS = {
                   ("ne", "النيبالية — حاسبة العمر"), ("neconv", "النيبالية — تحويل التاريخ")],
         "site_title": "تعرف على Ageason",
         "foot_note": "أدوات مجانية · لا تحتاج إلى تسجيل",
-        "github_label": "Ageason على GitHub",
     },
     "ja": {
         "local_title": "日本語のツール",
@@ -216,7 +214,6 @@ FOOTER_SECTIONS = {
                   ("ne", "ネパール暦 — 年齢計算"), ("neconv", "ネパール暦 — 日付変換")],
         "site_title": "サイト案内",
         "foot_note": "無料の計算ツール · 登録不要",
-        "github_label": "GitHub の Ageason",
     },
     "ne": {
         "local_title": "Nepali calendar tools",
@@ -226,7 +223,6 @@ FOOTER_SECTIONS = {
                   ("ja", "日本語 — 年齢早見表")],
         "site_title": "Explore Ageason",
         "foot_note": "Free tools · No account required",
-        "github_label": "Ageason on GitHub",
     }
 }
 
@@ -254,7 +250,6 @@ def footer_navigation(page):
         "other_links": render_links(config["other"]),
         "site_heading": html.escape(config["site_title"]),
         "foot_note": html.escape(config["foot_note"]),
-        "github_label": html.escape(config["github_label"]),
     }
 
 
@@ -659,10 +654,6 @@ def page_html(page, pages, vers):
       <div class="footer-brand-column">
         <a class="footer-brand" href="{brand_href}" lang="en">{BRAND_SVG}<span>{html.escape(SITE_NAME)}</span></a>
         <p class="footer-description">{t['tagline']}</p>
-        <a class="footer-github" href="https://github.com/rushianandgaonkar/ageCalculator" target="_blank" rel="noopener noreferrer" aria-label="{footer['github_label']}">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.16c-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 .1.77 2.07 3.24 1.47.1-.72.4-1.22.71-1.5-2.5-.29-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.97 0 0 .95-.3 3.09 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.09-1.15 3.09-1.15.61 1.54.23 2.69.11 2.97.72.79 1.16 1.79 1.16 3.02 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.08c0 .3.2.64.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg>
-          <span>GitHub</span>
-        </a>
       </div>
       <nav class="footer-column" aria-label="{footer['local_heading']}">
         <h2>{footer['local_heading']}</h2>
