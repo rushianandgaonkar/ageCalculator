@@ -160,13 +160,68 @@ def render_nav(page):
 
 
 def render_faq(page):
+    """Localized, accessible FAQ accordion with an illustrated intro.
+
+    Native <details name="ageason-faq"> provides a one-open-at-a-time accordion
+    without JavaScript, and degrades gracefully on older browsers.
+    Keep original questions and answers unchanged for SEO and FAQ JSON-LD.
+    """
     faq = page.get("faq")
     if not faq:
         return ""
-    t = UI[ui_lang(page)]
+    lang = ui_lang(page)
+    t = UI[lang]
+    copy = {
+        "en": ("COMMON QUESTIONS", "Clear answers about this calculator and how to understand its results."),
+        "ar": ("إجابات على استفساراتك", "إجابات مبسطة عن طريقة استخدام الحاسبة وفهم النتائج."),
+        "ja": ("ご利用ガイド", "この計算ツールの使い方と結果について、よくある疑問にお答えします。"),
+    }
+    eyebrow, intro = copy[lang]
+    chevron = ('<svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" '
+               'fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">'
+               '<path d="m4 7 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>')
     rows = "\n".join(
-        f'<details><summary>{html.escape(q)}</summary><div class="answer"><p>{a}</p></div></details>' for q, a in faq)
-    return f'<h2 id="faq">{t["faq"]}</h2>\n<div class="faq">\n{rows}\n</div>'
+        f'<details name="ageason-faq"><summary><span class="faq-question">{html.escape(q)}</span>'
+        f'{chevron}</summary><div class="answer"><p>{a}</p></div></details>'
+        for q, a in faq)
+    art = (
+        '<div class="faq-art" aria-hidden="true">'
+        '<svg viewBox="0 0 340 240" role="presentation" focusable="false">'
+        '<defs><linearGradient id="faq-card-shade" x1="0" x2="1" y1="0" y2="1">'
+        '<stop stop-color="#ffffff"/><stop offset="1" stop-color="#eff0ff"/>'
+        '</linearGradient></defs>'
+        '<circle cx="275" cy="52" r="42" fill="#e5defe"/>'
+        '<circle cx="63" cy="187" r="33" fill="#dfedff"/>'
+        '<rect x="78" y="30" width="198" height="177" rx="23" fill="#c9c9ed" opacity=".45"/>'
+        '<rect x="65" y="23" width="198" height="177" rx="23" fill="url(#faq-card-shade)" '
+        'stroke="#d8daf2" stroke-width="2"/>'
+        '<rect x="65" y="23" width="198" height="44" rx="23" fill="#5f64d5"/>'
+        '<path d="M65 50h198v16H65z" fill="#5f64d5"/>'
+        '<rect x="104" y="12" width="12" height="30" rx="6" fill="#c9c8fa"/>'
+        '<rect x="212" y="12" width="12" height="30" rx="6" fill="#c9c8fa"/>'
+        '<rect x="88" y="88" width="41" height="41" rx="10" fill="#e8e9ff"/>'
+        '<rect x="143" y="88" width="41" height="41" rx="10" fill="#ecf2ff"/>'
+        '<rect x="198" y="88" width="41" height="41" rx="10" fill="#e9e9ff"/>'
+        '<path d="M100 106h17M155 106h17M210 106h17M100 117h17M155 117h17" '
+        'stroke="#9ca5dc" stroke-width="3" stroke-linecap="round"/>'
+        '<circle cx="220" cy="161" r="37" fill="#766be4"/>'
+        '<path d="M211 152c0-6 5-10 11-10s11 4 11 10c0 6-7 8-11 13v4" '
+        'fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>'
+        '<circle cx="222" cy="178" r="3" fill="#fff"/>'
+        '<path d="m48 56 7 7m0-7-7 7M299 159l7 7m0-7-7 7" '
+        'stroke="#aaa1e9" stroke-width="4" stroke-linecap="round"/>'
+        '</svg></div>'
+    )
+    return (
+        '<section class="faq-section" aria-labelledby="faq">'
+        '<div class="faq-intro">'
+        f'<p class="faq-eyebrow">{html.escape(eyebrow)}</p>'
+        f'<h2 id="faq">{html.escape(t["faq"])}</h2>'
+        f'<p class="faq-blurb">{html.escape(intro)}</p>{art}'
+        '</div>'
+        f'<div class="faq faq-accordion">{rows}</div>'
+        '</section>'
+    )
 
 
 def render_related(page):
