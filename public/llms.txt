@@ -5,11 +5,11 @@
 ## Calculators
 
 - [Age Calculator – Age as on Any Date from Date of Birth](https://ageason.com/): Free age calculator: find your exact age from date of birth in years, months and days, today or as on any date. Checks exam and job age limits.
-- [حساب العمر بالهجري والميلادي | احسب عمرك بدقة](https://ageason.com/ar/): احسب عمرك بالهجري والميلادي بدقة وسهولة. اكتشف عمرك بالسنوات والأشهر والأيام، وتاريخ ميلادك بالهجري، وكم باقي على عيد ميلادك القادم.
+- [حساب العمر بالهجري والميلادي | حاسبة العمر الدقيقة](https://ageason.com/ar/): حساب العمر من تاريخ الميلاد بالهجري والميلادي: اكتشف كم عمرك بالسنوات والأشهر والأيام، واحسب عمرك بالأيام، واعرف كم باقي على عيد ميلادي القادم.
 - [年齢早見表 2026年（令和8年）版｜年齢計算・干支・和暦](https://ageason.com/ja/): 2026年（令和8年）の年齢早見表。生まれ年ごとの満年齢・和暦（令和・平成・昭和）・干支が一覧でわかります。生年月日から満年齢と数え年も計算できます。
 - [Age Difference Calculator – Years, Months and Days Between Two People](https://ageason.com/age-difference/): Find the exact age difference between two people in years, months and days. Enter two dates of birth to see who is older and by how much.
 - [جدول الأعمار بالهجري والميلادي 1448 هـ / 2026 م | كم عمرك حسب سنة الميلاد](https://ageason.com/ar/ages/): جدول الأعمار بالهجري والميلادي لعام 1448 هـ (2026 م). اعرف عمر مواليد أي سنة هجرية أو ميلادية (مثل مواليد 1420 هـ أو 1995 م) قبل عيد الميلاد وبعده.
-- [تحويل التاريخ من هجري إلى ميلادي والعكس | تقويم أم القرى](https://ageason.com/ar/hijri-converter/): محوّل التاريخ الهجري والميلادي بدقة وفق تقويم أم القرى. حوّل أي تاريخ من هجري إلى ميلادي أو من ميلادي إلى هجري، واعرف تاريخ اليوم بالهجري والميلادي وعدد أيام أشهر السنة الهجرية.
+- [تحويل التاريخ من هجري إلى ميلادي والعكس | تقويم أم القرى](https://ageason.com/ar/hijri-converter/): تحويل التاريخ من هجري إلى ميلادي والعكس وفق تقويم أم القرى. اعرف التاريخ الهجري اليوم والميلادي اليوم، وحوّل تاريخ الميلاد بين التقويمين.
 - [Chronological Age Calculator – Years;Months;Days for Testing](https://ageason.com/chronological-age-calculator/): Find chronological age in years;months;days (e.g. 8;5;19) from birth date and test date, with the 30-day method and adjusted age for prematurity.
 - [Agniveer Age Limit 2026–27 Calculator – Army and Air Force](https://ageason.com/age-limit/agniveer/): Agniveer age limit by date of birth: Army Agniveer 2026–27 (17½ to 22, born 1 July 2005 to 1 July 2009) and Air Force Agniveervayu intakes 01/2027 and 02/2027.
 - [CDS Age Limit 2026–27 Calculator – IMA, INA, AFA and OTA](https://ageason.com/age-limit/cds/): CDS age limit by academy: IMA and INA 19–24, AFA 20–24 (26 with a CPL), OTA 19–25. Check your date of birth for CDS (I) 2027 and see the CDS (II) 2026 dates.

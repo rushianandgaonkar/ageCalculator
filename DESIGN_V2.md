@@ -2,7 +2,54 @@
 
 This is an original Ageason visual system inspired by the clean, product-focused interaction patterns of Cal.com and restrained atmospheric gradients associated with Stripe. It does **not** reproduce either company's proprietary assets.
 
-## Visual direction
+## V3 visual direction — Editorial precision (supersedes the pastel rules below)
+
+Decided 12 Nov 2026 after reviewing the built site. The pastel Cal.com/Stripe look is tidy but
+generic, and the one element unique to Ageason, the big age number and the year-of-life ruler,
+is the smallest thing on screen. V3 makes the number and the ruler the design.
+
+### Colour
+Four tokens only, defined on `body.landing-v2` in `src/static/assets/css/landing.css`:
+
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| canvas | #faf8f4 (warm off-white) | #141311 | page and panel background |
+| ink | #15140f | #f3f1ec | headings, result number, body text |
+| muted | #6b665c | #a39e93 | labels, captions, empty ruler segments, hairlines (at 25% alpha) |
+| accent | #2f4bd8 | #8fa4ff | result number, filled ruler segments, links, focus ring |
+
+No hero gradients, pastel washes, tinted panels or radial glows. Dark mode inverts the same four tokens.
+
+### Type
+- Keep self-hosted IBM Plex (Sans, Sans Arabic, Sans Devanagari); Japanese stays on system fonts.
+- H1: 40–48px, weight 500, letter-spacing −1px, max 20ch. No coloured accent span.
+- Result number: `clamp(72px, 10vw, 136px)`, weight 300, tabular numerals, accent colour. Unit ("years") 20px muted, baseline-aligned beside the number.
+- Sub line (months, days): 22px ink. Stats list rows: 16px, 44px row height, hairline between rows.
+- Body 16–17px, line-height 1.6, max 68ch. Arabic: no letter-spacing, line-height 1.75.
+
+### The ruler as signature
+- `.ruler-track` fills the result panel width; segments 14px tall on desktop, 10px on phones, 4px gap, 2px radius.
+- Legend sits directly under the ends, 14px, both birthdays in ink, weight 600.
+- Every calculator page shows the ruler in the same position under the result number so the mark is shared site-wide.
+
+### Surfaces
+- One bordered frame (1px hairline, 8px radius) holds form and result, divided by a single vertical hairline (horizontal on phones). No shadows, no fills.
+- Tool links, timeline steps and FAQ items are hairline-separated rows, not cards. No hover lift; hover underlines the title.
+- Inputs: canvas fill, 1px hairline, 6px radius; focus is a 2px accent border, no glow.
+- Footer keeps its columns but drops the radial glow and rounded top; a single top hairline instead.
+
+### Remove
+Eyebrow pill, the three check badges, sparkle icon, timeline scroll-progress rail, card shadows and hover lifts, the ✓ and ↗ glyphs, the `hero-title-accent` span.
+
+### Keep untouched
+All HTML content and FAQ copy, RTL logic, date-field behaviour (`datecore.js`), dark mode, reduced motion, structured data, tests. The change is tokens plus hero/result/card rules in `landing.css`; no new dependencies.
+
+### Follow-ups when V3 ships
+- Regenerate the per-page PNG social cards (they show the pastel hero).
+- Update `tests/create_design_previews.py` and `tests/test_ageason_build.py` assertions that expect `footer-rounded` and card shadows.
+- Re-screenshot Arabic, Japanese and Nepali pages plus dark mode; V3 was decided from the English home and one inner page only.
+
+## Visual direction (V2, pastel — superseded by V3 above)
 - A focused calculator landing page, not a generic SaaS landing page.
 - Modern editorial heading with violet accent, a pastel layered hero, white calculator input surface and contrasting pastel results panel.
 - The actual calculator begins near the first viewport; no large hero illustration or unnecessary scroll.

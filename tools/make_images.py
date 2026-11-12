@@ -46,16 +46,17 @@ body {{ margin: 0; font-family: Plex, PlexAr, 'Noto Sans CJK JP', sans-serif; }}
 def og_html(lang, direction, title, sub):
     segs = "".join(f'<span class="{"f" if i < 7 else ("p" if i == 7 else "")}"></span>' for i in range(12))
     return f"""<!doctype html><html lang="{lang}" dir="{direction}"><head><meta charset="utf-8"><style>{FONT_CSS}
-    .c {{ width: 1200px; height: 630px; box-sizing: border-box; padding: 72px 80px; background: #fff; color: #161616;
-          display: flex; flex-direction: column; justify-content: space-between; border-top: 12px solid #0f62fe; }}
+    /* V3 editorial tokens — keep in sync with body.landing-v2 in landing.css */
+    .c {{ width: 1200px; height: 630px; box-sizing: border-box; padding: 72px 80px; background: #faf8f4; color: #15140f;
+          display: flex; flex-direction: column; justify-content: space-between; }}
     .brand {{ display: flex; align-items: center; gap: 14px; font: 600 30px Plex; direction: ltr; }}
     .brand svg {{ width: 44px; height: 44px; }}
-    h1 {{ font-weight: 300; font-size: {"88" if len(title) < 22 else "68"}px; line-height: 1.12; margin: 0 0 18px; letter-spacing: -0.5px; }}
-    :lang(ja) h1 {{ font-weight: 400; }}
-    p {{ font-size: 34px; color: #525252; margin: 0; }}
+    h1 {{ font-weight: 400; font-size: {"88" if len(title) < 22 else "68"}px; line-height: 1.12; margin: 0 0 18px; letter-spacing: -1.5px; }}
+    :lang(ja) h1, :lang(ar) h1 {{ letter-spacing: 0; }}
+    p {{ font-size: 34px; color: #6b665c; margin: 0; }}
     .ruler {{ display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; height: 22px; direction: ltr; }}
-    .ruler span {{ background: #e0e0e0; }} .ruler .f {{ background: #0f62fe; }}
-    .ruler .p {{ background: linear-gradient(90deg, #0f62fe 45%, #e0e0e0 45%); }}
+    .ruler span {{ background: #e6e1d8; border-radius: 3px; }} .ruler .f {{ background: #2f4bd8; }}
+    .ruler .p {{ background: linear-gradient(90deg, #2f4bd8 45%, #e6e1d8 45%); }}
     </style></head><body><div class="c">
       <div class="brand">{build.BRAND_SVG}<span>{build.SITE_NAME}</span></div>
       <div><h1>{title}</h1><p>{sub}</p></div>
@@ -77,10 +78,14 @@ def main():
     with sync_playwright() as p:
         b = p.chromium.launch()
         pg = b.new_page(viewport={"width": 1200, "height": 630}, device_scale_factor=1)
+        # Load from a file URL: set_content() runs at about:blank, which blocks the file:// fonts.
+        tmp = STATIC / "_og.html"
         for name, lang, d, title, sub in OG:
-            pg.set_content(og_html(lang, d, title, sub))
-            pg.wait_for_timeout(300)
+            tmp.write_text(og_html(lang, d, title, sub), encoding="utf-8")
+            pg.goto(tmp.as_uri())
+            pg.evaluate("document.fonts.ready")
             pg.screenshot(path=str(IMG / name))
+        tmp.unlink()
         for size, name, mask in [(180, "apple-touch-icon.png", False), (192, "icon-192.png", False),
                                  (512, "icon-512.png", False), (512, "icon-maskable-512.png", True), (64, "fav-64.png", False)]:
             pg.set_viewport_size({"width": size, "height": size})

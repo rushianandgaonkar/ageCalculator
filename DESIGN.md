@@ -4,7 +4,7 @@ Give this file to any coding agent (Claude Code, Cursor…) before it changes th
 Based on IBM's Carbon-inspired language (reference: getdesign.md), adapted for a
 multilingual calculator site: slightly rounded controls, RTL support, dark mode.
 
-> **Current design:** See [DESIGN_V2.md](DESIGN_V2.md) for the approved Cal.com + Stripe-inspired site-wide redesign. The Carbon rules below document the legacy base components; V2 overrides their visuals where necessary.
+> **Current design:** See [DESIGN_V2.md](DESIGN_V2.md). Its **V3 Editorial precision** section is the approved direction; the pastel Cal.com + Stripe rules there are superseded. The Carbon rules below document the legacy base components; V2 overrides their visuals where necessary.
 
 ## Principles
 - The result is the hero. Inputs on the left (right in RTL), result panel beside them; stacked on phones.
