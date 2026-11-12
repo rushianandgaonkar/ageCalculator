@@ -172,11 +172,11 @@ def render_faq(page):
     lang = ui_lang(page)
     t = UI[lang]
     copy = {
-        "en": "Clear answers about this calculator and how to understand its results.",
-        "ar": "إجابات مبسطة عن طريقة استخدام الحاسبة وفهم النتائج.",
-        "ja": "この計算ツールの使い方と結果について、よくある疑問にお答えします。",
+        "en": ("COMMON QUESTIONS", "Clear answers about this calculator and how to understand its results."),
+        "ar": ("إجابات على استفساراتك", "إجابات مبسطة عن طريقة استخدام الحاسبة وفهم النتائج."),
+        "ja": ("ご利用ガイド", "この計算ツールの使い方と結果について、よくある疑問にお答えします。"),
     }
-    intro = copy[lang]
+    eyebrow, intro = copy[lang]
     chevron = ('<svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" '
                'fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">'
                '<path d="m4 7 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>')
@@ -215,6 +215,7 @@ def render_faq(page):
     return (
         '<section class="faq-section" aria-labelledby="faq">'
         '<div class="faq-intro">'
+        f'<p class="faq-eyebrow">{html.escape(eyebrow)}</p>'
         f'<h2 id="faq">{html.escape(t["faq"])}</h2>'
         f'<p class="faq-blurb">{html.escape(intro)}</p>{art}'
         '</div>'

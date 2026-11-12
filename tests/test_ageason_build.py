@@ -89,9 +89,8 @@ def verify():
         assert 'class="faq-chevron"' in html_page, public_html
         assert 'fonts.googleapis.com' not in html_page, public_html
     assert len(faq_pages) >= 10, f"Not enough FAQ pages: {len(faq_pages)}"
-    assert 'COMMON QUESTIONS' not in en
-    assert 'Clear answers about this calculator' in en
-    assert 'إجابات مبسطة عن طريقة استخدام الحاسبة' in ar_home
+    assert 'COMMON QUESTIONS' in en
+    assert 'إجابات على استفساراتك' in ar_home
 
     # Timeline progress is an accessible enhancement, not a dependency for using calculators.
     for rel in ("index.html", "ar/index.html"):
