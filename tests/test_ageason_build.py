@@ -100,6 +100,18 @@ def verify():
         assert '/assets/js/scroll-timeline.js?v=' in html_text, rel
     assert (OUT / "assets/js/scroll-timeline.js").exists()
 
+    # Arabic search phrases should be covered by useful, existing pages;
+    # avoid creating keyword-duplicate URLs.
+    ar_home = (OUT / "ar/index.html").read_text(encoding="utf-8")
+    assert "<title>حساب العمر بالهجري والميلادي | حاسبة العمر الدقيقة</title>" in ar_home
+    assert "حساب العمر من تاريخ الميلاد" in ar_home
+    assert "كم باقي على عيد ميلادي القادم؟" in ar_home
+    assert "كيف أعرف عمري بالأيام؟" in ar_home
+    ar_converter = (OUT / "ar/hijri-converter/index.html").read_text(encoding="utf-8")
+    assert "التاريخ الهجري اليوم" in ar_converter
+    ar_ages = (OUT / "ar/ages/index.html").read_text(encoding="utf-8")
+    assert "مواليد 2000" in ar_ages
+
     ar = (OUT / "ar/index.html").read_text(encoding="utf-8")
     assert '<html lang="ar" dir="rtl">' in ar
     assert 'id="result-status"' in ar
