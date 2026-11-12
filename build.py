@@ -202,8 +202,8 @@ FOOTER_SECTIONS = {
         "local": [("ar", "حساب العمر"), ("arconv", "تحويل التاريخ"),
                   ("ardiff", "فرق العمر"), ("arages", "جدول الأعمار")],
         "other_title": "حاسبات بلغات أخرى",
-        "other": [("home", "English — حاسبة العمر"), ("ja", "日本語 — حاسبة العمر اليابانية"),
-                  ("ne", "Nepali — حاسبة العمر النيبالية"), ("neconv", "Nepali — تحويل التاريخ")],
+        "other": [("home", "الإنجليزية — حاسبة العمر"), ("ja", "اليابانية — جدول الأعمار"),
+                  ("ne", "النيبالية — حاسبة العمر"), ("neconv", "النيبالية — تحويل التاريخ")],
         "site_title": "تعرف على Ageason",
         "foot_note": "أدوات مجانية · لا تحتاج إلى تسجيل",
         "github_label": "Ageason على GitHub",
@@ -212,8 +212,8 @@ FOOTER_SECTIONS = {
         "local_title": "日本語のツール",
         "local": [("ja", "年齢早見表"), ("gakunen", "学年早見表")],
         "other_title": "ほかの言語",
-        "other": [("home", "English — Age calculator"), ("ar", "العربية — حساب العمر"),
-                  ("ne", "Nepali — Age calculator"), ("neconv", "Nepali — Date converter")],
+        "other": [("home", "英語 — 年齢計算"), ("ar", "アラビア語 — 年齢計算"),
+                  ("ne", "ネパール暦 — 年齢計算"), ("neconv", "ネパール暦 — 日付変換")],
         "site_title": "サイト案内",
         "foot_note": "無料の計算ツール · 登録不要",
         "github_label": "GitHub の Ageason",
@@ -239,7 +239,7 @@ def footer_navigation(page):
     language_for_link = {"ar": "ar", "arconv": "ar", "ardiff": "ar", "arages": "ar",
                          "ja": "ja", "gakunen": "ja"}
     def render_links(entries):
-        return "\\n".join(
+        return "\n".join(
             '<li><a href="{}" lang="{}">{}</a></li>'.format(
                 html.escape(PATHS[key], quote=True),
                 language_for_link.get(key, "en"),
