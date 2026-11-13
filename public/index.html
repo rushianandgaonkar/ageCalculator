@@ -42,6 +42,13 @@
  "@context": "https://schema.org",
  "@graph": [
   {
+   "@type": "Organization",
+   "@id": "https://ageason.com/#organization",
+   "name": "Ageason",
+   "url": "https://ageason.com/",
+   "logo": "https://ageason.com/assets/img/icon-512.png"
+  },
+  {
    "@type": "WebSite",
    "@id": "https://ageason.com/#website",
    "name": "Ageason",
@@ -50,7 +57,11 @@
     "en",
     "ar",
     "ja"
-   ]
+   ],
+   "logo": "https://ageason.com/assets/img/icon-512.png",
+   "publisher": {
+    "@id": "https://ageason.com/#organization"
+   }
   },
   {
    "@type": "WebApplication",

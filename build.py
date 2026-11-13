@@ -314,8 +314,23 @@ def json_ld(page):
     url = abs_url(page["path"])
     graph = []
     if page["path"] == "/":
-        graph.append({"@type": "WebSite", "@id": abs_url("/#website"), "name": SITE_NAME, "url": abs_url("/"),
-                      "inLanguage": ["en", "ar", "ja"]})
+        org_id = abs_url("/#organization")
+        graph.append({
+            "@type": "Organization",
+            "@id": org_id,
+            "name": SITE_NAME,
+            "url": abs_url("/"),
+            "logo": abs_url("/assets/img/icon-512.png"),
+        })
+        graph.append({
+            "@type": "WebSite",
+            "@id": abs_url("/#website"),
+            "name": SITE_NAME,
+            "url": abs_url("/"),
+            "inLanguage": ["en", "ar", "ja"],
+            "logo": abs_url("/assets/img/icon-512.png"),
+            "publisher": {"@id": org_id},
+        })
     if page.get("kind") == "tool":
         graph.append({
             "@type": "WebApplication", "name": page.get("app_name", page["title"]), "url": url,
