@@ -243,7 +243,7 @@ body.landing-v2 {
   .landing-v2 .landing-proof { margin-block-end: 26px; }
 }
 @media (prefers-reduced-motion: reduce) { .landing-v2 .landing-link-card { transition: none; } .landing-v2 .landing-link-card:hover { transform: none; } }
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
   body.landing-v2 { --canvas:#141a2b; --surface-1:#252b42; --surface-2:#343956; --ink:#f2f3ff; --ink-muted:#bfc7dd; --hairline:#424961; --hairline-strong:#828aab; --landing-ink:#f5f5ff; --landing-muted:#c3c9de; --landing-card:#222940; --landing-wash:#141a2b; --primary:#a9b1ff; --primary-hover:#c5ccff; --on-primary:#1a2040; --focus:#c6cbff; background:#141a2b; color:#f1f3ff; }
   .landing-v2 .site-header { background:#171d31; border-color:#343b53; }
   .landing-v2 .brand { color:#f7f7ff; } .landing-v2 .tool-nav a {color:#c8cde1;} .landing-v2 .tool-nav a[aria-current="page"]{color:#c2c8ff;}
@@ -399,7 +399,7 @@ body.landing-v2 {
   .landing-v2.inner-v2 .page > .wrap.prose { margin-inline: 16px; padding: 22px; border-radius: 19px; }
   .landing-v2.inner-v2 .content { padding-block-start: 26px; }
 }
-@media (prefers-color-scheme:dark) {
+[data-theme="dark"] {
   .landing-v2.inner-v2 .hero {
     background: radial-gradient(ellipse at 90% 0%,#43487857,transparent 74%),
     radial-gradient(ellipse at 10% 100%,#653a5a50,transparent 74%),
@@ -574,7 +574,7 @@ body.landing-v2 {
   .landing-v2 .footer-v2 .footer-column li a,
   .landing-v2 .footer-v2 .footer-legal a { transition: none; }
 }
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
   .landing-v2 .footer-v2.footer-rounded {
     background: #202741;
     border-color: #414960;
@@ -731,7 +731,7 @@ body.landing-v2 {
   .landing-v2 .timeline-step.is-in-view .timeline-card { transform: none; }
   .landing-v2 .footer-v2 .footer-column li a { transition: none; }
 }
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
   .landing-v2 .ageason-timeline {
     background: radial-gradient(ellipse at 93% 76%, #3c36644d, transparent 70%),
                 linear-gradient(180deg, #181e31 0%, #1d2139 100%);
@@ -912,7 +912,7 @@ body.landing-v2 {
 @media (prefers-reduced-motion: reduce) {
   .landing-v2 .faq-section .faq-chevron { transition: none; }
 }
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
   .landing-v2 .faq-section { border-block-start-color: #3f4965; }
   .landing-v2 .faq-section .faq-eyebrow { color: #b8b5ff; }
   .landing-v2 .faq-section .faq-intro h2 { color: #f6f5ff; }

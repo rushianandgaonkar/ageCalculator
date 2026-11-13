@@ -62,33 +62,32 @@
   --radius: 4px;
   --radius-lg: 8px;
   --max: 1120px;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --canvas: #161616;
-    --surface-1: #262626;
-    --surface-2: #393939;
-    --ink: #f4f4f4;
-    --ink-muted: #c6c6c6;
-    --ink-subtle: #a8a8a8;
-    --hairline: #393939;
-    --hairline-strong: #6f6f6f;
-    --primary: #78a9ff;
-    --primary-hover: #a6c8ff;
-    --primary-pressed: #d0e2ff;
-    --primary-tint: #001d6c;
-    --on-primary: #161616;
-    --success: #42be65;
-    --success-tint: #044317;
-    --error: #ff8389;
-    --error-tint: #520408;
-    --warning: #f1c21b;
-    --warning-tint: #3d3000;
-    --footer-bg: #000000;
-    --focus: #ffffff;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #161616;
+  --surface-1: #262626;
+  --surface-2: #393939;
+  --ink: #f4f4f4;
+  --ink-muted: #c6c6c6;
+  --ink-subtle: #a8a8a8;
+  --hairline: #393939;
+  --hairline-strong: #6f6f6f;
+  --primary: #78a9ff;
+  --primary-hover: #a6c8ff;
+  --primary-pressed: #d0e2ff;
+  --primary-tint: #001d6c;
+  --on-primary: #161616;
+  --success: #42be65;
+  --success-tint: #044317;
+  --error: #ff8389;
+  --error-tint: #520408;
+  --warning: #f1c21b;
+  --warning-tint: #3d3000;
+  --footer-bg: #000000;
+  --focus: #ffffff;
 }
 
 /* ---------- Base ---------- */
@@ -141,6 +140,11 @@ a:hover { color: var(--primary-hover); }
 .tool-nav a[aria-current="page"] { color: var(--ink); font-weight: 600; border-block-end-color: var(--primary); }
 .tool-nav a:focus-visible { outline-offset: -3px; scroll-margin-inline: 16px; }
 .tool-nav:focus-within { scrollbar-width: thin; }
+.theme-toggle { flex: none; display: inline-grid; place-items: center; inline-size: 40px; block-size: 40px; padding: 0;
+  border: 1px solid var(--hairline); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; }
+.theme-toggle:hover { background: var(--surface-1); }
+.theme-toggle svg { width: 20px; height: 20px; }
+html:not([data-theme]) .theme-toggle { display: none; } /* no JS: the button can't work */
 
 /* ---------- Hero ---------- */
 .hero { background: var(--surface-1); padding-block: var(--s-6) var(--s-6); }
@@ -367,7 +371,7 @@ table.data td.era-change { color: var(--ink-muted); font-size: 13px; }
 .page { padding-block: var(--s-6) var(--s-8); }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
-@media print { .site-header, .site-footer, .tool-nav, .share-row, .ad-slot { display: none !important; } }
+@media print { .theme-toggle, .site-header, .site-footer, .tool-nav, .share-row, .ad-slot { display: none !important; } }
 
 /* ==========================================================================
    Phones (one-column layout, < 720px)

@@ -94,21 +94,21 @@ UI = {
         "about": "About", "privacy": "Privacy", "terms": "Terms", "contact": "Contact",
         "tagline": "Free date and age calculators in several languages and calendars. Everything is calculated in your browser; nothing you enter is sent or stored.",
         "faq": "Frequently asked questions", "related": "Other calculators", "updated": "Last updated",
-        "home": "Home",
+        "home": "Home", "theme": "Dark mode",
     },
     "ar": {
         "skip": "انتقل إلى الحاسبة", "tools": "الحاسبات", "site": "الموقع",
         "about": "من نحن", "privacy": "الخصوصية", "terms": "الشروط", "contact": "اتصل بنا",
         "tagline": "حاسبات مجانية للتاريخ والعمر بالتقويمين الهجري والميلادي. تتم جميع العمليات داخل متصفحك، ولا يُرسل أو يُحفظ أي شيء تدخله.",
         "faq": "أسئلة شائعة", "related": "حاسبات أخرى", "updated": "آخر تحديث",
-        "home": "الرئيسية",
+        "home": "الرئيسية", "theme": "الوضع الداكن",
     },
     "ja": {
         "skip": "計算フォームへ移動", "tools": "計算ツール", "site": "サイト情報",
         "about": "About（英語）", "privacy": "プライバシー（英語）", "terms": "利用規約（英語）", "contact": "お問い合わせ（英語）",
         "tagline": "多言語・多暦対応の無料年齢計算ツール。計算はすべてブラウザ内で行われ、入力内容が送信・保存されることはありません。",
         "faq": "よくある質問", "related": "ほかの計算ツール", "updated": "最終更新",
-        "home": "ホーム",
+        "home": "ホーム", "theme": "ダークモード",
     },
 }
 
@@ -692,6 +692,7 @@ def page_html(page, pages, vers):
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   {chr(10).join("  " + x for x in preload).strip()}
+  <script>(function(){{var t;try{{t=localStorage.getItem("theme")}}catch(e){{}}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}})();</script>
   <link rel="stylesheet" href="{css}">
   {landing_css}
   <script type="application/ld+json">
@@ -709,6 +710,7 @@ def page_html(page, pages, vers):
 {render_nav(page)}
       </ul>
     </nav>
+    <button class="theme-toggle" type="button" aria-label="{t['theme']}" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></button>
   </div>
 </header>
 <main id="main">
@@ -756,6 +758,7 @@ def page_html(page, pages, vers):
   </div>
 </footer>
 <script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){{var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){{n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}}}})();</script>
+<script>(function(){{var b=document.querySelector('.theme-toggle'),r=document.documentElement;function s(){{b.setAttribute('aria-pressed',r.dataset.theme==='dark')}}s();b.addEventListener('click',function(){{r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';try{{localStorage.setItem('theme',r.dataset.theme)}}catch(e){{}}s()}})}})();</script>
 {scripts}
 </body>
 </html>
