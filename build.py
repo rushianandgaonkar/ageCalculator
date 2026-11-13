@@ -23,6 +23,7 @@ SITE_NAME = "Ageason"                      # Public brand
 CONTACT_EMAIL = "info@ageason.com"        # <-- shown on the contact page
 ADSENSE_PUB_ID = ""                        # e.g. "pub-1234567890123456" (fills ads.txt + ad script)
 GOOGLE_SITE_VERIFICATION = "tuYlfj3YHw96MOt78BtkEj36livlQ0tqAvIgtF8rMT4"
+GOOGLE_TAG_ID = "GTM-5HHGJNZB"
 BUILD_DATE = dt.date.today()
 JA_TABLE_YEAR = BUILD_DATE.year            # set to next year in late December for the 年齢早見表 rush
 JA_FY = BUILD_DATE.year if BUILD_DATE.month >= 4 else BUILD_DATE.year - 1   # Japanese school year (年度) for 学年早見表
@@ -654,11 +655,19 @@ def page_html(page, pages, vers):
     footer = footer_navigation(page)
     brand_href = "/ar/" if is_ar else "/"
     site_prefix = "/ar" if is_ar else ""
+    google_tag = (
+        f'  <script async src="https://www.googletagmanager.com/gtm.js?id={GOOGLE_TAG_ID}"></script>\n'
+        '  <script>\n'
+        '    window.dataLayer = window.dataLayer || [];\n'
+        '    function gtag(){dataLayer.push(arguments);}\n'
+        '    gtag(\'js\', new Date());\n'
+        '  </script>\n'
+    ) if GOOGLE_TAG_ID else ""
 
     return f"""<!doctype html>
 <html lang="{page['lang']}" dir="{page['dir']}">
 <head>
-  <meta charset="utf-8">
+{google_tag}  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(full_title)}</title>
   <meta name="description" content="{html.escape(desc)}">

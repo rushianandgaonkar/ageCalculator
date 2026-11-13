@@ -45,6 +45,8 @@ def verify():
         rel = page_path.relative_to(OUT)
         assert 'class="landing-v2' in page, f"Missing V2 design: {rel}"
         assert '/assets/css/landing.css?v=' in page, f"Missing V2 stylesheet: {rel}"
+        assert '<head>\n  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5HHGJNZB"></script>' in page, f"Missing GTM tag after <head>: {rel}"
+        assert page.count("GTM-5HHGJNZB") == 1, f"Duplicate GTM tag: {rel}"
         if rel not in (Path("index.html"), Path("ar/index.html")):
             assert '<body class="landing-v2 inner-v2">' in page, f"Inner-page layout missing: {rel}"
     assert (OUT / "assets/css/landing.css").exists()
