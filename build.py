@@ -64,13 +64,13 @@ TOOL_LANG = {"ar": "ar", "ardiff": "ar", "arconv": "ar", "arages": "ar", "ja": "
 RELATED = {
     "en": [
         ("home", "Age calculator", "Exact age in years, months and days, on any date. Checks exam age limits."),
-        ("ar", "حساب العمر بالهجري والميلادي", "Age calculator in Arabic with Hijri (Umm al-Qura) and Gregorian dates."),
+        ("ar", "حساب العمر بالهجري والميلادي", "Date breakdown in Arabic with Hijri (Umm al-Qura) and Gregorian calendars."),
         ("ja", "年齢早見表", "Japanese age chart by Reiwa, Heisei and Showa year, with zodiac animal."),
         ("ne", "Nepali age calculator", "Age in Bikram Sambat and AD from a BS or AD date of birth."),
         ("exam", "Exam age limit calculators", "UPSC, SSC, NDA, CDS and Agniveer eligibility by date of birth."),
         ("neconv", "Nepali date converter", "Convert BS dates to AD and AD to BS, with today's Nepali date."),
-        ("diff", "Age difference calculator", "The exact age gap between two people in years, months and days."),
-        ("chrono", "Chronological age calculator", "Years;months;days for test scoring, with adjusted age for prematurity."),
+        ("diff", "Age difference calculator", "The exact time span between two people in years, months and days."),
+        ("chrono", "Chronological age calculator", "Years;months;days for clinical scoring, with adjustment for prematurity."),
     ],
     "ar": [
         ("ar", "حساب العمر بالهجري والميلادي", "احسب عمرك بالسنوات والأشهر والأيام بالتقويمين الهجري والميلادي."),
@@ -855,6 +855,7 @@ def main():
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   X-Frame-Options: SAMEORIGIN
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
