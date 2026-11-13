@@ -1,0 +1,17 @@
+{
+  "name": "ageason",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multilingual age and date calculators",
+  "scripts": {
+    "build": "python build.py",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "serve": "python -m http.server 8000 --directory public",
+    "test": "node --test tests/datecore.test.mjs",
+    "test:all": "python tests/test_ageason_build.py && node --test tests/datecore.test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.162.0"
+  }
+}

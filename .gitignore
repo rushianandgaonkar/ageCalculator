@@ -5,5 +5,8 @@ __pycache__/
 .DS_Store
 Thumbs.db
 .wrangler/
+node_modules/
+package-lock.json
+npm-debug.log*
 
 
