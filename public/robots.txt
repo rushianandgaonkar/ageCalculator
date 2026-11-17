@@ -10,5 +10,5 @@ User-Agent: CCBot
 User-Agent: cohere-ai
 Allow: /
 
-Host: https://ageason.com
-Sitemap: https://ageason.com/sitemap.xml
+Host: https://www.ageason.com
+Sitemap: https://www.ageason.com/sitemap.xml

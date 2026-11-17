@@ -79,4 +79,4 @@ Test sizes before shipping a layout change: 375×667 (iPhone SE), 390×844, 412�
 - Make the horizontally scrolling tool navigation discoverable and keep focused tabs visible; keyboard and touch input must both work.
 - Allow long localized date and number values to wrap rather than clip at 375px wide and in RTL layouts.
 - Before merging, inspect light/dark mode, Arabic/English/Japanese/Nepali, browser zoom, reduced motion, and mobile keyboard behavior.
-- Brand: Ageason, canonical host: `https://ageason.com`. Regenerate the per-page PNG social cards when branding changes.
+- Brand: Ageason, canonical host: `https://www.ageason.com`. Regenerate the per-page PNG social cards when branding changes.

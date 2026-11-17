@@ -19,11 +19,11 @@ def verify():
     for rel in html_paths:
         path = OUT / rel
         page = path.read_text(encoding="utf-8")
-        assert 'https://ageason.com/' in page, f"canonical host missing: {rel}"
+        assert 'https://www.ageason.com/' in page, f"canonical host missing: {rel}"
         assert 'https://www.example.com' not in page, f"placeholder host in: {rel}"
         assert 'Agewise' not in page, f"legacy brand in: {rel}"
         assert 'Ageason' in page, f"new brand missing: {rel}"
-        assert re.search(r'<link rel="canonical" href="https://ageason.com/', page), f"canonical missing: {rel}"
+        assert re.search(r'<link rel="canonical" href="https://www.ageason.com/', page), f"canonical missing: {rel}"
         assert "github.com/rushianandgaonkar/ageCalculator" not in page, f"Repository link exposed: {rel}"
 
     # V2 visual system now spans every generated page, with compact inner-page heroes.
@@ -123,9 +123,9 @@ def verify():
     sitemap = (OUT / "sitemap.xml").read_text(encoding="utf-8")
     robots = (OUT / "robots.txt").read_text(encoding="utf-8")
     manifest = json.loads((OUT / "site.webmanifest").read_text(encoding="utf-8"))
-    assert 'https://ageason.com/ar/' in sitemap
+    assert 'https://www.ageason.com/ar/' in sitemap
     assert 'https://www.example.com' not in sitemap
-    assert 'Sitemap: https://ageason.com/sitemap.xml' in robots
+    assert 'Sitemap: https://www.ageason.com/sitemap.xml' in robots
     for public_html in OUT.rglob("*.html"):
         assert "github.com/rushianandgaonkar/ageCalculator" not in public_html.read_text(encoding="utf-8"), f"Repository link in {public_html}"
     assert manifest["short_name"] == "Ageason"

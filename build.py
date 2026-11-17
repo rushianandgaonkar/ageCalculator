@@ -18,7 +18,7 @@ from bisect import bisect_right
 from pathlib import Path
 
 # ============================== CONFIG ==============================
-SITE_URL = "https://ageason.com"         # Canonical domain (enable after purchase and DNS setup)
+SITE_URL = "https://www.ageason.com"     # Canonical domain (enable after purchase and DNS setup)
 SITE_NAME = "Ageason"                      # Public brand
 CONTACT_EMAIL = "info@ageason.com"        # <-- shown on the contact page
 ADSENSE_PUB_ID = ""                        # e.g. "pub-1234567890123456" (fills ads.txt + ad script)

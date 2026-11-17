@@ -32,7 +32,7 @@ public/             ← THE WEBSITE. Deploy this folder. (Generated — don't ed
 
 ## Before you go live (5 minutes)
 1. Open `build.py` and set:
-   - `SITE_URL` — preconfigured to `https://ageason.com` (the domain must be purchased and connected to hosting before launch)
+   - `SITE_URL` — preconfigured to `https://www.ageason.com` (the domain must be purchased and connected to hosting before launch)
    - `SITE_NAME` — configured to `Ageason`
    - `CONTACT_EMAIL` — configured to `info@ageason.com`
 2. Regenerate the favicons, app icons and **all** per-page social images for the Ageason brand: `python tools/make_images.py` (requires `pip install playwright pillow` and `playwright install chromium`).
@@ -43,10 +43,10 @@ public/             ← THE WEBSITE. Deploy this folder. (Generated — don't ed
 ## Deploy (Cloudflare Pages)
 - Create a Pages project → upload the `public` folder (or connect the GitHub repo with build command `python build.py` and output directory `public`).
 - `public/_headers` sets caching and security headers; `404.html` is picked up automatically.
-- Add the domain, then in **Google Search Console** add the property and submit `https://ageason.com/sitemap.xml`.
+- Add the domain, then in **Google Search Console** add the property and submit `https://www.ageason.com/sitemap.xml`.
 - Bing Webmaster Tools: import from Search Console.
 
-The canonical host is `https://ageason.com` (no `www`). Once the domain is active, configure Cloudflare to redirect `www.ageason.com` to `ageason.com` using a permanent redirect. Domain purchase, DNS and mailbox setup are **not** performed by this repository.
+The canonical host is `https://www.ageason.com` (with `www`). Once the domain is active, configure Cloudflare to redirect `ageason.com` to `www.ageason.com` using a permanent redirect. Domain purchase, DNS and mailbox setup are **not** performed by this repository.
 
 ## SEO files included
 - `robots.txt` (points to the sitemap) and `sitemap.xml` (with hreflang alternates)
