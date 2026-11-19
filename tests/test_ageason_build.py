@@ -47,6 +47,8 @@ def verify():
         assert '/assets/css/landing.css?v=' in page, f"Missing V2 stylesheet: {rel}"
         assert "GTM-5HHGJNZB" not in page, f"Old GTM container found in: {rel}"
         assert page.count("GTM-PW9WRK2J") == 2, f"Expected exactly 2 occurrences of GTM-PW9WRK2J (1 script, 1 noscript): {rel}"
+        assert "event:'gtm.js'}});" not in page, f"Stray closing brace in GTM snippet: {rel}"
+        assert "event:'gtm.js'});" in page, "GTM snippet missing event:'gtm.js'}); in: " + str(rel)
         assert re.search(r'<head>\s*<meta charset="utf-8">\s*<meta name="viewport"[^>]*>\s*<!-- Google Tag Manager -->\s*<script>.*?</script>\s*<!-- End Google Tag Manager -->', page, re.DOTALL), f"Missing or misplaced GTM head script in {rel}"
         assert re.search(r'<body[^>]*>\s*<!-- Google Tag Manager \(noscript\) -->\s*<noscript><iframe src="https://www.googletagmanager.com/ns\.html\?id=GTM-PW9WRK2J"', page), f"Missing or misplaced GTM noscript in {rel}"
         assert "gtag(" not in page, f"gtag() found in: {rel}"

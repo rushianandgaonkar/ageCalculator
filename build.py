@@ -672,18 +672,17 @@ def page_html(page, pages, vers):
     site_prefix = "/ar" if is_ar else ""
     gtm_head = (
         '  <!-- Google Tag Manager -->\n'
-        f"  <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':\n"
-        "  new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],\n"
-        "  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n"
-        "  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n"
-        f"  }})(window,document,'script','dataLayer','{GOOGLE_TAG_ID}');</script>\n"
+        "  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"
+        + GOOGLE_TAG_ID
+        + "');</script>\n"
         '  <!-- End Google Tag Manager -->\n'
     ) if GOOGLE_TAG_ID else ""
 
     gtm_body = (
         '  <!-- Google Tag Manager (noscript) -->\n'
-        f'  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GOOGLE_TAG_ID}"\n'
-        '  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n'
+        '  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id='
+        + GOOGLE_TAG_ID
+        + '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n'
         '  <!-- End Google Tag Manager (noscript) -->\n'
     ) if GOOGLE_TAG_ID else ""
 
