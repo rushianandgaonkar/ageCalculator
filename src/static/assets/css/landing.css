@@ -53,6 +53,7 @@ body.landing-v2 {
   letter-spacing: -2.25px;
   color: #1a2342;
   margin-inline: auto;
+  text-wrap: balance;
 }
 .landing-v2 .hero-title-accent {
   display: inline;
@@ -168,7 +169,7 @@ body.landing-v2 {
 .landing-v2 .landing-proof strong { color: #37445e; }
 .landing-v2 .landing-explore { padding-block: 22px 62px; }
 .landing-v2 .landing-section-heading { margin-block-end: 24px; text-align: center; }
-.landing-v2 .landing-section-heading h2 { margin: 0; font-size: clamp(26px,3vw,36px); line-height: 1.15; font-weight: 600; letter-spacing: -.9px; }
+.landing-v2 .landing-section-heading h2 { margin: 0; font-size: clamp(26px,3vw,36px); line-height: 1.15; font-weight: 600; letter-spacing: -.9px; text-wrap: balance; }
 .landing-v2 .landing-section-heading p { margin: 11px 0 0; color: var(--landing-muted); }
 .landing-v2 .landing-links { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
 .landing-v2 .landing-link-card {
@@ -261,6 +262,7 @@ body.landing-v2 {
   line-height: 1.15;
   letter-spacing: -1.3px;
   font-weight: 600;
+  text-wrap: balance;
 }
 .landing-v2.inner-v2 .hero .lede {
   margin: 13px 0 0;
@@ -576,7 +578,7 @@ body.landing-v2 {
 }
 .landing-v2 .timeline-heading { text-align: center; margin-inline: auto; max-width: 650px; }
 .landing-v2 .timeline-eyebrow { margin: 0 0 12px; color: #5858b9; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 12px; }
-.landing-v2 .timeline-heading h2 { font-size: clamp(28px, 4vw, 44px); letter-spacing: -1.2px; font-weight: 600; line-height: 1.17; margin: 0; color: #202a49; }
+.landing-v2 .timeline-heading h2 { font-size: clamp(28px, 4vw, 44px); letter-spacing: -1.2px; font-weight: 600; line-height: 1.17; margin: 0; color: #202a49; text-wrap: balance; }
 .landing-v2 .timeline-heading h2 span { color: #6256cb; }
 .landing-v2 .timeline-heading > p:last-child { color: #647089; margin: 18px auto 0; font-size: 16px; line-height: 1.7; }
 .landing-v2 .timeline-steps {
@@ -741,9 +743,6 @@ body.landing-v2 {
 }
 .landing-v2 .faq-section .faq-intro { min-width: 0; }
 .landing-v2 .faq-section .faq-eyebrow { display: none; }
-  text-transform: uppercase;
-  margin: 0 0 12px;
-}
 .landing-v2 .faq-section .faq-intro h2 {
   font-size: clamp(28px, 3.3vw, 40px);
   line-height: 1.18;
@@ -751,6 +750,7 @@ body.landing-v2 {
   letter-spacing: -.9px;
   color: #263253;
   margin: 0;
+  text-wrap: balance;
 }
 .landing-v2 .faq-section .faq-blurb {
   font-size: 15px;

@@ -131,8 +131,8 @@ a:hover { color: var(--primary-hover); }
 .tool-nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .tool-nav::-webkit-scrollbar { display: none; }
 /* When the menu is wider than the screen (set by the inline script in the page), fade both edges to show it scrolls */
-.tool-nav.is-scrolling { -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 28px), transparent 100%);
-                         mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 28px), transparent 100%); }
+.tool-nav.is-scrolling { -webkit-mask-image: linear-gradient(to right, transparent 0, var(--ink) 16px, var(--ink) calc(100% - 28px), transparent 100%);
+                         mask-image: linear-gradient(to right, transparent 0, var(--ink) 16px, var(--ink) calc(100% - 28px), transparent 100%); }
 .tool-nav ul { display: flex; gap: 0; margin: 0; padding: 0; list-style: none; }
 .tool-nav a {
   display: block; padding: 13px var(--s-3); font-size: 14px; line-height: 22px; color: var(--ink-muted);
@@ -151,7 +151,7 @@ html:not([data-theme]) .theme-toggle { display: none; } /* no JS: the button can
 /* ---------- Hero ---------- */
 .hero { background: var(--surface-1); padding-block: var(--s-6) var(--s-6); }
 @media (min-width: 672px) { .hero { padding-block: var(--s-7) var(--s-6); } }
-.hero h1 { margin: 0; font-weight: 300; font-size: clamp(32px, 5vw, 42px); line-height: 1.2; letter-spacing: 0; max-width: 30ch; }
+.hero h1 { margin: 0; font-weight: 300; font-size: clamp(32px, 5vw, 42px); line-height: 1.2; letter-spacing: 0; max-width: 30ch; text-wrap: balance; }
 :lang(ja) .hero h1 { max-width: none; font-weight: 400; }
 :lang(ar) .hero h1, :lang(ar) .age-big { font-weight: 400; }
 .hero .lede { margin: var(--s-3) 0 0; font-size: 18px; line-height: 1.5; color: var(--ink-muted); max-width: 60ch; }
@@ -360,14 +360,14 @@ table.data td.era-change { color: var(--ink-muted); font-size: 13px; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--footer-bg); color: var(--footer-ink); font-size: 14px; padding-block: var(--s-7) var(--s-6); }
-.site-footer a { color: #ffffff; text-decoration: none; }
-.site-footer a:hover { text-decoration: underline; color: #ffffff; }
+.site-footer a { color: var(--on-primary); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; color: var(--on-primary); }
 .footer-grid { display: grid; gap: var(--s-6); }
 @media (min-width: 672px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
-.footer-grid h2 { font-size: 14px; font-weight: 600; color: #ffffff; margin: 0 0 var(--s-3); }
+.footer-grid h2 { font-size: 14px; font-weight: 600; color: var(--on-primary); margin: 0 0 var(--s-3); }
 .footer-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
 .footer-grid p { margin: 0; max-width: 46ch; }
-.footer-base { margin-block-start: var(--s-7); padding-block-start: var(--s-4); border-block-start: 1px solid #393939; font-size: 13px; }
+.footer-base { margin-block-start: var(--s-7); padding-block-start: var(--s-4); border-block-start: 1px solid var(--hairline-strong); font-size: 13px; }
 
 /* ---------- Simple pages (about, privacy…) ---------- */
 .page { padding-block: var(--s-6) var(--s-8); }
