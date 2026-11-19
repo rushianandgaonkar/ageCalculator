@@ -1,3 +1,4 @@
+/* Hallmark · checked · redesign: polish */
 /* ==========================================================================
    Site styles — IBM Carbon-inspired. See DESIGN.md for the rules.
    Logical properties (inline/block) are used everywhere so RTL pages flip.
@@ -93,6 +94,7 @@
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { overflow-x: clip; }
 body {
   margin: 0;
   background: var(--canvas);

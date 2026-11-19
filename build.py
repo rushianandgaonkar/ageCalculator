@@ -217,9 +217,8 @@ def render_faq(page):
     return (
         '<section class="faq-section" aria-labelledby="faq">'
         '<div class="faq-intro">'
-        f'<p class="faq-eyebrow">{html.escape(eyebrow)}</p>'
         f'<h2 id="faq">{html.escape(t["faq"])}</h2>'
-        f'<p class="faq-blurb">{html.escape(intro)}</p>{art}'
+        f'<p class="faq-blurb"><strong>{html.escape(eyebrow)}.</strong> {html.escape(intro)}</p>{art}'
         '</div>'
         f'<div class="faq faq-accordion">{rows}</div>'
         '</section>'
@@ -248,8 +247,8 @@ FOOTER_SECTIONS = {
         "local": [("home", "Age calculator"), ("diff", "Age difference"),
                   ("chrono", "Chronological age"), ("exam", "Exam age limits")],
         "other_title": "Other languages",
-        "other": [("ar", "العربية — حاسبة العمر"), ("ja", "日本語 — 年齢早見表"),
-                  ("ne", "Nepali — Age calculator"), ("neconv", "Nepali — Date converter")],
+        "other": [("ar", "العربية (حاسبة العمر)"), ("ja", "日本語 (年齢早見表)"),
+                  ("ne", "Nepali (Age calculator)"), ("neconv", "Nepali (Date converter)")],
         "site_title": "Explore Ageason",
         "foot_note": "Free tools · No account required",
     },
@@ -258,8 +257,8 @@ FOOTER_SECTIONS = {
         "local": [("ar", "حساب العمر"), ("arconv", "تحويل التاريخ"),
                   ("ardiff", "فرق العمر"), ("arages", "جدول الأعمار")],
         "other_title": "حاسبات بلغات أخرى",
-        "other": [("home", "الإنجليزية — حاسبة العمر"), ("ja", "اليابانية — جدول الأعمار"),
-                  ("ne", "النيبالية — حاسبة العمر"), ("neconv", "النيبالية — تحويل التاريخ")],
+        "other": [("home", "الإنجليزية (حاسبة العمر)"), ("ja", "اليابانية (جدول الأعمار)"),
+                  ("ne", "النيبالية (حاسبة العمر)"), ("neconv", "النيبالية (تحويل التاريخ)")],
         "site_title": "تعرف على Ageason",
         "foot_note": "أدوات مجانية · لا تحتاج إلى تسجيل",
     },
@@ -267,8 +266,8 @@ FOOTER_SECTIONS = {
         "local_title": "日本語のツール",
         "local": [("ja", "年齢早見表"), ("gakunen", "学年早見表")],
         "other_title": "ほかの言語",
-        "other": [("home", "英語 — 年齢計算"), ("ar", "アラビア語 — 年齢計算"),
-                  ("ne", "ネパール暦 — 年齢計算"), ("neconv", "ネパール暦 — 日付変換")],
+        "other": [("home", "英語 (年齢計算)"), ("ar", "アラビア語 (年齢計算)"),
+                  ("ne", "ネパール暦 (年齢計算)"), ("neconv", "ネパール暦 (日付変換)")],
         "site_title": "サイト案内",
         "foot_note": "無料の計算ツール · 登録不要",
     },
@@ -276,8 +275,8 @@ FOOTER_SECTIONS = {
         "local_title": "Nepali calendar tools",
         "local": [("ne", "Nepali age calculator"), ("neconv", "Nepali date converter")],
         "other_title": "Other languages",
-        "other": [("home", "English — Age calculator"), ("ar", "العربية — حاسبة العمر"),
-                  ("ja", "日本語 — 年齢早見表")],
+        "other": [("home", "English (Age calculator)"), ("ar", "العربية (حاسبة العمر)"),
+                  ("ja", "日本語 (年齢早見表)")],
         "site_title": "Explore Ageason",
         "foot_note": "Free tools · No account required",
     }
@@ -738,27 +737,27 @@ def page_html(page, pages, vers):
 <main id="main">
 {body.strip()}
 </main>
-<footer class="site-footer footer-v2 footer-rounded" data-slot="footer">
+<footer class="site-footer footer-v2 footer-rounded">
   <div class="wrap footer-inner" data-slot="footer-inner">
     <div class="footer-grid">
-      <div class="footer-brand-column" data-slot="footer-brand">
+      <div class="footer-brand-column">
         <a class="footer-brand" href="{brand_href}" lang="en">{BRAND_SVG}<span>{html.escape(SITE_NAME)}</span></a>
         <p class="footer-description">{t['tagline']}</p>
         <p class="footer-note">{footer['foot_note']}</p>
       </div>
-      <nav class="footer-column" aria-label="{footer['local_heading']}" data-slot="footer-column">
+      <nav class="footer-column" aria-label="{footer['local_heading']}">
         <h2>{footer['local_heading']}</h2>
         <ul>
 {footer['local_links']}
         </ul>
       </nav>
-      <nav class="footer-column" aria-label="{footer['other_heading']}" data-slot="footer-column">
+      <nav class="footer-column" aria-label="{footer['other_heading']}">
         <h2>{footer['other_heading']}</h2>
         <ul>
 {footer['other_links']}
         </ul>
       </nav>
-      <nav class="footer-column" aria-label="{footer['site_heading']}" data-slot="footer-column">
+      <nav class="footer-column" aria-label="{footer['site_heading']}">
         <h2>{footer['site_heading']}</h2>
         <ul>
           <li><a href="{site_prefix}/about/">{t['about']}</a></li>
@@ -769,7 +768,7 @@ def page_html(page, pages, vers):
         </ul>
       </nav>
     </div>
-    <div class="footer-bottom" data-slot="footer-meta">
+    <div class="footer-bottom">
       <p class="footer-base" lang="en">© {BUILD_DATE.year} {html.escape(SITE_NAME)}. All rights reserved.</p>
       <nav class="footer-legal" aria-label="{t['site']}">
         <a href="{site_prefix}/terms/">{t['terms']}</a>
