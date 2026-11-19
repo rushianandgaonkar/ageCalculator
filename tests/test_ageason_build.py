@@ -45,8 +45,12 @@ def verify():
         rel = page_path.relative_to(OUT)
         assert 'class="landing-v2' in page, f"Missing V2 design: {rel}"
         assert '/assets/css/landing.css?v=' in page, f"Missing V2 stylesheet: {rel}"
-        assert '<head>\n  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5HHGJNZB"></script>' in page, f"Missing GTM tag after <head>: {rel}"
-        assert page.count("GTM-5HHGJNZB") == 1, f"Duplicate GTM tag: {rel}"
+        assert "GTM-5HHGJNZB" not in page, f"Old GTM container found in: {rel}"
+        assert page.count("GTM-PW9WRK2J") == 2, f"Expected exactly 2 occurrences of GTM-PW9WRK2J (1 script, 1 noscript): {rel}"
+        assert re.search(r'<head>\s*<meta charset="utf-8">\s*<meta name="viewport"[^>]*>\s*<!-- Google Tag Manager -->\s*<script>.*?</script>\s*<!-- End Google Tag Manager -->', page, re.DOTALL), f"Missing or misplaced GTM head script in {rel}"
+        assert re.search(r'<body[^>]*>\s*<!-- Google Tag Manager \(noscript\) -->\s*<noscript><iframe src="https://www.googletagmanager.com/ns\.html\?id=GTM-PW9WRK2J"', page), f"Missing or misplaced GTM noscript in {rel}"
+        assert "gtag(" not in page, f"gtag() found in: {rel}"
+        assert "gtag.js" not in page, f"gtag.js found in: {rel}"
         if rel not in (Path("index.html"), Path("ar/index.html")):
             assert '<body class="landing-v2 inner-v2">' in page, f"Inner-page layout missing: {rel}"
     assert (OUT / "assets/css/landing.css").exists()
