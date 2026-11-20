@@ -34,46 +34,116 @@ SRC = ROOT / "src"
 OUT = ROOT / "public"
 
 TOOLS = [  # top menu, in order; label is in the tool's own language
-    ("home",   "/",                              "Age calculator"),
-    ("ar",     "/ar/",                           "حساب العمر"),
-    ("ja",     "/ja/",                           "年齢早見表"),
-    ("exam",   "/age-limit/",                    "Exam age limits"),
-    ("ne",     "/nepali-age-calculator/",        "Nepali age"),
-    ("neconv", "/nepali-date-converter/",        "Nepali date"),
-    ("diff",   "/age-difference/",               "Age difference"),
-    ("chrono", "/chronological-age-calculator/", "Chronological age"),
+    ("home",     "/",                              "Age calculator"),
+    ("days",     "/days-between-dates/",           "Days between dates"),
+    ("datecalc", "/date-calculator/",             "Date calculator"),
+    ("bizdays",  "/business-days-calculator/",    "Business days"),
+    ("diff",     "/age-difference/",               "Age difference"),
+    ("chrono",   "/chronological-age-calculator/", "Chronological age"),
+    ("exam",     "/age-limit/",                    "Exam age limits"),
+    ("ar",       "/ar/",                           "حساب العمر"),
+    ("ja",       "/ja/",                           "年齢早見表"),
+    ("ne",       "/nepali-age-calculator/",        "Nepali age"),
+    ("neconv",   "/nepali-date-converter/",        "Nepali date"),
 ]
 EXAMS = [("upsc", "/age-limit/upsc/", "UPSC age limit", "Civil Services: 21 to under 32 on 1 August, plus category relaxation and attempts."),
-         ("ssc", "/age-limit/ssc/", "SSC age limit", "SSC GD (18–23) and CGL post groups (18–27 to 18–32), with relaxation."),
+         ("ssc", "/age-limit/ssc/", "SSC age limit", "SSC GD (18 to 23) and CGL post groups (18 to 27 or 18 to 32), with relaxation."),
          ("nda", "/age-limit/nda/", "NDA age limit", "Born-between dates for NDA (I) and (II), for men and women."),
          ("cds", "/age-limit/cds/", "CDS age limit", "IMA, INA, AFA and OTA date-of-birth windows, including the CPL relaxation."),
          ("agniveer", "/age-limit/agniveer/", "Agniveer age limit", "Army Agniveer and Air Force Agniveervayu date-of-birth windows.")]
 # every calculator page (menu items plus sub-pages), used by the footer and "related" lists
-ALL_TOOLS = TOOLS[:3] + [("ardiff", "/ar/age-difference/", "حساب فرق العمر"), ("gakunen", "/ja/gakunen/", "学年早見表")] + TOOLS[3:]
-AR_TOOLS = [
+ALL_TOOLS = [
+    ("home",       "/",                              "Age calculator"),
+    ("days",       "/days-between-dates/",           "Days between dates"),
+    ("datecalc",   "/date-calculator/",             "Date calculator"),
+    ("bizdays",    "/business-days-calculator/",    "Business days"),
+    ("experience", "/experience-calculator/",       "Experience calculator"),
+    ("birthyear",  "/birth-year-calculator/",       "Birth year calculator"),
+    ("catage",     "/cat-age-calculator/",           "Cat age"),
+    ("dogage",     "/dog-age-calculator/",           "Dog age"),
+    ("generation", "/generation-calculator/",        "Generation calculator"),
+    ("diff",       "/age-difference/",               "Age difference"),
+    ("chrono",     "/chronological-age-calculator/", "Chronological age"),
+    ("exam",       "/age-limit/",                    "Exam age limits"),
+    ("ar",         "/ar/",                           "حساب العمر"),
+    ("artoday",    "/ar/today/",                     "التاريخ اليوم"),
+    ("arcalendar", "/ar/calendar/",                 "التقويم الهجري"),
+    ("arramadan",  "/ar/ramadan/",                  "كم باقي على رمضان"),
+    ("areid",      "/ar/eid/",                      "كم باقي على العيد"),
+    ("arconv",     "/ar/hijri-converter/",           "تحويل التاريخ"),
+    ("ardiff",     "/ar/age-difference/",            "فرق العمر"),
+    ("arages",     "/ar/ages/",                      "جدول الأعمار"),
+    ("ja",         "/ja/",                           "年齢早見表"),
+    ("gakunen",    "/ja/gakunen/",                   "学年早見表"),
+    ("jadays",     "/ja/days/",                      "日数計算"),
+    ("jaera",      "/ja/era/",                       "西暦和暦早見表"),
+    ("ne",         "/nepali-age-calculator/",        "Nepali age"),
+    ("neconv",     "/nepali-date-converter/",        "Nepali date"),
+    ("trhome",     "/tr/",                           "Yaş hesaplama"),
+    ("trdate",     "/tr/tarih-hesaplama/",           "Tarih ve gün hesaplama"),
+    ("trhijri",    "/tr/hicri-takvim/",              "Hicri takvim"),
+]
+TR_NAV = [
+    ("trhome",  "/tr/",                  "Yaş hesaplama"),
+    ("trdate",  "/tr/tarih-hesaplama/",  "Tarih hesaplama"),
+    ("trhijri", "/tr/hicri-takvim/",     "Hicri takvim"),
+]
+TR_TOOLS = [
+    ("trhome",  "/tr/",                  "Yaş hesaplama"),
+    ("trdate",  "/tr/tarih-hesaplama/",  "Tarih ve gün hesaplama"),
+    ("trhijri", "/tr/hicri-takvim/",     "Hicri takvim"),
+]
+AR_NAV = [
     ("ar",     "/ar/",                 "حساب العمر"),
     ("arconv", "/ar/hijri-converter/", "تحويل التاريخ"),
     ("ardiff", "/ar/age-difference/",  "فرق العمر"),
     ("arages", "/ar/ages/",            "جدول الأعمار"),
 ]
+AR_TOOLS = [
+    ("ar",         "/ar/",                 "حساب العمر"),
+    ("artoday",    "/ar/today/",           "التاريخ اليوم"),
+    ("arcalendar", "/ar/calendar/",        "التقويم الهجري"),
+    ("arramadan",  "/ar/ramadan/",         "كم باقي على رمضان"),
+    ("areid",      "/ar/eid/",             "كم باقي على العيد"),
+    ("arconv",     "/ar/hijri-converter/", "تحويل التاريخ"),
+    ("ardiff",     "/ar/age-difference/",  "فرق العمر"),
+    ("arages",     "/ar/ages/",            "جدول الأعمار"),
+]
 PATHS = {k: p for k, p, _ in ALL_TOOLS}
 PATHS.update({k: p for k, p, _ in AR_TOOLS})
 PATHS.update({k: p for k, p, _, _ in EXAMS})
-TOOL_LANG = {"ar": "ar", "ardiff": "ar", "arconv": "ar", "arages": "ar", "ja": "ja", "gakunen": "ja"}
+TOOL_LANG = {
+    "ar": "ar", "artoday": "ar", "arcalendar": "ar", "arramadan": "ar", "areid": "ar",
+    "ardiff": "ar", "arconv": "ar", "arages": "ar",
+    "ja": "ja", "gakunen": "ja", "jadays": "ja", "jaera": "ja",
+    "trhome": "tr", "trdate": "tr", "trhijri": "tr"
+}
 
 RELATED = {
     "en": [
         ("home", "Age calculator", "Exact age in years, months and days, on any date. Checks exam age limits."),
-        ("ar", "حساب العمر بالهجري والميلادي", "Date breakdown in Arabic with Hijri (Umm al-Qura) and Gregorian calendars."),
-        ("ja", "年齢早見表", "Japanese age chart by Reiwa, Heisei and Showa year, with zodiac animal."),
-        ("ne", "Nepali age calculator", "Age in Bikram Sambat and AD from a BS or AD date of birth."),
-        ("exam", "Exam age limit calculators", "UPSC, SSC, NDA, CDS and Agniveer eligibility by date of birth."),
-        ("neconv", "Nepali date converter", "Convert BS dates to AD and AD to BS, with today's Nepali date."),
+        ("days", "Days between dates", "Calculate the exact number of days, weeks, months and business days between two dates."),
+        ("datecalc", "Date calculator", "Add or subtract days, weeks, months or years from any calendar date."),
+        ("bizdays", "Business days calculator", "Calculate working days between two dates or add business days to a date."),
+        ("experience", "Experience calculator", "Calculate total work experience in years, months and days across multiple employments with career gap tracking."),
+        ("birthyear", "Birth year calculator", "Determine your birth year from age or calculate total days and hours alive with life milestones."),
+        ("catage", "Cat age calculator", "Calculate your cat’s exact age in human years using veterinary guidelines."),
+        ("dogage", "Dog age calculator", "Calculate your dog’s age in human years based on size and weight."),
+        ("generation", "Generation calculator", "Find your generation name, age range and birth years."),
         ("diff", "Age difference calculator", "The exact time span between two people in years, months and days."),
         ("chrono", "Chronological age calculator", "Years;months;days for clinical scoring, with adjustment for prematurity."),
+        ("exam", "Exam age limit calculators", "UPSC, SSC, NDA, CDS and Agniveer eligibility by date of birth."),
+        ("ar", "حساب العمر بالهجري والميلادي", "Date breakdown in Arabic with Hijri (Umm al Qura) and Gregorian calendars."),
+        ("ja", "年齢早見表", "Japanese age chart by Reiwa, Heisei and Showa year, with zodiac animal."),
+        ("ne", "Nepali age calculator", "Age in Bikram Sambat and AD from a BS or AD date of birth."),
+        ("neconv", "Nepali date converter", "Convert BS dates to AD and AD to BS, with today's Nepali date."),
     ],
     "ar": [
         ("ar", "حساب العمر بالهجري والميلادي", "احسب عمرك بالسنوات والأشهر والأيام بالتقويمين الهجري والميلادي."),
+        ("artoday", "التاريخ الهجري اليوم", "اعرف تاريخ اليوم بالهجري والميلادي مع المناسبات الإسلامية القادمة."),
+        ("arcalendar", "التقويم الهجري", "عرض تقويم أم القرى لجميع أشهر السنة الهجرية وما يقابلها بالميلادي."),
+        ("arramadan", "كم باقي على رمضان", "العداد التنازلي المباشر لمعرفة الوقت المتبقي لبداية شهر رمضان المبارك."),
+        ("areid", "كم باقي على العيد", "العداد التنازلي المباشر لعيد الفطر المبارك وعيد الأضحى لعام 1448 هـ."),
         ("arconv", "تحويل التاريخ من هجري إلى ميلادي", "حوّل أي تاريخ بين التقويم الهجري (أم القرى) والميلادي مع جدول أشهر السنة."),
         ("ardiff", "حساب فرق العمر بين شخصين", "اعرف فرق العمر بين شخصين بالهجري والميلادي."),
         ("arages", "جدول الأعمار بالهجري والميلادي", "اعرف عمر مواليد أي سنة هجرية أو ميلادية من جدول 100 عام."),
@@ -81,10 +151,17 @@ RELATED = {
     "ja": [
         ("ja", "年齢早見表", "生まれ年ごとの満年齢・和暦・干支と長寿祝いの早見表。"),
         ("gakunen", "学年早見表", "生年月日から今年度の学年と入学・卒業年がわかります。"),
+        ("jadays", "日数計算", "2つの日付の間の日数や、指定日数の何日後・何日前を計算。"),
+        ("jaera", "西暦和暦変換・早見表", "西暦と和暦の相互変換、満年齢と数え年、厄年早見表。"),
         ("home", "Age calculator (English)", "英語版の年齢計算。任意の日付時点の年齢を計算できます。"),
         ("ar", "حساب العمر", "アラビア語版。ヒジュラ暦と西暦で年齢を計算します。"),
         ("ne", "Nepali age calculator", "ネパール暦（ビクラム暦）で年齢を計算します。"),
         ("chrono", "Chronological age calculator", "心理検査などで使う生活年齢（年;月;日）を計算します。"),
+    ],
+    "tr": [
+        ("trhome", "Yaş hesaplama", "Doğum tarihinize göre tam yaşınızı, sonraki doğum gününüzü ve burcunuzu hesaplayın."),
+        ("trdate", "Tarih ve gün hesaplama", "İki tarih arasındaki gün sayısını hesaplayın veya tarihe gün ekleyin."),
+        ("trhijri", "Hicri takvim ve dönüştürücü", "Bugünün hicri tarihini öğrenin ve miladi ile hicri tarihleri dönüştürün."),
     ],
 }
 
@@ -109,6 +186,13 @@ UI = {
         "tagline": "多言語・多暦対応の無料年齢計算ツール。計算はすべてブラウザ内で行われ、入力内容が送信・保存されることはありません。",
         "faq": "よくある質問", "related": "ほかの計算ツール", "updated": "最終更新",
         "home": "ホーム", "theme": "ダークモード",
+    },
+    "tr": {
+        "skip": "Hesaplayıcıya geç", "tools": "Hesaplayıcılar", "site": "Site",
+        "about": "Hakkında", "privacy": "Gizlilik", "terms": "Kullanım Koşulları", "contact": "İletişim",
+        "tagline": "Farklı takvimlerde ve dillerde ücretsiz yaş ve tarih hesaplayıcıları. Tüm hesaplamalar tarayıcınızda yapılır; hiçbir bilginiz gönderilmez veya saklanmaz.",
+        "faq": "Sıkça sorulan sorular", "related": "Diğer hesaplayıcılar", "updated": "Son güncelleme",
+        "home": "Ana sayfa", "theme": "Karanlık mod",
     },
 }
 
@@ -152,11 +236,12 @@ def ui_lang(page):
 
 
 def render_nav(page):
-    menu = AR_TOOLS if ui_lang(page) == "ar" else TOOLS
+    lang = ui_lang(page)
+    menu = AR_NAV if lang == "ar" else TR_NAV if lang == "tr" else TOOLS
     items = []
     for key, path, label in menu:
         cur = ' aria-current="page"' if page.get("nav") == key else ""
-        lang_attr = {"ar": ' lang="ar" dir="rtl"', "ja": ' lang="ja"'}.get(TOOL_LANG.get(key), ' lang="en"')
+        lang_attr = {"ar": ' lang="ar" dir="rtl"', "ja": ' lang="ja"', "tr": ' lang="tr"'}.get(TOOL_LANG.get(key), ' lang="en"')
         items.append(f'<li><a href="{path}"{cur}{lang_attr}>{html.escape(label)}</a></li>')
     return "\n".join(items)
 
@@ -177,6 +262,7 @@ def render_faq(page):
         "en": ("COMMON QUESTIONS", "Clear answers about this calculator and how to understand its results."),
         "ar": ("إجابات على استفساراتك", "إجابات مبسطة عن طريقة استخدام الحاسبة وفهم النتائج."),
         "ja": ("ご利用ガイド", "この計算ツールの使い方と結果について、よくある疑問にお答えします。"),
+        "tr": ("SIKÇA SORULAN SORULAR", "Bu hesaplayıcı ve sonuçları hakkında anlaşılır cevaplar."),
     }
     eyebrow, intro = copy[lang]
     chevron = ('<svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" '
@@ -244,39 +330,79 @@ def render_related(page):
 FOOTER_SECTIONS = {
     "en": {
         "local_title": "English calculators",
-        "local": [("home", "Age calculator"), ("diff", "Age difference"),
-                  ("chrono", "Chronological age"), ("exam", "Exam age limits")],
+        "local": [
+            ("home", "Age calculator"),
+            ("days", "Days between dates"),
+            ("datecalc", "Date calculator"),
+            ("bizdays", "Business days"),
+            ("experience", "Experience calculator"),
+            ("birthyear", "Birth year calculator"),
+            ("catage", "Cat age"),
+            ("dogage", "Dog age"),
+            ("generation", "Generation calculator"),
+            ("diff", "Age difference"),
+            ("chrono", "Chronological age"),
+            ("exam", "Exam age limits"),
+        ],
         "other_title": "Other languages",
         "other": [("ar", "العربية (حاسبة العمر)"), ("ja", "日本語 (年齢早見表)"),
+                  ("trhome", "Türkçe (Yaş hesaplama)"),
                   ("ne", "Nepali (Age calculator)"), ("neconv", "Nepali (Date converter)")],
         "site_title": "Explore Ageason",
         "foot_note": "Free tools · No account required",
     },
     "ar": {
         "local_title": "الحاسبات بالعربية",
-        "local": [("ar", "حساب العمر"), ("arconv", "تحويل التاريخ"),
-                  ("ardiff", "فرق العمر"), ("arages", "جدول الأعمار")],
+        "local": [
+            ("ar", "حساب العمر"),
+            ("artoday", "التاريخ اليوم"),
+            ("arcalendar", "التقويم الهجري"),
+            ("arramadan", "كم باقي على رمضان"),
+            ("areid", "كم باقي على العيد"),
+            ("arconv", "تحويل التاريخ"),
+            ("ardiff", "فرق العمر"),
+            ("arages", "جدول الأعمار"),
+        ],
         "other_title": "حاسبات بلغات أخرى",
         "other": [("home", "الإنجليزية (حاسبة العمر)"), ("ja", "اليابانية (جدول الأعمار)"),
+                  ("trhome", "التركية (حساب العمر)"),
                   ("ne", "النيبالية (حاسبة العمر)"), ("neconv", "النيبالية (تحويل التاريخ)")],
         "site_title": "تعرف على Ageason",
         "foot_note": "أدوات مجانية · لا تحتاج إلى تسجيل",
     },
     "ja": {
         "local_title": "日本語のツール",
-        "local": [("ja", "年齢早見表"), ("gakunen", "学年早見表")],
+        "local": [("ja", "年齢早見表"), ("gakunen", "学年早見表"), ("jadays", "日数計算"), ("jaera", "西暦和暦早見表")],
         "other_title": "ほかの言語",
         "other": [("home", "英語 (年齢計算)"), ("ar", "アラビア語 (年齢計算)"),
+                  ("trhome", "トルコ語 (年齢計算)"),
                   ("ne", "ネパール暦 (年齢計算)"), ("neconv", "ネパール暦 (日付変換)")],
         "site_title": "サイト案内",
         "foot_note": "無料の計算ツール · 登録不要",
+    },
+    "tr": {
+        "local_title": "Türkçe hesaplayıcılar",
+        "local": [
+            ("trhome", "Yaş hesaplama"),
+            ("trdate", "Tarih ve gün hesaplama"),
+            ("trhijri", "Hicri takvim"),
+        ],
+        "other_title": "Diğer diller",
+        "other": [
+            ("home", "İngilizce (Age calculator)"),
+            ("ar", "Arapça (حاسبة العمر)"),
+            ("ja", "Japonca (年齢早見表)"),
+            ("ne", "Nepalce (Nepali age)"),
+        ],
+        "site_title": "Ageason Hakkında",
+        "foot_note": "Ücretsiz araçlar · Kayıt gerekmez",
     },
     "ne": {
         "local_title": "Nepali calendar tools",
         "local": [("ne", "Nepali age calculator"), ("neconv", "Nepali date converter")],
         "other_title": "Other languages",
         "other": [("home", "English (Age calculator)"), ("ar", "العربية (حاسبة العمر)"),
-                  ("ja", "日本語 (年齢早見表)")],
+                  ("ja", "日本語 (年齢早見表)"), ("trhome", "Turkish (Age calculator)")],
         "site_title": "Explore Ageason",
         "foot_note": "Free tools · No account required",
     }
@@ -288,8 +414,10 @@ def footer_navigation(page):
     # Nepali calendar tools currently have English-language interfaces.
     group = "ne" if page.get("nav") in ("ne", "neconv") else lang
     config = FOOTER_SECTIONS[group]
-    language_for_link = {"ar": "ar", "arconv": "ar", "ardiff": "ar", "arages": "ar",
-                         "ja": "ja", "gakunen": "ja"}
+    language_for_link = {"ar": "ar", "artoday": "ar", "arcalendar": "ar",
+                         "arconv": "ar", "ardiff": "ar", "arages": "ar",
+                         "ja": "ja", "gakunen": "ja", "jadays": "ja", "jaera": "ja",
+                         "trhome": "tr", "trdate": "tr", "trhijri": "tr"}
     def render_links(entries):
         return "\n".join(
             '<li><a href="{}" lang="{}" hreflang="{}">{}</a></li>'.format(
@@ -346,7 +474,7 @@ def json_ld(page):
         graph.append({"@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q,
              "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in page["faq"]]})
-    home_path = "/ar/" if ui_lang(page) == "ar" else "/"
+    home_path = "/ar/" if ui_lang(page) == "ar" else "/tr/" if ui_lang(page) == "tr" else "/"
     if page["path"] != home_path:
         crumbs = page.get("breadcrumb") or [[UI[ui_lang(page)]["home"], home_path], [page.get("crumb", page["title"]), page["path"]]]
         if len(crumbs) >= 2:
@@ -367,7 +495,7 @@ def hreflang_links(page, pages):
     return "\n  ".join(out)
 
 
-JA_ERAS = [("令和", 2019), ("平成", 1989), ("昭和", 1926), ("大正", 1912)]
+JA_ERAS = [("令和", 2019), ("平成", 1989), ("昭和", 1926), ("大正", 1912), ("明治", 1868)]
 JA_ETO = ["子（ね）", "丑（うし）", "寅（とら）", "卯（う）", "辰（たつ）", "巳（み）",
           "午（うま）", "未（ひつじ）", "申（さる）", "酉（とり）", "戌（いぬ）", "亥（い）"]
 CHOJU = [("還暦", "かんれき", 61, "60歳（数え61歳）"), ("古希", "こき", 70, None), ("喜寿", "きじゅ", 77, None),
@@ -400,7 +528,101 @@ def japanese_table(year):
     return "\n".join(rows)
 
 
-JA_ERA_STARTS = [("令和", dt.date(2019, 5, 1)), ("平成", dt.date(1989, 1, 8)), ("昭和", dt.date(1926, 12, 25)), ("大正", dt.date(1912, 7, 30))]
+def yakudoshi_label(kazoe):
+    """Return Yakudoshi label tuple (male, female) for a kazoe age."""
+    m, f = "", ""
+    if kazoe == 24: m = "前厄"
+    elif kazoe == 25: m = "本厄"
+    elif kazoe == 26: m = "後厄"
+    elif kazoe == 41: m = "前厄"
+    elif kazoe == 42: m = "大厄"
+    elif kazoe == 43: m = "後厄"
+    elif kazoe == 60: m = "前厄"
+    elif kazoe == 61: m = "本厄（還暦）"
+    elif kazoe == 62: m = "後厄"
+
+    if kazoe == 18: f = "前厄"
+    elif kazoe == 19: f = "本厄"
+    elif kazoe == 20: f = "後厄"
+    elif kazoe == 32: f = "前厄"
+    elif kazoe == 33: f = "大厄"
+    elif kazoe == 34: f = "後厄"
+    elif kazoe == 36: f = "前厄"
+    elif kazoe == 37: f = "本厄"
+    elif kazoe == 38: f = "後厄"
+    elif kazoe == 60: f = "前厄"
+    elif kazoe == 61: f = "本厄（還暦）"
+    elif kazoe == 62: f = "後厄"
+    return m, f
+
+
+def era_table(year):
+    """Rows for 西暦和暦早見表: newest birth year first, from year down to 1912 (Taisho/Meiji)."""
+    rows = []
+    for y in range(year, 1911, -1):
+        after = year - y
+        before = after - 1
+        kazoe = after + 1
+        m_yaku, f_yaku = yakudoshi_label(kazoe)
+        yaku_badge = []
+        if m_yaku:
+            cls = "tag danger" if "大厄" in m_yaku else "tag warning"
+            yaku_badge.append(f'<span class="{cls}">男:{m_yaku}</span>')
+        if f_yaku:
+            cls = "tag danger" if "大厄" in f_yaku else "tag warning"
+            yaku_badge.append(f'<span class="{cls}">女:{f_yaku}</span>')
+        yaku_cell = " ".join(yaku_badge) if yaku_badge else ""
+        before_str = "" if before < 0 else f"{before}歳"
+        era_str = era_label(y)
+        era_class = ' class="era-change"' if "／" in era_str else ""
+        rows.append(
+            f'<tr data-y="{y}" data-era="{era_str}"><td>{y}年</td><td{era_class}>{era_str}</td>'
+            f'<td>{JA_ETO[(y - 4) % 12]}</td><td>{after}歳</td><td>{before_str}</td>'
+            f'<td>{kazoe}歳</td><td>{yaku_cell}</td></tr>')
+    return "\n".join(rows)
+
+
+def yakudoshi_table(year):
+    """Generate side-by-side Yakudoshi summary tables for male and female in year."""
+    male_defs = [
+        (25, "本厄", 24, 26, False),
+        (42, "大厄（本厄）", 41, 43, True),
+        (61, "本厄（還暦）", 60, 62, False),
+    ]
+    female_defs = [
+        (19, "本厄", 18, 20, False),
+        (33, "大厄（本厄）", 32, 34, True),
+        (37, "本厄", 36, 38, False),
+        (61, "本厄（還暦）", 60, 62, False),
+    ]
+    def make_section(title, defs, gender_cls):
+        rows = []
+        for hon_age, hon_name, mae_age, ato_age, is_dai in defs:
+            by_mae = year - mae_age + 1
+            by_hon = year - hon_age + 1
+            by_ato = year - ato_age + 1
+            cls_attr = ' class="is-daiyaku"' if is_dai else ""
+            tag_cls = "tag danger" if is_dai else "tag warning"
+            rows.append(
+                f'<tr{cls_attr}><td><span class="{tag_cls}">{hon_name}</span> <strong>数え{hon_age}歳</strong></td>'
+                f'<td>{by_mae}年（{era_label(by_mae)}）<br><small>数え{mae_age}歳</small></td>'
+                f'<td><strong>{by_hon}年（{era_label(by_hon)}）</strong><br><small>数え{hon_age}歳</small></td>'
+                f'<td>{by_ato}年（{era_label(by_ato)}）<br><small>数え{ato_age}歳</small></td></tr>'
+            )
+        return (
+            f'<div class="yakudoshi-card {gender_cls}">'
+            f'<h3>{title}</h3>'
+            f'<div class="table-wrap auto"><table class="data wrap-cells">'
+            f'<thead><tr><th scope="col">厄名</th><th scope="col">前厄</th><th scope="col">本厄</th><th scope="col">後厄</th></tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody></table></div></div>'
+        )
+
+    m_html = make_section(f"男性の厄年早見表（{year}年・令和{year-2018}年）", male_defs, "male-yaku")
+    f_html = make_section(f"女性の厄年早見表（{year}年・令和{year-2018}年）", female_defs, "female-yaku")
+    return f'<div class="yakudoshi-grid">{m_html}\n{f_html}</div>'
+
+
+JA_ERA_STARTS = [("令和", dt.date(2019, 5, 1)), ("平成", dt.date(1989, 1, 8)), ("昭和", dt.date(1926, 12, 25)), ("大正", dt.date(1912, 7, 30)), ("明治", dt.date(1868, 1, 25))]
 
 
 def era_of_date(d):
@@ -637,6 +859,8 @@ def page_html(page, pages, vers):
         "{{GAKUNEN_TABLE}}": gakunen_table(JA_FY) if "{{GAKUNEN_TABLE}}" in body else "",
         "{{JA_TABLE}}": japanese_table(JA_TABLE_YEAR) if "{{JA_TABLE}}" in body else "",
         "{{JA_CHOJU}}": choju_table(JA_TABLE_YEAR) if "{{JA_CHOJU}}" in body else "",
+        "{{JA_ERA_TABLE}}": era_table(JA_TABLE_YEAR) if "{{JA_ERA_TABLE}}" in body else "",
+        "{{JA_YAKUDOSHI_TABLE}}": yakudoshi_table(JA_TABLE_YEAR) if "{{JA_YAKUDOSHI_TABLE}}" in body else "",
         "{{AR_HIJRI_TABLE}}": ar_hijri_table(ar_hyear) if "{{AR_HIJRI_TABLE}}" in body else "",
         "{{AR_GREG_TABLE}}": ar_gregorian_table(ar_gyear) if "{{AR_GREG_TABLE}}" in body else "",
         "{{EXAM_TOOL}}": exam_tool(page["exam"]) if page.get("exam") else "",
@@ -650,7 +874,7 @@ def page_html(page, pages, vers):
     full_title = title if page.get("no_suffix") else f"{title} | {SITE_NAME}"
     url = abs_url(page["path"])
     og_img = abs_url("/assets/img/" + page.get("og", "og-home.png"))
-    og_locale = {"en": "en_US", "ar": "ar_SA", "ja": "ja_JP"}.get(page["lang"], "en_US")
+    og_locale = {"en": "en_US", "ar": "ar_SA", "ja": "ja_JP", "tr": "tr_TR"}.get(page["lang"], "en_US")
     scripts = "\n".join(f'<script src="{s}?v={vers.get(s, "1")}" defer></script>'
                         for s in ["/assets/js/" + n for n in page.get("scripts", [])])
     preload = ['<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>']
@@ -667,7 +891,7 @@ def page_html(page, pages, vers):
     landing_css = f'<link rel="stylesheet" href="/assets/css/landing.css?v={vers.get("/assets/css/landing.css", "1")}">'
     body_class = ' class="landing-v2"' if is_primary_landing else ' class="landing-v2 inner-v2"'
     footer = footer_navigation(page)
-    brand_href = "/ar/" if is_ar else "/"
+    brand_href = "/ar/" if is_ar else "/tr/" if lang == "tr" else "/"
     site_prefix = "/ar" if is_ar else ""
     gtm_head = (
         '  <!-- Google Tag Manager -->\n'
@@ -714,6 +938,7 @@ def page_html(page, pages, vers):
   <link rel="manifest" href="/site.webmanifest">
   {chr(10).join("  " + x for x in preload).strip()}
   <script>(function(){{var t;try{{t=localStorage.getItem("theme")}}catch(e){{}}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}})();</script>
+  <style>/* Hallmark */ html,body{{overflow-x:clip}}:focus-visible{{outline:2px solid var(--focus);outline-offset:2px}}:active{{transform:none}}:disabled{{opacity:0.45;cursor:not-allowed}}</style>
   <link rel="stylesheet" href="{css}">
   {landing_css}
   <script type="application/ld+json">
@@ -764,7 +989,7 @@ def page_html(page, pages, vers):
           <li><a href="{site_prefix}/privacy/">{t['privacy']}</a></li>
           <li><a href="{site_prefix}/terms/">{t['terms']}</a></li>
           <li><a href="{site_prefix}/contact/">{t['contact']}</a></li>
-          <li><a href="{('/ar/#faq' if is_ar else '/ja/#faq' if lang == 'ja' else '/#faq')}">{t['faq']}</a></li>
+          <li><a href="{('/ar/#faq' if is_ar else '/ja/#faq' if lang == 'ja' else '/tr/#faq' if lang == 'tr' else '/#faq')}">{t['faq']}</a></li>
         </ul>
       </nav>
     </div>
@@ -797,7 +1022,13 @@ def main():
     if CONTACT_EMAIL.lower().endswith("@example.com"):
         print("WARNING: CONTACT_EMAIL is a placeholder. Set up a real mailbox before going live.")
     if OUT.exists():
-        shutil.rmtree(OUT)
+        for _ in range(5):
+            try:
+                shutil.rmtree(OUT)
+                break
+            except OSError:
+                import time
+                time.sleep(0.15)
     shutil.copytree(SRC / "static", OUT)
     vers = asset_versions()
     pages = load_pages()

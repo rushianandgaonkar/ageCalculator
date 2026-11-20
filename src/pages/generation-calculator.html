@@ -1,0 +1,233 @@
+<!--meta
+{
+  "path": "/generation-calculator/",
+  "lang": "en",
+  "nav": "generation",
+  "kind": "tool",
+  "hreflang": "generation",
+  "x_default": true,
+  "title": "Generation Calculator: What Generation Am I by Birth Year",
+  "description": "Find your generation name, age range and birth years. Detailed breakdown for Gen Alpha, Gen Z, Millennials, Gen X, Boomers and the Silent Generation.",
+  "app_name": "Generation calculator",
+  "crumb": "Generation calculator",
+  "scripts": ["datecore.js", "generation.js"],
+  "og": "og-home.png",
+  "priority": "0.8",
+  "changefreq": "monthly",
+  "faq": [
+    ["What generation am I if born in 1996?", "If you were born in 1996, you belong to the Millennial generation, also known as Generation Y. In research definitions established by the Pew Research Center, 1996 marks the final birth year of the Millennial cohort. Anyone born between 1981 and 1996 is classified as a Millennial. Because 1996 sits directly on the boundary between Millennials and Generation Z, individuals born in this year are also recognized as Zillennials, a micro generation blending analog childhood memories with early smartphone adulthood."],
+    ["What is the millennial age range in 2026?", "In 2026, Millennials span ages 30 to 45. The oldest Millennials, born in 1981, turn 45 years old in 2026. The youngest Millennials, born in 1996, celebrate their 30th birthday during 2026. This milestone marks the first calendar year in which every living Millennial has reached at least 30 years of age."],
+    ["What are the Gen Z birth years?", "Generation Z encompasses individuals born from 1997 through 2012. In 2026, members of Gen Z range from 14 to 29 years old. Sociologists identify Gen Z as the first true digital native cohort, having grown up with high speed mobile internet, touchscreen smartphones, and algorithmic social video throughout their school years."],
+    ["Who are Generation Alpha?", "Generation Alpha includes children born from 2013 through 2024. In 2026, members of Gen Alpha are between 2 and 13 years old. Coined by social researcher Mark McCrindle, Generation Alpha represents the first demographic group born entirely within the 21st century. Their early development has been deeply influenced by artificial intelligence, voice assistants, and interactive digital screens from infancy."],
+    ["What is a micro generation or generational cusp?", "A generational cusp refers to a three to six year bridge period between two major demographic cohorts. People born on a cusp frequently feel disconnected from the broad stereotypes of both generations. Well known micro generations include Xennials (born 1977 to 1983), Zillennials (born 1993 to 1998), and Zalphas (born 2010 to 2015). These bridge groups share cultural memories from both eras."],
+    ["Why do different demographic sources use varying cutoff years?", "Generations are cultural and sociological frameworks rather than rigid scientific laws. While major organizations like the Pew Research Center and the United States Census Bureau share common consensus dates, minor variations of one or two years exist among market researchers and sociologists across different countries."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Generation calculator</h1>
+    <p class="lede">Find your generation and age range from your birth year.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Generation calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div class="switch" role="radiogroup" aria-label="Input method">
+        <input type="radio" name="input-mode" id="mode-year" value="year" checked>
+        <label for="mode-year">Birth year</label>
+        <input type="radio" name="input-mode" id="mode-dob" value="dob">
+        <label for="mode-dob">Full birth date</label>
+      </div>
+
+      <div id="year-wrap">
+        <label>
+          <span>Birth year</span>
+          <input type="text" inputmode="numeric" id="input-year" maxlength="4" placeholder="e.g. 1992" autocomplete="bday-year" aria-label="Birth year">
+        </label>
+        <p class="field-error" id="year-error" hidden></p>
+        <p class="hint">Enter a four digit birth year to discover your generation.</p>
+      </div>
+
+      <div id="dob-wrap" hidden>
+        <fieldset class="datefield" id="dob">
+          <legend>Date of birth</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="bday-day" aria-label="Birth day"></label>
+            <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="bday-month" aria-label="Birth month"></label>
+            <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="bday-year" aria-label="Birth year"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Enter your birthday for exact age and generation breakdown.</p>
+        </fieldset>
+      </div>
+
+      <div class="preset-section" style="margin-block-start: var(--s-3);">
+        <p class="hint" style="margin: 0 0 8px;">Quick generation shortcuts:</p>
+        <div class="preset-group" aria-label="Generation quick shortcuts">
+          <button type="button" class="preset-chip" data-gen="alpha">Gen Alpha</button>
+          <button type="button" class="preset-chip" data-gen="z">Gen Z</button>
+          <button type="button" class="preset-chip" data-gen="millennial">Millennial</button>
+          <button type="button" class="preset-chip" data-gen="x">Gen X</button>
+          <button type="button" class="preset-chip" data-gen="boomer">Boomer</button>
+          <button type="button" class="preset-chip" data-gen="silent">Silent</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty">
+        <strong>Your generation details will appear here</strong>
+        Enter your birth year or select a generation shortcut above.
+      </p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption">Your Generation</p>
+        <p class="age-big" style="font-size: clamp(32px, 5.5vw, 54px); line-height: 1.15;"><span id="r-name"></span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row">
+          <button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Generation reference table by birth year</h2>
+    <p>Every demographic cohort is shaped by pivotal technological shifts, cultural transformations and world events during their formative years. The reference chart below outlines birth year ranges, current age in 2026, and estimated population share based on demographic research from the United States Census Bureau and the Pew Research Center.</p>
+
+    <div class="table-wrap auto">
+      <table class="data wrap-cells">
+        <thead>
+          <tr>
+            <th scope="col">Generation</th>
+            <th scope="col">Birth Years</th>
+            <th scope="col">Age in 2026</th>
+            <th scope="col">US Population</th>
+            <th scope="col">Defining Technologies</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Generation Beta</strong></td>
+            <td>2025 to 2039</td>
+            <td>Under 2 years old</td>
+            <td>Nascent cohort</td>
+            <td>Artificial general intelligence, commercial robotics, autonomous transit</td>
+          </tr>
+          <tr>
+            <td><strong>Generation Alpha</strong></td>
+            <td>2013 to 2024</td>
+            <td>2 to 13 years old</td>
+            <td>About 48 million (14%)</td>
+            <td>Tablet devices, smart speakers, generative AI, classroom screens</td>
+          </tr>
+          <tr>
+            <td><strong>Generation Z</strong> (Zoomers)</td>
+            <td>1997 to 2012</td>
+            <td>14 to 29 years old</td>
+            <td>About 69 million (20%)</td>
+            <td>Smartphones, mobile social feeds, streaming media, cloud services</td>
+          </tr>
+          <tr>
+            <td><strong>Millennials</strong> (Gen Y)</td>
+            <td>1981 to 1996</td>
+            <td>30 to 45 years old</td>
+            <td>About 72 million (22%)</td>
+            <td>Home personal computers, dial up to broadband, early smartphones</td>
+          </tr>
+          <tr>
+            <td><strong>Generation X</strong></td>
+            <td>1965 to 1980</td>
+            <td>46 to 61 years old</td>
+            <td>About 65 million (19%)</td>
+            <td>Cable television, video game consoles, pagers, compact discs</td>
+          </tr>
+          <tr>
+            <td><strong>Baby Boomers</strong></td>
+            <td>1946 to 1964</td>
+            <td>62 to 80 years old</td>
+            <td>About 70 million (21%)</td>
+            <td>Color television, transistor radios, microwave ovens, mainframe computing</td>
+          </tr>
+          <tr>
+            <td><strong>Silent Generation</strong></td>
+            <td>1928 to 1945</td>
+            <td>81 to 98 years old</td>
+            <td>About 16 million (5%)</td>
+            <td>Broadcast radio, jukeboxes, rotary landlines, mechanical calculators</td>
+          </tr>
+          <tr>
+            <td><strong>Greatest Generation</strong></td>
+            <td>1901 to 1927</td>
+            <td>99 to 125 years old</td>
+            <td>About 1 million (under 1%)</td>
+            <td>Early radio, commercial electricity, telegraph, automobiles</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Generational cusps and micro generations explained</h2>
+    <p>Demographic boundaries are rarely absolute. People born within three to five years of a generation boundary frequently identify as members of a generational cusp or micro generation. These hybrid groups experienced cultural touchstones from two distinct eras.</p>
+
+    <div class="table-wrap auto">
+      <table class="data wrap-cells">
+        <thead>
+          <tr>
+            <th scope="col">Micro Generation</th>
+            <th scope="col">Birth Years</th>
+            <th scope="col">Border Generations</th>
+            <th scope="col">Formative Experience</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Zalpha</strong></td>
+            <td>2010 to 2015</td>
+            <td>Gen Z and Gen Alpha</td>
+            <td>Toddlerhood during early iPad expansion and primary education during pandemic remote schooling.</td>
+          </tr>
+          <tr>
+            <td><strong>Zillennial</strong></td>
+            <td>1993 to 1998</td>
+            <td>Millennial and Gen Z</td>
+            <td>Analog childhood memories with VHS tapes and landlines, transitioning to smartphones and social media during teenage years.</td>
+          </tr>
+          <tr>
+            <td><strong>Xennial</strong></td>
+            <td>1977 to 1983</td>
+            <td>Gen X and Millennial</td>
+            <td>Purely analog childhood with outdoors independence, adopting personal computers, cellular phones and internet in college or early career.</td>
+          </tr>
+          <tr>
+            <td><strong>Generation Jones</strong></td>
+            <td>1954 to 1965</td>
+            <td>Baby Boomer and Gen X</td>
+            <td>Too young for Woodstock and the early sixties cultural explosion; came of age amidst seventies stagflation and early eighties practical realism.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Related calculators</h2>
+    <ul>
+      <li><a href="/">Age calculator</a>: calculate your exact age in years, months and days today.</li>
+      <li><a href="/age-difference/">Age difference calculator</a>: compare birth dates between two people.</li>
+      <li><a href="/chronological-age-calculator/">Chronological age calculator</a>: clinical age for developmental screening.</li>
+      <li><a href="/days-between-dates/">Days between dates</a>: count days, weeks and months between dates.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

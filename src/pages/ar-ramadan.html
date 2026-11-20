@@ -1,0 +1,163 @@
+<!--meta
+{
+  "path": "/ar/ramadan/",
+  "lang": "ar",
+  "dir": "rtl",
+  "nav": "arramadan",
+  "id": "arramadan",
+  "kind": "tool",
+  "title": "كم باقي على رمضان: العداد التنازلي لرمضان 1448",
+  "no_suffix": true,
+  "description": "العداد التنازلي الدقيق لمعرفة كم يوم وساعة باقي على بداية شهر رمضان المبارك 1448 هـ فلكيا وتقويم أم القرى.",
+  "app_name": "عداد رمضان 1448",
+  "crumb": "كم باقي على رمضان",
+  "breadcrumb": [["الرئيسية", "/ar/"], ["كم باقي على رمضان", "/ar/ramadan/"]],
+  "scripts": ["datecore.js", "ar-countdown.js"],
+  "og": "og-arconv.png",
+  "priority": "0.9",
+  "changefreq": "daily",
+  "faq": [
+    ["متى يبدأ شهر رمضان 1448 هـ فلكيًا؟", "تشير الحسابات الفلكية وتقويم أم القرى إلى أن بداية شهر رمضان المبارك لعام 1448 هـ توافق يوم الإثنين 8 فبراير 2027 م، وتتأكد البداية رسميًا بعد تحري هلال الشهر الكريم في ليلة الشك."],
+    ["كم يوم باقي على شهر رمضان المبارك؟", "يعرض هذا العداد التنازلي المباشر عدد الأيام والساعات والدقائق والثواني المتبقية حتى حلول أول أيام شهر رمضان المبارك بدقة لحظية متجددة."],
+    ["لماذا يتغير موعد شهر رمضان في كل عام ميلادي؟", "لأن السنة الهجرية قمرية وتتكون من 354 أو 355 يومًا، مما يجعلها أقصر من السنة الميلادية الشمسية بنحو 11 يومًا، فيتقدم موعد رمضان سنويًا بحوالي أحد عشر يومًا في التقويم الميلادي."],
+    ["هل يعتمد العداد على تقويم أم القرى؟", "نعم، يعتمد العداد على معايير تقويم أم القرى المعتمد في المملكة العربية السعودية، مع مراعاة أن الإعلان الشرعي النهائي في الدول الإسلامية يرتبط برؤية الهلال."],
+    ["كيف أشارك عداد رمضان مع العائلة والأصدقاء؟", "يمكنك الضغط على زر مشاركة عبر واتساب أو زر نسخ رابط العداد لإرسال الوقت المتبقي لرمضان وتاريخ بدايته المتوقع مباشرة إلى من تحب."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ar/">الرئيسية</a> / كم باقي على رمضان</p>
+    <h1>كم باقي على رمضان</h1>
+    <p class="lede">العداد التنازلي المباشر لمعرفة الوقت المتبقي لبداية شهر رمضان المبارك.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="العداد التنازلي لشهر رمضان">
+  <div class="wrap tool-grid">
+    <div class="panel" id="calc">
+      <div class="today-strip">
+        <span>المناسبة المستهدفة</span>
+        <strong id="target-event">شهر رمضان المبارك</strong>
+        <span id="target-hijri">1 رمضان 1448 هـ</span>
+      </div>
+
+      <div class="callout ok">
+        <p><strong>الموعد المتوقع فلكيًا:</strong> <span id="info-weekday">الإثنين</span> <span id="info-greg">8 فبراير 2027 م</span></p>
+        <p>وفق معايير تقويم أم القرى، وتعتمد البداية الشرعية في كل دولة على رؤية الهلال بالعين المجردة أو المراصد.</p>
+      </div>
+
+      <div>
+        <p class="label" id="dig-label">الأرقام</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dig-label">
+          <input type="radio" name="dig" id="dig-latn" value="latn" checked><label for="dig-latn">123</label>
+          <input type="radio" name="dig" id="dig-arab" value="arab"><label for="dig-arab">١٢٣</label>
+        </div>
+      </div>
+
+      <div class="preset-group" aria-label="روابط سريعة">
+        <a class="preset-chip" href="/ar/eid/">عداد العيد المبارك</a>
+        <a class="preset-chip" href="/ar/hijri-converter/">محول التاريخ الهجري</a>
+        <a class="preset-chip" href="/ar/">حاسبة العمر الدقيقة</a>
+      </div>
+    </div>
+
+    <div class="result" id="result" data-state="ready" aria-live="polite">
+      <div class="result-body">
+        <p class="age-caption" id="r-caption">الوقت المتبقي حتى بداية شهر رمضان المبارك</p>
+
+        <div class="countdown-grid" id="countdown-display">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-days">--</span>
+            <span class="countdown-label" id="cd-days-lbl">أيام</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-hours">--</span>
+            <span class="countdown-label" id="cd-hours-lbl">ساعة</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-mins">--</span>
+            <span class="countdown-label" id="cd-mins-lbl">دقيقة</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-secs">--</span>
+            <span class="countdown-label" id="cd-secs-lbl">ثانية</span>
+          </div>
+        </div>
+
+        <p class="countdown-summary" id="cd-summary">جاري حساب الوقت المتبقي على بداية شهر رمضان المبارك…</p>
+
+        <dl class="stats">
+          <div><dt>المناسبة</dt><dd>غرة شهر رمضان المبارك</dd></div>
+          <div><dt>التاريخ الهجري</dt><dd id="target-hijri">1 رمضان 1448 هـ</dd></div>
+          <div><dt>التاريخ الميلادي المتوقع</dt><dd id="target-greg">8 فبراير 2027 م</dd></div>
+          <div><dt>يوم البداية المتوقع</dt><dd id="target-weekday">الإثنين</dd></div>
+          <div><dt>التقويم المعتمد</dt><dd>تقويم أم القرى فلكيًا</dd></div>
+        </dl>
+
+        <div class="share-row">
+          <a class="btn btn-primary" id="whatsapp" href="https://api.whatsapp.com/send?text=" target="_blank" rel="noopener">مشاركة عبر واتساب</a>
+          <button class="btn btn-tertiary" type="button" id="copy">نسخ رابط العداد</button>
+          <a class="btn btn-tertiary" href="/ar/eid/">كم باقي على العيد</a>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>موعد بداية شهر رمضان 1448 هـ</h2>
+    <p>يحل شهر رمضان المبارك لعام 1448 هـ فلكيًا يوم الإثنين 8 فبراير 2027 م بمشيئة الله تعالى. ويترقب المسلمون في جميع أرجاء العالم هذا الشهر الفضيل للتقرب إلى الله تعالى بالصيام والقيام والقرآن والصدقات.</p>
+    <p>يتحدد دخول شهر رمضان شرعيًا بتحري هلال شهر رمضان المبارك في مساء التاسع والعشرين من شهر شعبان، فإذا ثبتت رؤية الهلال يكون اليوم التالي هو أول أيام شهر رمضان، وإن تعذرت الرؤية يُتم شهر شعبان ثلاثين يومًا وفق الهدي النبوي الشريف.</p>
+
+    <h2>نصائح عملية للاستعداد لشهر رمضان المبارك</h2>
+    <p>الاستعداد المبكر لشهر رمضان يعين النفس على استثمار أيامه ولياليه المباركة دون مشقة أو إجهاد، ومن أفضل الخطوات الموصى بها:</p>
+    <ul>
+      <li><strong>التهيئة الإيمانية بالصيام في شعبان:</strong> كان النبي صلى الله عليه وسلم يكثر من الصيام في شهر شعبان تمهيدًا لصيام الفريضة وتدريبًا للبدن.</li>
+      <li><strong>وضع ورد يومي للقرآن الكريم:</strong> البدء بختمة تلاوة وتدبر قبل حلول رمضان يعين على تنظيم الوقت وختم القرآن بسهولة خلال الشهر الكريم.</li>
+      <li><strong>ضبط نمط النوم تدريجيًا:</strong> تعديل ساعات النوم والاستيقاظ مبكرًا قبل رمضان بعدة أسابيع لتجنب الخمول وصداع الأيام الأولى.</li>
+      <li><strong>التخطيط لوجبات غذائية صحية:</strong> الاعتماد في السحور على الأغذية الغنية بالألياف والبروتين والماء لتقليل الشعور بالعطش والجوع طوال نهار الصيام.</li>
+      <li><strong>تصفية الخصومات ونقاء القلب:</strong> رمضان شهر الرحمة والمغفرة، واستقباله بالتسامح وصلة الرحم يضاعف الأجر والسكينة.</li>
+    </ul>
+
+    <h2>تواريخ بداية شهر رمضان في السنوات الماضية والمقبلة</h2>
+    <p>يوضح الجدول التالي مواعيد بداية شهر رمضان المبارك وفق تقويم أم القرى في السنوات الأخيرة، مما يبين حركة الشهر الفضيل في فصول السنة:</p>
+
+    <div class="table-wrap auto">
+      <table class="data">
+        <caption class="visually-hidden">جدول تواريخ بداية شهر رمضان المبارك هجريًا وميلاديًا</caption>
+        <thead>
+          <tr>
+            <th scope="col">السنة الهجرية</th>
+            <th scope="col">تاريخ البداية (ميلادي)</th>
+            <th scope="col">يوم الأسبوع</th>
+            <th scope="col">فصل السنة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1448 هـ</td><td>8 فبراير 2027 م (فلكيًا)</td><td>الإثنين</td><td>الشتاء</td></tr>
+          <tr><td>1447 هـ</td><td>18 فبراير 2026 م</td><td>الأربعاء</td><td>الشتاء</td></tr>
+          <tr><td>1446 هـ</td><td>1 مارس 2025 م</td><td>السبت</td><td>أواخر الشتاء</td></tr>
+          <tr><td>1445 هـ</td><td>11 مارس 2024 م</td><td>الإثنين</td><td>أواخر الشتاء</td></tr>
+          <tr><td>1444 هـ</td><td>23 مارس 2023 م</td><td>الخميس</td><td>أوائل الربيع</td></tr>
+          <tr><td>1443 هـ</td><td>2 أبريل 2022 م</td><td>السبت</td><td>الربيع</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>حسابات التقويم القمري وتقويم أم القرى</h2>
+    <p>تعتمد الأشهر الهجرية على دورة القمر الاقترانية البالغة نحو 29.53 يومًا، ولذلك يتراوح الشهر القمري بين 29 يومًا و30 يومًا فقط، ولا يزيد أبدًا عن ذلك. ويعد تقويم أم القرى المرجع الحسابي الرسمي المعتمد في المعاملات والتواريخ الرسمية بالمملكة العربية السعودية، ويغطي السنوات من 1300 إلى 1600 هـ بدقة فلكية فائقة.</p>
+    <p>يمكنك دائمًا التحويل بين التواريخ الهجرية والميلادية باستخدام <a href="/ar/hijri-converter/">محول التاريخ الهجري</a>، أو متابعة موعد العيد المبارك عبر <a href="/ar/eid/">عداد العيد التنازلي</a>.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">آخر تحديث: <time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>

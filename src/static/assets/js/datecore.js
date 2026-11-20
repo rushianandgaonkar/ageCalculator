@@ -208,6 +208,72 @@
     return String(s).replace(/[0-9]/g, function (d) { return String.fromCharCode(base + (+d)); });
   }
 
+  /* ---------- Date maths: duration, intervals and additions ---------- */
+  function diffDays(cal, a, b, inclusive) {
+    var an = dayOf(cal, a), bn = dayOf(cal, b);
+    if (an === null || bn === null) return null;
+    var d = Math.abs(bn - an);
+    return inclusive ? d + 1 : d;
+  }
+
+  function businessDays(cal, a, b, inclusive) {
+    var an = dayOf(cal, a), bn = dayOf(cal, b);
+    if (an === null || bn === null) return null;
+    var start = Math.min(an, bn), end = Math.max(an, bn);
+    var count = 0;
+    var limit = inclusive ? end : end - 1;
+    for (var n = start; n <= limit; n++) {
+      var w = weekday(n);
+      if (w !== 0 && w !== 6) count++;
+    }
+    return count;
+  }
+
+  function addDays(cal, date, days) {
+    var n = dayOf(cal, date);
+    if (n === null) return null;
+    return cal.fromDays(n + days);
+  }
+
+  function addBusinessDays(cal, date, count) {
+    var n = dayOf(cal, date);
+    if (n === null) return null;
+    var step = count >= 0 ? 1 : -1;
+    var rem = Math.abs(count);
+    while (rem > 0) {
+      n += step;
+      var w = weekday(n);
+      if (w !== 0 && w !== 6) rem--;
+    }
+    return cal.fromDays(n);
+  }
+
+  function addUnits(cal, date, amount, unit, op) {
+    var mult = op === "sub" ? -1 : 1;
+    var nAmount = Math.round(amount) * mult;
+    if (unit === "days") return addDays(cal, date, nAmount);
+    if (unit === "weeks") return addDays(cal, date, nAmount * 7);
+    if (unit === "months") return addMonths(cal, date, nAmount);
+    if (unit === "years") return addMonths(cal, date, nAmount * 12);
+    if (unit === "businessDays") return addBusinessDays(cal, date, nAmount);
+    return null;
+  }
+
+  function dayOfYear(cal, date) {
+    var jan1N = cal.toDays(date.y, 1, 1);
+    var dateN = cal.toDays(date.y, date.m, date.d);
+    if (jan1N === null || dateN === null) return null;
+    return dateN - jan1N + 1;
+  }
+
+  function isoWeekNumber(date) {
+    var dt = new Date(Date.UTC(date.y, date.m - 1, date.d));
+    var dayNum = dt.getUTCDay() || 7;
+    dt.setUTCDate(dt.getUTCDate() + 4 - dayNum);
+    var yearStart = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+    return Math.ceil((((dt - yearStart) / DAY) + 1) / 7);
+  }
+
   /* ---------- Form: three-part date field ---------- */
   /* A part is "complete" when no further digit could make sense, so the cursor can move on
      without a Done key (iOS number pads have none): day 4–9 or two digits, month 2–9 or two digits,
@@ -387,6 +453,8 @@
     DAY: DAY, Gregorian: Gregorian, Hijri: Hijri, makeCalendarFromTable: makeCalendarFromTable,
     utcDays: utcDays, fromUtcDays: fromUtcDays, isLeap: isLeap,
     age: age, age30: age30, addMonths: addMonths, nextBirthday: nextBirthday,
+    diffDays: diffDays, businessDays: businessDays, addDays: addDays, addBusinessDays: addBusinessDays, addUnits: addUnits,
+    dayOfYear: dayOfYear, isoWeekNumber: isoWeekNumber,
     todayParts: todayParts, weekday: weekday, dateObj: dateObj, iso: iso, parseIso: parseIso, pad: pad,
     toLatinDigits: toLatinDigits, toDigits: toDigits,
     DateField: DateField, autoReveal: autoReveal, partComplete: partComplete, readParams: readParams, writeParams: writeParams, shareUrl: shareUrl, copyLink: copyLink,

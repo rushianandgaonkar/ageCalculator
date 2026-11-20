@@ -5,27 +5,397 @@
   "nav": "exam",
   "id": "examhub",
   "kind": "page",
-  "title": "Exam Age Limit Calculators – UPSC, SSC, NDA, CDS, Agniveer",
-  "description": "Check your age eligibility for UPSC, SSC CGL and GD, NDA, CDS and Agniveer using the official cutoff dates and category relaxations.",
+  "title": "Exam Age Limit Calculators: UPSC, SSC, Banking, Defence, Railway",
+  "description": "Check your age eligibility for UPSC, SSC, banking, railway, defence, teaching and police exams using official cutoff dates and category relaxations.",
   "crumb": "Exam age limits",
   "priority": "0.8",
-  "changefreq": "weekly"
+  "changefreq": "weekly",
+  "scripts": ["exam-hub.js"]
 }
 -->
 <section class="hero">
   <div class="wrap">
     <h1>Exam age limit calculators</h1>
-    <p class="lede">Check whether your date of birth meets the age limit for India’s main government and defence exams, using the cutoff dates and relaxations from the official notices.</p>
+    <p class="lede">Check age limits and cutoff rules for India’s central and state exams.</p>
   </div>
 </section>
 <section class="page">
-  <div class="wrap prose">
-    {{EXAM_INDEX}}
+  <div class="wrap">
+    <div class="prose">
+      <h2>Interactive exam age calculators</h2>
+      <p>For these five major recruitment programs, dedicated calculators test your date of birth against the exact born-between windows, category relaxations and notification dates:</p>
+      {{EXAM_INDEX}}
+    </div>
 
-    <h2>How these calculators work</h2>
-    <p>Each calculator holds the rules from that exam’s latest official notification: the date your age is counted on, the minimum and maximum age, and any category relaxation. Where the next exam hasn’t been notified yet, it is marked <strong>expected</strong> and uses the previous rules, so you can plan ahead. Expected results are updated as soon as the new notice is published.</p>
-    <p>Indian exam notices treat the upper limit as an age you must <em>not have reached</em> on the cutoff date. For UPSC 2026, “21 to 32 years on 1 August 2026” means born between 2 August 1994 and 1 August 2005, so someone who turns 32 on or before 1 August is out.</p>
-    <p>For any other exam, recruitment or application cutoff, use the <a href="/">free age calculator by date of birth</a>: set “Age as on” to the official cutoff date and enter the limits from the notification.</p>
-    <p class="page-meta">Rules last checked <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time>.</p>
+    <div class="exam-table-section">
+      <h2>Age limits for 27+ central and state exams</h2>
+      <p>Filter by exam name, organizing body, or career sector. All figures reflect official gazette notifications and standard reservation rules.</p>
+
+      <div class="table-tools exam-tools">
+        <label class="find-field exam-search-field" for="exam-search">Search exams
+          <input type="search" id="exam-search" placeholder="Filter by exam, body, or sector (for example: police, ssc, bank, railway, defence)..." autocomplete="off" spellcheck="false">
+        </label>
+        <span id="exam-search-count" class="search-status" aria-live="polite">Showing all 31 exam entries</span>
+      </div>
+
+      <div class="exam-pills" role="navigation" aria-label="Quick category filters">
+        <button type="button" class="filter-pill is-active" data-filter-term="">All</button>
+        <button type="button" class="filter-pill" data-filter-term="defence">Defence</button>
+        <button type="button" class="filter-pill" data-filter-term="police">Police</button>
+        <button type="button" class="filter-pill" data-filter-term="bank">Banking</button>
+        <button type="button" class="filter-pill" data-filter-term="railway">Railways</button>
+        <button type="button" class="filter-pill" data-filter-term="ssc">SSC</button>
+        <button type="button" class="filter-pill" data-filter-term="upsc">Civil Services</button>
+        <button type="button" class="filter-pill" data-filter-term="teaching">Teaching</button>
+        <button type="button" class="filter-pill" data-filter-term="entrance">Entrance</button>
+      </div>
+
+      <div class="table-wrap auto">
+        <table class="data wrap-cells" id="exam-table">
+          <caption class="visually-hidden">Official age limits, category relaxations and cutoff date rules for Indian examinations</caption>
+          <thead>
+            <tr>
+              <th scope="col">Exam Name</th>
+              <th scope="col">Organizing Body</th>
+              <th scope="col">Minimum Age</th>
+              <th scope="col">Maximum Age (General)</th>
+              <th scope="col">Standard Category Relaxation</th>
+              <th scope="col">Official Cutoff Date Rule</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="exam-row" data-keywords="ssc chsl staff selection commission ldc jsa deo 10+2 clerical central government">
+              <td><strong>SSC CHSL</strong> (Combined Higher Secondary Level)</td>
+              <td>Staff Selection Commission (SSC)</td>
+              <td class="nw">18</td>
+              <td class="nw">27</td>
+              <td>OBC: +3 years (30), SC/ST: +5 years (32), PwD: +10 years (37)</td>
+              <td>1 August of the exam year (or 1 January depending on cycle)</td>
+              <td>For LDC, JSA, and DEO posts. Class 12 pass required.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="bank banking sbi po probationary officer state bank finance">
+              <td><strong>SBI PO</strong> (Probationary Officer)</td>
+              <td>State Bank of India (SBI)</td>
+              <td class="nw">21</td>
+              <td class="nw">30</td>
+              <td>OBC: +3 years (33), SC/ST: +5 years (35), PwD: +10 years (40)</td>
+              <td>1 April of the recruitment year</td>
+              <td>Maximum 4 attempts for General and EWS, 7 for OBC, no limit for SC and ST.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="upsc ias civil services cse administrative collector civil service">
+              <td><strong>IAS and Civil Services</strong> (UPSC CSE)</td>
+              <td>Union Public Service Commission (UPSC)</td>
+              <td class="nw">21</td>
+              <td class="nw">32</td>
+              <td>OBC: +3 years (35), SC/ST: +5 years (37), PwBD: +10 years (42), Ex-Servicemen: +5 years</td>
+              <td>1 August of the examination year (must not have reached 32 on 1 August)</td>
+              <td>Dedicated calculator at <a href="/age-limit/upsc/">UPSC age limit</a>. 6 attempts for General, 9 for OBC.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="bank banking ibps po probationary officer management trainee finance public sector">
+              <td><strong>IBPS PO</strong> (Probationary Officer)</td>
+              <td>Institute of Banking Personnel Selection (IBPS)</td>
+              <td class="nw">20</td>
+              <td class="nw">30</td>
+              <td>OBC: +3 years (33), SC/ST: +5 years (35), PwD: +10 years (40)</td>
+              <td>1st day of the notification month (typically 1 August)</td>
+              <td>Management Trainee and PO vacancies across 11 nationalized public sector banks.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="defence air force iaf afcat flying ground duty officer pilot military">
+              <td><strong>AFCAT</strong> (Air Force Common Admission Test)</td>
+              <td>Indian Air Force (IAF)</td>
+              <td class="nw">20</td>
+              <td class="nw">24 (Flying) / 26 (Ground Duty)</td>
+              <td>Commercial Pilot Licence (DGCA) holders get upper limit up to 26 for Flying Branch; no caste relaxation</td>
+              <td>1 January (for January course) or 1 July (for July course)</td>
+              <td>Strict born-between windows published in AFCAT 1 and AFCAT 2 notifications.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="defence agniveer air force agniveervayu iaf airmen military intake">
+              <td><strong>Air Force Agniveervayu</strong></td>
+              <td>Indian Air Force (IAF)</td>
+              <td class="nw">17.5</td>
+              <td class="nw">21</td>
+              <td>Universal born-between dates; no caste or category age relaxation</td>
+              <td>Fixed born-between dates in notice; candidate must not be over 21 on enrolment day</td>
+              <td>Dedicated calculator at <a href="/age-limit/agniveer/">Agniveer age limit</a>. Intake 01 and 02 batches.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="defence army indian army agniveer gd technical clerk tradesman soldier military">
+              <td><strong>Indian Army Agniveer</strong></td>
+              <td>Indian Army</td>
+              <td class="nw">17.5</td>
+              <td class="nw">21</td>
+              <td>No caste relaxation on age; uniform across General Duty, Technical, Clerk, and Tradesmen</td>
+              <td>Counted as on 1 October of recruiting year</td>
+              <td>Dedicated calculator at <a href="/age-limit/agniveer/">Agniveer age limit</a>. Uniform 17.5 to 21 age bracket.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="police constable si sub inspector up uttar pradesh upprpb khaki state police">
+              <td><strong>UP Police Constable and SI</strong></td>
+              <td>Uttar Pradesh Police (UPPRPB)</td>
+              <td class="nw">18 (Constable) / 21 (SI)</td>
+              <td class="nw">Constable: 22 (Male), 25 (Female) / SI: 28</td>
+              <td>OBC, SC, ST (UP domicile): +5 years (Constable: up to 27 male, 30 female; SI: up to 33)</td>
+              <td>1 July of the recruitment notification year</td>
+              <td>State government recently granted a one-time 3-year relaxation across all categories for massive constable recruitment drives.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="railway rrb ntpc clerk station master goods train manager non-technical central government">
+              <td><strong>RRB NTPC</strong> (Non-Technical Popular Categories)</td>
+              <td>Railway Recruitment Boards (RRB)</td>
+              <td class="nw">18</td>
+              <td class="nw">30 (Undergraduate) / 33 (Graduate)</td>
+              <td>OBC: +3 years, SC/ST: +5 years, PwD: +10 years (category relaxation stacks with post-covid extension)</td>
+              <td>1 July of the notification year</td>
+              <td>Includes standard 3-year post-covid relaxation in recent notices. Covers Station Master, Goods Train Manager, Typist posts.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="bank banking ibps clerk clerical csa finance public sector">
+              <td><strong>IBPS Clerk</strong></td>
+              <td>Institute of Banking Personnel Selection (IBPS)</td>
+              <td class="nw">20</td>
+              <td class="nw">28</td>
+              <td>OBC: +3 years (31), SC/ST: +5 years (33), PwD: +10 years (38)</td>
+              <td>1st day of the notification month (typically 1 July or 1 August)</td>
+              <td>Customer Service Associate (Clerical cadre) across participating nationalized banks.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="bank banking sbi clerk junior associate customer support sales state bank">
+              <td><strong>SBI Clerk</strong> (Junior Associate)</td>
+              <td>State Bank of India (SBI)</td>
+              <td class="nw">20</td>
+              <td class="nw">28</td>
+              <td>OBC: +3 years (31), SC/ST: +5 years (33), PwD: +10 years (38), Widows and divorced women up to 35</td>
+              <td>1 April of the recruitment year</td>
+              <td>Junior Associates (Customer Support and Sales) in State Bank of India branches nationwide.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="railway rrb group d level 1 track maintainer pointsman rrc central government">
+              <td><strong>RRB Group D</strong> (Level 1 Posts)</td>
+              <td>Railway Recruitment Boards (RRB / RRC)</td>
+              <td class="nw">18</td>
+              <td class="nw">33 (baseline)</td>
+              <td>OBC: +3 years (36), SC/ST: +5 years (38), PwD: +10 years (43)</td>
+              <td>1 July of the notification year</td>
+              <td>Up to 36 when post-covid relaxation applies. Covers Track Maintainer, Pointsman, Assistant workshop staff.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="police constable bihar csbc police bihar constable state police khaki sipahi">
+              <td><strong>Bihar Police Constable</strong></td>
+              <td>Central Selection Board of Constable (CSBC) Bihar</td>
+              <td class="nw">18</td>
+              <td class="nw">25</td>
+              <td>BC/EBC Male: 27, BC/EBC Female: 28, SC/ST: 30, Trained Home Guards: +5 years</td>
+              <td>1 August of the recruitment year (matriculation certificate date of birth)</td>
+              <td>Candidates must have passed intermediate (10+2) by cutoff date; physical efficiency test determines final merit.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="teaching nta ugc net jrf junior research fellowship assistant professor lecturer college education">
+              <td><strong>UGC NET</strong></td>
+              <td>National Testing Agency (NTA) / UGC</td>
+              <td class="nw">None</td>
+              <td class="nw">JRF: 30 / Assistant Professor: No limit</td>
+              <td>JRF: OBC-NCL, SC, ST, PwD, Third gender, women candidates get +5 years (up to 35); LLM holders get +3 years</td>
+              <td>1st day of the month in which examination concludes (for example 1 June or 1 December)</td>
+              <td>Conducted twice a year in June and December. Assistant Professor eligibility has no upper age limit.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="engineering gate iit iisc mtech psu entrance technical education">
+              <td><strong>GATE</strong> (Graduate Aptitude Test in Engineering)</td>
+              <td>IISc Bangalore and IITs (on rotation)</td>
+              <td class="nw">None</td>
+              <td class="nw">No upper age limit</td>
+              <td>Not applicable for exam registration (open to all ages without cap)</td>
+              <td>No age cutoff date; eligibility requires undergraduate 3rd year or completed degree</td>
+              <td>Used for M.Tech admissions and PSU recruitments; individual PSUs fix their own hiring age limits (usually 26 to 30).</td>
+            </tr>
+            <tr class="exam-row" data-keywords="teaching ctet cbse teacher eligibility test kvs nvs primary school teacher education">
+              <td><strong>CTET</strong> (Central Teacher Eligibility Test)</td>
+              <td>Central Board of Secondary Education (CBSE)</td>
+              <td class="nw">18</td>
+              <td class="nw">No upper age limit</td>
+              <td>Not applicable for eligibility certificate; hiring bodies (KVS, NVS, DSSSB) define recruitment age limits separately</td>
+              <td>No age cutoff date; qualifying CTET certificate has lifetime validity</td>
+              <td>Paper 1 covers Classes I to V (Primary) and Paper 2 covers Classes VI to VIII (Elementary).</td>
+            </tr>
+            <tr class="exam-row" data-keywords="defence navy indian navy agniveer ssr mr inet executive officer sailor military">
+              <td><strong>Indian Navy Agniveer and Officer Entries</strong></td>
+              <td>Indian Navy</td>
+              <td class="nw">17.5 (Agniveer) / 19 (Officer)</td>
+              <td class="nw">Agniveer: 21 / Officer: 24 (Education: 25)</td>
+              <td>No caste relaxation for defence uniformed entries; strict date of birth window applies</td>
+              <td>Course commencement date (1 January or 1 July depending on intake cycle)</td>
+              <td>Dedicated calculators at <a href="/age-limit/agniveer/">Agniveer</a> and <a href="/age-limit/cds/">CDS</a>. SSR and MR recruits follow Agniveer terms.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="police upsc ips civil services police service sp dsp khaki central government">
+              <td><strong>IPS</strong> (Indian Police Service)</td>
+              <td>Union Public Service Commission (UPSC)</td>
+              <td class="nw">21</td>
+              <td class="nw">32</td>
+              <td>OBC: +3 years (35), SC/ST: +5 years (37), PwBD: +10 years (42), Ex-Servicemen: +5 years</td>
+              <td>1 August of the Civil Services Examination year</td>
+              <td>Recruited through UPSC Civil Services. Use the <a href="/age-limit/upsc/">UPSC age limit calculator</a>. Mandatory physical fitness standards apply.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="railway rrb alp assistant loco pilot train driver technician central government">
+              <td><strong>Railway ALP</strong> (Assistant Loco Pilot)</td>
+              <td>Railway Recruitment Boards (RRB)</td>
+              <td class="nw">18</td>
+              <td class="nw">30 (baseline) / 33 (covid extension)</td>
+              <td>OBC: +3 years (33 or 36), SC/ST: +5 years (35 or 38), Ex-Servicemen: service period + 3 years</td>
+              <td>1 July of the notification year</td>
+              <td>Requires ITI, Diploma, or Engineering Degree, plus mandatory A-1 medical and vision fitness.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="entrance engineering jee main nta iit nit iiit admission higher education">
+              <td><strong>JEE Main</strong> (Joint Entrance Examination)</td>
+              <td>National Testing Agency (NTA)</td>
+              <td class="nw">None</td>
+              <td class="nw">No upper age limit</td>
+              <td>Not applicable on age; attempts limited to 3 consecutive years starting from Class 12 passing year</td>
+              <td>No age cutoff date; eligibility governed by year of passing Class 12</td>
+              <td>Screening exam for NITs, IIITs, and qualifying filter for JEE Advanced (IITs impose a separate 2-year consecutive attempt window).</td>
+            </tr>
+            <tr class="exam-row" data-keywords="entrance mba cat iim management b-school admission higher education">
+              <td><strong>CAT</strong> (Common Admission Test)</td>
+              <td>Indian Institutes of Management (IIMs)</td>
+              <td class="nw">None</td>
+              <td class="nw">No upper age limit</td>
+              <td>Not applicable for test registration; reservation quotas apply during IIM seat allotment</td>
+              <td>No age cutoff date; requires recognized Bachelor degree with at least 50% marks (45% for SC/ST/PwD)</td>
+              <td>Entrance exam for MBA programs across all 21 IIMs and other leading business schools.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="police constable state police maharashtra rajasthan mp haryana west bengal khaki sipahi">
+              <td><strong>State Police Constable</strong> (General Benchmarks)</td>
+              <td>State Police Recruitment Boards</td>
+              <td class="nw">18</td>
+              <td class="nw">25</td>
+              <td>Reserved categories (OBC, SC, ST) receive 3 to 5 years relaxation per state domicile rules; female candidates receive 3 to 5 extra years</td>
+              <td>Typically 1 January or 1 July of the recruitment notification year</td>
+              <td>Exact age brackets vary by state; check respective state gazette notifications. Physical efficiency test (PET) is mandatory.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="entrance law clat nlu ba llb llm advocate legal education">
+              <td><strong>CLAT</strong> (Common Law Admission Test UG and PG)</td>
+              <td>Consortium of National Law Universities (NLUs)</td>
+              <td class="nw">None</td>
+              <td class="nw">No upper age limit</td>
+              <td>Supreme Court abolished upper age limit for both 5-year integrated law and LLM admissions</td>
+              <td>No age cutoff date; requires 10+2 with 45% (40% for SC/ST) for UG, or LLB for PG</td>
+              <td>Law entrance test for 24 National Law Universities across India.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="entrance university cuet nta central university admission ug pg higher education">
+              <td><strong>CUET UG and PG</strong></td>
+              <td>National Testing Agency (NTA)</td>
+              <td class="nw">None</td>
+              <td class="nw">No upper age limit</td>
+              <td>No age cap imposed by NTA; individual universities may enforce specific age limits for particular professional programs</td>
+              <td>No central age cutoff date</td>
+              <td>Common entrance test for admissions to undergraduate and postgraduate courses in Central, State, and private universities.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="upsc ifs indian forest service civil services forestry environment central government">
+              <td><strong>IFS</strong> (Indian Forest Service)</td>
+              <td>Union Public Service Commission (UPSC)</td>
+              <td class="nw">21</td>
+              <td class="nw">32</td>
+              <td>OBC: +3 years (35), SC/ST: +5 years (37), PwBD: +10 years (42), Ex-Servicemen: +5 years</td>
+              <td>1 August of the examination year</td>
+              <td>Screened through UPSC Civil Services Prelims; bachelor degree in Science, Maths, Agriculture, or Engineering required.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="upsc cms combined medical services doctor mbbs medical officer central health railway medical">
+              <td><strong>UPSC CMS</strong> (Combined Medical Services)</td>
+              <td>Union Public Service Commission (UPSC)</td>
+              <td class="nw">None</td>
+              <td class="nw">32</td>
+              <td>OBC: +3 years (35), SC/ST: +5 years (37), PwBD: +10 years (42); up to 35 for select municipal medical officer posts</td>
+              <td>1 August of the examination year</td>
+              <td>Recruits Medical Officers in Central Health Service, Railways, and municipal health corporations. MBBS degree required.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="entrance medical neet ug pg mbbs doctor nta nbems admission higher education">
+              <td><strong>NEET UG and NEET PG</strong></td>
+              <td>National Testing Agency (UG) / NBEMS (PG)</td>
+              <td class="nw">17 (UG) / None (PG)</td>
+              <td class="nw">No upper age limit</td>
+              <td>Not applicable for age ceiling; category reservation applies to qualifying percentile and counseling seats</td>
+              <td>NEET UG: 31 December of the admission year. NEET PG: internship completion cutoff set by NBEMS</td>
+              <td>Single nationwide entrance tests for MBBS, BDS, and AYUSH (UG) and MD, MS, and DNB (PG) admissions.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="ssc cgl staff selection commission aso inspector auditor income tax central government">
+              <td><strong>SSC CGL</strong> (Combined Graduate Level)</td>
+              <td>Staff Selection Commission (SSC)</td>
+              <td class="nw">18 or 20</td>
+              <td class="nw">27, 30, or 32 (by post group)</td>
+              <td>OBC: +3 years, SC/ST: +5 years, PwD: +10 years</td>
+              <td>1 August of the examination year</td>
+              <td>Dedicated calculator at <a href="/age-limit/ssc/">SSC age limit</a>. Inspector, Assistant Section Officer, Auditor posts.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="ssc gd constable paramilitary bsf cisf crpf itbp ssb defence police khaki">
+              <td><strong>SSC GD Constable</strong></td>
+              <td>Staff Selection Commission (SSC)</td>
+              <td class="nw">18</td>
+              <td class="nw">23</td>
+              <td>OBC: +3 years (26), SC/ST: +5 years (28), Ex-Servicemen: +3 years</td>
+              <td>1 January or 1 August of the recruiting year</td>
+              <td>Dedicated calculator at <a href="/age-limit/ssc/">SSC age limit</a>. Paramilitary constable entries (BSF, CISF, CRPF, ITBP, SSB).</td>
+            </tr>
+            <tr class="exam-row" data-keywords="defence nda na national defence academy upsc army navy air force cadet officer">
+              <td><strong>NDA and NA</strong> (National Defence Academy)</td>
+              <td>Union Public Service Commission (UPSC)</td>
+              <td class="nw">16.5</td>
+              <td class="nw">19.5</td>
+              <td>Universal born-between window; no caste relaxation for defence academies</td>
+              <td>Exact born-between dates in biannual notifications for courses starting in January and July</td>
+              <td>Dedicated calculator at <a href="/age-limit/nda/">NDA age limit</a>. Open to male and female candidates passing Class 12.</td>
+            </tr>
+            <tr class="exam-row" data-keywords="defence cds combined defence services upsc ima ina afa ota officer military">
+              <td><strong>CDS</strong> (Combined Defence Services)</td>
+              <td>Union Public Service Commission (UPSC)</td>
+              <td class="nw">19 or 20</td>
+              <td class="nw">IMA and INA: 24 / AFA: 24 / OTA: 25</td>
+              <td>Commercial Pilot Licence (DGCA) holders get upper limit up to 26 for AFA; no caste relaxation</td>
+              <td>Fixed born-between dates in biannual notices (CDS 1 and 2)</td>
+              <td>Dedicated calculator at <a href="/age-limit/cds/">CDS age limit</a>. IMA, INA, AFA, and OTA academies.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h2>Exam categories and recruitment rules</h2>
+
+      <h3>Civil Services and Administration</h3>
+      <p>Union Public Service Commission recruitments establish strict age limits anchored to 1 August of the exam year. For IAS, IPS, and IFS (Indian Forest Service), the baseline bracket is 21 to 32 years for unreserved candidates. Candidates from Other Backward Classes receive 3 years of relaxation up to 35, while Scheduled Castes and Scheduled Tribes receive 5 years up to 37. Candidates with benchmark disabilities receive 10 years of age relaxation up to 42. UPSC Combined Medical Services (CMS) recruits medical officers under 32 years of age on 1 August, with identical category concessions.</p>
+
+      <h3>Staff Selection Commission</h3>
+      <p>The Staff Selection Commission manages recruitment for non-gazetted central government posts across multiple education tiers. SSC CHSL recruits Class 12 qualified candidates between 18 and 27 years. SSC CGL groups graduate posts into distinct age tiers: 18 to 27 years for clerical and junior auditor roles, 20 to 30 years for Section Officers and Central Excise Inspectors, and up to 32 years for Junior Statistical Officers. SSC GD Constable recruits young aspirants between 18 and 23 years into central paramilitary forces including BSF, CISF, CRPF, SSB, and ITBP.</p>
+
+      <h3>Banking and Financial Sector</h3>
+      <p>Public sector bank recruitments conducted by SBI and IBPS enforce strict age rules tied to graduation. Probationary Officer exams (SBI PO and IBPS PO) require candidates to be between 21 and 30 years (IBPS PO accepts from age 20). Clerical recruitment (SBI Junior Associates and IBPS Clerk) sets a narrower bracket of 20 to 28 years. Across all banking exams, OBC candidates get 3 years relaxation, SC and ST candidates get 5 years, and PwD candidates get 10 years. In addition, SBI permits attempts for widows and divorced women up to age 35.</p>
+
+      <h3>Defence and Uniformed Services</h3>
+      <p>Indian Armed Forces entries enforce exact born-between windows rather than conventional caste-based age relaxations. The Agnipath scheme sets a uniform bracket of 17.5 to 21 years across the Indian Army, Indian Navy (SSR and MR), and Air Force Agniveervayu. Candidates must be under 21 years on the day of official enrolment. For commissioned officer entries, NDA recruits candidates between 16.5 and 19.5 years. CDS recruits graduates between 19 and 24 years for the Indian Military Academy and Naval Academy, 20 to 24 for the Air Force Academy, and 19 to 25 for the Officers Training Academy. AFCAT admits flying branch applicants from 20 to 24 years, with an extension up to 26 years for DGCA Commercial Pilot Licence holders.</p>
+
+      <h3>Railways and Technical Cadres</h3>
+      <p>Railway Recruitment Boards manage massive recruitment drives across both graduate and technical cadres. RRB NTPC establishes age limits of 18 to 30 years for undergraduate posts and 18 to 33 years for graduate posts such as Station Master and Goods Train Manager. In recent Centralized Employment Notices, the Ministry of Railways added a 3-year age relaxation across all categories as a relief measure following recruitment delays. Railway Assistant Loco Pilot (ALP) recruits technical diploma and ITI holders between 18 and 30 years (extended to 33 with the post-covid concession). RRB Group D Level 1 positions accept applicants between 18 and 33 years.</p>
+
+      <h3>State Police Recruitment</h3>
+      <p>State police boards set age limits according to state domicile rules. UP Police Constable recruitment sets an age range of 18 to 22 years for male general candidates and 18 to 25 years for female general candidates, with UP Police Sub Inspector set at 21 to 28 years. Candidates belonging to OBC, SC, and ST categories with UP domicile receive 5 years of relaxation. Bihar Police Constable sets 18 to 25 years for general candidates, extending up to 27 for BC and EBC men, 28 for BC and EBC women, and 30 for SC and ST candidates. Most Indian states adhere to a baseline of 18 to 25 years for constabulary recruitment, accompanied by mandatory physical efficiency testing.</p>
+
+      <h3>Teaching and Academic Eligibility</h3>
+      <p>Academic testing focuses on qualification benchmarks rather than upper age barriers. UGC NET awards Junior Research Fellowships (JRF) to scholars not older than 30 years on the first day of the exam month, with 5 years relaxation granted to women, OBC-NCL, SC, ST, and PwD researchers. Eligibility for Assistant Professor appointments carries no upper age limit whatsoever. Similarly, the Central Teacher Eligibility Test (CTET) requires a minimum age of 18 years but imposes no upper age ceiling, and the awarded qualifying certificate remains valid for life.</p>
+
+      <h3>Higher Education and Entrance Examinations</h3>
+      <p>Major national entrance examinations for professional higher education have systematically eliminated upper age restrictions to facilitate lifelong learning. GATE, CAT, CUET UG and PG, CLAT UG and PG, and NEET (both UG and PG) impose no upper age limit. For JEE Main, candidates must have passed Class 12 in the exam year or preceding two years. For NEET UG, students must have completed 17 years of age on or before 31 December of the admission year. While entrance tests admit candidates of any age, participating colleges or hiring PSUs may enforce distinct age criteria during post-exam selection.</p>
+
+      <h2>How cutoff dates and age limits work</h2>
+      <p>Indian government notifications state the age limit as a requirement to be met on a specific calendar cutoff date. Understanding how this date interacts with your birth certificate is critical before submitting an application.</p>
+
+      <h3>The rule of “must not have attained”</h3>
+      <p>Notifications frequently specify that a candidate “must have attained the age of 21 years and must not have attained the age of 32 years on the 1st of August”. In Indian administrative law, this means you must be at least 21 years old on that day, and you must not have celebrated your 32nd birthday on or before 1 August. If your 32nd birthday falls on 1 August, you are considered to have attained 32 years on that date and are ineligible for the unreserved category.</p>
+
+      <h3>The matriculation certificate rule</h3>
+      <p>Recruiting agencies including UPSC, SSC, RRB, and state boards accept only the date of birth recorded in your Class 10 (matriculation or secondary education board) certificate. Affidavits, municipal birth certificates registered years later, or horoscope records cannot override the matriculation record once submitted.</p>
+
+      <h3>Calculating your eligibility for any exam</h3>
+      <p>For any recruitment notice or government notification not listed above, use our <a href="/">free age calculator by date of birth</a> to check your eligibility in seconds:</p>
+      <ol>
+        <li>Locate the exact cutoff date specified in the official notification (commonly 1 August, 1 January, or 1 July).</li>
+        <li>Open the <a href="/">age calculator</a> and enter your date of birth as recorded on your Class 10 certificate.</li>
+        <li>Set the “Age as on” field to the official cutoff date specified by the recruitment board.</li>
+        <li>View your exact age in years, months, and days.</li>
+        <li>Compare your completed age against the minimum and maximum boundaries for your category, adding 3 years for OBC or 5 years for SC and ST where applicable.</li>
+      </ol>
+
+      <p class="page-meta">Rules last checked <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time>.</p>
+    </div>
   </div>
 </section>

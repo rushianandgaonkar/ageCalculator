@@ -895,3 +895,407 @@ body.landing-v2 {
   .landing-v2 .faq-section .faq-accordion .answer { color: #c4ccdf; }
   .landing-v2 .faq-section .faq-accordion summary:focus-visible { outline-color: #d1caff; }
 }
+
+/* ==========================================================================
+   Arabic Hijri Today and Calendar components (Ageason Design V3 tokens)
+   ========================================================================== */
+.today-display-card {
+  background: var(--landing-card);
+  border: 1px solid var(--landing-line);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 36px);
+  box-shadow: 0 14px 40px #27305b0a;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.today-weekday-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: var(--primary-tint);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 16px;
+  margin-block-end: 16px;
+}
+.today-clock {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--landing-muted);
+}
+.today-hijri-hero {
+  margin: 8px 0 12px;
+}
+.today-hijri-hero .hijri-num {
+  font-size: clamp(52px, 9vw, 92px);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+.today-hijri-hero .hijri-month {
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 600;
+  color: var(--landing-ink);
+  display: block;
+  margin-block-start: 6px;
+}
+.today-greg-hero {
+  font-size: clamp(18px, 2.5vw, 24px);
+  color: var(--landing-muted);
+  font-weight: 500;
+  margin: 12px 0 20px;
+}
+.today-progress-wrap {
+  margin: 20px 0;
+  text-align: start;
+}
+.today-progress-bar {
+  height: 8px;
+  background: var(--landing-wash);
+  border: 1px solid var(--landing-line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-block-start: 6px;
+}
+.today-progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 999px;
+  transition: width .3s ease;
+}
+.today-details-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-block-start: 24px;
+  padding-block-start: 24px;
+  border-block-start: 1px solid var(--landing-line);
+  text-align: start;
+}
+.today-detail-item {
+  background: var(--landing-wash);
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--landing-line);
+}
+.today-detail-item dt {
+  font-size: 12px;
+  color: var(--landing-muted);
+  margin-block-end: 4px;
+}
+.today-detail-item dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--landing-ink);
+}
+
+/* Occasions grid */
+.occasions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-block-start: 24px;
+}
+.occasion-card {
+  background: var(--landing-card);
+  border: 1px solid var(--landing-line);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  box-shadow: 0 4px 14px #27305b06;
+  transition: border-color .2s ease;
+}
+.occasion-card:hover {
+  border-color: var(--primary);
+}
+.occasion-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.occasion-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--landing-ink);
+  margin: 0;
+}
+.occasion-countdown {
+  background: var(--primary-tint);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.occasion-dates {
+  font-size: 13px;
+  color: var(--landing-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.occasion-dates strong {
+  color: var(--landing-ink);
+  font-weight: 500;
+}
+
+/* Hijri Calendar grid */
+.cal-wrapper {
+  background: var(--landing-card);
+  border: 1px solid var(--landing-line);
+  border-radius: 20px;
+  padding: clamp(16px, 3vw, 28px);
+  box-shadow: 0 14px 40px #27305b0a;
+}
+.cal-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-block-end: 22px;
+  padding-block-end: 18px;
+  border-block-end: 1px solid var(--landing-line);
+}
+.cal-nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cal-title-group {
+  text-align: center;
+  flex: 1 1 240px;
+}
+.cal-month-title {
+  font-size: clamp(20px, 3.2vw, 28px);
+  font-weight: 600;
+  color: var(--landing-ink);
+  margin: 0;
+}
+.cal-month-sub {
+  font-size: 14px;
+  color: var(--landing-muted);
+  margin: 4px 0 0;
+}
+.cal-controls-selectors {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cal-table-wrap {
+  overflow-x: auto;
+  border: 0;
+}
+.cal-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 6px;
+  table-layout: fixed;
+}
+.cal-table th {
+  text-align: center;
+  padding: 10px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--landing-muted);
+  border-radius: 8px;
+  background: var(--landing-wash);
+}
+.cal-table th.is-fri {
+  color: var(--primary);
+}
+.cal-cell {
+  height: clamp(62px, 9vw, 84px);
+  vertical-align: top;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--landing-line);
+  background: var(--landing-wash);
+  transition: all .15s ease;
+  cursor: pointer;
+  position: relative;
+}
+.cal-cell:hover:not(.is-empty) {
+  background: var(--primary-tint);
+  border-color: var(--primary);
+}
+.cal-cell.is-empty {
+  background: transparent;
+  border-color: transparent;
+  cursor: default;
+}
+.cal-cell.is-today {
+  border-color: var(--primary);
+  background: var(--primary-tint);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+.cal-cell.is-selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary);
+  background: #e2e8ff;
+}
+.cal-cell.is-friday:not(.is-empty) {
+  border-color: #d1d8f5;
+}
+.cal-cell-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.cal-h-day {
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 600;
+  color: var(--landing-ink);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.cal-cell.is-today .cal-h-day {
+  color: var(--primary);
+  font-weight: 700;
+}
+.cal-g-day {
+  font-size: clamp(11px, 1.4vw, 13px);
+  color: var(--landing-muted);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cal-cell.is-today .cal-g-day {
+  color: var(--primary);
+  font-weight: 500;
+}
+.cal-selected-info {
+  margin-block-start: 20px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: var(--landing-wash);
+  border: 1px solid var(--landing-line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.cal-selected-info strong {
+  color: var(--landing-ink);
+  font-size: 16px;
+}
+.cal-selected-info span {
+  color: var(--landing-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 719px) {
+  .cal-table {
+    border-spacing: 3px;
+  }
+  .cal-cell {
+    height: 52px;
+    padding: 4px;
+    border-radius: 8px;
+  }
+  .cal-h-day {
+    font-size: 15px;
+  }
+  .cal-g-day {
+    font-size: 10px;
+  }
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] .today-display-card,
+[data-theme="dark"] .cal-wrapper,
+[data-theme="dark"] .occasion-card {
+  background: #20283c;
+  border-color: #3e4866;
+  box-shadow: none;
+}
+[data-theme="dark"] .today-detail-item,
+[data-theme="dark"] .cal-selected-info {
+  background: #181f32;
+  border-color: #353f5b;
+}
+[data-theme="dark"] .cal-table th,
+[data-theme="dark"] .cal-cell:not(.is-empty) {
+  background: #1b2236;
+  border-color: #353f5b;
+}
+[data-theme="dark"] .cal-cell:hover:not(.is-empty) {
+  background: #2c3558;
+  border-color: #8fa4ff;
+}
+[data-theme="dark"] .cal-cell.is-today {
+  background: #26335a;
+  border-color: #8fa4ff;
+  box-shadow: 0 0 0 1px #8fa4ff;
+}
+[data-theme="dark"] .cal-cell.is-selected {
+  background: #313d66;
+  border-color: #8fa4ff;
+  box-shadow: 0 0 0 2px #8fa4ff;
+}
+[data-theme="dark"] .today-weekday-pill,
+[data-theme="dark"] .occasion-countdown {
+  background: #2b3659;
+  color: #9cb1ff;
+}
+
+/* Quick presets chips */
+.preset-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-start: 8px;
+}
+.preset-chip {
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 6px 14px;
+  border: 1px solid #d9dff1;
+  border-radius: 999px;
+  background: #f4f6fa;
+  color: #263253;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.preset-chip:hover {
+  border-color: #4d55ce;
+  background: #ffffff;
+  color: #4d55ce;
+}
+.preset-chip.is-active {
+  background: #4d55ce;
+  border-color: #4d55ce;
+  color: #ffffff;
+}
+[data-theme="dark"] .preset-chip {
+  background: #1b2236;
+  border-color: #3e4866;
+  color: #d8deee;
+}
+[data-theme="dark"] .preset-chip:hover {
+  background: #252f4a;
+  border-color: #8fa4ff;
+  color: #ffffff;
+}
+[data-theme="dark"] .preset-chip.is-active {
+  background: #4754b9;
+  border-color: #8fa4ff;
+  color: #ffffff;
+}
+

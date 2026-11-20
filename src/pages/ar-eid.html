@@ -1,0 +1,166 @@
+<!--meta
+{
+  "path": "/ar/eid/",
+  "lang": "ar",
+  "dir": "rtl",
+  "nav": "areid",
+  "id": "areid",
+  "kind": "tool",
+  "title": "كم باقي على العيد: العداد التنازلي لعيد الفطر وعيد الأضحى",
+  "no_suffix": true,
+  "description": "اعرف كم باقي على عيد الفطر المبارك وعيد الأضحى لعام 1448 هـ بالعداد التنازلي المباشر.",
+  "app_name": "عداد العيد 1448",
+  "crumb": "كم باقي على العيد",
+  "breadcrumb": [["الرئيسية", "/ar/"], ["كم باقي على العيد", "/ar/eid/"]],
+  "scripts": ["datecore.js", "ar-countdown.js"],
+  "og": "og-arconv.png",
+  "priority": "0.8",
+  "changefreq": "daily",
+  "faq": [
+    ["متى يوافق عيد الفطر المبارك لعام 1448 هـ؟", "تشير الحسابات الفلكية وتقويم أم القرى إلى أن أول أيام عيد الفطر المبارك (غرة شوال 1448 هـ) يوافق يوم الثلاثاء 9 مارس 2027 م بمشيئة الله تعالى."],
+    ["متى يوافق عيد الأضحى المبارك لعام 1448 هـ؟", "يوافق يوم عرفة (9 ذو الحجة 1448 هـ) يوم السبت 15 مايو 2027 م، وتكون أول أيام عيد الأضحى المبارك يوم الأحد 16 مايو 2027 م فلكيًا."],
+    ["كيف أبدل بين العداد التنازلي لعيد الفطر وعيد الأضحى؟", "يمكنك استخدام أزرار التبديل في أعلى نموذج الحاسبة لاختيار «عيد الفطر» أو «عيد الأضحى»، وسيتحدث العداد والتواريخ تلقائيًا وفوريًا."],
+    ["هل تختلف إجازة العيد بين الدول العربية؟", "نعم، تختلف مدة الإجازات الرسمية للقطاعين العام والخاص بين الدول والجهات الحكومية والخاصة، وتبدأ إجازة عيد الفطر عادة من الأيام الأخيرة لشهر رمضان."],
+    ["كيف أشارك موعد العيد والعداد التنازلي عبر واتساب؟", "اضغط على زر «مشاركة عبر واتساب» أسفل العداد لإرسال رسالة جاهزة تتضمن الوقت المتبقي وتاريخ العيد المتوقع ورابط المتابعة المباشر."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ar/">الرئيسية</a> / كم باقي على العيد</p>
+    <h1>كم باقي على العيد</h1>
+    <p class="lede">العداد التنازلي المباشر لمعرفة الوقت المتبقي لعيد الفطر وعيد الأضحى المبارك.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="العداد التنازلي للعيد">
+  <div class="wrap tool-grid">
+    <div class="panel" id="calc">
+      <div>
+        <p class="label" id="eid-label">اختر العيد</p>
+        <div class="switch" id="eid-switch" role="radiogroup" aria-labelledby="eid-label">
+          <input type="radio" name="eid-type" id="eid-fitr" value="fitr" checked><label for="eid-fitr">عيد الفطر (1 شوال)</label>
+          <input type="radio" name="eid-type" id="eid-adha" value="adha"><label for="eid-adha">عيد الأضحى (10 ذو الحجة)</label>
+        </div>
+      </div>
+
+      <div class="callout ok">
+        <p><strong>الموعد المتوقع فلكيًا:</strong> <span id="info-weekday">الثلاثاء</span> <span id="info-greg">9 مارس 2027 م</span></p>
+        <p>وفق معايير تقويم أم القرى، ويتأكد الموعد رسميًا في كل دولة إسلامية وفق الرؤية الشرعية للهلال.</p>
+      </div>
+
+      <div>
+        <p class="label" id="dig-label">الأرقام</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dig-label">
+          <input type="radio" name="dig" id="dig-latn" value="latn" checked><label for="dig-latn">123</label>
+          <input type="radio" name="dig" id="dig-arab" value="arab"><label for="dig-arab">١٢٣</label>
+        </div>
+      </div>
+
+      <div class="preset-group" aria-label="روابط سريعة">
+        <a class="preset-chip" href="/ar/ramadan/">عداد رمضان المبارك</a>
+        <a class="preset-chip" href="/ar/hijri-converter/">محول التاريخ الهجري</a>
+        <a class="preset-chip" href="/ar/">حاسبة العمر الدقيقة</a>
+      </div>
+    </div>
+
+    <div class="result" id="result" data-state="ready" aria-live="polite">
+      <div class="result-body">
+        <p class="age-caption" id="r-caption">الوقت المتبقي حتى حلول عيد الفطر المبارك</p>
+
+        <div class="countdown-grid" id="countdown-display">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-days">--</span>
+            <span class="countdown-label" id="cd-days-lbl">أيام</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-hours">--</span>
+            <span class="countdown-label" id="cd-hours-lbl">ساعة</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-mins">--</span>
+            <span class="countdown-label" id="cd-mins-lbl">دقيقة</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-secs">--</span>
+            <span class="countdown-label" id="cd-secs-lbl">ثانية</span>
+          </div>
+        </div>
+
+        <p class="countdown-summary" id="cd-summary">جاري حساب الوقت المتبقي على حلول العيد المبارك…</p>
+
+        <dl class="stats">
+          <div><dt>المناسبة</dt><dd id="target-event">عيد الفطر المبارك</dd></div>
+          <div><dt>التاريخ الهجري</dt><dd id="target-hijri">1 شوال 1448 هـ</dd></div>
+          <div><dt>التاريخ الميلادي المتوقع</dt><dd id="target-greg">9 مارس 2027 م</dd></div>
+          <div><dt>يوم البداية المتوقع</dt><dd id="target-weekday">الثلاثاء</dd></div>
+          <div><dt>التقويم المعتمد</dt><dd>تقويم أم القرى فلكيًا</dd></div>
+        </dl>
+
+        <div class="share-row">
+          <a class="btn btn-primary" id="whatsapp" href="https://api.whatsapp.com/send?text=" target="_blank" rel="noopener">مشاركة عبر واتساب</a>
+          <button class="btn btn-tertiary" type="button" id="copy">نسخ رابط العداد</button>
+          <a class="btn btn-tertiary" href="/ar/ramadan/">كم باقي على رمضان</a>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT: paste an AdSense unit inside and add class "is-active" -->
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>موعد عيد الفطر وعيد الأضحى لعام 1448 هـ</h2>
+    <p>يحتفل المسلمون في مشارق الأرض ومغاربها بعيدين مباركين في كل عام هجري:</p>
+    <ul>
+      <li><strong>عيد الفطر المبارك (1 شوال):</strong> يأتي مكافأة من الله تعالى للمؤمنين بعد صيام شهر رمضان المبارك وقيامه، ويوافق لعام 1448 هـ يوم الثلاثاء 9 مارس 2027 م فلكيًا.</li>
+      <li><strong>عيد الأضحى المبارك (10 ذو الحجة):</strong> يتزامن مع أداء فريضة الحج الكبرى ويأتي بعد يوم عرفة الفضيل، ويوافق لعام 1448 هـ يوم الأحد 16 مايو 2027 م فلكيًا، ويكون يوم عرفة السبت 15 مايو 2027 م.</li>
+    </ul>
+
+    <h2>جدول مواعيد العيد في السنوات الأخيرة والمقبلة</h2>
+    <p>يوضح الجدول أدناه تواريخ عيدي الفطر والأضحى بحسب تقويم أم القرى المعتمد في مكة المكرمة:</p>
+
+    <div class="table-wrap auto">
+      <table class="data">
+        <caption class="visually-hidden">جدول مواعيد عيد الفطر وعيد الأضحى هجريًا وميلاديًا</caption>
+        <thead>
+          <tr>
+            <th scope="col">السنة الهجرية</th>
+            <th scope="col">عيد الفطر (1 شوال)</th>
+            <th scope="col">يوم عرفة (9 ذو الحجة)</th>
+            <th scope="col">عيد الأضحى (10 ذو الحجة)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1448 هـ</td><td>9 مارس 2027 م (الثلاثاء)</td><td>15 مايو 2027 م (السبت)</td><td>16 مايو 2027 م (الأحد)</td></tr>
+          <tr><td>1447 هـ</td><td>20 مارس 2026 م (الجمعة)</td><td>26 مايو 2026 م (الثلاثاء)</td><td>27 مايو 2026 م (الأربعاء)</td></tr>
+          <tr><td>1446 هـ</td><td>30 مارس 2025 م (الأحد)</td><td>5 يونيو 2025 م (الخميس)</td><td>6 يونيو 2025 م (الجمعة)</td></tr>
+          <tr><td>1445 هـ</td><td>10 أبريل 2024 م (الأربعاء)</td><td>15 يونيو 2024 م (السبت)</td><td>16 يونيو 2024 م (الأحد)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>سنن وآداب يوم العيد</h2>
+    <p>يسن للمسلم في يوم العيد تعظيم شعائر الله وإظهار الفرح والسرور واتباع هدي النبي صلى الله عليه وسلم، ومن أبرز سنن العيد:</p>
+    <ol>
+      <li><strong>إخراج زكاة الفطر:</strong> في عيد الفطر، تجب زكاة الفطر قبل الخروج إلى صلاة العيد طهرة للصائم وطعمة للمساكين.</li>
+      <li><strong>الاغتسال والتطيب ولبس أحسن الثياب:</strong> اقتداء بسنة المصطفى صلى الله عليه وسلم وتعبيرًا عن بهجة العيد.</li>
+      <li><strong>التكبير:</strong> إحياء سنة التكبير والتهليل المطلق والمقيد في أيام العيد والأيام المعلومات.</li>
+      <li><strong>أداء صلاة العيد:</strong> الخروج إلى المصلى مع الأهل والأبناء وسماع خطبة العيد المباركة.</li>
+      <li><strong>مخالفة الطريق:</strong> الذهاب إلى المصلى من طريق والعودة من طريق آخر لإفشاء السلام وإظهار شعائر الإسلام.</li>
+      <li><strong>الأضحية:</strong> في عيد الأضحى، ذبح الأضاحي بعد صلاة العيد وتوزيعها على الفقراء والأقارب والأهل.</li>
+      <li><strong>صلة الرحم والتهنئة:</strong> زيارة الأقارب والأصدقاء وتبادل التهاني والدعاء بالقبول.</li>
+    </ol>
+
+    <p>يمكنك التخطيط لجميع مواعيدك ومناسباتك الدينية القادمة عبر <a href="/ar/ramadan/">عداد رمضان التنازلي</a> والاطلاع على تفاصيل التواريخ عبر <a href="/ar/hijri-converter/">محول التاريخ الهجري</a>.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">آخر تحديث: <time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>

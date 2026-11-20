@@ -1,0 +1,151 @@
+<!--meta
+{
+  "path": "/ar/today/",
+  "lang": "ar",
+  "dir": "rtl",
+  "nav": "artoday",
+  "id": "artoday",
+  "kind": "tool",
+  "title": "التاريخ الهجري اليوم: تاريخ اليوم بالهجري والميلادي",
+  "no_suffix": true,
+  "description": "اعرف تاريخ اليوم بالتقويمين الهجري (أم القرى) والميلادي بدقة مع اسم اليوم باللغة العربية والمناسبات الإسلامية القادمة.",
+  "app_name": "التاريخ الهجري اليوم",
+  "crumb": "التاريخ الهجري اليوم",
+  "scripts": ["datecore.js", "ar-today.js"],
+  "og": "og-arconv.png",
+  "priority": "0.9",
+  "changefreq": "daily",
+  "faq": [
+    ["ما هو التاريخ الهجري اليوم في تقويم أم القرى؟", "يعرض هذا الموقع التاريخ الهجري اليوم وفق تقويم أم القرى الرسمي المعتمد في المملكة العربية السعودية مع ما يقابله في التقويم الميلادي واسم يوم الأسبوع بدقة."],
+    ["متى يبدأ اليوم في التاريخ الهجري؟", "يبدأ اليوم في التقويم الهجري عند غروب الشمس (وليس عند منتصف الليل كما في التقويم الميلادي)، لذلك يسبق التاريخ الهجري اليوم الميلادي بساعات المساء الأولى."],
+    ["ما هي المناسبات الإسلامية القادمة وكم يوما بقي عليها؟", "يحسب الموقع الأيام المتبقية بدقة على المناسبات الدينية القادمة مثل شهر رمضان المبارك، عيد الفطر، يوم عرفة وموسم الحج، عيد الأضحى، ورأس السنة الهجرية الجديدة وفق حسابات تقويم أم القرى."],
+    ["كيف يتم التحويل بين التاريخ الهجري والميلادي؟", "يعتمد الحساب على الخوارزمية الفلكية لتقويم أم القرى المعتمد رسميا، ويمكنك الانتقال إلى محوّل التاريخ للتحويل بين أي تاريخين هجري وميلادي بدقة تامة."],
+    ["هل تختلف بداية الشهر الهجري بين الرؤية الشرعية والحساب الفلكي؟", "تقويم أم القرى يعتمد على الحساب الفلكي الدقيق لولادة الهلال وإمكانية الرؤية، وفي بعض الأشهر مثل رمضان وذي الحجة قد تعلن المحكمة العليا في المملكة العربية السعودية موعدا بناء على الرؤية البصرية يختلف بيوم واحد."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ar/">الرئيسية</a> / التاريخ الهجري اليوم</p>
+    <h1>التاريخ الهجري اليوم</h1>
+    <p class="lede">اعرف تاريخ اليوم بالتقويمين الهجري والميلادي مع المناسبات الإسلامية بدقة.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="التاريخ الهجري والميلادي اليوم">
+  <div class="wrap tool-grid">
+    <div class="panel">
+      <h2 class="landing-form-heading">معلومات تاريخ اليوم</h2>
+      <p class="landing-form-subtitle">تحديث لحظي لليوم والوقت وتفاصيل الشهر الهجري الحالي.</p>
+
+      <div style="margin-block-start: 20px;">
+        <p class="label" id="dig-label">نوع الأرقام</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dig-label">
+          <input type="radio" name="dig" id="dig-latn" value="latn" checked><label for="dig-latn">123</label>
+          <input type="radio" name="dig" id="dig-arab" value="arab"><label for="dig-arab">١٢٣</label>
+        </div>
+      </div>
+
+      <div class="today-progress-wrap">
+        <p class="label" id="today-progress-text">تقدم الشهر الهجري الحالى</p>
+        <div class="today-progress-bar" aria-hidden="true">
+          <div class="today-progress-fill" id="today-progress-fill" style="width: 30%;"></div>
+        </div>
+      </div>
+
+      <dl class="stats" style="margin-block-start: 16px;">
+        <div>
+          <dt>طول الشهر الهجري الحالي</dt>
+          <dd id="detail-month-len">30 يوما</dd>
+        </div>
+        <div>
+          <dt>المتبقي حتى نهاية الشهر</dt>
+          <dd id="detail-month-remain">19 يوما</dd>
+        </div>
+        <div>
+          <dt>ترتيب الشهر في السنة</dt>
+          <dd id="detail-month-order">الشهر السادس</dd>
+        </div>
+        <div>
+          <dt>التقويم المعتمد</dt>
+          <dd>تقويم أم القرى الرسمي</dd>
+        </div>
+      </dl>
+
+      <div style="margin-block-start: 24px; display: flex; flex-direction: column; gap: 10px;">
+        <a class="btn btn-tertiary" href="/ar/calendar/">عرض التقويم الهجري الشهري</a>
+        <a class="btn btn-tertiary" href="/ar/hijri-converter/">تحويل تاريخ بين الهجري والميلادي</a>
+        <a class="btn btn-tertiary" href="/ar/">حساب العمر بالهجري والميلادي</a>
+      </div>
+    </div>
+
+    <div class="result" data-state="ready" aria-live="polite">
+      <div class="today-display-card">
+        <div>
+          <span class="today-weekday-pill">
+            <span id="today-weekday">اليوم</span>
+            <span class="today-clock" id="today-clock" aria-label="الوقت الحالي"></span>
+          </span>
+        </div>
+
+        <div class="today-hijri-hero">
+          <span class="hijri-num" id="today-h-day">--</span>
+          <span class="hijri-month" id="today-h-month-year">جاري التحميل…</span>
+        </div>
+
+        <p class="today-greg-hero" id="today-greg-line">الموافق بالميلادي: --</p>
+
+        <div class="share-row" style="justify-content: center;">
+          <button class="btn btn-primary" type="button" id="copy-today">نسخ التاريخ</button>
+          <a class="btn btn-tertiary" id="whatsapp-share" href="https://wa.me/" target="_blank" rel="noopener">مشاركة عبر واتساب</a>
+          <span class="copied" id="copied-note" aria-live="polite"></span>
+        </div>
+
+        <div class="today-details-strip">
+          <div class="today-detail-item">
+            <dt>اليوم في الأسبوع</dt>
+            <dd id="detail-day-name">الجمعة</dd>
+          </div>
+          <div class="today-detail-item">
+            <dt>نوع التقويم</dt>
+            <dd>أم القرى (المملكة العربية السعودية)</dd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" aria-labelledby="occasions-heading">
+  <div class="wrap">
+    <div class="prose">
+      <h2 id="occasions-heading">المناسبات الإسلامية القادمة لعام {{AR_HYEAR}} هـ</h2>
+      <p>عد تنازلي وتواريخ دقيقة بالتقويمين الهجري والميلادي لأهم المناسبات والأعياد الدينية القادمة وفق تقويم أم القرى.</p>
+    </div>
+
+    <div class="occasions-grid" id="occasions-list" aria-live="polite">
+      <!-- Generated by ar-today.js -->
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>عن التاريخ الهجري اليوم وتقويم أم القرى</h2>
+    <p>التقويم الهجري هو التقويم القمري المعتمد في الشريعة الإسلامية وفي المملكة العربية السعودية، ويبدأ تأريخه من هجرة النبي محمد صلى الله عليه وسلم من مكة المكرمة إلى المدينة المنورة في عام 622 ميلادي. يعتمد الشهر الهجري على دورة اقتران القمر بالأرض، ويكون إما 29 يوما أو 30 يوما.</p>
+
+    <h2>بداية اليوم في التقويم الهجري</h2>
+    <p>من الفروق الجوهرية بين التقويمين الهجري والميلادي أن اليوم الهجري يبدأ شرعيا وفلكيا عند غروب الشمس (وليس عند منتصف الليل). فمع أذان المغرب يبدأ ليل اليوم الجديد، وتتبعه ساعات النهار حتى غروب الشمس التالي.</p>
+
+    <h2>ترتيب الأشهر الهجرية</h2>
+    <p>يتكون العام الهجري من اثني عشر شهرا قمريا تبدأ بشهر محرم وتنتهي بشهر ذي الحجة: محرم، صفر، ربيع الأول، ربيع الآخر، جمادى الأولى، جمادى الآخرة، رجب، شعبان، رمضان، شوال، ذو القعدة، ذو الحجة. ومن بينها أربعة أشهر حرم هي: ذو القعدة، ذو الحجة، محرم، ورجب.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">آخر تحديث: <time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>

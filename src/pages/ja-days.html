@@ -1,0 +1,174 @@
+<!--meta
+{
+  "path": "/ja/days/",
+  "lang": "ja",
+  "nav": "ja",
+  "id": "jadays",
+  "kind": "tool",
+  "title": "日数計算: 2つの日付間の日数と何日後・何日前の計算",
+  "description": "2つの日付の間の日数、週数、営業日を正確に計算。指定した日数の何日後や何日前の日付も瞬時に計算できます。登録不要・無料。",
+  "app_name": "日数計算・日付計算",
+  "breadcrumb": [["ホーム", "/"], ["年齢早見表", "/ja/"], ["日数計算", "/ja/days/"]],
+  "scripts": ["datecore.js", "ja-days.js"],
+  "og": "og-ja.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["2つの日付の間の日数は初日を含めますか？（片落とし・両端入れ）", "民法第140条の「初日不算入の原則」に基づき、初期設定では初日を含めず（片落とし）、終了日までの経過日数を計算します。当日の初日を含めて数える「両端入れ」が必要な場合は、「初日を算入する（両端入れ / +1日）」にチェックを入れることで瞬時に切り替えられます。"],
+    ["「何日後」や「何日前」の計算はどのように行われますか？", "基準日に対して指定した日数を正確に加減算します。例えば「100日後」を計算する場合、月ごとの日数（30日・31日・28日・閏年の29日）を正確に考慮して目標の日付と曜日を瞬時に割り出します。"],
+    ["営業日（平日）の計算では土日や祝日はどう扱われますか？", "営業日計算では、月曜日から金曜日までの平日を1日としてカウントし、土曜日と日曜日は除外されます。国民の祝日は年度や振替休日によって異なるため自動控除はしていませんが、土日を除いた正確な就業日数を把握できます。"],
+    ["閏年（うるう年）の2月29日は日数に含まれますか？", "はい。指定された2つの日付の間に2月29日が含まれる場合、グレゴリオ暦の正確な暦法に則り1日として加算されます。"],
+    ["入力した日付や計算データは外部に保存されますか？", "いいえ。すべての計算はお使いのブラウザ内（JavaScript）で完結しており、入力した日付がサーバーに送信されたり記録されたりすることは一切ありません。完全無料で安心してご利用いただけます。"]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ja/">年齢早見表</a> / 日数計算</p>
+    <h1>日数計算</h1>
+    <p class="lede">2つの日付の間の日数や、何日後・何日前の日付を計算します。</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="日数計算ツール">
+  <div class="wrap tool-grid">
+    <div class="panel">
+      <div class="switch" role="radiogroup" aria-label="計算モード">
+        <input type="radio" name="calc-mode" id="mode-diff" value="diff" checked>
+        <label for="mode-diff">2つの日付間の日数</label>
+        <input type="radio" name="calc-mode" id="mode-add" value="add">
+        <label for="mode-add">指定日数の計算（何日後・何日前）</label>
+      </div>
+
+      <!-- Mode 1: 2つの日付間の日数 -->
+      <form id="form-diff" novalidate onsubmit="return false">
+        <fieldset class="datefield" id="diff-start">
+          <legend>開始日</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="2026" data-part="y" autocomplete="off" aria-label="開始年"></label>
+            <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="m" autocomplete="off" aria-label="開始月"></label>
+            <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="d" autocomplete="off" aria-label="開始日"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">初期値は今日です。<button type="button" class="btn-link" id="btn-diff-start-today">今日に戻す</button></p>
+        </fieldset>
+
+        <fieldset class="datefield" id="diff-end">
+          <legend>終了日</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="2026" data-part="y" autocomplete="off" aria-label="終了年"></label>
+            <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="m" autocomplete="off" aria-label="終了月"></label>
+            <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" placeholder="31" data-part="d" autocomplete="off" aria-label="終了日"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <div class="preset-group" aria-label="クイック日付プリセット">
+            <button type="button" class="preset-chip" id="preset-diff-30">+30日</button>
+            <button type="button" class="preset-chip" id="preset-diff-60">+60日</button>
+            <button type="button" class="preset-chip" id="preset-diff-90">+90日</button>
+            <button type="button" class="preset-chip" id="preset-diff-100">+100日</button>
+            <button type="button" class="preset-chip" id="preset-diff-month">月末</button>
+            <button type="button" class="preset-chip" id="preset-diff-year">年末</button>
+          </div>
+        </fieldset>
+
+        <label class="check">
+          <input type="checkbox" id="diff-include-end">
+          <span>初日を算入する（両端入れ / +1日）</span>
+        </label>
+      </form>
+
+      <!-- Mode 2: 指定日数の計算（何日後・何日前） -->
+      <form id="form-add" hidden novalidate onsubmit="return false">
+        <fieldset class="datefield" id="add-start">
+          <legend>基準日</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="2026" data-part="y" autocomplete="off" aria-label="基準年"></label>
+            <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="m" autocomplete="off" aria-label="基準月"></label>
+            <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="d" autocomplete="off" aria-label="基準日"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">初期値は今日です。<button type="button" class="btn-link" id="btn-add-start-today">今日に戻す</button></p>
+        </fieldset>
+
+        <div style="margin-block: var(--s-3);">
+          <div class="switch" role="radiogroup" aria-label="計算方向">
+            <input type="radio" name="add-dir" id="dir-after" value="after" checked>
+            <label for="dir-after">何日後（未来）</label>
+            <input type="radio" name="add-dir" id="dir-before" value="before">
+            <label for="dir-before">何日前（過去）</label>
+          </div>
+        </div>
+
+        <div class="inline-fields" style="align-items: flex-end;">
+          <label style="flex: 1 1 140px;">
+            <span>指定日数</span>
+            <input type="text" inputmode="numeric" id="add-amount" value="30" maxlength="6" autocomplete="off" placeholder="30" aria-label="指定日数">
+          </label>
+          <label style="flex: 1 1 140px;">
+            <span>単位</span>
+            <select id="add-unit" aria-label="計算単位">
+              <option value="days" selected>日（暦日）</option>
+              <option value="biz">営業日（平日）</option>
+              <option value="weeks">週間</option>
+              <option value="months">ヶ月</option>
+              <option value="years">年</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="preset-group" aria-label="指定日数プリセット">
+          <button type="button" class="preset-chip" id="preset-add-30">+30日</button>
+          <button type="button" class="preset-chip" id="preset-add-60">+60日</button>
+          <button type="button" class="preset-chip" id="preset-add-90">+90日</button>
+          <button type="button" class="preset-chip" id="preset-add-100">+100日</button>
+          <button type="button" class="preset-chip" id="preset-add-month">月末</button>
+          <button type="button" class="preset-chip" id="preset-add-year">年末</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Result Display -->
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>ここに計算結果が表示されます</strong>日付や日数を入力すると、自動で計算されます。</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-main"></span><span class="unit" id="r-unit">日</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">この結果のリンクをコピー</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>日数計算の仕組みと数え方</h2>
+    <p>2つの日付の間の日数を計算する際は、暦日（全日数）、週数、月数、そして土日を除いた営業日（平日）を正しく把握することが重要です。当ツールでは、天文時法に基づくグレゴリオ暦の正確な日単位計算（UTC基準）を採用し、タイムゾーンや夏時間による日付のずれを防いでいます。</p>
+
+    <h2>片落とし（初日不算入）と両端入れ</h2>
+    <p>日本の民法第140条では「期間の初日は算入しない」という「初日不算入の原則」が定められています。例えば、5月1日から5月10日までの期間を計算する場合、初日不算入（片落とし）では「9日間」となります。一方で、宿泊施設の滞在日数やレンタルの利用日数、法的な告知期間など、初日と最終日の両方を含めて数える慣習（両端入れ）もあります。当計算機ではチェックボックスひとつで片落とし（標準）と両端入れ（+1日）を即座に切り替えられます。</p>
+
+    <h2>営業日（平日）の計算</h2>
+    <p>ビジネスにおける納期や契約の猶予期間では、土曜日や日曜日を除外した営業日数が重要になります。本ツールでは、指定期間内の月曜日から金曜日までを営業日として自動集計し、週末（土日）の日数と明確に分けて表示します。</p>
+
+    <h2>指定日数（何日後・何日前）の計算</h2>
+    <p>「今日から100日後は何日？」「納品予定日の30日前はいつ？」といった計算にも対応しています。各月の日数（28日、29日、30日、31日）や閏年を自動的に計算し、正確な日付と曜日、和暦表記を割り出します。</p>
+
+    <h2>関連する計算ツール</h2>
+    <ul>
+      <li><a href="/ja/">年齢早見表</a>: 生まれ年から今年の満年齢・和暦・干支を一覧表示。</li>
+      <li><a href="/ja/era/">西暦和暦変換・早見表</a>: 令和・平成・昭和・大正の年号相互変換と数え年、厄年早見表。</li>
+      <li><a href="/ja/gakunen/">学年早見表</a>: 生年月日から今の学年と小・中・高・大の入学・卒業年を計算。</li>
+      <li><a href="/days-between-dates/">Days between dates</a>: 英語版の日数計算ツール。</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">最終更新 <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

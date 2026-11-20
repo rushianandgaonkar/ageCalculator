@@ -1,0 +1,137 @@
+<!--meta
+{
+  "path": "/tr/hicri-takvim/",
+  "lang": "tr",
+  "nav": "trhijri",
+  "id": "trhijri",
+  "kind": "tool",
+  "hreflang": "hijri",
+  "title": "Hicri Takvim ve Tarih Dönüştürücü: Hicri Miladi Çevirme",
+  "description": "Bugünün hicri tarihini öğrenin ve miladi tarihleri hicriye dönüştürün. Diyanet ve Ümmü’l Kura uyumlu hicri takvim.",
+  "app_name": "Hicri takvim ve dönüştürücü",
+  "crumb": "Hicri takvim",
+  "scripts": ["datecore.js", "tr-hijri.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["Bugün hicri takvime göre hangi gündeyiz?", "Sayfanın en üstünde yer alan canlı takvim paneli, bugünün hem hicri tarihini hem de miladi tarihini güncel olarak gösterir."],
+    ["Hicri tarih miladi tarihe nasıl çevrilir?", "Dönüştürme yönünü “Hicriden Miladiye” olarak seçin. Gün, ay ve hicri yılı girdiğinizde karşılık gelen miladi tarih ve haftanın günü anında hesaplanır."],
+    ["Miladi tarih hicri tarihe nasıl dönüştürülür?", "Dönüştürme yönünü “Miladiden Hicriye” olarak ayarlayın ve miladi doğum tarihinizi veya geçmiş bir günü girin. Sistem Ümmü’l Kura verilerine göre tam hicri karşılığı sunar."],
+    ["Hicri takvim ile miladi takvim arasındaki fark nedir?", "Hicri takvim ayın evrelerine göre hesaplanan 354 veya 355 günlük kameri bir takvimdir. Güneş yılına dayanan miladi takvimden her yıl yaklaşık 10 veya 11 gün daha kısadır."],
+    ["Hicri takvimde aylar neden 29 veya 30 gün sürer?", "Ayın hilal evresinden bir sonraki evresine geçiş süresi yaklaşık 29 buçuk gün sürdüğü için kameri aylar dönüşümlü olarak 29 veya 30 gün olarak belirlenir."],
+    ["Diyanet ve Ümmü’l Kura hesaplamaları uyumlu mudur?", "Evet. Türkiye Diyanet İşleri Başkanlığı takvimi ile Ümmü’l Kura astronomik hesaplama kuralları hicri ayların başlangıç kriterlerinde büyük oranda aynı prensiplere dayanır."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Hicri takvim ve tarih dönüştürücü</h1>
+    <p class="lede">Bugünün hicri tarihini öğrenin ve miladi ile hicri tarihleri dönüştürün.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Hicri takvim ve tarih dönüştürme aracı">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div class="today-strip" id="today-tr" aria-live="polite"></div>
+
+      <div>
+        <p class="label" id="dir-label">Dönüştürme yönü</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dir-label">
+          <input type="radio" name="dir" id="dir-h2g" value="h2g" checked>
+          <label for="dir-h2g">Hicriden Miladiye</label>
+          <input type="radio" name="dir" id="dir-g2h" value="g2h">
+          <label for="dir-g2h">Miladiden Hicriye</label>
+        </div>
+        <p class="field-error" id="hijri-unsupported" hidden>Tarayıcınız hicri takvim verilerini desteklemiyor. Güncel bir tarayıcı kullanarak tekrar deneyin.</p>
+        <p class="status-note cal-note" id="hijri-fallback" hidden>Tarayıcınız Ümmü’l Kura takvimini doğrudan desteklemediğinden yedek takvim verisi kullanılmaktadır.</p>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend id="date-legend">Hicri tarih</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Gün</span><input type="text" inputmode="numeric" maxlength="2" placeholder="GG" data-part="d" autocomplete="off" aria-label="Gün"></label>
+          <label class="p-m is-select"><span>Ay</span><select data-part="m" aria-label="Ay"></select></label>
+          <label class="p-y"><span>Yıl</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="Yıl"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint"><button type="button" class="btn-link" id="use-today">Bugünün tarihini kullan</button></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Dönüştürülen tarih burada görünecektir</strong>Tarih bilgilerini girdiğinizde sonuç anında hesaplanır.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big conv-big" id="r-main"></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row">
+          <button class="btn btn-primary" type="button" id="copy-date">Tarihi kopyala</button>
+          <button class="btn btn-tertiary" type="button" id="copy">Sonuç bağlantısını kopyala</button>
+          <a class="btn btn-tertiary" id="to-age" href="/tr/">Bu tarihten yaş hesapla</a>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="year-months">
+  <div class="wrap">
+    <div class="prose">
+      <h2>Hicri Yılın Ayları ve Gün Sayıları (<span id="tbl-year"></span> Hicri)</h2>
+      <p id="year-summary">Her hicri ayın toplam gün uzunluğu ile miladi takvimdeki başlangıç ve bitiş tarihleri.</p>
+    </div>
+    <div class="table-tools">
+      <div class="year-nav">
+        <button class="btn btn-tertiary" type="button" id="prev-year">Önceki yıl</button>
+        <label class="find-field">Hicri yıl
+          <input type="text" inputmode="numeric" maxlength="4" id="table-year" placeholder="1448" autocomplete="off">
+        </label>
+        <button class="btn btn-tertiary" type="button" id="next-year">Sonraki yıl</button>
+      </div>
+    </div>
+    <div class="table-wrap auto">
+      <table class="data">
+        <caption class="visually-hidden">Hicri ayların gün uzunlukları ve miladi karşılıkları</caption>
+        <thead>
+          <tr>
+            <th scope="col">Hicri ay</th>
+            <th scope="col">Gün sayısı</th>
+            <th scope="col">Başlangıç tarihi (Miladi)</th>
+            <th scope="col">Bitiş tarihi (Miladi)</th>
+          </tr>
+        </thead>
+        <tbody id="months-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-table"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Hicri takvim nasıl çalışır?</h2>
+    <p>Hicri takvim, Peygamberimiz Hz. Muhammed’in Mekke’den Medine’ye hicret ettiği miladi 622 yılını başlangıç kabul eden kameri bir takvimdir. Bir hicri yıl 12 aydan oluşur ve toplam 354 veya 355 gün sürer.</p>
+    <p>Aylar gökyüzündeki hilalin görünümüne göre 29 veya 30 gün çeker. Bu nedenle Ramazan, Kurban Bayramı ve kandil geceleri her yıl miladi takvime göre 10 veya 11 gün daha erken kutlanır.</p>
+
+    <h2>12 Hicri ayın sırası</h2>
+    <p>İslam takvimindeki 12 ay sırasıyla Muharrem, Sefer, Rebiülevvel, Rebiülahir, Cemaziyelevvel, Cemaziyelahir, Recep, Şaban, Ramazan, Şevval, Zilkade ve Zilhicce aylarıdır. Muharrem, Recep, Zilkade ve Zilhicce ayları haram aylar olarak bilinir.</p>
+
+    <h2>İlgili hesaplayıcılar</h2>
+    <ul>
+      <li><a href="/tr/">Yaş hesaplama</a>: doğum tarihinize göre yaşınızı ve bir sonraki doğum gününüzü hesaplayın.</li>
+      <li><a href="/tr/tarih-hesaplama/">Tarih ve gün hesaplama</a>: iki tarih arasındaki gün sayısını hesaplayın veya tarihe gün ekleyin.</li>
+      <li><a href="/ar/hijri-converter/">تحويل التاريخ</a>: Arapça hicri miladi takvim çevirici.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Son güncelleme <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

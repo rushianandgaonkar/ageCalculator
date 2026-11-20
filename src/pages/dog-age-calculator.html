@@ -1,0 +1,306 @@
+<!--meta
+{
+  "path": "/dog-age-calculator/",
+  "lang": "en",
+  "nav": "dogage",
+  "kind": "tool",
+  "hreflang": "dogage",
+  "x_default": true,
+  "title": "Dog Age Calculator: Dog Years to Human Years by Breed Size",
+  "description": "Calculate your dog’s age in human years by weight and breed size using modern veterinary guidelines. Free, instant and private.",
+  "app_name": "Dog age calculator",
+  "crumb": "Dog age calculator",
+  "scripts": ["datecore.js", "pet-age.js"],
+  "og": "og-home.png",
+  "priority": "0.8",
+  "changefreq": "monthly",
+  "faq": [
+    ["Why is the 7-to-1 dog years rule inaccurate?", "The traditional rule assumes dogs age uniformly at seven times the human rate throughout their lives. In reality, canine maturation is non-linear. Dogs mature quickly in their first two years, reaching the human biological equivalent of 24 years. Afterward, aging rates diverge dramatically depending on weight and breed size."],
+    ["How does a dog’s weight and size affect aging speed?", "Small dogs under 20 lbs age slowly during adulthood, adding about 4 human years per calendar year. Giant breeds exceeding 90 lbs age twice as fast, adding 8 human years per calendar year. Higher concentrations of growth hormones in large breeds accelerate cellular division, leading to faster biological aging."],
+    ["At what age does a dog officially become a senior?", "Senior status depends entirely on size tier. Giant breeds become seniors at 5 to 6 years of age. Large dogs reach senior status at 7 years, medium dogs at 9 years, and small toy breeds do not become seniors until 11 years."],
+    ["Why do giant dog breeds have shorter lifespans than small dogs?", "Giant puppies experience explosive growth, often multiplying their birth weight by 100 times in single year. This intense cellular activity generates higher levels of free radicals, accelerated telomere degradation, and higher incidence of osteosarcoma and dilated cardiomyopathy."],
+    ["What health checkups do veterinarians recommend for senior dogs?", "Veterinarians recommend biannual examinations (every 6 months) for senior dogs. Visits include full blood chemistry panels, urinalysis, blood pressure measurement, orthopedic mobility checks for osteoarthritis, and dental examinations."],
+    ["How is puppy age calculated during the first 12 months?", "During the first year, puppies undergo rapid physical and social development. A puppy reaches the equivalent of roughly 15 human years at 12 months, progressing at about 1.25 human years per calendar month."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Dog age calculator</h1>
+    <p class="lede">Calculate your dog’s age in human years based on size and weight.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Dog age calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div class="field-row">
+        <label class="select-field">
+          <span>Dog size and weight category</span>
+          <select id="dog-size" aria-label="Dog size and weight category">
+            <option value="small">Small: under 20 lbs (9 kg)</option>
+            <option value="medium" selected>Medium: 21 to 50 lbs (9.5 to 23 kg)</option>
+            <option value="large">Large: 51 to 90 lbs (23.5 to 41 kg)</option>
+            <option value="giant">Giant: over 90 lbs (41 kg)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="switch" role="radiogroup" aria-label="Input method">
+        <input type="radio" name="input-mode" id="mode-dob" value="dob" checked>
+        <label for="mode-dob">Date of birth</label>
+        <input type="radio" name="input-mode" id="mode-manual" value="manual">
+        <label for="mode-manual">Age in years &amp; months</label>
+      </div>
+
+      <div id="dob-wrap">
+        <fieldset class="datefield" id="dob">
+          <legend>Dog date of birth</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="bday-day" aria-label="Birth day"></label>
+            <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="bday-month" aria-label="Birth month"></label>
+            <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="bday-year" aria-label="Birth year"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Enter your dog’s birthday to calculate exact years and months.</p>
+        </fieldset>
+      </div>
+
+      <div id="manual-wrap" hidden>
+        <fieldset class="datefield">
+          <legend>Enter your dog’s age</legend>
+          <div class="inline-fields">
+            <label>
+              <span>Years</span>
+              <input type="text" inputmode="numeric" id="manual-years" maxlength="2" placeholder="0" autocomplete="off" aria-label="Age in years">
+            </label>
+            <label>
+              <span>Months</span>
+              <input type="text" inputmode="numeric" id="manual-months" maxlength="2" placeholder="0" autocomplete="off" aria-label="Age in months">
+            </label>
+          </div>
+          <p class="hint">Quick age examples:</p>
+          <div class="preset-group" aria-label="Dog age shortcuts">
+            <button type="button" class="preset-chip" data-preset-years="0" data-preset-months="6">6 months</button>
+            <button type="button" class="preset-chip" data-preset-years="1" data-preset-months="0">1 year</button>
+            <button type="button" class="preset-chip" data-preset-years="2" data-preset-months="0">2 years</button>
+            <button type="button" class="preset-chip" data-preset-years="5" data-preset-months="0">5 years</button>
+            <button type="button" class="preset-chip" data-preset-years="7" data-preset-months="0">7 years</button>
+            <button type="button" class="preset-chip" data-preset-years="10" data-preset-months="0">10 years</button>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty">
+        <strong>Your dog’s human age will appear here</strong>
+        Select your dog’s size category and enter their birth date or current age.
+      </p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption">Equivalent Human Age</p>
+        <p class="age-big"><span id="r-human-age"></span> <span class="unit" id="r-human-unit">human years</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row">
+          <button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Science-based canine age conversion by size</h2>
+    <p>Modern veterinary research from the American Veterinary Medical Association (AVMA) demonstrates that canine aging varies significantly by body mass. While all dogs mature quickly during their first two years, larger dogs experience faster cellular degradation and age more rapidly during adulthood than smaller breeds.</p>
+
+    <div class="table-wrap auto">
+      <table class="data wrap-cells">
+        <thead>
+          <tr>
+            <th scope="col">Dog Age</th>
+            <th scope="col">Small (under 20 lbs)</th>
+            <th scope="col">Medium (21 to 50 lbs)</th>
+            <th scope="col">Large (51 to 90 lbs)</th>
+            <th scope="col">Giant (over 90 lbs)</th>
+            <th scope="col">Old 7x Rule (Inaccurate)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 year</td>
+            <td>15 human years</td>
+            <td>15 human years</td>
+            <td>15 human years</td>
+            <td>12 human years</td>
+            <td>7 human years</td>
+          </tr>
+          <tr>
+            <td>2 years</td>
+            <td>24 human years</td>
+            <td>24 human years</td>
+            <td>24 human years</td>
+            <td>22 human years</td>
+            <td>14 human years</td>
+          </tr>
+          <tr>
+            <td>3 years</td>
+            <td>28 human years</td>
+            <td>29 human years</td>
+            <td>30 human years</td>
+            <td>30 human years</td>
+            <td>21 human years</td>
+          </tr>
+          <tr>
+            <td>4 years</td>
+            <td>32 human years</td>
+            <td>34 human years</td>
+            <td>36 human years</td>
+            <td>38 human years</td>
+            <td>28 human years</td>
+          </tr>
+          <tr>
+            <td>5 years</td>
+            <td>36 human years</td>
+            <td>39 human years</td>
+            <td>42 human years</td>
+            <td>46 human years</td>
+            <td>35 human years</td>
+          </tr>
+          <tr>
+            <td>6 years</td>
+            <td>40 human years</td>
+            <td>44 human years</td>
+            <td>48 human years</td>
+            <td>54 human years</td>
+            <td>42 human years</td>
+          </tr>
+          <tr>
+            <td>7 years</td>
+            <td>44 human years</td>
+            <td>49 human years</td>
+            <td>54 human years</td>
+            <td>62 human years</td>
+            <td>49 human years</td>
+          </tr>
+          <tr>
+            <td>8 years</td>
+            <td>48 human years</td>
+            <td>54 human years</td>
+            <td>60 human years</td>
+            <td>70 human years</td>
+            <td>56 human years</td>
+          </tr>
+          <tr>
+            <td>9 years</td>
+            <td>52 human years</td>
+            <td>59 human years</td>
+            <td>66 human years</td>
+            <td>78 human years</td>
+            <td>63 human years</td>
+          </tr>
+          <tr>
+            <td>10 years</td>
+            <td>56 human years</td>
+            <td>64 human years</td>
+            <td>72 human years</td>
+            <td>86 human years</td>
+            <td>70 human years</td>
+          </tr>
+          <tr>
+            <td>11 years</td>
+            <td>60 human years</td>
+            <td>69 human years</td>
+            <td>78 human years</td>
+            <td>Rare longevity</td>
+            <td>77 human years</td>
+          </tr>
+          <tr>
+            <td>12 years</td>
+            <td>64 human years</td>
+            <td>74 human years</td>
+            <td>84 human years</td>
+            <td>Rare longevity</td>
+            <td>84 human years</td>
+          </tr>
+          <tr>
+            <td>13 years</td>
+            <td>68 human years</td>
+            <td>79 human years</td>
+            <td>90 human years</td>
+            <td>Rare longevity</td>
+            <td>91 human years</td>
+          </tr>
+          <tr>
+            <td>14 years</td>
+            <td>72 human years</td>
+            <td>84 human years</td>
+            <td>96 human years</td>
+            <td>Rare longevity</td>
+            <td>98 human years</td>
+          </tr>
+          <tr>
+            <td>15 years</td>
+            <td>76 human years</td>
+            <td>89 human years</td>
+            <td>102 human years</td>
+            <td>Rare longevity</td>
+            <td>105 human years</td>
+          </tr>
+          <tr>
+            <td>16 years</td>
+            <td>80 human years</td>
+            <td>94 human years</td>
+            <td>108 human years</td>
+            <td>Rare longevity</td>
+            <td>112 human years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Why the traditional 7-to-1 formula is wrong</h2>
+    <p>The traditional heuristic that one dog year equals seven human years was invented in the mid-twentieth century as a marketing rule of thumb. It assumed an average human life expectancy of 70 years and an average canine lifespan of 10 years.</p>
+    <p>Biologically, this simplistic formula fails at both ends of a dog’s life:</p>
+    <ul>
+      <li><strong>Early life underestimate</strong>: a one-year-old dog has already reached reproductive maturity and adult bone structure, which corresponds to a 15-year-old human adolescent, not a seven-year-old child.</li>
+      <li><strong>Late life distortion</strong>: in older dogs, a small Chihuahua at age 14 is biologically around 72 human years old, while the 7-to-1 formula suggests 98 human years. Conversely, a 9-year-old Great Dane is in advanced geriatric decline (roughly 78 human years), while the 7-to-1 rule reports only 63.</li>
+    </ul>
+
+    <h2>Why larger dogs age faster than small dogs</h2>
+    <p>In most mammalian species, larger animals live longer than smaller ones; an elephant lives longer than a mouse. Domestic dogs are a remarkable evolutionary exception where larger individuals experience shorter lives.</p>
+    <p>Veterinary researchers have identified three primary mechanisms driving this phenomenon:</p>
+    <ul>
+      <li><strong>Explosive puppy growth rate</strong>: a Mastiff or Great Dane puppy increases its birth weight by up to 100 times in its first year, compared to a toy poodle that grows roughly 20 times. This intense cellular growth increases free radical production and metabolic stress.</li>
+      <li><strong>Accelerated cellular turnover</strong>: high rates of cell division accelerate the shortening of telomeres (protective caps on chromosomes), leading to earlier cellular senescence and tissue breakdown.</li>
+      <li><strong>Higher concentrations of IGF-1</strong>: larger breeds maintain higher serum levels of insulin-like growth factor 1 (IGF-1), which accelerates growth early in life but is associated with increased rates of age-related disease, including osteosarcoma and cardiac failure.</li>
+    </ul>
+
+    <h2>Four canine life stages and preventive health</h2>
+    <p>The American Animal Hospital Association outlines four core life stages for canine healthcare:</p>
+    <ul>
+      <li><strong>Puppy</strong>: birth until reproductive and skeletal maturity (typically 12 months in small breeds, up to 18 months in giant breeds). Focuses on core vaccinations, deworming, socialization, and proper growth nutrition.</li>
+      <li><strong>Young Adult</strong>: reproductive maturity through physical peak (typically 1 to 3 or 4 years). Healthcare concentrates on annual boosters, parasite prevention, and dental care.</li>
+      <li><strong>Mature Adult</strong>: physical peak to the onset of senior years. Veterinarians recommend baseline blood chemistry panels, body condition tracking, and proactive joint care.</li>
+      <li><strong>Senior</strong>: the final 25% of the expected lifespan for that breed size. Requires biannual checkups, early detection of arthritis, organ function screening, and environmental accommodations.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <ul>
+      <li><a href="/cat-age-calculator/">Cat age calculator</a>: calculate your cat’s age in human years using veterinary life stages.</li>
+      <li><a href="/">Age calculator</a>: find exact human age in years, months, and days.</li>
+      <li><a href="/age-difference/">Age difference calculator</a>: calculate the exact gap between two birthdays.</li>
+      <li><a href="/days-between-dates/">Days between dates</a>: measure exact time spans between calendar dates.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

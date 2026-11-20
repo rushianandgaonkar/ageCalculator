@@ -1,0 +1,219 @@
+<!--meta
+{
+  "path": "/birth-year-calculator/",
+  "lang": "en",
+  "nav": "birthyear",
+  "kind": "tool",
+  "hreflang": "birthyear",
+  "x_default": true,
+  "title": "Birth Year Calculator: What Year Was I Born and Days Alive",
+  "description": "Find out what year you were born based on your current age, or calculate exactly how many days and hours you have been alive. Free and private.",
+  "app_name": "Birth year calculator",
+  "crumb": "Birth year calculator",
+  "scripts": ["datecore.js", "birth-year.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["How do you find what year you were born from your age?", "Subtract your current age from the current calendar year. If your birthday has already taken place this year, that number is your exact birth year. If your birthday has not yet occurred this year, subtract one additional year."],
+    ["Why are there two possible birth years for one age?", "Your calendar age increases only on your birthday. During any given year, before your birthday arrives, your age corresponds to the prior birth year. Once your birthday passes, it corresponds to the current year minus your age."],
+    ["How many days have I been alive if I know my date of birth?", "The days alive calculator counts every full day elapsed between your date of birth and today. It factors in every leap year day (29 February) accurately using standard calendar day mathematics."],
+    ["What are the major days alive milestones people celebrate?", "Commonly celebrated life milestones include 1,000 days (around 2.7 years old), 5,000 days (around 13.7 years old), 10,000 days (around 27.4 years old), 15,000 days (around 41.1 years old), and 20,000 days (around 54.8 years old)."],
+    ["What generation do I belong to based on my birth year?", "Demographers commonly group generations as follows: Generation Alpha (born 2013 to 2024), Generation Z (born 1997 to 2012), Millennials (born 1981 to 1996), Generation X (born 1965 to 1980), Baby Boomers (born 1946 to 1964), and the Silent Generation (born 1928 to 1945)."],
+    ["Is my birth date stored or transmitted anywhere?", "No. The calculation runs entirely on your device inside your web browser. No personal birth details or age inputs are transmitted to external servers."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <span>Birth year calculator</span>
+    </div>
+    <h1>Birth year calculator</h1>
+    <p class="lede">Find your birth year from your age, or calculate total days alive.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Birth year calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div class="switch" role="radiogroup" aria-label="Calculator mode">
+        <input type="radio" name="mode" id="mode-year" value="year" checked>
+        <label for="mode-year">What year was I born?</label>
+        <input type="radio" name="mode" id="mode-days" value="days">
+        <label for="mode-days">How many days alive?</label>
+      </div>
+
+      <!-- Mode 1: What year was I born? -->
+      <div id="panel-year" style="margin-block-start: 16px;">
+        <fieldset class="datefield" style="border:none; padding:0; margin:0;">
+          <legend style="margin-block-end: 8px; font-weight: 600;">Your current age</legend>
+          <div style="display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;">
+            <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-muted);">
+              <span>Age in completed years</span>
+              <input type="text" inputmode="numeric" id="input-age" maxlength="3" placeholder="e.g. 25" style="width: 140px; font-size: 18px; padding: 10px 14px;" autocomplete="off" aria-label="Age in completed years">
+            </label>
+          </div>
+          <p class="field-error" id="error-age" hidden></p>
+        </fieldset>
+
+        <fieldset class="datefield" style="border:none; padding:0; margin-block-start: 16px;">
+          <legend style="margin-block-end: 8px; font-weight: 600;">Birthday this year (optional)</legend>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <label class="check">
+              <input type="radio" name="bday-status" id="bday-unknown" value="unknown" checked>
+              <span>Not sure (show both potential birth years)</span>
+            </label>
+            <label class="check">
+              <input type="radio" name="bday-status" id="bday-passed" value="passed">
+              <span>Already celebrated my birthday this year</span>
+            </label>
+            <label class="check">
+              <input type="radio" name="bday-status" id="bday-upcoming" value="upcoming">
+              <span>Have not had my birthday yet this year</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div style="margin-block-start: 16px;">
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-muted);">
+            <span>Or select your birth month for exact year</span>
+            <select id="select-birth-month" style="max-width: 260px; padding: 10px 12px; font-size: 15px; border: 1px solid var(--hairline-strong); border-radius: var(--radius); background: var(--canvas); color: var(--ink);">
+              <option value="">Select month (optional)</option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="preset-group" aria-label="Quick age shortcuts" style="margin-block-start: 16px;">
+          <button type="button" class="preset-chip" data-age="18">18 years</button>
+          <button type="button" class="preset-chip" data-age="21">21 years</button>
+          <button type="button" class="preset-chip" data-age="25">25 years</button>
+          <button type="button" class="preset-chip" data-age="30">30 years</button>
+          <button type="button" class="preset-chip" data-age="40">40 years</button>
+          <button type="button" class="preset-chip" data-age="50">50 years</button>
+          <button type="button" class="preset-chip" data-age="65">65 years</button>
+        </div>
+      </div>
+
+      <!-- Mode 2: How many days have I been alive? -->
+      <div id="panel-days" hidden style="margin-block-start: 16px;">
+        <fieldset class="datefield" id="dob-field">
+          <legend>Your date of birth</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="bday-day" aria-label="Birth day"></label>
+            <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="bday-month" aria-label="Birth month"></label>
+            <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="bday-year" aria-label="Birth year"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Enter your birthday to see your exact days alive and milestones.</p>
+        </fieldset>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty" id="r-empty">
+        <strong>Calculation will appear here</strong>
+        Enter your age or birth date to discover your birth year and lifetime statistics.
+      </p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-main"></span> <span class="unit" id="r-main-unit"></span></p>
+        <p class="age-sub" id="r-sub"></p>
+
+        <div class="callout" id="r-callout" hidden></div>
+
+        <dl class="stats" id="r-stats"></dl>
+
+        <div id="r-milestones-block" hidden style="margin-block-start: 24px;">
+          <h2 style="font-size: 15px; font-weight: 600; margin-block-end: 12px;">Days alive milestones</h2>
+          <div class="table-wrap auto">
+            <table class="data" id="milestones-table">
+              <thead>
+                <tr>
+                  <th>Milestone</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="milestones-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="share-row">
+          <button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>How to find your birth year from your age</h2>
+    <p>Finding what year you were born when you only know your current age depends on whether you have celebrated your birthday in the current calendar year. Because human age advances on birthdays rather than on New Year’s Day, each completed age span covers parts of two distinct calendar years.</p>
+    <p>For example, if you are 28 years old during 2026:</p>
+    <ul>
+      <li>If your birthday already occurred earlier this year, you were born in <strong>1998</strong> (2026 minus 28).</li>
+      <li>If your birthday has not yet arrived this year, you were born in <strong>1997</strong> (2026 minus 28 minus 1).</li>
+    </ul>
+    <p>By picking your birth month above, the calculator determines with certainty which of the two years applies.</p>
+
+    <h2>Measuring lifetime in days alive</h2>
+    <p>Measuring your age in days provides a fascinating, granular perspective on time. While years and months vary in length due to leap years and irregular month sizes, days represent steady, unambiguous 24 hour spans.</p>
+    <p>Knowing your exact days alive helps track life milestones that standard annual birthdays miss. Celebrating your 10,000th day alive (which occurs when you are approximately 27 years and 4 months old) has become a popular modern celebration across social communities.</p>
+
+    <h2>Notable life milestones in days</h2>
+    <p>People celebrate several key numerical milestones throughout life:</p>
+    <ul>
+      <li><strong>1,000 days alive:</strong> Reached around age 2.7, marking early toddlerhood.</li>
+      <li><strong>5,000 days alive:</strong> Reached around age 13.7, marking the beginning of adolescence.</li>
+      <li><strong>10,000 days alive:</strong> Reached around age 27.4, celebrated as a quarter-century landmark.</li>
+      <li><strong>15,000 days alive:</strong> Reached around age 41.1, marking the start of your fifth decade.</li>
+      <li><strong>20,000 days alive:</strong> Reached around age 54.8, celebrating over half a century of life.</li>
+      <li><strong>25,000 days alive:</strong> Reached around age 68.4, marking seasoned retirement years.</li>
+    </ul>
+
+    <h2>Generational definitions by birth year</h2>
+    <p>Sociologists and researchers group generational cohorts by cultural, technological, and historical shifts:</p>
+    <ul>
+      <li><strong>Generation Beta:</strong> Born from 2025 onwards. The newest emerging generation.</li>
+      <li><strong>Generation Alpha:</strong> Born from 2013 through 2024. The first generation raised entirely alongside artificial intelligence and smart devices.</li>
+      <li><strong>Generation Z:</strong> Born from 1997 through 2012. Digital natives who experienced widespread mobile internet and social platforms from early youth.</li>
+      <li><strong>Millennials (Generation Y):</strong> Born from 1981 through 1996. Came of age during the transition from analog to digital communication.</li>
+      <li><strong>Generation X:</strong> Born from 1965 through 1980. Witnessed the rise of personal computing and early internet development.</li>
+      <li><strong>Baby Boomers:</strong> Born from 1946 through 1964. Post World War II demographic expansion characterized by major social and economic changes.</li>
+      <li><strong>Silent Generation:</strong> Born from 1928 through 1945. Shaped by the Great Depression and World War II recovery eras.</li>
+    </ul>
+
+    <h2>Related age and date calculators</h2>
+    <ul>
+      <li><a href="/">Age calculator</a>: find exact chronological age in years, months and days from any birth date.</li>
+      <li><a href="/experience-calculator/">Experience calculator</a>: calculate total work service and career breaks across jobs.</li>
+      <li><a href="/days-between-dates/">Days between dates</a>: measure the exact duration between any two calendar dates.</li>
+      <li><a href="/date-calculator/">Date calculator</a>: add or subtract days, weeks, months or years.</li>
+      <li><a href="/age-difference/">Age difference calculator</a>: compare the age gap between two people.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

@@ -1,0 +1,111 @@
+<!--meta
+{
+  "path": "/experience-calculator/",
+  "lang": "en",
+  "nav": "experience",
+  "kind": "tool",
+  "hreflang": "experience",
+  "x_default": true,
+  "title": "Experience Calculator: Total Work Experience in Years, Months and Days",
+  "description": "Calculate your exact work experience between joining and leaving dates. Add multiple jobs or employments to find your cumulative total service.",
+  "app_name": "Experience calculator",
+  "crumb": "Experience calculator",
+  "scripts": ["datecore.js", "experience.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["How do you calculate total work experience across multiple jobs?", "Enter your joining date and relieving date for your first job. Click the add another employment button to add subsequent positions. The calculator aggregates your total active service in completed years, months and days without borrowing discrepancies."],
+    ["Does the relieving date count as a working day?", "Yes. In standard employment verification and human resources practice, your last working day is considered an active day of service. The calculation counts both the joining day and the relieving day."],
+    ["Does notice period count toward work experience?", "Yes. During your official notice period, you remain on company payroll as an active employee. Total service is calculated through your official relieving date, not the day you submitted your resignation."],
+    ["How do overlapping employments affect total experience?", "If you worked overlapping roles, such as concurrent consulting gigs or transition handovers, the calculator highlights the overlapping window. For official background checks and provident fund records, overlapping calendar days count once toward cumulative service."],
+    ["How should I format work experience on my resume?", "Most recruiters and applicant tracking systems prefer experience stated in completed years and months, such as 4 years and 7 months, or as a single decimal like 4.6 years. This calculator outputs both formats along with total calendar days."],
+    ["How are career gaps between employments measured?", "When you enter multiple sequential employments, the calculator automatically measures the break period between each job. It displays both the duration of each individual career break and the cumulative time spent between employments."],
+    ["Is my employment data kept private?", "Yes. All date arithmetic runs locally inside your web browser. No dates, job titles or personal details are ever transmitted to any server."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <span>Experience calculator</span>
+    </div>
+    <h1>Experience calculator</h1>
+    <p class="lede">Calculate total work experience in years, months and days across employments.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Experience calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div id="jobs-container"></div>
+
+      <div class="form-actions" style="margin-block-start: 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <button type="button" class="btn btn-tertiary" id="btn-add-job">+ Add another employment</button>
+        <button type="button" class="btn-link" id="btn-reset">Clear all</button>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty">
+        <strong>Total work experience will appear here</strong>
+        Enter your joining date and relieving date to calculate completed years, months and days.
+      </p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption">Total cumulative experience</p>
+        <p class="age-big"><span id="r-years"></span> <span class="unit" id="r-years-unit">years</span></p>
+        <p class="age-sub" id="r-sub"></p>
+
+        <div class="callout" id="r-callout" hidden></div>
+
+        <dl class="stats" id="r-stats"></dl>
+
+        <div class="share-row">
+          <button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>How work experience is calculated</h2>
+    <p>Calculating professional experience accurately requires precise calendar arithmetic rather than rough month subtraction. Standard corporate human resources policy and government recruitment boards evaluate total service from your official date of joining up to your last working day, known as the relieving date.</p>
+    <p>Because calendar months vary from 28 to 31 days and leap years introduce additional days in February, counting exact calendar days prevents calculation discrepancies. In employment verification, both the start day and the end day are credited as active duty.</p>
+
+    <h2>Resume formatting for total experience</h2>
+    <p>Hiring managers and applicant tracking software typically expect total experience presented in one of two ways:</p>
+    <ul>
+      <li><strong>Completed years and months:</strong> For example, “5 years, 8 months”. This format is preferred on chronological resumes, LinkedIn profiles, and executive bios.</li>
+      <li><strong>Decimal years:</strong> For example, “5.7 years”. This format is required by major enterprise job portals, public service commission forms, and payroll software.</li>
+    </ul>
+    <p>This calculator provides both expressions automatically so you can copy the exact format needed for your application.</p>
+
+    <h2>Notice periods and employment gaps</h2>
+    <p>A common question among job seekers is whether the notice period counts toward total work experience. As long as you remain on company payroll during your contractual notice period, every day through your formal relieving date constitutes valid service. If you opt for an early buyout, only days actively served before your official separation date count.</p>
+    <p>When transitioning between employers, days elapsed between your previous relieving date and your subsequent joining date represent a career break. Our tool measures both individual gap intervals and cumulative break periods to help you document career timelines clearly.</p>
+
+    <h2>Multiple and overlapping employments</h2>
+    <p>Holding concurrent employments, consulting retainers, or freelance contracts alongside full time employment can create overlapping date ranges. While dual employment may be permitted under specific contracts, statutory provident fund authorities and background verification agencies count distinct calendar days rather than double counting overlapping intervals.</p>
+    <p>When you enter overlapping stints, the calculator flags the overlapping period and provides both individual position totals and net distinct calendar service.</p>
+
+    <h2>Related career and date calculators</h2>
+    <ul>
+      <li><a href="/date-calculator/">Date calculator</a>: add or subtract business days, weeks, months or years from any reference date.</li>
+      <li><a href="/days-between-dates/">Days between dates</a>: compute exact days and weeks between two calendar points.</li>
+      <li><a href="/business-days-calculator/">Business days calculator</a>: count working days excluding weekends.</li>
+      <li><a href="/birth-year-calculator/">Birth year calculator</a>: determine your exact birth year or calculate total days alive.</li>
+      <li><a href="/age-limit/">Exam age limit calculators</a>: verify eligibility dates for public service and defense exams.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

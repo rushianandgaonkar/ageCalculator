@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ja" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PW9WRK2J');</script>
+  <!-- End Google Tag Manager -->
+  <title>日数計算: 2つの日付間の日数と何日後・何日前の計算 | Ageason</title>
+  <meta name="description" content="2つの日付の間の日数、週数、営業日を正確に計算。指定した日数の何日後や何日前の日付も瞬時に計算できます。登録不要・無料。">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="google-site-verification" content="tuYlfj3YHw96MOt78BtkEj36livlQ0tqAvIgtF8rMT4">
+  <link rel="canonical" href="https://www.ageason.com/ja/days/">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ageason">
+  <meta property="og:title" content="日数計算: 2つの日付間の日数と何日後・何日前の計算">
+  <meta property="og:description" content="2つの日付の間の日数、週数、営業日を正確に計算。指定した日数の何日後や何日前の日付も瞬時に計算できます。登録不要・無料。">
+  <meta property="og:url" content="https://www.ageason.com/ja/days/">
+  <meta property="og:image" content="https://www.ageason.com/assets/img/og-ja.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")})();</script>
+  <style>/* Hallmark */ html,body{overflow-x:clip}:focus-visible{outline:2px solid var(--focus);outline-offset:2px}:active{transform:none}:disabled{opacity:0.45;cursor:not-allowed}</style>
+  <link rel="stylesheet" href="/assets/css/site.css?v=41111d9f16">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=f45bf48a4f">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "日数計算・日付計算",
+   "url": "https://www.ageason.com/ja/days/",
+   "description": "2つの日付の間の日数、週数、営業日を正確に計算。指定した日数の何日後や何日前の日付も瞬時に計算できます。登録不要・無料。",
+   "inLanguage": "ja",
+   "applicationCategory": "UtilitiesApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "isAccessibleForFree": true
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "2つの日付の間の日数は初日を含めますか？（片落とし・両端入れ）",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "民法第140条の「初日不算入の原則」に基づき、初期設定では初日を含めず（片落とし）、終了日までの経過日数を計算します。当日の初日を含めて数える「両端入れ」が必要な場合は、「初日を算入する（両端入れ / +1日）」にチェックを入れることで瞬時に切り替えられます。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "「何日後」や「何日前」の計算はどのように行われますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "基準日に対して指定した日数を正確に加減算します。例えば「100日後」を計算する場合、月ごとの日数（30日・31日・28日・閏年の29日）を正確に考慮して目標の日付と曜日を瞬時に割り出します。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "営業日（平日）の計算では土日や祝日はどう扱われますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "営業日計算では、月曜日から金曜日までの平日を1日としてカウントし、土曜日と日曜日は除外されます。国民の祝日は年度や振替休日によって異なるため自動控除はしていませんが、土日を除いた正確な就業日数を把握できます。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "閏年（うるう年）の2月29日は日数に含まれますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "はい。指定された2つの日付の間に2月29日が含まれる場合、グレゴリオ暦の正確な暦法に則り1日として加算されます。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "入力した日付や計算データは外部に保存されますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "いいえ。すべての計算はお使いのブラウザ内（JavaScript）で完結しており、入力した日付がサーバーに送信されたり記録されたりすることは一切ありません。完全無料で安心してご利用いただけます。"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "ホーム",
+     "item": "https://www.ageason.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "年齢早見表",
+     "item": "https://www.ageason.com/ja/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "日数計算",
+     "item": "https://www.ageason.com/ja/days/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+  
+</head>
+<body class="landing-v2 inner-v2">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW9WRK2J" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<a class="skip-link" href="#main">計算フォームへ移動</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" lang="en"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="5" width="28" height="25" rx="3" fill="#0f62fe"/><rect x="2" y="5" width="28" height="7" rx="3" fill="#0043ce"/><rect x="8" y="2" width="3" height="7" rx="1.5" fill="#161616"/><rect x="21" y="2" width="3" height="7" rx="1.5" fill="#161616"/><rect x="7" y="17" width="18" height="3" fill="#fff"/><rect x="7" y="23" width="11" height="3" fill="#fff"/></svg><span>Ageason</span></a>
+    <nav class="tool-nav" aria-label="計算ツール">
+      <ul>
+<li><a href="/" lang="en">Age calculator</a></li>
+<li><a href="/days-between-dates/" lang="en">Days between dates</a></li>
+<li><a href="/date-calculator/" lang="en">Date calculator</a></li>
+<li><a href="/business-days-calculator/" lang="en">Business days</a></li>
+<li><a href="/age-difference/" lang="en">Age difference</a></li>
+<li><a href="/chronological-age-calculator/" lang="en">Chronological age</a></li>
+<li><a href="/age-limit/" lang="en">Exam age limits</a></li>
+<li><a href="/ar/" lang="ar" dir="rtl">حساب العمر</a></li>
+<li><a href="/ja/" aria-current="page" lang="ja">年齢早見表</a></li>
+<li><a href="/nepali-age-calculator/" lang="en">Nepali age</a></li>
+<li><a href="/nepali-date-converter/" lang="en">Nepali date</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="ダークモード" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ja/">年齢早見表</a> / 日数計算</p>
+    <h1>日数計算</h1>
+    <p class="lede">2つの日付の間の日数や、何日後・何日前の日付を計算します。</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="日数計算ツール">
+  <div class="wrap tool-grid">
+    <div class="panel">
+      <div class="switch" role="radiogroup" aria-label="計算モード">
+        <input type="radio" name="calc-mode" id="mode-diff" value="diff" checked>
+        <label for="mode-diff">2つの日付間の日数</label>
+        <input type="radio" name="calc-mode" id="mode-add" value="add">
+        <label for="mode-add">指定日数の計算（何日後・何日前）</label>
+      </div>
+
+      <!-- Mode 1: 2つの日付間の日数 -->
+      <form id="form-diff" novalidate onsubmit="return false">
+        <fieldset class="datefield" id="diff-start">
+          <legend>開始日</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="2026" data-part="y" autocomplete="off" aria-label="開始年"></label>
+            <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="m" autocomplete="off" aria-label="開始月"></label>
+            <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="d" autocomplete="off" aria-label="開始日"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">初期値は今日です。<button type="button" class="btn-link" id="btn-diff-start-today">今日に戻す</button></p>
+        </fieldset>
+
+        <fieldset class="datefield" id="diff-end">
+          <legend>終了日</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="2026" data-part="y" autocomplete="off" aria-label="終了年"></label>
+            <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="m" autocomplete="off" aria-label="終了月"></label>
+            <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" placeholder="31" data-part="d" autocomplete="off" aria-label="終了日"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <div class="preset-group" aria-label="クイック日付プリセット">
+            <button type="button" class="preset-chip" id="preset-diff-30">+30日</button>
+            <button type="button" class="preset-chip" id="preset-diff-60">+60日</button>
+            <button type="button" class="preset-chip" id="preset-diff-90">+90日</button>
+            <button type="button" class="preset-chip" id="preset-diff-100">+100日</button>
+            <button type="button" class="preset-chip" id="preset-diff-month">月末</button>
+            <button type="button" class="preset-chip" id="preset-diff-year">年末</button>
+          </div>
+        </fieldset>
+
+        <label class="check">
+          <input type="checkbox" id="diff-include-end">
+          <span>初日を算入する（両端入れ / +1日）</span>
+        </label>
+      </form>
+
+      <!-- Mode 2: 指定日数の計算（何日後・何日前） -->
+      <form id="form-add" hidden novalidate onsubmit="return false">
+        <fieldset class="datefield" id="add-start">
+          <legend>基準日</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>年</span><input type="text" inputmode="numeric" maxlength="4" placeholder="2026" data-part="y" autocomplete="off" aria-label="基準年"></label>
+            <label class="p-m"><span>月</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="m" autocomplete="off" aria-label="基準月"></label>
+            <label class="p-d"><span>日</span><input type="text" inputmode="numeric" maxlength="2" placeholder="1" data-part="d" autocomplete="off" aria-label="基準日"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">初期値は今日です。<button type="button" class="btn-link" id="btn-add-start-today">今日に戻す</button></p>
+        </fieldset>
+
+        <div style="margin-block: var(--s-3);">
+          <div class="switch" role="radiogroup" aria-label="計算方向">
+            <input type="radio" name="add-dir" id="dir-after" value="after" checked>
+            <label for="dir-after">何日後（未来）</label>
+            <input type="radio" name="add-dir" id="dir-before" value="before">
+            <label for="dir-before">何日前（過去）</label>
+          </div>
+        </div>
+
+        <div class="inline-fields" style="align-items: flex-end;">
+          <label style="flex: 1 1 140px;">
+            <span>指定日数</span>
+            <input type="text" inputmode="numeric" id="add-amount" value="30" maxlength="6" autocomplete="off" placeholder="30" aria-label="指定日数">
+          </label>
+          <label style="flex: 1 1 140px;">
+            <span>単位</span>
+            <select id="add-unit" aria-label="計算単位">
+              <option value="days" selected>日（暦日）</option>
+              <option value="biz">営業日（平日）</option>
+              <option value="weeks">週間</option>
+              <option value="months">ヶ月</option>
+              <option value="years">年</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="preset-group" aria-label="指定日数プリセット">
+          <button type="button" class="preset-chip" id="preset-add-30">+30日</button>
+          <button type="button" class="preset-chip" id="preset-add-60">+60日</button>
+          <button type="button" class="preset-chip" id="preset-add-90">+90日</button>
+          <button type="button" class="preset-chip" id="preset-add-100">+100日</button>
+          <button type="button" class="preset-chip" id="preset-add-month">月末</button>
+          <button type="button" class="preset-chip" id="preset-add-year">年末</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Result Display -->
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>ここに計算結果が表示されます</strong>日付や日数を入力すると、自動で計算されます。</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-main"></span><span class="unit" id="r-unit">日</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">この結果のリンクをコピー</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>日数計算の仕組みと数え方</h2>
+    <p>2つの日付の間の日数を計算する際は、暦日（全日数）、週数、月数、そして土日を除いた営業日（平日）を正しく把握することが重要です。当ツールでは、天文時法に基づくグレゴリオ暦の正確な日単位計算（UTC基準）を採用し、タイムゾーンや夏時間による日付のずれを防いでいます。</p>
+
+    <h2>片落とし（初日不算入）と両端入れ</h2>
+    <p>日本の民法第140条では「期間の初日は算入しない」という「初日不算入の原則」が定められています。例えば、5月1日から5月10日までの期間を計算する場合、初日不算入（片落とし）では「9日間」となります。一方で、宿泊施設の滞在日数やレンタルの利用日数、法的な告知期間など、初日と最終日の両方を含めて数える慣習（両端入れ）もあります。当計算機ではチェックボックスひとつで片落とし（標準）と両端入れ（+1日）を即座に切り替えられます。</p>
+
+    <h2>営業日（平日）の計算</h2>
+    <p>ビジネスにおける納期や契約の猶予期間では、土曜日や日曜日を除外した営業日数が重要になります。本ツールでは、指定期間内の月曜日から金曜日までを営業日として自動集計し、週末（土日）の日数と明確に分けて表示します。</p>
+
+    <h2>指定日数（何日後・何日前）の計算</h2>
+    <p>「今日から100日後は何日？」「納品予定日の30日前はいつ？」といった計算にも対応しています。各月の日数（28日、29日、30日、31日）や閏年を自動的に計算し、正確な日付と曜日、和暦表記を割り出します。</p>
+
+    <h2>関連する計算ツール</h2>
+    <ul>
+      <li><a href="/ja/">年齢早見表</a>: 生まれ年から今年の満年齢・和暦・干支を一覧表示。</li>
+      <li><a href="/ja/era/">西暦和暦変換・早見表</a>: 令和・平成・昭和・大正の年号相互変換と数え年、厄年早見表。</li>
+      <li><a href="/ja/gakunen/">学年早見表</a>: 生年月日から今の学年と小・中・高・大の入学・卒業年を計算。</li>
+      <li><a href="/days-between-dates/">Days between dates</a>: 英語版の日数計算ツール。</li>
+    </ul>
+
+    <section class="faq-section" aria-labelledby="faq"><div class="faq-intro"><h2 id="faq">よくある質問</h2><p class="faq-blurb"><strong>ご利用ガイド.</strong> この計算ツールの使い方と結果について、よくある疑問にお答えします。</p><div class="faq-art" aria-hidden="true"><svg viewBox="0 0 340 240" role="presentation" focusable="false"><defs><linearGradient id="faq-card-shade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#eff0ff"/></linearGradient></defs><circle cx="275" cy="52" r="42" fill="#e5defe"/><circle cx="63" cy="187" r="33" fill="#dfedff"/><rect x="78" y="30" width="198" height="177" rx="23" fill="#c9c9ed" opacity=".45"/><rect x="65" y="23" width="198" height="177" rx="23" fill="url(#faq-card-shade)" stroke="#d8daf2" stroke-width="2"/><rect x="65" y="23" width="198" height="44" rx="23" fill="#5f64d5"/><path d="M65 50h198v16H65z" fill="#5f64d5"/><rect x="104" y="12" width="12" height="30" rx="6" fill="#c9c8fa"/><rect x="212" y="12" width="12" height="30" rx="6" fill="#c9c8fa"/><rect x="88" y="88" width="41" height="41" rx="10" fill="#e8e9ff"/><rect x="143" y="88" width="41" height="41" rx="10" fill="#ecf2ff"/><rect x="198" y="88" width="41" height="41" rx="10" fill="#e9e9ff"/><path d="M100 106h17M155 106h17M210 106h17M100 117h17M155 117h17" stroke="#9ca5dc" stroke-width="3" stroke-linecap="round"/><circle cx="220" cy="161" r="37" fill="#766be4"/><path d="M211 152c0-6 5-10 11-10s11 4 11 10c0 6-7 8-11 13v4" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/><circle cx="222" cy="178" r="3" fill="#fff"/><path d="m48 56 7 7m0-7-7 7M299 159l7 7m0-7-7 7" stroke="#aaa1e9" stroke-width="4" stroke-linecap="round"/></svg></div></div><div class="faq faq-accordion"><details name="ageason-faq"><summary><span class="faq-question">2つの日付の間の日数は初日を含めますか？（片落とし・両端入れ）</span><svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m4 7 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>民法第140条の「初日不算入の原則」に基づき、初期設定では初日を含めず（片落とし）、終了日までの経過日数を計算します。当日の初日を含めて数える「両端入れ」が必要な場合は、「初日を算入する（両端入れ / +1日）」にチェックを入れることで瞬時に切り替えられます。</p></div></details>
+<details name="ageason-faq"><summary><span class="faq-question">「何日後」や「何日前」の計算はどのように行われますか？</span><svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m4 7 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>基準日に対して指定した日数を正確に加減算します。例えば「100日後」を計算する場合、月ごとの日数（30日・31日・28日・閏年の29日）を正確に考慮して目標の日付と曜日を瞬時に割り出します。</p></div></details>
+<details name="ageason-faq"><summary><span class="faq-question">営業日（平日）の計算では土日や祝日はどう扱われますか？</span><svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m4 7 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>営業日計算では、月曜日から金曜日までの平日を1日としてカウントし、土曜日と日曜日は除外されます。国民の祝日は年度や振替休日によって異なるため自動控除はしていませんが、土日を除いた正確な就業日数を把握できます。</p></div></details>
+<details name="ageason-faq"><summary><span class="faq-question">閏年（うるう年）の2月29日は日数に含まれますか？</span><svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m4 7 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>はい。指定された2つの日付の間に2月29日が含まれる場合、グレゴリオ暦の正確な暦法に則り1日として加算されます。</p></div></details>
+<details name="ageason-faq"><summary><span class="faq-question">入力した日付や計算データは外部に保存されますか？</span><svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m4 7 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="answer"><p>いいえ。すべての計算はお使いのブラウザ内（JavaScript）で完結しており、入力した日付がサーバーに送信されたり記録されたりすることは一切ありません。完全無料で安心してご利用いただけます。</p></div></details></div></section>
+
+    <h2>ほかの計算ツール</h2>
+<ul class="related">
+<li><a href="/ja/"><strong>年齢早見表</strong><span>生まれ年ごとの満年齢・和暦・干支と長寿祝いの早見表。</span></a></li>
+<li><a href="/ja/gakunen/"><strong>学年早見表</strong><span>生年月日から今年度の学年と入学・卒業年がわかります。</span></a></li>
+<li><a href="/ja/era/"><strong>西暦和暦変換・早見表</strong><span>西暦と和暦の相互変換、満年齢と数え年、厄年早見表。</span></a></li>
+<li><a href="/"><strong>Age calculator (English)</strong><span>英語版の年齢計算。任意の日付時点の年齢を計算できます。</span></a></li>
+<li><a href="/ar/"><strong>حساب العمر</strong><span>アラビア語版。ヒジュラ暦と西暦で年齢を計算します。</span></a></li>
+<li><a href="/nepali-age-calculator/"><strong>Nepali age calculator</strong><span>ネパール暦（ビクラム暦）で年齢を計算します。</span></a></li>
+<li><a href="/chronological-age-calculator/"><strong>Chronological age calculator</strong><span>心理検査などで使う生活年齢（年;月;日）を計算します。</span></a></li>
+</ul>
+
+    <p class="page-meta">最終更新 <time datetime="2026-11-20">20 November 2026</time></p>
+  </div>
+</section>
+</main>
+<footer class="site-footer footer-v2 footer-rounded">
+  <div class="wrap footer-inner" data-slot="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand-column">
+        <a class="footer-brand" href="/" lang="en"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="5" width="28" height="25" rx="3" fill="#0f62fe"/><rect x="2" y="5" width="28" height="7" rx="3" fill="#0043ce"/><rect x="8" y="2" width="3" height="7" rx="1.5" fill="#161616"/><rect x="21" y="2" width="3" height="7" rx="1.5" fill="#161616"/><rect x="7" y="17" width="18" height="3" fill="#fff"/><rect x="7" y="23" width="11" height="3" fill="#fff"/></svg><span>Ageason</span></a>
+        <p class="footer-description">多言語・多暦対応の無料年齢計算ツール。計算はすべてブラウザ内で行われ、入力内容が送信・保存されることはありません。</p>
+        <p class="footer-note">無料の計算ツール · 登録不要</p>
+      </div>
+      <nav class="footer-column" aria-label="日本語のツール">
+        <h2>日本語のツール</h2>
+        <ul>
+<li><a href="/ja/" lang="ja" hreflang="ja">年齢早見表</a></li>
+<li><a href="/ja/gakunen/" lang="ja" hreflang="ja">学年早見表</a></li>
+<li><a href="/ja/days/" lang="ja" hreflang="ja">日数計算</a></li>
+<li><a href="/ja/era/" lang="ja" hreflang="ja">西暦和暦早見表</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-label="ほかの言語">
+        <h2>ほかの言語</h2>
+        <ul>
+<li><a href="/" lang="ja" hreflang="en">英語 (年齢計算)</a></li>
+<li><a href="/ar/" lang="ja" hreflang="ar">アラビア語 (年齢計算)</a></li>
+<li><a href="/tr/" lang="ja" hreflang="tr">トルコ語 (年齢計算)</a></li>
+<li><a href="/nepali-age-calculator/" lang="ja" hreflang="en">ネパール暦 (年齢計算)</a></li>
+<li><a href="/nepali-date-converter/" lang="ja" hreflang="en">ネパール暦 (日付変換)</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-label="サイト案内">
+        <h2>サイト案内</h2>
+        <ul>
+          <li><a href="/about/">About（英語）</a></li>
+          <li><a href="/privacy/">プライバシー（英語）</a></li>
+          <li><a href="/terms/">利用規約（英語）</a></li>
+          <li><a href="/contact/">お問い合わせ（英語）</a></li>
+          <li><a href="/ja/#faq">よくある質問</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-base" lang="en">© 2026 Ageason. All rights reserved.</p>
+      <nav class="footer-legal" aria-label="サイト情報">
+        <a href="/terms/">利用規約（英語）</a>
+        <a href="/privacy/">プライバシー（英語）</a>
+        <a href="/contact/">お問い合わせ（英語）</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}})();</script>
+<script>(function(){var b=document.querySelector('.theme-toggle'),r=document.documentElement;function s(){b.setAttribute('aria-pressed',r.dataset.theme==='dark')}s();b.addEventListener('click',function(){r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}s()})})();</script>
+<script src="/assets/js/datecore.js?v=ce0c93159b" defer></script>
+<script src="/assets/js/ja-days.js?v=bfd69b6389" defer></script>
+</body>
+</html>

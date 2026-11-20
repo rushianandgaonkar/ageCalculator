@@ -181,3 +181,79 @@ test("shareUrl formats query parameters without modifying location", () => {
   assert.equal(DC.shareUrl({ dob: "1994-08-15", on: "" }), "https://www.example.com/ar/?dob=1994-08-15");
   assert.equal(DC.shareUrl({}), "https://www.example.com/ar/");
 });
+
+/* ---------------- Date Maths Suite ---------------- */
+test("diffDays calculates exact duration and inclusive spans", () => {
+  assert.equal(DC.diffDays(G, g("2026-01-01"), g("2026-01-01"), false), 0);
+  assert.equal(DC.diffDays(G, g("2026-01-01"), g("2026-01-01"), true), 1);
+  assert.equal(DC.diffDays(G, g("2026-01-01"), g("2026-01-10"), false), 9);
+  assert.equal(DC.diffDays(G, g("2026-01-01"), g("2026-01-10"), true), 10);
+  // leap year counting
+  assert.equal(DC.diffDays(G, g("2024-02-28"), g("2024-03-01"), false), 2); // 29 Feb included
+  assert.equal(DC.diffDays(G, g("2023-02-28"), g("2023-03-01"), false), 1);
+  // order independence
+  assert.equal(DC.diffDays(G, g("2026-01-10"), g("2026-01-01"), false), 9);
+});
+
+test("businessDays calculates working days excluding weekends", () => {
+  // Friday to Monday: exclusive = 1 (Friday), inclusive = 2 (Friday and Monday)
+  assert.equal(DC.businessDays(G, g("2026-11-20"), g("2026-11-23"), false), 1);
+  assert.equal(DC.businessDays(G, g("2026-11-20"), g("2026-11-23"), true), 2);
+  // Full working week (Mon to Fri): exclusive = 4, inclusive = 5
+  assert.equal(DC.businessDays(G, g("2026-11-16"), g("2026-11-20"), false), 4);
+  assert.equal(DC.businessDays(G, g("2026-11-16"), g("2026-11-20"), true), 5);
+  // Over full weekend (Sat to Sun)
+  assert.equal(DC.businessDays(G, g("2026-11-21"), g("2026-11-22"), false), 0);
+  assert.equal(DC.businessDays(G, g("2026-11-21"), g("2026-11-22"), true), 0);
+  // Full 7 days (Mon to Mon): exclusive = 5, inclusive = 6
+  assert.equal(DC.businessDays(G, g("2026-11-16"), g("2026-11-23"), false), 5);
+  assert.equal(DC.businessDays(G, g("2026-11-16"), g("2026-11-23"), true), 6);
+});
+
+test("addDays and addBusinessDays correctly advance or retreat dates", () => {
+  const d1 = DC.addDays(G, g("2026-11-20"), 10);
+  assert.deepEqual([d1.y, d1.m, d1.d], [2026, 11, 30]);
+
+  const d2 = DC.addDays(G, g("2026-11-20"), 30);
+  assert.deepEqual([d2.y, d2.m, d2.d], [2026, 12, 20]);
+
+  const d3 = DC.addDays(G, g("2026-11-20"), -20);
+  assert.deepEqual([d3.y, d3.m, d3.d], [2026, 10, 31]);
+
+  // Business days: Friday + 1 business day = Monday
+  const b1 = DC.addBusinessDays(G, g("2026-11-20"), 1);
+  assert.deepEqual([b1.y, b1.m, b1.d], [2026, 11, 23]);
+
+  // Friday + 5 business days = Friday next week
+  const b2 = DC.addBusinessDays(G, g("2026-11-20"), 5);
+  assert.deepEqual([b2.y, b2.m, b2.d], [2026, 11, 27]);
+
+  // Monday - 1 business day = Friday previous week
+  const b3 = DC.addBusinessDays(G, g("2026-11-23"), -1);
+  assert.deepEqual([b3.y, b3.m, b3.d], [2026, 11, 20]);
+});
+
+test("addUnits handles weeks, months, years and business days", () => {
+  const u1 = DC.addUnits(G, g("2026-11-20"), 2, "weeks", "add");
+  assert.deepEqual([u1.y, u1.m, u1.d], [2026, 12, 4]);
+
+  const u2 = DC.addUnits(G, g("2026-01-31"), 1, "months", "add");
+  assert.deepEqual([u2.y, u2.m, u2.d], [2026, 2, 28]);
+
+  const u3 = DC.addUnits(G, g("2024-02-29"), 1, "years", "add");
+  assert.deepEqual([u3.y, u3.m, u3.d], [2025, 2, 28]);
+
+  const u4 = DC.addUnits(G, g("2026-11-20"), 3, "businessDays", "add");
+  assert.deepEqual([u4.y, u4.m, u4.d], [2026, 11, 25]);
+
+  const u5 = DC.addUnits(G, g("2026-11-20"), 5, "days", "sub");
+  assert.deepEqual([u5.y, u5.m, u5.d], [2026, 11, 15]);
+});
+
+test("dayOfYear and isoWeekNumber calculate accurate calendar metrics", () => {
+  assert.equal(DC.dayOfYear(G, g("2026-01-01")), 1);
+  assert.equal(DC.dayOfYear(G, g("2026-12-31")), 365);
+  assert.equal(DC.dayOfYear(G, g("2024-12-31")), 366); // leap year
+  assert.equal(DC.isoWeekNumber(g("2026-01-01")), 1);
+  assert.equal(DC.isoWeekNumber(g("2026-11-20")), 47);
+});

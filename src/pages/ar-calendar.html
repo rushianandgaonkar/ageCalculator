@@ -1,0 +1,147 @@
+<!--meta
+{
+  "path": "/ar/calendar/",
+  "lang": "ar",
+  "dir": "rtl",
+  "nav": "arcalendar",
+  "id": "arcalendar",
+  "kind": "tool",
+  "title": "التقويم الهجري: تقويم أم القرى لعام 1448 هـ",
+  "no_suffix": true,
+  "description": "التقويم الهجري الشامل بتقويم أم القرى مع ما يقابله بالميلادي وجدول أشهر السنة الهجرية.",
+  "app_name": "التقويم الهجري",
+  "crumb": "التقويم الهجري",
+  "scripts": ["datecore.js", "ar-calendar.js"],
+  "og": "og-arconv.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["كيف يُحدد عدد أيام كل شهر في التقويم الهجري؟", "يعتمد طول الشهر الهجري على دورة اقتران القمر بالأرض، ويكون إما 29 يوما أو 30 يوما وفق معايير الحساب الفلكي لتقويم أم القرى."],
+    ["كم عدد أيام السنة الهجرية 1448 هـ؟", "تتكون السنة الهجرية البسيطة من 354 يوما، بينما تتكون السنة الهجرية الكبيسة من 355 يوما عندما يكون شهر ذو الحجة 30 يوما."],
+    ["ما هو ترتيب الأشهر الهجرية الاثني عشر؟", "ترتيب الأشهر الهجرية هو: محرم، صفر، ربيع الأول، ربيع الآخر، جمادى الأولى، جمادى الآخرة، رجب، شعبان، رمضان، شوال، ذو القعدة، ذو الحجة."],
+    ["ما هي الأشهر الحرم في التقويم الإسلامي؟", "الأشهر الحرم أربعة أشهر: ثلاثة متتالية هي ذو القعدة وذو الحجة ومحرم، وشهر فرد هو شهر رجب."],
+    ["كيف أعرف التاريخ الميلادي المقابل لأي يوم هجري؟", "يعرض هذا التقويم في كل خانة يومية التاريخ الهجري بالخط الكبير وتحته مباشرة اليوم والشهر الميلادي المقابل له بدقة تقويم أم القرى."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/ar/">الرئيسية</a> / التقويم الهجري</p>
+    <h1>التقويم الهجري</h1>
+    <p class="lede">تقويم أم القرى الهجري وما يقابله بالميلادي مع جدول أشهر السنة.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="عرض التقويم الهجري الشهري">
+  <div class="wrap">
+    <div class="cal-wrapper">
+      <div class="cal-toolbar">
+        <div class="cal-nav-buttons">
+          <button type="button" class="btn btn-tertiary" id="btn-prev-month">الشهر السابق</button>
+          <button type="button" class="btn btn-tertiary" id="btn-today">اليوم</button>
+          <button type="button" class="btn btn-tertiary" id="btn-next-month">الشهر التالي</button>
+        </div>
+
+        <div class="cal-title-group">
+          <h2 class="cal-month-title" id="cal-month-title">جاري تحميل التقويم…</h2>
+          <p class="cal-month-sub" id="cal-month-sub"></p>
+        </div>
+
+        <div class="cal-controls-selectors">
+          <label class="select-field" style="margin: 0;">
+            <span class="visually-hidden">اختر الشهر</span>
+            <select id="select-month" aria-label="اختر الشهر الهجري"></select>
+          </label>
+
+          <label class="find-field" style="margin: 0;">
+            <span class="visually-hidden">السنة الهجرية</span>
+            <input type="text" inputmode="numeric" id="input-year" maxlength="4" placeholder="1448" autocomplete="off" aria-label="السنة الهجرية">
+          </label>
+
+          <div class="switch" role="radiogroup" aria-label="نوع الأرقام" style="margin: 0;">
+            <input type="radio" name="dig" id="dig-latn" value="latn" checked><label for="dig-latn">123</label>
+            <input type="radio" name="dig" id="dig-arab" value="arab"><label for="dig-arab">١٢٣</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="cal-table-wrap">
+        <table class="cal-table" role="grid" aria-label="تقويم الشهر الهجري">
+          <thead>
+            <tr>
+              <th scope="col">السبت</th>
+              <th scope="col">الأحد</th>
+              <th scope="col">الاثنين</th>
+              <th scope="col">الثلاثاء</th>
+              <th scope="col">الأربعاء</th>
+              <th scope="col">الخميس</th>
+              <th scope="col" class="is-fri">الجمعة</th>
+            </tr>
+          </thead>
+          <tbody id="cal-grid-body">
+            <!-- Rendered by ar-calendar.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cal-selected-info" id="cal-selected-info" aria-live="polite">
+        <div>
+          <strong id="sel-hijri-date">اختر يوما من التقويم</strong>
+          <div><span id="sel-greg-date">التاريخ الميلادي المقابل</span></div>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <a class="btn btn-primary" id="sel-to-age" href="/ar/">احسب العمر من هذا التاريخ</a>
+          <a class="btn btn-tertiary" id="sel-to-conv" href="/ar/hijri-converter/">تحويل هذا التاريخ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="year-months-section" aria-labelledby="year-table-heading">
+  <div class="wrap">
+    <div class="prose">
+      <h2 id="year-table-heading">جدول أشهر السنة الهجرية <span id="tbl-year-num">{{AR_HYEAR}}</span> هـ</h2>
+      <p id="year-summary-text">عدد أيام كل شهر وبدايته ونهايته بالتقويم الميلادي وفق تقويم أم القرى الرسمي.</p>
+    </div>
+
+    <div class="table-wrap auto" style="margin-block-start: 20px;">
+      <table class="data">
+        <caption class="visually-hidden">جدول أشهر السنة الهجرية وما يقابلها بالميلادي</caption>
+        <thead>
+          <tr>
+            <th scope="col">الشهر الهجري</th>
+            <th scope="col">عدد الأيام</th>
+            <th scope="col">بداية الشهر (ميلادي)</th>
+            <th scope="col">نهاية الشهر (ميلادي)</th>
+            <th scope="col">التصنيف</th>
+          </tr>
+        </thead>
+        <tbody id="year-months-tbody">
+          <!-- Rendered by ar-calendar.js -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>عن التقويم الهجري القمري</h2>
+    <p>يعتمد التقويم الهجري على حركة القمر حول الأرض، حيث يمثل كل شهر دورة اقترانية قمرية كاملة مدتها نحو 29.53 يوما. لذلك يتناوب طول الأشهر بين 29 و30 يوما، ويبلغ مجموع أيام السنة الهجرية 354 يوما في السنوات البسيطة أو 355 يوما في السنوات الكبيسة.</p>
+
+    <h2>تقويم أم القرى الرسمي</h2>
+    <p>تقويم أم القرى هو المرجع الفلكي والمدني الرسمي المعتمد في المملكة العربية السعودية لجدولة المعاملات الرسمية ومواقيت الأشهر، وتغطي بياناته الموثقة السنوات من 1300 إلى 1600 هـ (الموافقة للسنوات من 1882 إلى 2174 م).</p>
+
+    <h2>الأشهر الحرم في الإسلام</h2>
+    <p>خص الله سبحانه وتعالى أربعة أشهر بالحرمة والتعظيم، وهي ثلاثة أشهر متتابعة: ذو القعدة، ذو الحجة، محرم، وشهر رجب المنفرد. وتتضاعف في هذه الأشهر فضائل الأعمال الصالحة.</p>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">آخر تحديث: <time datetime="{{UPDATED_ISO}}">{{UPDATED_ISO}}</time></p>
+  </div>
+</section>

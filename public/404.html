@@ -30,8 +30,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")})();</script>
-  <link rel="stylesheet" href="/assets/css/site.css?v=3955272112">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=8f1a487b75">
+  <style>/* Hallmark */ html,body{overflow-x:clip}:focus-visible{outline:2px solid var(--focus);outline-offset:2px}:active{transform:none}:disabled{opacity:0.45;cursor:not-allowed}</style>
+  <link rel="stylesheet" href="/assets/css/site.css?v=41111d9f16">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=f45bf48a4f">
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -76,13 +77,16 @@
     <nav class="tool-nav" aria-label="Calculators">
       <ul>
 <li><a href="/" lang="en">Age calculator</a></li>
-<li><a href="/ar/" lang="ar" dir="rtl">حساب العمر</a></li>
-<li><a href="/ja/" lang="ja">年齢早見表</a></li>
-<li><a href="/age-limit/" lang="en">Exam age limits</a></li>
-<li><a href="/nepali-age-calculator/" lang="en">Nepali age</a></li>
-<li><a href="/nepali-date-converter/" lang="en">Nepali date</a></li>
+<li><a href="/days-between-dates/" lang="en">Days between dates</a></li>
+<li><a href="/date-calculator/" lang="en">Date calculator</a></li>
+<li><a href="/business-days-calculator/" lang="en">Business days</a></li>
 <li><a href="/age-difference/" lang="en">Age difference</a></li>
 <li><a href="/chronological-age-calculator/" lang="en">Chronological age</a></li>
+<li><a href="/age-limit/" lang="en">Exam age limits</a></li>
+<li><a href="/ar/" lang="ar" dir="rtl">حساب العمر</a></li>
+<li><a href="/ja/" lang="ja">年齢早見表</a></li>
+<li><a href="/nepali-age-calculator/" lang="en">Nepali age</a></li>
+<li><a href="/nepali-date-converter/" lang="en">Nepali date</a></li>
       </ul>
     </nav>
     <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></button>
@@ -100,13 +104,21 @@
     <h2>Other calculators</h2>
 <ul class="related">
 <li><a href="/"><strong>Age calculator</strong><span>Exact age in years, months and days, on any date. Checks exam age limits.</span></a></li>
-<li><a href="/ar/"><strong>حساب العمر بالهجري والميلادي</strong><span>Date breakdown in Arabic with Hijri (Umm al-Qura) and Gregorian calendars.</span></a></li>
-<li><a href="/ja/"><strong>年齢早見表</strong><span>Japanese age chart by Reiwa, Heisei and Showa year, with zodiac animal.</span></a></li>
-<li><a href="/nepali-age-calculator/"><strong>Nepali age calculator</strong><span>Age in Bikram Sambat and AD from a BS or AD date of birth.</span></a></li>
-<li><a href="/age-limit/"><strong>Exam age limit calculators</strong><span>UPSC, SSC, NDA, CDS and Agniveer eligibility by date of birth.</span></a></li>
-<li><a href="/nepali-date-converter/"><strong>Nepali date converter</strong><span>Convert BS dates to AD and AD to BS, with today&#x27;s Nepali date.</span></a></li>
+<li><a href="/days-between-dates/"><strong>Days between dates</strong><span>Calculate the exact number of days, weeks, months and business days between two dates.</span></a></li>
+<li><a href="/date-calculator/"><strong>Date calculator</strong><span>Add or subtract days, weeks, months or years from any calendar date.</span></a></li>
+<li><a href="/business-days-calculator/"><strong>Business days calculator</strong><span>Calculate working days between two dates or add business days to a date.</span></a></li>
+<li><a href="/experience-calculator/"><strong>Experience calculator</strong><span>Calculate total work experience in years, months and days across multiple employments with career gap tracking.</span></a></li>
+<li><a href="/birth-year-calculator/"><strong>Birth year calculator</strong><span>Determine your birth year from age or calculate total days and hours alive with life milestones.</span></a></li>
+<li><a href="/cat-age-calculator/"><strong>Cat age calculator</strong><span>Calculate your cat’s exact age in human years using veterinary guidelines.</span></a></li>
+<li><a href="/dog-age-calculator/"><strong>Dog age calculator</strong><span>Calculate your dog’s age in human years based on size and weight.</span></a></li>
+<li><a href="/generation-calculator/"><strong>Generation calculator</strong><span>Find your generation name, age range and birth years.</span></a></li>
 <li><a href="/age-difference/"><strong>Age difference calculator</strong><span>The exact time span between two people in years, months and days.</span></a></li>
 <li><a href="/chronological-age-calculator/"><strong>Chronological age calculator</strong><span>Years;months;days for clinical scoring, with adjustment for prematurity.</span></a></li>
+<li><a href="/age-limit/"><strong>Exam age limit calculators</strong><span>UPSC, SSC, NDA, CDS and Agniveer eligibility by date of birth.</span></a></li>
+<li><a href="/ar/"><strong>حساب العمر بالهجري والميلادي</strong><span>Date breakdown in Arabic with Hijri (Umm al Qura) and Gregorian calendars.</span></a></li>
+<li><a href="/ja/"><strong>年齢早見表</strong><span>Japanese age chart by Reiwa, Heisei and Showa year, with zodiac animal.</span></a></li>
+<li><a href="/nepali-age-calculator/"><strong>Nepali age calculator</strong><span>Age in Bikram Sambat and AD from a BS or AD date of birth.</span></a></li>
+<li><a href="/nepali-date-converter/"><strong>Nepali date converter</strong><span>Convert BS dates to AD and AD to BS, with today&#x27;s Nepali date.</span></a></li>
 </ul>
   </div>
 </section>
@@ -123,6 +135,14 @@
         <h2>English calculators</h2>
         <ul>
 <li><a href="/" lang="en" hreflang="en">Age calculator</a></li>
+<li><a href="/days-between-dates/" lang="en" hreflang="en">Days between dates</a></li>
+<li><a href="/date-calculator/" lang="en" hreflang="en">Date calculator</a></li>
+<li><a href="/business-days-calculator/" lang="en" hreflang="en">Business days</a></li>
+<li><a href="/experience-calculator/" lang="en" hreflang="en">Experience calculator</a></li>
+<li><a href="/birth-year-calculator/" lang="en" hreflang="en">Birth year calculator</a></li>
+<li><a href="/cat-age-calculator/" lang="en" hreflang="en">Cat age</a></li>
+<li><a href="/dog-age-calculator/" lang="en" hreflang="en">Dog age</a></li>
+<li><a href="/generation-calculator/" lang="en" hreflang="en">Generation calculator</a></li>
 <li><a href="/age-difference/" lang="en" hreflang="en">Age difference</a></li>
 <li><a href="/chronological-age-calculator/" lang="en" hreflang="en">Chronological age</a></li>
 <li><a href="/age-limit/" lang="en" hreflang="en">Exam age limits</a></li>
@@ -133,6 +153,7 @@
         <ul>
 <li><a href="/ar/" lang="en" hreflang="ar">العربية (حاسبة العمر)</a></li>
 <li><a href="/ja/" lang="en" hreflang="ja">日本語 (年齢早見表)</a></li>
+<li><a href="/tr/" lang="en" hreflang="tr">Türkçe (Yaş hesaplama)</a></li>
 <li><a href="/nepali-age-calculator/" lang="en" hreflang="en">Nepali (Age calculator)</a></li>
 <li><a href="/nepali-date-converter/" lang="en" hreflang="en">Nepali (Date converter)</a></li>
         </ul>

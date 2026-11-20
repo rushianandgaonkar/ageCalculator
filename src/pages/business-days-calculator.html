@@ -1,0 +1,140 @@
+<!--meta
+{
+  "path": "/business-days-calculator/",
+  "lang": "en",
+  "nav": "bizdays",
+  "kind": "tool",
+  "hreflang": "bizdays",
+  "x_default": true,
+  "title": "Business Days Calculator: Working Days Between Dates",
+  "description": "Calculate working days between two dates, or add business days to a start date. Excludes weekends with configurable working hours.",
+  "app_name": "Business days calculator",
+  "crumb": "Business days calculator",
+  "scripts": ["datecore.js", "bizdays.js"],
+  "og": "og-home.png",
+  "priority": "0.85",
+  "changefreq": "monthly",
+  "faq": [
+    ["What is a business day?", "A business day is an official working day of the week: Monday, Tuesday, Wednesday, Thursday and Friday. Saturdays and Sundays are treated as weekend days and are excluded from the count."],
+    ["How do you calculate business days between two dates?", "Select “Between two dates”, enter your start date and end date. The calculator counts all intervening weekdays while ignoring Saturdays and Sundays."],
+    ["How do you add business days to a date?", "Select “Add or subtract business days”, enter your start date, choose whether to add or subtract, and enter the number of working days. The calculator advances day by day, jumping over every weekend."],
+    ["Are public holidays excluded from the business days count?", "Public and bank holidays vary significantly by country, state and company policy. This tool strictly calculates standard Monday through Friday workdays. If your project observes specific national holidays, subtract those days from the total."],
+    ["How are working hours calculated?", "Working hours multiply the total number of business days by the daily working hours (8 hours by default). You can adjust the hours per day field to match your schedule."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Business days calculator</h1>
+    <p class="lede">Calculate business days between two dates, or add working days.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Business days calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div class="switch" role="radiogroup" aria-label="Calculation mode">
+        <input type="radio" name="biz-mode" id="mode-between" value="between" checked>
+        <label for="mode-between">Between two dates</label>
+        <input type="radio" name="biz-mode" id="mode-add" value="add">
+        <label for="mode-add">Add or subtract business days</label>
+      </div>
+
+      <fieldset class="datefield" id="start-date">
+        <legend>Start date</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off" aria-label="Start day"></label>
+          <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off" aria-label="Start month"></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="Start year"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">Today by default. <button type="button" class="btn-link" id="btn-start-today">Reset to today</button></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="fieldset-end-date">
+        <legend>End date</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off" aria-label="End day"></label>
+          <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off" aria-label="End month"></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="End year"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <label class="check" style="margin-top: var(--s-3);">
+          <input type="checkbox" id="include-end">
+          <span>Include end day in count</span>
+        </label>
+      </fieldset>
+
+      <div id="fieldset-add-biz" hidden>
+        <div class="switch" role="radiogroup" aria-label="Operation" style="margin-bottom: var(--s-3);">
+          <input type="radio" name="biz-op" id="biz-op-add" value="add" checked>
+          <label for="biz-op-add">Add (+)</label>
+          <input type="radio" name="biz-op" id="biz-op-sub" value="sub">
+          <label for="biz-op-sub">Subtract (−)</label>
+        </div>
+
+        <label>
+          <span>Number of business days</span>
+          <input type="text" inputmode="numeric" id="amount" value="10" maxlength="6" autocomplete="off" aria-label="Number of business days">
+        </label>
+
+        <div class="preset-group" aria-label="Quick business day presets">
+          <button type="button" class="preset-chip" id="preset-5">5 business days (1 wk)</button>
+          <button type="button" class="preset-chip" id="preset-10">10 business days (2 wks)</button>
+          <button type="button" class="preset-chip" id="preset-20">20 business days (1 mo)</button>
+          <button type="button" class="preset-chip" id="preset-30">30 business days</button>
+          <button type="button" class="preset-chip" id="preset-60">60 business days</button>
+        </div>
+      </div>
+
+      <div class="inline-fields" style="margin-top: var(--s-3);">
+        <label>
+          <span>Working hours per day</span>
+          <input type="number" id="hours-per-day" value="8" min="1" max="24" step="0.5" aria-label="Working hours per day">
+        </label>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Working days will appear here</strong>Enter your dates to calculate business days excluding weekends.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big" style="font-size: clamp(28px, 4.5vw, 44px); line-height: 1.25;"><span id="r-big"></span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Business days vs calendar days</h2>
+    <p>Calendar days count every passing 24-hour cycle regardless of the day of the week. Business days (or working days) count only the days when commerce and official services typically operate: Monday through Friday.</p>
+    <p>Because every standard 7-day week contains 5 business days and 2 weekend days, a timeframe of 10 business days spans 14 calendar days, and 20 business days spans approximately 28 calendar days (4 full calendar weeks).</p>
+
+    <h2>Common working day benchmarks</h2>
+    <ul>
+      <li><strong>3 to 5 business days</strong>: standard domestic courier delivery and wire transfer processing.</li>
+      <li><strong>10 business days</strong>: typical government passport renewals and payroll processing cycles.</li>
+      <li><strong>20 business days</strong>: one standard month of full-time work (approximately 160 billable hours).</li>
+      <li><strong>60 business days</strong>: quarterly corporate projects and standard legal dispute response limits.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <ul>
+      <li><a href="/days-between-dates/">Days between dates</a>: measure full calendar duration in days, weeks and months.</li>
+      <li><a href="/date-calculator/">Date calculator</a>: add or subtract days, months and years from any date.</li>
+      <li><a href="/">Age calculator</a>: find exact age from date of birth.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

@@ -1,0 +1,109 @@
+<!--meta
+{
+  "path": "/days-between-dates/",
+  "lang": "en",
+  "nav": "days",
+  "kind": "tool",
+  "hreflang": "daysbetween",
+  "x_default": true,
+  "title": "Days Between Dates: Calculate Days Between Two Dates",
+  "description": "Calculate the exact number of days, weeks, months and business days between two dates. Free, instant and private in your browser.",
+  "app_name": "Days between dates calculator",
+  "crumb": "Days between dates",
+  "scripts": ["datecore.js", "days-between.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["How do you calculate the number of days between two dates?", "Enter a start date and an end date. The calculator converts both dates to standard calendar day counts and calculates the difference in total days, weeks, calendar months and business days."],
+    ["Does the calculation include the start date and the end date?", "By default, date math calculates the duration between dates, meaning the start day is counted and the end day is not. To count both days, select the “Include end day” checkbox."],
+    ["How are leap years handled in the total days count?", "Every leap day (29 February) falling between your two selected dates is counted as a full calendar day. The calculation uses exact astronomical Gregorian calendar rules."],
+    ["What counts as a business day in this calculator?", "Business days are Mondays, Tuesdays, Wednesdays, Thursdays and Fridays. Saturdays and Sundays are excluded. Public holidays vary by country, so they are not deducted automatically."],
+    ["Are my dates stored or tracked?", "No. All calculations run entirely inside your browser using JavaScript. No dates or search queries are sent to any server."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Days between dates</h1>
+    <p class="lede">Calculate the exact number of days, weeks and months between two dates.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Days between dates calculator">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <fieldset class="datefield" id="start-date">
+        <legend>Start date</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off" aria-label="Start day"></label>
+          <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off" aria-label="Start month"></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="Start year"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">Today by default. <button type="button" class="btn-link" id="btn-start-today">Reset to today</button></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="end-date">
+        <legend>End date</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off" aria-label="End day"></label>
+          <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off" aria-label="End month"></label>
+          <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="End year"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <div class="preset-group" aria-label="Quick date presets">
+          <button type="button" class="preset-chip" id="preset-30">+30 days</button>
+          <button type="button" class="preset-chip" id="preset-90">+90 days</button>
+          <button type="button" class="preset-chip" id="preset-180">+180 days</button>
+          <button type="button" class="preset-chip" id="preset-month-end">End of month</button>
+          <button type="button" class="preset-chip" id="preset-year-end">End of year</button>
+        </div>
+      </fieldset>
+
+      <label class="check">
+        <input type="checkbox" id="include-end">
+        <span>Include end day in count (adds 1 day)</span>
+      </label>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Total days will appear here</strong>Enter both dates to calculate the exact duration.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-days"></span><span class="unit" id="r-days-unit">days</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Copy link to this result</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>How date duration is measured</h2>
+    <p>Counting days between two calendar points follows standard astronomical time arithmetic. Each calendar day runs from midnight to midnight UTC. By convention, date duration calculates elapsed time: the starting day is counted, and the target day marks the finish line.</p>
+    <p>When you need to know how many calendar days are in a schedule inclusive of both borders, such as hotel stays, rental periods, or legal notice windows, turn on the inclusive option.</p>
+
+    <h2>Calendar breakdown vs total days</h2>
+    <p>Total days provides the absolute count of 24-hour periods elapsed between two dates. The calendar breakdown translates that number into completed years, months and leftover days according to the Gregorian calendar.</p>
+    <p>Because months have unequal lengths (28, 29, 30 or 31 days), stepping full calendar months reflects how humans describe time. For instance, from 15 January to 15 March is exactly 2 calendar months, covering 59 days in standard years and 60 days in leap years.</p>
+
+    <h2>Related tools</h2>
+    <ul>
+      <li><a href="/date-calculator/">Date calculator</a>: add or subtract days, weeks, months or years from any date.</li>
+      <li><a href="/business-days-calculator/">Business days calculator</a>: count working days excluding weekends.</li>
+      <li><a href="/">Age calculator</a>: find exact age from date of birth today or on a specific cutoff date.</li>
+      <li><a href="/age-difference/">Age difference calculator</a>: compare birth dates between two people.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Last updated <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

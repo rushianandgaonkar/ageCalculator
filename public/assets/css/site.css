@@ -304,9 +304,50 @@ details.more > .more-body { margin-block-start: var(--s-4); display: grid; gap: 
 .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; vertical-align: middle; margin-inline-start: var(--s-2); }
 .tag.official { background: var(--success-tint); color: var(--success); }
 .tag.expected { background: var(--warning-tint); color: var(--warning); }
+.tag.passed { background: var(--surface-2); color: var(--ink-muted); }
+.tag.upcoming { background: var(--primary-tint); color: var(--primary); }
+.tag.danger { background: var(--error-tint); color: var(--error); }
+.tag.warning { background: var(--warning-tint); color: var(--warning); }
+.job-card { padding: var(--s-4); border: 1px solid var(--hairline); border-radius: var(--radius); background: var(--canvas); margin-block-end: var(--s-4); }
+.job-card-header { display: flex; justify-content: space-between; align-items: center; margin-block-end: var(--s-3); }
+.job-card-title { font-size: 15px; font-weight: 600; margin: 0; color: var(--ink); }
+.job-summary { font-size: 13px; color: var(--ink-muted); margin-block-start: var(--s-2); margin-block-end: 0; font-variant-numeric: tabular-nums; }
+.current-job-label { margin-block-start: var(--s-2); }
 table.data.wrap-cells td { white-space: normal; min-width: 120px; }
 table.data.wrap-cells td.nw { white-space: nowrap; }
 .table-wrap.auto { max-height: none; }
+
+/* Exam hub search and filter controls */
+.table-tools.exam-tools { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: flex-end; justify-content: space-between; margin-block: var(--s-5) var(--s-3); }
+.find-field.exam-search-field { flex: 1 1 300px; max-width: 520px; }
+.find-field.exam-search-field input { width: 100%; }
+.search-status { font-size: 13px; color: var(--ink-muted); align-self: center; }
+.exam-pills { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; margin-block-end: var(--s-4); }
+.filter-pill { font-family: inherit; font-size: 13px; line-height: 1.4; padding: 6px 12px; border: 1px solid var(--hairline); border-radius: var(--radius); background: var(--surface-1); color: var(--ink); cursor: pointer; text-decoration: none; }
+.filter-pill:hover { border-color: var(--primary); background: var(--canvas); }
+.filter-pill:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+.filter-pill.is-active { background: var(--ink); color: var(--canvas); border-color: var(--ink); }
+.exam-row[hidden] { display: none; }
+
+/* Preset chips and quick selection */
+.preset-group { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-block-start: var(--s-3); }
+.preset-chip {
+  font-family: inherit; font-size: 13px; line-height: 1.4; padding: 6px 12px;
+  border: 1px solid var(--hairline); border-radius: var(--radius);
+  background: var(--surface-1); color: var(--ink); cursor: pointer;
+  text-decoration: none; transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.preset-chip:hover { border-color: var(--primary); background: var(--canvas); color: var(--primary); }
+.preset-chip:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+.preset-chip.is-active { background: var(--ink); color: var(--canvas); border-color: var(--ink); }
+
+/* Yakudoshi grid and cards */
+.yakudoshi-grid { display: grid; gap: var(--s-5); margin-block: var(--s-4); }
+@media (min-width: 840px) { .yakudoshi-grid { grid-template-columns: 1fr 1fr; } }
+.yakudoshi-card { background: var(--surface-1); border: 1px solid var(--hairline); border-radius: var(--radius-lg); padding: var(--s-4); }
+.yakudoshi-card h3 { margin-block-start: 0; margin-block-end: var(--s-3); font-size: 17px; }
+.yakudoshi-card table.data { font-size: 13px; }
+.yakudoshi-card tr.is-daiyaku { background: var(--error-tint); }
 
 /* Ad slots: reserve space only once an ad unit is placed inside (prevents layout shift). */
 .ad-slot { display: none; }

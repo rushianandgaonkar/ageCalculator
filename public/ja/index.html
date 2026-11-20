@@ -30,8 +30,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")})();</script>
-  <link rel="stylesheet" href="/assets/css/site.css?v=3955272112">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=8f1a487b75">
+  <style>/* Hallmark */ html,body{overflow-x:clip}:focus-visible{outline:2px solid var(--focus);outline-offset:2px}:active{transform:none}:disabled{opacity:0.45;cursor:not-allowed}</style>
+  <link rel="stylesheet" href="/assets/css/site.css?v=41111d9f16">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=f45bf48a4f">
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -138,13 +139,16 @@
     <nav class="tool-nav" aria-label="計算ツール">
       <ul>
 <li><a href="/" lang="en">Age calculator</a></li>
-<li><a href="/ar/" lang="ar" dir="rtl">حساب العمر</a></li>
-<li><a href="/ja/" aria-current="page" lang="ja">年齢早見表</a></li>
-<li><a href="/age-limit/" lang="en">Exam age limits</a></li>
-<li><a href="/nepali-age-calculator/" lang="en">Nepali age</a></li>
-<li><a href="/nepali-date-converter/" lang="en">Nepali date</a></li>
+<li><a href="/days-between-dates/" lang="en">Days between dates</a></li>
+<li><a href="/date-calculator/" lang="en">Date calculator</a></li>
+<li><a href="/business-days-calculator/" lang="en">Business days</a></li>
 <li><a href="/age-difference/" lang="en">Age difference</a></li>
 <li><a href="/chronological-age-calculator/" lang="en">Chronological age</a></li>
+<li><a href="/age-limit/" lang="en">Exam age limits</a></li>
+<li><a href="/ar/" lang="ar" dir="rtl">حساب العمر</a></li>
+<li><a href="/ja/" aria-current="page" lang="ja">年齢早見表</a></li>
+<li><a href="/nepali-age-calculator/" lang="en">Nepali age</a></li>
+<li><a href="/nepali-date-converter/" lang="en">Nepali date</a></li>
       </ul>
     </nav>
     <button class="theme-toggle" type="button" aria-label="ダークモード" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></button>
@@ -395,13 +399,15 @@
     <h2>ほかの計算ツール</h2>
 <ul class="related">
 <li><a href="/ja/gakunen/"><strong>学年早見表</strong><span>生年月日から今年度の学年と入学・卒業年がわかります。</span></a></li>
+<li><a href="/ja/days/"><strong>日数計算</strong><span>2つの日付の間の日数や、指定日数の何日後・何日前を計算。</span></a></li>
+<li><a href="/ja/era/"><strong>西暦和暦変換・早見表</strong><span>西暦と和暦の相互変換、満年齢と数え年、厄年早見表。</span></a></li>
 <li><a href="/"><strong>Age calculator (English)</strong><span>英語版の年齢計算。任意の日付時点の年齢を計算できます。</span></a></li>
 <li><a href="/ar/"><strong>حساب العمر</strong><span>アラビア語版。ヒジュラ暦と西暦で年齢を計算します。</span></a></li>
 <li><a href="/nepali-age-calculator/"><strong>Nepali age calculator</strong><span>ネパール暦（ビクラム暦）で年齢を計算します。</span></a></li>
 <li><a href="/chronological-age-calculator/"><strong>Chronological age calculator</strong><span>心理検査などで使う生活年齢（年;月;日）を計算します。</span></a></li>
 </ul>
 
-    <p class="page-meta">最終更新：<time datetime="2026-11-19">2026-11-19</time></p>
+    <p class="page-meta">最終更新：<time datetime="2026-11-20">2026-11-20</time></p>
   </div>
 </section>
 </main>
@@ -418,6 +424,8 @@
         <ul>
 <li><a href="/ja/" lang="ja" hreflang="ja">年齢早見表</a></li>
 <li><a href="/ja/gakunen/" lang="ja" hreflang="ja">学年早見表</a></li>
+<li><a href="/ja/days/" lang="ja" hreflang="ja">日数計算</a></li>
+<li><a href="/ja/era/" lang="ja" hreflang="ja">西暦和暦早見表</a></li>
         </ul>
       </nav>
       <nav class="footer-column" aria-label="ほかの言語">
@@ -425,6 +433,7 @@
         <ul>
 <li><a href="/" lang="ja" hreflang="en">英語 (年齢計算)</a></li>
 <li><a href="/ar/" lang="ja" hreflang="ar">アラビア語 (年齢計算)</a></li>
+<li><a href="/tr/" lang="ja" hreflang="tr">トルコ語 (年齢計算)</a></li>
 <li><a href="/nepali-age-calculator/" lang="ja" hreflang="en">ネパール暦 (年齢計算)</a></li>
 <li><a href="/nepali-date-converter/" lang="ja" hreflang="en">ネパール暦 (日付変換)</a></li>
         </ul>
@@ -452,7 +461,7 @@
 </footer>
 <script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}})();</script>
 <script>(function(){var b=document.querySelector('.theme-toggle'),r=document.documentElement;function s(){b.setAttribute('aria-pressed',r.dataset.theme==='dark')}s();b.addEventListener('click',function(){r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}s()})})();</script>
-<script src="/assets/js/datecore.js?v=163192f0eb" defer></script>
+<script src="/assets/js/datecore.js?v=ce0c93159b" defer></script>
 <script src="/assets/js/ja.js?v=f3daa33524" defer></script>
 </body>
 </html>

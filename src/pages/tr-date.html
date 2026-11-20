@@ -1,0 +1,170 @@
+<!--meta
+{
+  "path": "/tr/tarih-hesaplama/",
+  "lang": "tr",
+  "nav": "trdate",
+  "id": "trdate",
+  "kind": "tool",
+  "hreflang": "datecalc",
+  "title": "Tarih ve Gün Hesaplama: İki Tarih Arası Gün Hesaplayıcı",
+  "description": "İki tarih arasındaki gün sayısını hesaplayın veya bir tarihe gün ekleyip çıkarın. İş günleri ve hafta sonları dahil tam döküm.",
+  "app_name": "Tarih ve gün hesaplama",
+  "crumb": "Tarih ve gün hesaplama",
+  "scripts": ["datecore.js", "tr-date.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["İki tarih arasındaki gün sayısı nasıl hesaplanır?", "Başlangıç ve bitiş tarihlerini girin. Hesaplayıcı, iki tarih arasında geçen toplam gün, hafta, ay ve iş günü sayısını anında ekrana yansıtır."],
+    ["Hesaplamaya başlangıç ve bitiş günleri dahil midir?", "Standart hesaplamada başlangıç günü sayılır, bitiş günü varış noktası olarak kabul edilir. Her iki günü de dahil etmek isterseniz “Bitiş gününü dahil et” seçeneğini işaretleyebilirsiniz."],
+    ["İş günleri hesabı neleri kapsar?", "İş günleri Pazartesi, Salı, Çarşamba, Perşembe ve Cuma günlerini kapsar. Cumartesi ve Pazar günleri hafta sonu kabul edilerek hariç tutulur."],
+    ["Bir tarihe gün ekleme veya çıkarma nasıl yapılır?", "Hesaplama modundan “Tarihe gün ekle veya çıkar” seçeneğini belirleyin. Başlangıç tarihini, eklemek veya çıkarmak istediğiniz gün sayısını girerek hedef tarihi hemen görebilirsiniz."],
+    ["Bugünden 30, 60 veya 90 gün sonrası nasıl bulunur?", "Hızlı seçim butonlarına tıklayarak bugünden itibaren 30, 60, 90 gün veya 6 ay sonraki tarihi tek dokunuşla öğrenebilirsiniz."],
+    ["Artık yıllar gün sayısını nasıl etkiler?", "Gregoryen takvim kuralları uyarınca 29 Şubat günleri hesaba tam bir takvim günü olarak dahil edilir. Böylece hesaplamada hiçbir gün kaybı yaşanmaz."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Tarih ve gün hesaplama</h1>
+    <p class="lede">İki tarih arasındaki gün sayısını hesaplayın veya tarihe gün ekleyin.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Tarih ve gün hesaplama aracı">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div>
+        <p class="label" id="mode-label">Hesaplama seçeneği</p>
+        <div class="switch" role="radiogroup" aria-labelledby="mode-label">
+          <input type="radio" name="mode" id="mode-diff" value="diff" checked>
+          <label for="mode-diff">İki tarih arası gün</label>
+          <input type="radio" name="mode" id="mode-add" value="add">
+          <label for="mode-add">Tarihe gün ekle veya çıkar</label>
+        </div>
+      </div>
+
+      <!-- Mode 1: İki tarih arası gün -->
+      <div id="section-diff">
+        <fieldset class="datefield" id="d1-field">
+          <legend>Başlangıç tarihi</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Gün</span><input type="text" inputmode="numeric" maxlength="2" placeholder="GG" data-part="d" autocomplete="off" aria-label="Başlangıç günü"></label>
+            <label class="p-m"><span>Ay</span><input type="text" inputmode="numeric" maxlength="2" placeholder="AA" data-part="m" autocomplete="off" aria-label="Başlangıç ayı"></label>
+            <label class="p-y"><span>Yıl</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="Başlangıç yılı"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Varsayılan bugün. <button type="button" class="btn-link" id="btn-d1-today">Bugüne ayarla</button></p>
+        </fieldset>
+
+        <fieldset class="datefield" id="d2-field">
+          <legend>Bitiş tarihi</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Gün</span><input type="text" inputmode="numeric" maxlength="2" placeholder="GG" data-part="d" autocomplete="off" aria-label="Bitiş günü"></label>
+            <label class="p-m"><span>Ay</span><input type="text" inputmode="numeric" maxlength="2" placeholder="AA" data-part="m" autocomplete="off" aria-label="Bitiş ayı"></label>
+            <label class="p-y"><span>Yıl</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="Bitiş yılı"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <div class="preset-group" aria-label="Hızlı tarih ekleme">
+            <button type="button" class="preset-chip" id="p-add-30">+30 gün</button>
+            <button type="button" class="preset-chip" id="p-add-90">+90 gün</button>
+            <button type="button" class="preset-chip" id="p-add-180">+180 gün</button>
+            <button type="button" class="preset-chip" id="p-month-end">Ay sonu</button>
+            <button type="button" class="preset-chip" id="p-year-end">Yıl sonu</button>
+          </div>
+        </fieldset>
+
+        <label class="check">
+          <input type="checkbox" id="include-end">
+          <span>Bitiş gününü hesaba dahil et (1 gün ekler)</span>
+        </label>
+      </div>
+
+      <!-- Mode 2: Tarihe gün ekleme / çıkarma -->
+      <div id="section-add" hidden>
+        <fieldset class="datefield" id="base-field">
+          <legend>Tarih</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Gün</span><input type="text" inputmode="numeric" maxlength="2" placeholder="GG" data-part="d" autocomplete="off" aria-label="İşlem günü"></label>
+            <label class="p-m"><span>Ay</span><input type="text" inputmode="numeric" maxlength="2" placeholder="AA" data-part="m" autocomplete="off" aria-label="İşlem ayı"></label>
+            <label class="p-y"><span>Yıl</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="İşlem yılı"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Varsayılan bugün. <button type="button" class="btn-link" id="btn-base-today">Bugüne ayarla</button></p>
+        </fieldset>
+
+        <div>
+          <p class="label" id="op-label">İşlem türü</p>
+          <div class="switch" role="radiogroup" aria-labelledby="op-label">
+            <input type="radio" name="op" id="op-add" value="add" checked>
+            <label for="op-add">Ekle (+)</label>
+            <input type="radio" name="op" id="op-sub" value="sub">
+            <label for="op-sub">Çıkar</label>
+          </div>
+        </div>
+
+        <div class="inline-fields">
+          <label>
+            <span>Miktar</span>
+            <input type="text" inputmode="numeric" id="amount" value="30" maxlength="6" autocomplete="off" aria-label="Eklenecek veya çıkarılacak süre">
+          </label>
+          <label>
+            <span>Birim</span>
+            <select id="unit" aria-label="Zaman birimi">
+              <option value="days" selected>Gün</option>
+              <option value="businessDays">İş günü (Pazartesi ile Cuma)</option>
+              <option value="weeks">Hafta</option>
+              <option value="months">Ay</option>
+              <option value="years">Yıl</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="preset-group" aria-label="Hızlı süre seçenekleri">
+          <button type="button" class="preset-chip" id="chip-30">30 gün</button>
+          <button type="button" class="preset-chip" id="chip-60">60 gün</button>
+          <button type="button" class="preset-chip" id="chip-90">90 gün</button>
+          <button type="button" class="preset-chip" id="chip-180">180 gün</button>
+          <button type="button" class="preset-chip" id="chip-1y">1 yıl</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Hesaplama sonucu burada görünecektir</strong>Tarihleri ve işlem değerlerini girdiğinizde sonuç anında hesaplanır.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-main"></span><span class="unit" id="r-unit"></span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Sonuç bağlantısını kopyala</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>İki tarih arasındaki gün sayısını hesaplama</h2>
+    <p>İki tarih arasındaki gün sayısı hesaplanırken takvimdeki tam 24 saatlik süreler temel alınır. Kira sözleşmeleri, fatura vadeleri, seyahat planları veya resmi işlemler için iki tarih arasındaki süreyi gün, hafta ve ay olarak eksiksiz görebilirsiniz.</p>
+    <p>İş günleri seçeneği Cumartesi ve Pazar günlerini otomatik olarak hariç bırakarak sadece mesai günlerini saymanızı sağlar.</p>
+
+    <h2>Tarihe gün ekleme ve çıkarma</h2>
+    <p>Belirli bir tarihten itibaren gün saymak istediğinizde takvim aylarının farklı uzunlukları (28, 29, 30 ve 31 gün) ve artık yıllar tam bir hassasiyetle değerlendirilir. Böylece 30, 60 veya 90 gün sonrasının hangi güne ve haftanın hangi gününe denk geldiği anında bulunur.</p>
+
+    <h2>İlgili hesaplayıcılar</h2>
+    <ul>
+      <li><a href="/tr/">Yaş hesaplama</a>: doğum tarihinize göre tam yaşınızı ve burcunuzu hesaplayın.</li>
+      <li><a href="/tr/hicri-takvim/">Hicri takvim</a>: bugünün hicri tarihini ve miladi çevirisini görün.</li>
+      <li><a href="/days-between-dates/">Days between dates</a>: İngilizce gün hesaplama aracı.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Son güncelleme <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

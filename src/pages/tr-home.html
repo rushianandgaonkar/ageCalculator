@@ -1,0 +1,108 @@
+<!--meta
+{
+  "path": "/tr/",
+  "lang": "tr",
+  "nav": "trhome",
+  "id": "trhome",
+  "kind": "tool",
+  "title": "Yaş Hesaplama: Kaç Yaşındayım, Doğum Günü ve Yaş Hesaplayıcı",
+  "description": "Doğum tarihinize göre tam yaşınızı yıl, ay, gün ve saat olarak hesaplayın. Bir sonraki doğum gününüze kalan süreyi ve burcunuzu öğrenin.",
+  "app_name": "Yaş hesaplama",
+  "crumb": "Yaş hesaplama",
+  "scripts": ["datecore.js", "tr-home.js"],
+  "og": "og-home.png",
+  "priority": "0.95",
+  "changefreq": "monthly",
+  "faq": [
+    ["Doğum tarihime göre yaşımı nasıl hesaplarım?", "Doğum tarihinizi gün, ay ve yıl olarak girin. Hesaplayıcı, bugün itibarıyla doldurduğunuz tam yaşı yıl, ay ve gün olarak anında ekrana getirir. Bununla birlikte toplam gün, hafta, saat ve sonraki doğum gününüze kalan süreyi de gösterir."],
+    ["Kaç yaşındayım sorusunun cevabı nedir?", "Türkiye’de yaş hesabı bitirilen tam yaş üzerinden ifade edilir. Örneğin 2000 yılının Mayıs ayında doğan biri, 2026 yılının Mayıs ayında 26 yaşını doldurmuş olur ve 27 yaşından gün almaya başlar. Aracımız hem doldurduğunuz yaşı hem de gün aldığınız yaşı açıklar."],
+    ["Farklı bir tarihteki yaşımı nasıl öğrenirim?", "Hesaplama tarihi alanındaki kutucukları istediğiniz tarihe göre değiştirebilirsiniz. Bu özellik sayesinde sınav başvuruları, askerlik işlemleri, emeklilik şartları veya iş başvurularındaki yaş sınırlarını kolayca kontrol edebilirsiniz."],
+    ["Artık yıllar hesaplamaya dahil ediliyor mu?", "Evet. Takvimdeki tüm artık yıllar ve 29 Şubat günleri hesaba eksiksiz olarak katılır."],
+    ["29 Şubat tarihinde doğanların yaşı nasıl hesaplanır?", "Artık yıl olmayan dönemlerde 29 Şubat doğumluların doğum günü 28 Şubat olarak kabul edilir. Böylece yaş ve gün hesabı kesintisiz olarak tamamlanır."],
+    ["Burç bilgisi nasıl belirlenir?", "Doğum gününüz ve doğum ayınız temel alınarak geleneksel güneş burcunuz ve ait olduğu astrolojik element otomatik olarak tespit edilir."],
+    ["Girdiğim doğum tarihi kaydediliyor mu?", "Hayır. Hesaplama işleminin tamamı tarayıcınızda gerçekleşir. Girdiğiniz bilgiler hiçbir sunucuya gönderilmez ve kaydedilmez."]
+  ]
+}
+-->
+<section class="hero" aria-labelledby="landing-title">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1 id="landing-title">Yaş Hesaplama</h1>
+      <p class="lede">Doğum tarihinize göre tam yaşınızı ve bir sonraki doğum gününüzü hesaplayın.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tool" aria-label="Yaş hesaplama aracı">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate autocomplete="on" onsubmit="return false">
+      <div>
+        <h2 class="landing-form-heading">Doğum tarihine göre yaş hesaplama</h2>
+        <p class="landing-form-subtitle">Doğum gününüzü girerek bugünkü tam yaşınızı veya belirli bir tarihteki yaşınızı hesaplayın.</p>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend>Doğum tarihi</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Gün</span><input type="text" inputmode="numeric" maxlength="2" placeholder="GG" data-part="d" autocomplete="bday-day" aria-label="Doğum günü"></label>
+          <label class="p-m"><span>Ay</span><input type="text" inputmode="numeric" maxlength="2" placeholder="AA" data-part="m" autocomplete="bday-month" aria-label="Doğum ayı"></label>
+          <label class="p-y"><span>Yıl</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="bday-year" aria-label="Doğum yılı"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="on">
+        <legend>Hesaplama tarihi</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Gün</span><input type="text" inputmode="numeric" maxlength="2" placeholder="GG" data-part="d" autocomplete="off" aria-label="Hesaplama günü"></label>
+          <label class="p-m"><span>Ay</span><input type="text" inputmode="numeric" maxlength="2" placeholder="AA" data-part="m" autocomplete="off" aria-label="Hesaplama ayı"></label>
+          <label class="p-y"><span>Yıl</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off" aria-label="Hesaplama yılı"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">Varsayılan olarak bugün. <button type="button" class="btn-link" id="reset-today">Bugüne sıfırla</button></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Sonucunuz burada görünecektir</strong>Doğum tarihinizi girdiğinizde yaş dökümünüz anında hesaplanır.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit" id="r-years-unit">yaşında</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="ruler" id="r-ruler" role="img"><div class="ruler-track"></div><div class="ruler-legend"></div></div>
+        <div class="callout" id="r-note" hidden></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Sonuç bağlantısını kopyala</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Yaş hesaplama yöntemi</h2>
+    <p>Yaş hesaplama işlemi, doğum tarihinizden itibaren tamamlanan tam yılları, ardından tam ayları ve geriye kalan günleri sırasıyla sayarak gerçekleştirilir. Her ay takvimdeki gerçek gün uzunluğuna göre değerlendirilir ve artık yıllar tam olarak hesaba katılır.</p>
+    <p>Örneğin 15 Ağustos 1995 doğumlu bir kişi, 10 Ekim 2026 tarihinde 31 yıl, 1 ay ve 25 günlük bir ömür süresini geride bırakmış olur.</p>
+
+    <h2>Doldurulan yaş ve gün alınan yaş</h2>
+    <p>Günlük konuşma dilinde sıklıkla merak edilen konulardan biri de doldurulan yaş ile gün alınan yaş arasındaki farktır. Doğum gününüz tamamlandığında bir yaşınızı doldurursunuz ve bir sonraki yaştan gün almaya başlarsınız. Hesaplayıcımız her iki değeri de ayrı ayrı belirterek kafa karışıklığını giderir.</p>
+
+    <h2>Burç tespiti ve sonraki doğum günü geri sayımı</h2>
+    <p>Doğum tarihiniz girildiğinde yalnızca yaşınız değil, doğum gününüze ait burç bilgisi ve bir sonraki doğum gününüze kaç gün kaldığı da detaylı istatistikler arasında sunulur. Ayrıca toplam gün, hafta, saat ve dakika cinsinden ömür sürenizi inceleyebilirsiniz.</p>
+
+    <h2>İlgili hesaplayıcılar</h2>
+    <ul>
+      <li><a href="/tr/tarih-hesaplama/">Tarih ve gün hesaplama</a>: iki tarih arasındaki gün sayısını hesaplayın veya tarihe gün ekleyin.</li>
+      <li><a href="/tr/hicri-takvim/">Hicri takvim</a>: bugünün hicri tarihini görün ve miladi tarihleri hicriye çevirin.</li>
+      <li><a href="/days-between-dates/">Days between dates</a>: İngilizce iki tarih arası süre hesaplayıcı.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Son güncelleme <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>
