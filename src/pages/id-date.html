@@ -1,0 +1,160 @@
+<!--meta
+{
+  "path": "/id/hitung-hari/",
+  "lang": "id",
+  "nav": "iddate",
+  "id": "iddate",
+  "kind": "tool",
+  "hreflang": "datecalc",
+  "title": "Hitung Hari dan Kalkulator Tanggal: Selisih Hari dan Hari Kerja",
+  "description": "Hitung hari antara dua tanggal, berapa hari lagi menuju tanggal tertentu, jumlah hari kerja, atau tambah dan kurangi hari dari sebuah tanggal.",
+  "app_name": "Hitung hari dan kalkulator tanggal",
+  "crumb": "Hitung hari",
+  "scripts": ["datecore.js", "id-date.js", "date-l10n.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["Bagaimana cara hitung hari antara dua tanggal?", "Masukkan tanggal awal dan tanggal akhir. Kalkulator langsung menampilkan jumlah hari, minggu, bulan dan hari kerja di antaranya."],
+    ["Berapa hari lagi menuju tanggal tertentu?", "Biarkan tanggal awal berisi hari ini dan isi tanggal tujuan sebagai tanggal akhir. Hasilnya menunjukkan berapa hari lagi, termasuk hitung mundur dari hari ini."],
+    ["Apakah hari terakhir ikut dihitung?", "Secara bawaan hari pertama dihitung dan hari terakhir tidak. Centang “Hitung hari terakhir” untuk memasukkan keduanya."],
+    ["Bagaimana hari kerja dihitung?", "Hari kerja adalah Senin sampai Jumat. Sabtu dan Minggu tidak dihitung. Libur nasional dan cuti bersama belum dikurangi."],
+    ["Bagaimana menambah hari ke sebuah tanggal?", "Pilih mode “Tambah atau kurangi hari”, isi tanggal dan jumlahnya. Tanggal hasil muncul lengkap dengan nama hari."],
+    ["Apakah tahun kabisat diperhitungkan?", "Ya. Tanggal 29 Februari dihitung sebagai satu hari penuh pada tahun kabisat."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Hitung hari dan kalkulator tanggal</h1>
+    <p class="lede">Hitung selisih hari antara dua tanggal atau hitung mundur tanggal tertentu.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Kalkulator tanggal">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div>
+        <p class="label" id="mode-label">Jenis perhitungan</p>
+        <div class="switch" role="radiogroup" aria-labelledby="mode-label">
+          <input type="radio" name="mode" id="mode-diff" value="diff" checked>
+          <label for="mode-diff">Selisih hari</label>
+          <input type="radio" name="mode" id="mode-add" value="add">
+          <label for="mode-add">Tambah atau kurangi hari</label>
+        </div>
+      </div>
+
+      <div id="section-diff">
+        <fieldset class="datefield" id="d1-field">
+          <legend>Tanggal awal</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Tanggal</span><input type="text" inputmode="numeric" maxlength="2" placeholder="HH" data-part="d" name="d1_day" id="d1-day" autocomplete="off"></label>
+            <label class="p-m"><span>Bulan</span><input type="text" inputmode="numeric" maxlength="2" placeholder="BB" data-part="m" name="d1_month" id="d1-month" autocomplete="off"></label>
+            <label class="p-y"><span>Tahun</span><input type="text" inputmode="numeric" maxlength="4" placeholder="TTTT" data-part="y" name="d1_year" id="d1-year" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Bawaan: hari ini. <button type="button" class="btn-link" id="btn-d1-today">Atur ke hari ini</button></p>
+        </fieldset>
+
+        <fieldset class="datefield" id="d2-field">
+          <legend>Tanggal akhir</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Tanggal</span><input type="text" inputmode="numeric" maxlength="2" placeholder="HH" data-part="d" name="d2_day" id="d2-day" autocomplete="off"></label>
+            <label class="p-m"><span>Bulan</span><input type="text" inputmode="numeric" maxlength="2" placeholder="BB" data-part="m" name="d2_month" id="d2-month" autocomplete="off"></label>
+            <label class="p-y"><span>Tahun</span><input type="text" inputmode="numeric" maxlength="4" placeholder="TTTT" data-part="y" name="d2_year" id="d2-year" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <div class="preset-group" aria-label="Pilihan cepat tanggal akhir">
+            <button type="button" class="preset-chip" data-diff-days="30">+30 hari</button>
+            <button type="button" class="preset-chip" data-diff-days="90">+90 hari</button>
+            <button type="button" class="preset-chip" data-diff-end="month">Akhir bulan</button>
+            <button type="button" class="preset-chip" data-diff-end="year">Akhir tahun</button>
+          </div>
+        </fieldset>
+
+        <label class="check">
+          <input type="checkbox" id="include-end" name="include_end">
+          <span>Hitung hari terakhir (tambah 1 hari)</span>
+        </label>
+      </div>
+
+      <div id="section-add" hidden>
+        <fieldset class="datefield" id="base-field">
+          <legend>Tanggal</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Tanggal</span><input type="text" inputmode="numeric" maxlength="2" placeholder="HH" data-part="d" name="base_day" id="base-day" autocomplete="off"></label>
+            <label class="p-m"><span>Bulan</span><input type="text" inputmode="numeric" maxlength="2" placeholder="BB" data-part="m" name="base_month" id="base-month" autocomplete="off"></label>
+            <label class="p-y"><span>Tahun</span><input type="text" inputmode="numeric" maxlength="4" placeholder="TTTT" data-part="y" name="base_year" id="base-year" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Bawaan: hari ini. <button type="button" class="btn-link" id="btn-base-today">Atur ke hari ini</button></p>
+        </fieldset>
+
+        <div>
+          <p class="label" id="op-label">Operasi</p>
+          <div class="switch" role="radiogroup" aria-labelledby="op-label">
+            <input type="radio" name="op" id="op-add" value="add" checked>
+            <label for="op-add">Tambah (+)</label>
+            <input type="radio" name="op" id="op-sub" value="sub">
+            <label for="op-sub">Kurangi</label>
+          </div>
+        </div>
+
+        <div class="inline-fields">
+          <label><span>Jumlah</span><input type="text" inputmode="numeric" id="amount" name="amount" value="30" maxlength="6" autocomplete="off"></label>
+          <label><span>Satuan</span>
+            <select id="unit" name="unit">
+              <option value="days" selected>Hari</option>
+              <option value="businessDays">Hari kerja (Senin sampai Jumat)</option>
+              <option value="weeks">Minggu</option>
+              <option value="months">Bulan</option>
+              <option value="years">Tahun</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="preset-group" aria-label="Pilihan cepat dari hari ini">
+          <button type="button" class="preset-chip" data-add="30">+30 hari</button>
+          <button type="button" class="preset-chip" data-add="60">+60 hari</button>
+          <button type="button" class="preset-chip" data-add="90">+90 hari</button>
+          <button type="button" class="preset-chip" data-add="10" data-unit="businessDays">+10 hari kerja</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Hasil muncul di sini</strong>Begitu tanggal lengkap, hasil langsung dihitung.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-main"></span><span class="unit" id="r-unit"></span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Salin tautan</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Hitung hari antara dua tanggal</h2>
+    <p>Kalkulator menghitung hari kalender penuh dari tanggal awal sampai tanggal akhir. Anda juga melihat jumlah minggu, bulan dan hari kerja Senin sampai Jumat, berguna untuk tenggat, masa kontrak atau perencanaan cuti.</p>
+
+    <h2>Berapa hari lagi dan tambah hari ke tanggal</h2>
+    <p>Hasil selalu menunjukkan berapa hari lagi dari hari ini menuju tanggal akhir. Pada mode kedua Anda bisa menambah atau mengurangi hari, hari kerja, minggu, bulan atau tahun dengan memperhitungkan panjang bulan dan tahun kabisat.</p>
+
+    <h2>Kalkulator lainnya</h2>
+    <ul>
+      <li><a href="/id/">Kalkulator umur</a>: umur tepat, zodiak dan ulang tahun berikutnya.</li>
+      <li><a href="/id/kalender-hijriyah/">Kalender Hijriyah</a>: tanggal hijriyah hari ini dan konversi tanggal.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Terakhir diperbarui <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

@@ -1,0 +1,102 @@
+<!--meta
+{
+  "path": "/pt/",
+  "lang": "pt",
+  "nav": "pthome",
+  "id": "pthome",
+  "kind": "tool",
+  "title": "Calculadora de Idade: Quantos Anos Eu Tenho e Próximo Aniversário",
+  "description": "Calcular idade online: descubra quantos anos você tem em anos, meses e dias, quantos dias já viveu, seu signo e quanto falta para o aniversário.",
+  "app_name": "Calculadora de idade",
+  "crumb": "Calculadora de idade",
+  "scripts": ["datecore.js", "pt-home.js", "age-l10n.js"],
+  "og": "og-home.png",
+  "priority": "0.95",
+  "changefreq": "monthly",
+  "faq": [
+    ["Quantos anos eu tenho?", "Digite sua data de nascimento. A calculadora mostra na hora sua idade exata em anos, meses e dias, além do total de dias, semanas e horas vividos."],
+    ["Como calcular idade pela data de nascimento?", "Primeiro contam-se os anos completos desde o nascimento, depois os meses completos e por fim os dias restantes. Cada mês conta com sua duração real e os anos bissextos entram no cálculo."],
+    ["Posso calcular minha idade em outra data?", "Sim. Altere o campo “Data de referência” para ver a idade em qualquer data, por exemplo para limites de idade em concursos ou aposentadoria."],
+    ["E quem nasceu em 29 de fevereiro?", "Em anos que não são bissextos, o aniversário é contado em 28 de fevereiro, e o total de dias continua exato."],
+    ["Como o signo é definido?", "O signo do zodíaco ocidental vem do dia e do mês de nascimento, por exemplo Áries para quem nasceu de 21 de março a 19 de abril."],
+    ["Minha data de nascimento fica salva?", "Não. Todo o cálculo é feito no seu navegador. Nenhum dado é enviado ou armazenado."]
+  ]
+}
+-->
+<section class="hero" aria-labelledby="landing-title">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1 id="landing-title">Calculadora de idade</h1>
+      <p class="lede">Calcule sua idade exata em anos, meses e dias pelo seu nascimento.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tool" aria-label="Calculadora de idade">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate autocomplete="on" onsubmit="return false">
+      <div>
+        <h2 class="landing-form-heading">Calcular idade pela data de nascimento</h2>
+        <p class="landing-form-subtitle">Digite a data de nascimento para ver a idade hoje ou em qualquer outra data.</p>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend>Data de nascimento</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Dia</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" name="dob_day" id="dob-day" autocomplete="bday-day"></label>
+          <label class="p-m"><span>Mês</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="dob_month" id="dob-month" autocomplete="bday-month"></label>
+          <label class="p-y"><span>Ano</span><input type="text" inputmode="numeric" maxlength="4" placeholder="AAAA" data-part="y" name="dob_year" id="dob-year" autocomplete="bday-year"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="on">
+        <legend>Data de referência</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Dia</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" name="on_day" id="on-day" autocomplete="off"></label>
+          <label class="p-m"><span>Mês</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="on_month" id="on-month" autocomplete="off"></label>
+          <label class="p-y"><span>Ano</span><input type="text" inputmode="numeric" maxlength="4" placeholder="AAAA" data-part="y" name="on_year" id="on-year" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">Padrão: hoje. <button type="button" class="btn-link" id="reset-today">Voltar para hoje</button></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Seu resultado aparece aqui</strong>Assim que você digitar a data de nascimento, a idade é calculada.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit">anos</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="ruler" id="r-ruler" role="img"><div class="ruler-track"></div><div class="ruler-legend"></div></div>
+        <div class="callout" id="r-note" hidden></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Copiar link</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Como a calculadora de idade funciona</h2>
+    <p>A calculadora conta os anos completos desde o seu nascimento, depois os meses completos e por fim os dias que sobram. Cada mês tem sua duração real e os anos bissextos são considerados.</p>
+    <p>Exemplo: quem nasceu em 15 de agosto de 1995 tem 31 anos, 1 mês e 25 dias em 10 de outubro de 2026.</p>
+
+    <h2>Signo e contagem para o aniversário</h2>
+    <p>Além da idade, você vê seu signo do zodíaco, o dia da semana em que nasceu e quantos dias faltam para o próximo aniversário.</p>
+
+    <h2>Outras calculadoras</h2>
+    <ul>
+      <li><a href="/pt/calculadora-de-dias/">Calculadora de dias e datas</a>: dias entre duas datas e dias úteis.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Última atualização <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

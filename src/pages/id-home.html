@@ -1,0 +1,103 @@
+<!--meta
+{
+  "path": "/id/",
+  "lang": "id",
+  "nav": "idhome",
+  "id": "idhome",
+  "kind": "tool",
+  "title": "Kalkulator Umur: Hitung Usia dan Hari Ulang Tahun Berikutnya",
+  "description": "Kalkulator umur gratis: hitung umur Anda dalam tahun, bulan, hari dan jam, lihat zodiak dan hitung mundur ke ulang tahun berikutnya.",
+  "app_name": "Kalkulator umur",
+  "crumb": "Kalkulator umur",
+  "scripts": ["datecore.js", "id-home.js", "age-l10n.js"],
+  "og": "og-home.png",
+  "priority": "0.95",
+  "changefreq": "monthly",
+  "faq": [
+    ["Berapa umur saya sekarang?", "Masukkan tanggal lahir Anda. Kalkulator langsung menampilkan umur tepat dalam tahun, bulan dan hari, beserta total hari, minggu dan jam yang sudah Anda jalani."],
+    ["Bagaimana cara hitung umur?", "Pertama dihitung tahun penuh sejak lahir, lalu bulan penuh, lalu sisa hari. Setiap bulan dihitung sesuai panjang aslinya dan tahun kabisat ikut diperhitungkan."],
+    ["Bisakah menghitung umur pada tanggal tertentu?", "Bisa. Ubah kolom “Tanggal perhitungan” untuk melihat umur pada tanggal lain, misalnya batas usia pendaftaran sekolah, CPNS atau pensiun."],
+    ["Bagaimana jika lahir pada 29 Februari?", "Pada tahun bukan kabisat, ulang tahun dihitung jatuh pada 28 Februari sehingga perhitungan hari tetap utuh."],
+    ["Bagaimana zodiak ditentukan?", "Zodiak barat ditentukan dari tanggal dan bulan lahir, misalnya Aries untuk kelahiran 21 Maret sampai 19 April."],
+    ["Apakah tanggal lahir saya disimpan?", "Tidak. Semua perhitungan berjalan di browser Anda. Tidak ada data yang dikirim atau disimpan."]
+  ]
+}
+-->
+<section class="hero" aria-labelledby="landing-title">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1 id="landing-title">Kalkulator umur</h1>
+      <p class="lede">Hitung umur akurat Anda dalam tahun, bulan dan hitung mundur ulang tahun.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tool" aria-label="Kalkulator umur">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate autocomplete="on" onsubmit="return false">
+      <div>
+        <h2 class="landing-form-heading">Hitung umur dari tanggal lahir</h2>
+        <p class="landing-form-subtitle">Masukkan tanggal lahir untuk melihat umur hari ini atau pada tanggal lain.</p>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend>Tanggal lahir</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Tanggal</span><input type="text" inputmode="numeric" maxlength="2" placeholder="HH" data-part="d" name="dob_day" id="dob-day" autocomplete="bday-day"></label>
+          <label class="p-m"><span>Bulan</span><input type="text" inputmode="numeric" maxlength="2" placeholder="BB" data-part="m" name="dob_month" id="dob-month" autocomplete="bday-month"></label>
+          <label class="p-y"><span>Tahun</span><input type="text" inputmode="numeric" maxlength="4" placeholder="TTTT" data-part="y" name="dob_year" id="dob-year" autocomplete="bday-year"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="on">
+        <legend>Tanggal perhitungan</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Tanggal</span><input type="text" inputmode="numeric" maxlength="2" placeholder="HH" data-part="d" name="on_day" id="on-day" autocomplete="off"></label>
+          <label class="p-m"><span>Bulan</span><input type="text" inputmode="numeric" maxlength="2" placeholder="BB" data-part="m" name="on_month" id="on-month" autocomplete="off"></label>
+          <label class="p-y"><span>Tahun</span><input type="text" inputmode="numeric" maxlength="4" placeholder="TTTT" data-part="y" name="on_year" id="on-year" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">Bawaan: hari ini. <button type="button" class="btn-link" id="reset-today">Kembali ke hari ini</button></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Hasil Anda muncul di sini</strong>Begitu tanggal lahir diisi, umur Anda langsung dihitung.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit">tahun</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="ruler" id="r-ruler" role="img"><div class="ruler-track"></div><div class="ruler-legend"></div></div>
+        <div class="callout" id="r-note" hidden></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Salin tautan</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Cara kalkulator menghitung umur</h2>
+    <p>Kalkulator menghitung tahun penuh sejak Anda lahir, kemudian bulan penuh, lalu sisa harinya. Panjang setiap bulan mengikuti kalender sebenarnya dan tahun kabisat dihitung dengan tepat.</p>
+    <p>Contoh: seseorang yang lahir 15 Agustus 1995 berumur 31 tahun, 1 bulan dan 25 hari pada 10 Oktober 2026.</p>
+
+    <h2>Zodiak dan hitung mundur ulang tahun</h2>
+    <p>Selain umur, Anda melihat zodiak, hari kelahiran dan berapa hari lagi menuju ulang tahun berikutnya.</p>
+
+    <h2>Kalkulator lainnya</h2>
+    <ul>
+      <li><a href="/id/hitung-hari/">Hitung hari</a>: selisih hari antara dua tanggal dan hari kerja.</li>
+      <li><a href="/id/kalender-hijriyah/">Kalender Hijriyah</a>: tanggal hijriyah hari ini dan konversi tanggal.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Terakhir diperbarui <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

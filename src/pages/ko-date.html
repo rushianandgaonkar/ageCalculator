@@ -1,0 +1,160 @@
+<!--meta
+{
+  "path": "/ko/date/",
+  "lang": "ko",
+  "nav": "kodate",
+  "id": "kodate",
+  "kind": "tool",
+  "hreflang": "datecalc",
+  "title": "날짜 계산기: 디데이 계산과 두 날짜 사이 일수 및 기념일",
+  "description": "날짜 계산기: 두 날짜 사이 일수와 평일 수, 100일 200일 1000일 기념일 디데이를 계산하고 날짜에 일수를 더하거나 빼 보세요.",
+  "app_name": "날짜 및 디데이 계산기",
+  "crumb": "날짜 계산기",
+  "scripts": ["datecore.js", "ko-date.js", "date-l10n.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["두 날짜 사이 일수는 어떻게 계산하나요?", "시작일과 종료일을 입력하면 두 날짜 사이의 일수, 주 수, 개월 수와 평일 수를 바로 보여 줍니다."],
+    ["기념일은 왜 시작일을 포함해서 세나요?", "한국에서는 사귄 날이나 태어난 날을 1일째로 세는 것이 일반적입니다. 그래서 100일 기념일은 시작일로부터 99일 뒤입니다. 기본값으로 “시작일 포함”이 선택되어 있습니다."],
+    ["디데이는 어떻게 표시되나요?", "오늘보다 미래의 날짜는 D-숫자, 지난 날짜는 D+숫자로 표시하고 당일은 D-Day로 표시합니다."],
+    ["평일 수에 공휴일도 빠지나요?", "평일은 월요일부터 금요일까지이며 토요일과 일요일만 제외합니다. 설날, 추석 같은 공휴일은 따로 빼지 않습니다."],
+    ["날짜에 일수를 더하려면 어떻게 하나요?", "“날짜 더하기 빼기”를 선택하고 기준 날짜와 일수를 입력하면 결과 날짜와 요일이 표시됩니다."],
+    ["윤년도 반영되나요?", "네. 윤년의 2월 29일도 하루로 정확히 계산합니다."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>날짜 및 디데이 계산기</h1>
+    <p class="lede">두 날짜 사이의 일수와 100일 단위 기념일 디데이를 계산합니다.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="날짜 계산기">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div>
+        <p class="label" id="mode-label">계산 방식</p>
+        <div class="switch" role="radiogroup" aria-labelledby="mode-label">
+          <input type="radio" name="mode" id="mode-diff" value="diff" checked>
+          <label for="mode-diff">두 날짜 사이 일수</label>
+          <input type="radio" name="mode" id="mode-add" value="add">
+          <label for="mode-add">날짜 더하기 빼기</label>
+        </div>
+      </div>
+
+      <div id="section-diff">
+        <fieldset class="datefield" id="d1-field">
+          <legend>시작일</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>년</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" name="d1_year" id="d1-year" autocomplete="off"></label>
+            <label class="p-m"><span>월</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="d1_month" id="d1-month" autocomplete="off"></label>
+            <label class="p-d"><span>일</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" name="d1_day" id="d1-day" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">기본값은 오늘입니다. <button type="button" class="btn-link" id="btn-d1-today">오늘로 설정</button></p>
+        </fieldset>
+
+        <fieldset class="datefield" id="d2-field">
+          <legend>종료일</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>년</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" name="d2_year" id="d2-year" autocomplete="off"></label>
+            <label class="p-m"><span>월</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="d2_month" id="d2-month" autocomplete="off"></label>
+            <label class="p-d"><span>일</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" name="d2_day" id="d2-day" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <div class="preset-group" aria-label="기념일 바로 선택">
+            <button type="button" class="preset-chip" data-diff-days="99">100일</button>
+            <button type="button" class="preset-chip" data-diff-days="199">200일</button>
+            <button type="button" class="preset-chip" data-diff-days="299">300일</button>
+            <button type="button" class="preset-chip" data-diff-days="499">500일</button>
+            <button type="button" class="preset-chip" data-diff-days="999">1000일</button>
+          </div>
+        </fieldset>
+
+        <label class="check">
+          <input type="checkbox" id="include-end" name="include_end" checked>
+          <span>시작일 포함 (기념일 계산 방식, 1일 추가)</span>
+        </label>
+      </div>
+
+      <div id="section-add" hidden>
+        <fieldset class="datefield" id="base-field">
+          <legend>기준 날짜</legend>
+          <div class="dateparts">
+            <label class="p-y"><span>년</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" name="base_year" id="base-year" autocomplete="off"></label>
+            <label class="p-m"><span>월</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="base_month" id="base-month" autocomplete="off"></label>
+            <label class="p-d"><span>일</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" name="base_day" id="base-day" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">기본값은 오늘입니다. <button type="button" class="btn-link" id="btn-base-today">오늘로 설정</button></p>
+        </fieldset>
+
+        <div>
+          <p class="label" id="op-label">계산</p>
+          <div class="switch" role="radiogroup" aria-labelledby="op-label">
+            <input type="radio" name="op" id="op-add" value="add" checked>
+            <label for="op-add">더하기 (+)</label>
+            <input type="radio" name="op" id="op-sub" value="sub">
+            <label for="op-sub">빼기</label>
+          </div>
+        </div>
+
+        <div class="inline-fields">
+          <label><span>숫자</span><input type="text" inputmode="numeric" id="amount" name="amount" value="30" maxlength="6" autocomplete="off"></label>
+          <label><span>단위</span>
+            <select id="unit" name="unit">
+              <option value="days" selected>일</option>
+              <option value="businessDays">영업일 (월요일부터 금요일)</option>
+              <option value="weeks">주</option>
+              <option value="months">개월</option>
+              <option value="years">년</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="preset-group" aria-label="오늘부터 바로 선택">
+          <button type="button" class="preset-chip" data-add="30">+30일</button>
+          <button type="button" class="preset-chip" data-add="60">+60일</button>
+          <button type="button" class="preset-chip" data-add="90">+90일</button>
+          <button type="button" class="preset-chip" data-add="10" data-unit="businessDays">+10영업일</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>결과가 여기에 표시됩니다</strong>날짜를 모두 입력하면 바로 계산됩니다.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-main"></span><span class="unit" id="r-unit"></span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">링크 복사</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>디데이와 기념일 계산법</h2>
+    <p>연애 기념일이나 아기 백일처럼 한국에서는 시작한 날을 1일째로 셉니다. 그래서 2026년 1월 1일에 시작했다면 100일은 4월 10일입니다. 결과에는 100일, 200일, 300일, 500일, 1000일 날짜와 오늘 기준 디데이가 함께 표시됩니다.</p>
+
+    <h2>평일 수와 날짜 더하기</h2>
+    <p>두 날짜 사이의 평일(영업일)은 토요일과 일요일을 뺀 날입니다. 두 번째 모드에서는 날짜에 일, 영업일, 주, 개월, 년을 더하거나 빼서 결과 날짜와 요일을 확인할 수 있습니다.</p>
+
+    <h2>다른 계산기</h2>
+    <ul>
+      <li><a href="/ko/">만 나이 계산기</a>: 만 나이, 연 나이, 세는나이와 띠.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">최종 업데이트 <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

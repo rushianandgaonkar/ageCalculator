@@ -1,0 +1,159 @@
+<!--meta
+{
+  "path": "/de/datumsrechner/",
+  "lang": "de",
+  "nav": "dedate",
+  "id": "dedate",
+  "kind": "tool",
+  "hreflang": "datecalc",
+  "title": "Datumsrechner und Tagerechner: Tage zwischen zwei Daten berechnen",
+  "description": "Tagerechner: Tage zwischen zwei Daten zählen, Arbeitstage ohne Wochenenden berechnen oder Tage zu einem Datum addieren und subtrahieren.",
+  "app_name": "Datumsrechner und Tagerechner",
+  "crumb": "Datumsrechner",
+  "scripts": ["datecore.js", "de-date.js", "date-l10n.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["Wie viele Tage liegen zwischen zwei Daten?", "Geben Sie Start- und Enddatum ein. Der Tagerechner zeigt sofort die Anzahl der Tage, Wochen, Monate und Arbeitstage dazwischen."],
+    ["Wird der Endtag mitgezählt?", "Standardmäßig zählt der Starttag, der Endtag nicht. Aktivieren Sie „Endtag mitzählen“, um beide Tage einzuschließen."],
+    ["Wie werden Arbeitstage berechnet?", "Als Arbeitstage zählen Montag bis Freitag. Samstag und Sonntag werden ausgelassen. Gesetzliche Feiertage unterscheiden sich je Bundesland und werden nicht abgezogen."],
+    ["Wie addiere ich Tage zu einem Datum?", "Wählen Sie „Tage addieren oder subtrahieren“, geben Sie ein Datum und eine Anzahl ein. Das Ergebnisdatum erscheint sofort, auch als Kalenderwoche."],
+    ["Welches Datum ist in 30, 60 oder 90 Tagen?", "Tippen Sie auf eine der Schnellwahl Schaltflächen. Der Rechner zeigt das Datum ab heute samt Wochentag."],
+    ["Werden Schaltjahre berücksichtigt?", "Ja. Der 29. Februar zählt in Schaltjahren als voller Kalendertag."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Datumsrechner und Tagerechner</h1>
+    <p class="lede">Berechnen Sie Tage zwischen Daten oder addieren Sie Arbeitstage zu Datumsangaben.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Datumsrechner">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div>
+        <p class="label" id="mode-label">Berechnung</p>
+        <div class="switch" role="radiogroup" aria-labelledby="mode-label">
+          <input type="radio" name="mode" id="mode-diff" value="diff" checked>
+          <label for="mode-diff">Tage zwischen zwei Daten</label>
+          <input type="radio" name="mode" id="mode-add" value="add">
+          <label for="mode-add">Tage addieren oder subtrahieren</label>
+        </div>
+      </div>
+
+      <div id="section-diff">
+        <fieldset class="datefield" id="d1-field">
+          <legend>Startdatum</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Tag</span><input type="text" inputmode="numeric" maxlength="2" placeholder="TT" data-part="d" name="d1_day" id="d1-day" autocomplete="off"></label>
+            <label class="p-m"><span>Monat</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="d1_month" id="d1-month" autocomplete="off"></label>
+            <label class="p-y"><span>Jahr</span><input type="text" inputmode="numeric" maxlength="4" placeholder="JJJJ" data-part="y" name="d1_year" id="d1-year" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Standardmäßig heute. <button type="button" class="btn-link" id="btn-d1-today">Auf heute setzen</button></p>
+        </fieldset>
+
+        <fieldset class="datefield" id="d2-field">
+          <legend>Enddatum</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Tag</span><input type="text" inputmode="numeric" maxlength="2" placeholder="TT" data-part="d" name="d2_day" id="d2-day" autocomplete="off"></label>
+            <label class="p-m"><span>Monat</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="d2_month" id="d2-month" autocomplete="off"></label>
+            <label class="p-y"><span>Jahr</span><input type="text" inputmode="numeric" maxlength="4" placeholder="JJJJ" data-part="y" name="d2_year" id="d2-year" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <div class="preset-group" aria-label="Schnellwahl Enddatum">
+            <button type="button" class="preset-chip" data-diff-days="30">+30 Tage</button>
+            <button type="button" class="preset-chip" data-diff-days="90">+90 Tage</button>
+            <button type="button" class="preset-chip" data-diff-end="month">Monatsende</button>
+            <button type="button" class="preset-chip" data-diff-end="year">Jahresende</button>
+          </div>
+        </fieldset>
+
+        <label class="check">
+          <input type="checkbox" id="include-end" name="include_end">
+          <span>Endtag mitzählen (plus 1 Tag)</span>
+        </label>
+      </div>
+
+      <div id="section-add" hidden>
+        <fieldset class="datefield" id="base-field">
+          <legend>Ausgangsdatum</legend>
+          <div class="dateparts">
+            <label class="p-d"><span>Tag</span><input type="text" inputmode="numeric" maxlength="2" placeholder="TT" data-part="d" name="base_day" id="base-day" autocomplete="off"></label>
+            <label class="p-m"><span>Monat</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="base_month" id="base-month" autocomplete="off"></label>
+            <label class="p-y"><span>Jahr</span><input type="text" inputmode="numeric" maxlength="4" placeholder="JJJJ" data-part="y" name="base_year" id="base-year" autocomplete="off"></label>
+          </div>
+          <p class="field-error" hidden></p>
+          <p class="hint">Standardmäßig heute. <button type="button" class="btn-link" id="btn-base-today">Auf heute setzen</button></p>
+        </fieldset>
+
+        <div>
+          <p class="label" id="op-label">Rechenart</p>
+          <div class="switch" role="radiogroup" aria-labelledby="op-label">
+            <input type="radio" name="op" id="op-add" value="add" checked>
+            <label for="op-add">Addieren (+)</label>
+            <input type="radio" name="op" id="op-sub" value="sub">
+            <label for="op-sub">Subtrahieren</label>
+          </div>
+        </div>
+
+        <div class="inline-fields">
+          <label><span>Anzahl</span><input type="text" inputmode="numeric" id="amount" name="amount" value="30" maxlength="6" autocomplete="off"></label>
+          <label><span>Einheit</span>
+            <select id="unit" name="unit">
+              <option value="days" selected>Tage</option>
+              <option value="businessDays">Arbeitstage (Mo bis Fr)</option>
+              <option value="weeks">Wochen</option>
+              <option value="months">Monate</option>
+              <option value="years">Jahre</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="preset-group" aria-label="Schnellwahl ab heute">
+          <button type="button" class="preset-chip" data-add="30">+30 Tage</button>
+          <button type="button" class="preset-chip" data-add="60">+60 Tage</button>
+          <button type="button" class="preset-chip" data-add="90">+90 Tage</button>
+          <button type="button" class="preset-chip" data-add="10" data-unit="businessDays">+10 Arbeitstage</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Hier erscheint das Ergebnis</strong>Sobald die Daten vollständig sind, wird sofort gerechnet.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-main"></span><span class="unit" id="r-unit"></span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Link kopieren</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Tage zwischen zwei Daten berechnen</h2>
+    <p>Der Tagerechner zählt volle Kalendertage zwischen Start und Ende. Zusätzlich sehen Sie Wochen, Monate und die Zahl der Werktage von Montag bis Freitag, etwa für Fristen, Kündigungen oder Urlaubsplanung.</p>
+
+    <h2>Tage und Arbeitstage zu einem Datum addieren</h2>
+    <p>Im zweiten Modus addieren oder subtrahieren Sie Tage, Arbeitstage, Wochen, Monate oder Jahre. Unterschiedliche Monatslängen und Schaltjahre werden exakt berücksichtigt, und Sie erhalten Wochentag und Kalenderwoche des Ergebnisses.</p>
+
+    <h2>Weitere Rechner</h2>
+    <ul>
+      <li><a href="/de/">Altersrechner</a>: genaues Alter, Sternzeichen und nächster Geburtstag.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Zuletzt aktualisiert <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

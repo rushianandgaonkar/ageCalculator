@@ -1,0 +1,133 @@
+<!--meta
+{
+  "path": "/id/kalender-hijriyah/",
+  "lang": "id",
+  "nav": "idhijri",
+  "id": "idhijri",
+  "kind": "tool",
+  "hreflang": "hijri",
+  "title": "Kalender Hijriyah Hari Ini dan Konversi Tanggal Hijriah Masehi",
+  "description": "Kalender hijriyah: lihat tanggal hijriyah hari ini, konversi tanggal masehi ke hijriyah dan sebaliknya, serta daftar 12 bulan hijriyah.",
+  "app_name": "Kalender Hijriyah dan konversi tanggal",
+  "crumb": "Kalender Hijriyah",
+  "scripts": ["datecore.js", "id-hijri.js"],
+  "og": "og-home.png",
+  "priority": "0.9",
+  "changefreq": "monthly",
+  "faq": [
+    ["Tanggal berapa hari ini dalam kalender hijriyah?", "Panel di bagian atas kalkulator selalu menampilkan tanggal hijriyah hari ini beserta tanggal masehinya."],
+    ["Bagaimana konversi tanggal hijriyah ke masehi?", "Pilih arah “Hijriyah ke Masehi”, lalu isi tanggal, bulan dan tahun hijriyah. Tanggal masehi dan nama harinya langsung muncul."],
+    ["Bagaimana konversi tanggal masehi ke hijriyah?", "Pilih arah “Masehi ke Hijriyah” dan isi tanggal masehi. Hasil mengikuti kalender Umm al Qura."],
+    ["Apakah hasilnya sama dengan kalender Kemenag?", "Kalender ini memakai perhitungan Umm al Qura. Penetapan awal Ramadan, Syawal dan Zulhijah oleh Kementerian Agama melalui sidang isbat bisa berbeda satu hari."],
+    ["Mengapa bulan hijriyah 29 atau 30 hari?", "Satu siklus bulan sekitar 29,5 hari, sehingga bulan hijriyah bergantian 29 atau 30 hari dan satu tahun berjumlah 354 atau 355 hari."],
+    ["Apa saja nama 12 bulan hijriyah?", "Muharram, Safar, Rabiul Awal, Rabiul Akhir, Jumadil Awal, Jumadil Akhir, Rajab, Syaban, Ramadan, Syawal, Zulkaidah dan Zulhijah."]
+  ]
+}
+-->
+<section class="hero">
+  <div class="wrap">
+    <h1>Kalender Hijriyah dan konversi tanggal</h1>
+    <p class="lede">Ketahui tanggal hijriyah hari ini dan konversikan tanggal masehi ke hijriyah.</p>
+  </div>
+</section>
+
+<section class="tool" aria-label="Konversi tanggal hijriyah">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate onsubmit="return false">
+      <div class="today-strip" id="today-id" aria-live="polite"></div>
+
+      <div>
+        <p class="label" id="dir-label">Arah konversi</p>
+        <div class="switch" role="radiogroup" aria-labelledby="dir-label">
+          <input type="radio" name="dir" id="dir-h2g" value="h2g" checked>
+          <label for="dir-h2g">Hijriyah ke Masehi</label>
+          <input type="radio" name="dir" id="dir-g2h" value="g2h">
+          <label for="dir-g2h">Masehi ke Hijriyah</label>
+        </div>
+        <p class="field-error" id="hijri-unsupported" hidden>Browser Anda tidak mendukung data kalender hijriyah. Coba dengan browser terbaru.</p>
+        <p class="status-note cal-note" id="hijri-fallback" hidden>Browser Anda tidak mendukung Umm al Qura secara langsung, jadi data cadangan dipakai.</p>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend id="date-legend">Tanggal hijriyah</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Tanggal</span><input type="text" inputmode="numeric" maxlength="2" placeholder="HH" data-part="d" name="conv_day" id="conv-day" autocomplete="off"></label>
+          <label class="p-m is-select"><span>Bulan</span><select data-part="m" name="conv_month" id="conv-month"></select></label>
+          <label class="p-y"><span>Tahun</span><input type="text" inputmode="numeric" maxlength="4" placeholder="TTTT" data-part="y" name="conv_year" id="conv-year" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint"><button type="button" class="btn-link" id="use-today">Pakai tanggal hari ini</button></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Hasil konversi muncul di sini</strong>Begitu tanggal diisi, hasil langsung dihitung.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big conv-big" id="r-main"></p>
+        <p class="age-sub" id="r-sub"></p>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row">
+          <button class="btn btn-primary" type="button" id="copy-date">Salin tanggal</button>
+          <button class="btn btn-tertiary" type="button" id="copy">Salin tautan</button>
+          <a class="btn btn-tertiary" id="to-age" href="/id/">Hitung umur dari tanggal ini</a>
+          <span class="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="year-months">
+  <div class="wrap">
+    <div class="prose">
+      <h2>Bulan hijriyah tahun <span id="tbl-year"></span> H</h2>
+      <p id="year-summary">Panjang setiap bulan hijriyah dengan tanggal awal dan akhir dalam kalender masehi.</p>
+    </div>
+    <div class="table-tools">
+      <div class="year-nav">
+        <button class="btn btn-tertiary" type="button" id="prev-year">Tahun sebelumnya</button>
+        <label class="find-field">Tahun hijriyah
+          <input type="text" inputmode="numeric" maxlength="4" id="table-year" name="table_year" placeholder="1448" autocomplete="off">
+        </label>
+        <button class="btn btn-tertiary" type="button" id="next-year">Tahun berikutnya</button>
+      </div>
+    </div>
+    <div class="table-wrap auto">
+      <table class="data">
+        <caption class="visually-hidden">Panjang bulan hijriyah dan padanan masehinya</caption>
+        <thead>
+          <tr>
+            <th scope="col">Bulan hijriyah</th>
+            <th scope="col">Jumlah hari</th>
+            <th scope="col">Tanggal awal (Masehi)</th>
+            <th scope="col">Tanggal akhir (Masehi)</th>
+          </tr>
+        </thead>
+        <tbody id="months-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-table"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>Cara kerja kalender hijriyah</h2>
+    <p>Kalender hijriyah adalah kalender bulan yang dimulai dari hijrah Nabi Muhammad dari Makkah ke Madinah pada tahun 622 Masehi. Satu tahun terdiri dari 12 bulan dengan total 354 atau 355 hari, sehingga Ramadan dan Idul Fitri maju sekitar 11 hari setiap tahun masehi.</p>
+    <p>Konversi di halaman ini memakai kalender Umm al Qura. Untuk awal Ramadan, Syawal dan Zulhijah, ikuti juga pengumuman resmi Kementerian Agama.</p>
+
+    <h2>Kalkulator lainnya</h2>
+    <ul>
+      <li><a href="/id/">Kalkulator umur</a>: umur tepat dan ulang tahun berikutnya.</li>
+      <li><a href="/id/hitung-hari/">Hitung hari</a>: selisih hari antara dua tanggal.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Terakhir diperbarui <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>

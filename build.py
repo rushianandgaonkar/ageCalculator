@@ -82,7 +82,21 @@ ALL_TOOLS = [
     ("trhome",     "/tr/",                           "Yaş hesaplama"),
     ("trdate",     "/tr/tarih-hesaplama/",           "Tarih ve gün hesaplama"),
     ("trhijri",    "/tr/hicri-takvim/",              "Hicri takvim"),
+    ("dehome",     "/de/",                           "Altersrechner"),
+    ("dedate",     "/de/datumsrechner/",             "Datumsrechner"),
+    ("idhome",     "/id/",                           "Kalkulator umur"),
+    ("iddate",     "/id/hitung-hari/",               "Hitung hari"),
+    ("idhijri",    "/id/kalender-hijriyah/",         "Kalender Hijriyah"),
+    ("pthome",     "/pt/",                           "Calculadora de idade"),
+    ("ptdate",     "/pt/calculadora-de-dias/",       "Calculadora de dias"),
+    ("kohome",     "/ko/",                           "만 나이 계산기"),
+    ("kodate",     "/ko/date/",                      "날짜 계산기"),
 ]
+DE_NAV = [("dehome", "/de/", "Altersrechner"), ("dedate", "/de/datumsrechner/", "Datumsrechner")]
+ID_NAV = [("idhome", "/id/", "Kalkulator umur"), ("iddate", "/id/hitung-hari/", "Hitung hari"),
+          ("idhijri", "/id/kalender-hijriyah/", "Kalender Hijriyah")]
+PT_NAV = [("pthome", "/pt/", "Calculadora de idade"), ("ptdate", "/pt/calculadora-de-dias/", "Calculadora de dias")]
+KO_NAV = [("kohome", "/ko/", "만 나이 계산기"), ("kodate", "/ko/date/", "날짜 계산기")]
 TR_NAV = [
     ("trhome",  "/tr/",                  "Yaş hesaplama"),
     ("trdate",  "/tr/tarih-hesaplama/",  "Tarih hesaplama"),
@@ -116,8 +130,13 @@ TOOL_LANG = {
     "ar": "ar", "artoday": "ar", "arcalendar": "ar", "arramadan": "ar", "areid": "ar",
     "ardiff": "ar", "arconv": "ar", "arages": "ar",
     "ja": "ja", "gakunen": "ja", "jadays": "ja", "jaera": "ja",
-    "trhome": "tr", "trdate": "tr", "trhijri": "tr"
+    "trhome": "tr", "trdate": "tr", "trhijri": "tr",
+    "dehome": "de", "dedate": "de", "idhome": "id", "iddate": "id", "idhijri": "id",
+    "pthome": "pt", "ptdate": "pt", "kohome": "ko", "kodate": "ko",
 }
+# per-language home page and header menu (English is the fallback)
+HOME_PATH = {"ar": "/ar/", "ja": "/ja/", "tr": "/tr/", "de": "/de/", "id": "/id/", "pt": "/pt/", "ko": "/ko/"}
+LANG_NAV = {"ar": AR_NAV, "tr": TR_NAV, "de": DE_NAV, "id": ID_NAV, "pt": PT_NAV, "ko": KO_NAV}
 
 RELATED = {
     "en": [
@@ -163,6 +182,26 @@ RELATED = {
         ("trdate", "Tarih ve gün hesaplama", "İki tarih arasındaki gün sayısını hesaplayın veya tarihe gün ekleyin."),
         ("trhijri", "Hicri takvim ve dönüştürücü", "Bugünün hicri tarihini öğrenin ve miladi ile hicri tarihleri dönüştürün."),
     ],
+    "de": [
+        ("dehome", "Altersrechner", "Genaues Alter in Jahren, Monaten und Tagen, mit Sternzeichen und Geburtstags-Countdown."),
+        ("dedate", "Datumsrechner und Tagerechner", "Tage zwischen zwei Daten, Arbeitstage und Tage zu einem Datum addieren."),
+        ("home", "Age calculator (Englisch)", "Englische Version des Altersrechners für jedes Stichtagsdatum."),
+    ],
+    "id": [
+        ("idhome", "Kalkulator umur", "Hitung umur dalam tahun, bulan dan hari, lengkap dengan zodiak dan ulang tahun berikutnya."),
+        ("iddate", "Hitung hari dan kalkulator tanggal", "Selisih hari antara dua tanggal, hari kerja dan tambah atau kurangi hari."),
+        ("idhijri", "Kalender Hijriyah", "Tanggal hijriyah hari ini dan konversi tanggal masehi ke hijriyah."),
+    ],
+    "pt": [
+        ("pthome", "Calculadora de idade", "Idade exata em anos, meses e dias, com signo e contagem para o aniversário."),
+        ("ptdate", "Calculadora de dias e datas", "Dias entre duas datas, dias úteis e soma ou subtração de dias."),
+        ("home", "Age calculator (inglês)", "Versão em inglês da calculadora de idade em qualquer data."),
+    ],
+    "ko": [
+        ("kohome", "만 나이 계산기", "생년월일로 만 나이, 연 나이, 세는나이와 띠를 계산합니다."),
+        ("kodate", "날짜 및 디데이 계산기", "두 날짜 사이 일수, 100일 단위 기념일과 영업일을 계산합니다."),
+        ("ja", "年齢早見表 (일본어)", "일본어 연령 조견표와 연호별 나이."),
+    ],
 }
 
 UI = {
@@ -193,6 +232,34 @@ UI = {
         "tagline": "Farklı takvimlerde ve dillerde ücretsiz yaş ve tarih hesaplayıcıları. Tüm hesaplamalar tarayıcınızda yapılır; hiçbir bilginiz gönderilmez veya saklanmaz.",
         "faq": "Sıkça sorulan sorular", "related": "Diğer hesaplayıcılar", "updated": "Son güncelleme",
         "home": "Ana sayfa", "theme": "Karanlık mod",
+    },
+    "de": {
+        "skip": "Zum Rechner springen", "tools": "Rechner", "site": "Website",
+        "about": "Über uns (Englisch)", "privacy": "Datenschutz (Englisch)", "terms": "Nutzungsbedingungen (Englisch)", "contact": "Kontakt (Englisch)",
+        "tagline": "Kostenlose Alters- und Datumsrechner in mehreren Sprachen. Alles wird in Ihrem Browser berechnet; Ihre Eingaben werden weder gesendet noch gespeichert.",
+        "faq": "Häufig gestellte Fragen", "related": "Weitere Rechner", "updated": "Zuletzt aktualisiert",
+        "home": "Startseite", "theme": "Dunkelmodus",
+    },
+    "id": {
+        "skip": "Langsung ke kalkulator", "tools": "Kalkulator", "site": "Situs",
+        "about": "Tentang (Inggris)", "privacy": "Privasi (Inggris)", "terms": "Ketentuan (Inggris)", "contact": "Kontak (Inggris)",
+        "tagline": "Kalkulator umur dan tanggal gratis dalam beberapa bahasa dan kalender. Semua dihitung di browser Anda; data yang Anda masukkan tidak dikirim atau disimpan.",
+        "faq": "Pertanyaan yang sering diajukan", "related": "Kalkulator lainnya", "updated": "Terakhir diperbarui",
+        "home": "Beranda", "theme": "Mode gelap",
+    },
+    "pt": {
+        "skip": "Ir para a calculadora", "tools": "Calculadoras", "site": "Site",
+        "about": "Sobre (inglês)", "privacy": "Privacidade (inglês)", "terms": "Termos (inglês)", "contact": "Contato (inglês)",
+        "tagline": "Calculadoras gratuitas de idade e datas em vários idiomas. Tudo é calculado no seu navegador; nada do que você digita é enviado ou armazenado.",
+        "faq": "Perguntas frequentes", "related": "Outras calculadoras", "updated": "Última atualização",
+        "home": "Início", "theme": "Modo escuro",
+    },
+    "ko": {
+        "skip": "계산기로 바로가기", "tools": "계산기", "site": "사이트",
+        "about": "소개 (영어)", "privacy": "개인정보 처리방침 (영어)", "terms": "이용약관 (영어)", "contact": "문의 (영어)",
+        "tagline": "여러 언어로 제공되는 무료 나이 및 날짜 계산기입니다. 모든 계산은 브라우저에서 이루어지며 입력한 내용은 전송되거나 저장되지 않습니다.",
+        "faq": "자주 묻는 질문", "related": "다른 계산기", "updated": "최종 업데이트",
+        "home": "홈", "theme": "다크 모드",
     },
 }
 
@@ -237,11 +304,12 @@ def ui_lang(page):
 
 def render_nav(page):
     lang = ui_lang(page)
-    menu = AR_NAV if lang == "ar" else TR_NAV if lang == "tr" else TOOLS
+    menu = LANG_NAV.get(lang, TOOLS)
     items = []
     for key, path, label in menu:
         cur = ' aria-current="page"' if page.get("nav") == key else ""
-        lang_attr = {"ar": ' lang="ar" dir="rtl"', "ja": ' lang="ja"', "tr": ' lang="tr"'}.get(TOOL_LANG.get(key), ' lang="en"')
+        tl = TOOL_LANG.get(key, "en")
+        lang_attr = ' lang="ar" dir="rtl"' if tl == "ar" else f' lang="{tl}"'
         items.append(f'<li><a href="{path}"{cur}{lang_attr}>{html.escape(label)}</a></li>')
     return "\n".join(items)
 
@@ -263,6 +331,10 @@ def render_faq(page):
         "ar": ("إجابات على استفساراتك", "إجابات مبسطة عن طريقة استخدام الحاسبة وفهم النتائج."),
         "ja": ("ご利用ガイド", "この計算ツールの使い方と結果について、よくある疑問にお答えします。"),
         "tr": ("SIKÇA SORULAN SORULAR", "Bu hesaplayıcı ve sonuçları hakkında anlaşılır cevaplar."),
+        "de": ("HÄUFIGE FRAGEN", "Klare Antworten zu diesem Rechner und seinen Ergebnissen."),
+        "id": ("PERTANYAAN UMUM", "Jawaban jelas tentang kalkulator ini dan cara membaca hasilnya."),
+        "pt": ("DÚVIDAS COMUNS", "Respostas claras sobre esta calculadora e seus resultados."),
+        "ko": ("자주 묻는 질문", "이 계산기와 결과에 대한 명확한 답변입니다."),
     }
     eyebrow, intro = copy[lang]
     chevron = ('<svg class="faq-chevron" viewBox="0 0 20 20" width="20" height="20" '
@@ -346,7 +418,9 @@ FOOTER_SECTIONS = {
         ],
         "other_title": "Other languages",
         "other": [("ar", "العربية (حاسبة العمر)"), ("ja", "日本語 (年齢早見表)"),
-                  ("trhome", "Türkçe (Yaş hesaplama)"),
+                  ("trhome", "Türkçe (Yaş hesaplama)"), ("dehome", "Deutsch (Altersrechner)"),
+                  ("idhome", "Bahasa Indonesia (Kalkulator umur)"), ("pthome", "Português (Calculadora de idade)"),
+                  ("kohome", "한국어 (만 나이 계산기)"),
                   ("ne", "Nepali (Age calculator)"), ("neconv", "Nepali (Date converter)")],
         "site_title": "Explore Ageason",
         "foot_note": "Free tools · No account required",
@@ -365,7 +439,9 @@ FOOTER_SECTIONS = {
         ],
         "other_title": "حاسبات بلغات أخرى",
         "other": [("home", "الإنجليزية (حاسبة العمر)"), ("ja", "اليابانية (جدول الأعمار)"),
-                  ("trhome", "التركية (حساب العمر)"),
+                  ("trhome", "التركية (حساب العمر)"), ("dehome", "الألمانية (حساب العمر)"),
+                  ("idhome", "الإندونيسية (حساب العمر)"), ("pthome", "البرتغالية (حساب العمر)"),
+                  ("kohome", "الكورية (حساب العمر)"),
                   ("ne", "النيبالية (حاسبة العمر)"), ("neconv", "النيبالية (تحويل التاريخ)")],
         "site_title": "تعرف على Ageason",
         "foot_note": "أدوات مجانية · لا تحتاج إلى تسجيل",
@@ -375,7 +451,9 @@ FOOTER_SECTIONS = {
         "local": [("ja", "年齢早見表"), ("gakunen", "学年早見表"), ("jadays", "日数計算"), ("jaera", "西暦和暦早見表")],
         "other_title": "ほかの言語",
         "other": [("home", "英語 (年齢計算)"), ("ar", "アラビア語 (年齢計算)"),
-                  ("trhome", "トルコ語 (年齢計算)"),
+                  ("trhome", "トルコ語 (年齢計算)"), ("dehome", "ドイツ語 (年齢計算)"),
+                  ("idhome", "インドネシア語 (年齢計算)"), ("pthome", "ポルトガル語 (年齢計算)"),
+                  ("kohome", "韓国語 (満年齢計算)"),
                   ("ne", "ネパール暦 (年齢計算)"), ("neconv", "ネパール暦 (日付変換)")],
         "site_title": "サイト案内",
         "foot_note": "無料の計算ツール · 登録不要",
@@ -393,16 +471,62 @@ FOOTER_SECTIONS = {
             ("ar", "Arapça (حاسبة العمر)"),
             ("ja", "Japonca (年齢早見表)"),
             ("ne", "Nepalce (Nepali age)"),
+            ("dehome", "Almanca (Altersrechner)"),
+            ("idhome", "Endonezce (Kalkulator umur)"),
+            ("pthome", "Portekizce (Calculadora de idade)"),
+            ("kohome", "Korece (만 나이 계산기)"),
         ],
         "site_title": "Ageason Hakkında",
         "foot_note": "Ücretsiz araçlar · Kayıt gerekmez",
+    },
+    "de": {
+        "local_title": "Rechner auf Deutsch",
+        "local": [("dehome", "Altersrechner"), ("dedate", "Datumsrechner")],
+        "other_title": "Weitere Sprachen",
+        "other": [("home", "Englisch (Age calculator)"), ("ar", "Arabisch (حساب العمر)"), ("ja", "Japanisch (年齢早見表)"),
+                  ("trhome", "Türkisch (Yaş hesaplama)"), ("idhome", "Indonesisch (Kalkulator umur)"),
+                  ("pthome", "Portugiesisch (Calculadora de idade)"), ("kohome", "Koreanisch (만 나이 계산기)")],
+        "site_title": "Über Ageason",
+        "foot_note": "Kostenlose Rechner · Keine Anmeldung nötig",
+    },
+    "id": {
+        "local_title": "Kalkulator bahasa Indonesia",
+        "local": [("idhome", "Kalkulator umur"), ("iddate", "Hitung hari"), ("idhijri", "Kalender Hijriyah")],
+        "other_title": "Bahasa lain",
+        "other": [("home", "Inggris (Age calculator)"), ("ar", "Arab (حساب العمر)"), ("ja", "Jepang (年齢早見表)"),
+                  ("trhome", "Turki (Yaş hesaplama)"), ("dehome", "Jerman (Altersrechner)"),
+                  ("pthome", "Portugis (Calculadora de idade)"), ("kohome", "Korea (만 나이 계산기)")],
+        "site_title": "Tentang Ageason",
+        "foot_note": "Kalkulator gratis · Tanpa daftar akun",
+    },
+    "pt": {
+        "local_title": "Calculadoras em português",
+        "local": [("pthome", "Calculadora de idade"), ("ptdate", "Calculadora de dias")],
+        "other_title": "Outros idiomas",
+        "other": [("home", "Inglês (Age calculator)"), ("ar", "Árabe (حساب العمر)"), ("ja", "Japonês (年齢早見表)"),
+                  ("trhome", "Turco (Yaş hesaplama)"), ("dehome", "Alemão (Altersrechner)"),
+                  ("idhome", "Indonésio (Kalkulator umur)"), ("kohome", "Coreano (만 나이 계산기)")],
+        "site_title": "Sobre o Ageason",
+        "foot_note": "Ferramentas gratuitas · Sem cadastro",
+    },
+    "ko": {
+        "local_title": "한국어 계산기",
+        "local": [("kohome", "만 나이 계산기"), ("kodate", "날짜 계산기")],
+        "other_title": "다른 언어",
+        "other": [("home", "영어 (Age calculator)"), ("ar", "아랍어 (حساب العمر)"), ("ja", "일본어 (年齢早見表)"),
+                  ("trhome", "터키어 (Yaş hesaplama)"), ("dehome", "독일어 (Altersrechner)"),
+                  ("idhome", "인도네시아어 (Kalkulator umur)"), ("pthome", "포르투갈어 (Calculadora de idade)")],
+        "site_title": "Ageason 안내",
+        "foot_note": "무료 계산기 · 회원가입 불필요",
     },
     "ne": {
         "local_title": "Nepali calendar tools",
         "local": [("ne", "Nepali age calculator"), ("neconv", "Nepali date converter")],
         "other_title": "Other languages",
         "other": [("home", "English (Age calculator)"), ("ar", "العربية (حاسبة العمر)"),
-                  ("ja", "日本語 (年齢早見表)"), ("trhome", "Turkish (Age calculator)")],
+                  ("ja", "日本語 (年齢早見表)"), ("trhome", "Turkish (Age calculator)"),
+                  ("dehome", "Deutsch (Altersrechner)"), ("idhome", "Bahasa Indonesia (Kalkulator umur)"),
+                  ("pthome", "Português (Calculadora de idade)"), ("kohome", "한국어 (만 나이 계산기)")],
         "site_title": "Explore Ageason",
         "foot_note": "Free tools · No account required",
     }
@@ -414,10 +538,7 @@ def footer_navigation(page):
     # Nepali calendar tools currently have English-language interfaces.
     group = "ne" if page.get("nav") in ("ne", "neconv") else lang
     config = FOOTER_SECTIONS[group]
-    language_for_link = {"ar": "ar", "artoday": "ar", "arcalendar": "ar",
-                         "arconv": "ar", "ardiff": "ar", "arages": "ar",
-                         "ja": "ja", "gakunen": "ja", "jadays": "ja", "jaera": "ja",
-                         "trhome": "tr", "trdate": "tr", "trhijri": "tr"}
+    language_for_link = TOOL_LANG
     def render_links(entries):
         return "\n".join(
             '<li><a href="{}" lang="{}" hreflang="{}">{}</a></li>'.format(
@@ -474,7 +595,7 @@ def json_ld(page):
         graph.append({"@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q,
              "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in page["faq"]]})
-    home_path = "/ar/" if ui_lang(page) == "ar" else "/tr/" if ui_lang(page) == "tr" else "/"
+    home_path = "/" if ui_lang(page) == "ja" else HOME_PATH.get(ui_lang(page), "/")
     if page["path"] != home_path:
         crumbs = page.get("breadcrumb") or [[UI[ui_lang(page)]["home"], home_path], [page.get("crumb", page["title"]), page["path"]]]
         if len(crumbs) >= 2:
@@ -874,7 +995,7 @@ def page_html(page, pages, vers):
     full_title = title if page.get("no_suffix") else f"{title} | {SITE_NAME}"
     url = abs_url(page["path"])
     og_img = abs_url("/assets/img/" + page.get("og", "og-home.png"))
-    og_locale = {"en": "en_US", "ar": "ar_SA", "ja": "ja_JP", "tr": "tr_TR"}.get(page["lang"], "en_US")
+    og_locale = {"en": "en_US", "ar": "ar_SA", "ja": "ja_JP", "tr": "tr_TR", "de": "de_DE", "id": "id_ID", "pt": "pt_BR", "ko": "ko_KR"}.get(page["lang"], "en_US")
     scripts = "\n".join(f'<script src="{s}?v={vers.get(s, "1")}" defer></script>'
                         for s in ["/assets/js/" + n for n in page.get("scripts", [])])
     preload = ['<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>']
@@ -891,7 +1012,7 @@ def page_html(page, pages, vers):
     landing_css = f'<link rel="stylesheet" href="/assets/css/landing.css?v={vers.get("/assets/css/landing.css", "1")}">'
     body_class = ' class="landing-v2"' if is_primary_landing else ' class="landing-v2 inner-v2"'
     footer = footer_navigation(page)
-    brand_href = "/ar/" if is_ar else "/tr/" if lang == "tr" else "/"
+    brand_href = "/" if lang == "ja" else HOME_PATH.get(lang, "/")
     site_prefix = "/ar" if is_ar else ""
     gtm_head = (
         '  <!-- Google Tag Manager -->\n'
@@ -989,7 +1110,7 @@ def page_html(page, pages, vers):
           <li><a href="{site_prefix}/privacy/">{t['privacy']}</a></li>
           <li><a href="{site_prefix}/terms/">{t['terms']}</a></li>
           <li><a href="{site_prefix}/contact/">{t['contact']}</a></li>
-          <li><a href="{('/ar/#faq' if is_ar else '/ja/#faq' if lang == 'ja' else '/tr/#faq' if lang == 'tr' else '/#faq')}">{t['faq']}</a></li>
+          <li><a href="{HOME_PATH.get(lang, '/')}#faq">{t['faq']}</a></li>
         </ul>
       </nav>
     </div>

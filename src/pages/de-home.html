@@ -1,0 +1,102 @@
+<!--meta
+{
+  "path": "/de/",
+  "lang": "de",
+  "nav": "dehome",
+  "id": "dehome",
+  "kind": "tool",
+  "title": "Altersrechner: Wie alt bin ich, Geburtstag und Sternzeichen",
+  "description": "Alter berechnen: Ihr genaues Alter in Jahren, Monaten, Tagen und Stunden, die Tage bis zum nächsten Geburtstag und Ihr Sternzeichen.",
+  "app_name": "Altersrechner",
+  "crumb": "Altersrechner",
+  "scripts": ["datecore.js", "de-home.js", "age-l10n.js"],
+  "og": "og-home.png",
+  "priority": "0.95",
+  "changefreq": "monthly",
+  "faq": [
+    ["Wie alt bin ich genau?", "Geben Sie Ihr Geburtsdatum ein. Der Altersrechner zeigt sofort Ihr genaues Alter in Jahren, Monaten und Tagen sowie die Gesamtzahl der gelebten Tage, Wochen und Stunden."],
+    ["Wie wird das Alter berechnet?", "Zuerst werden die vollen Jahre seit der Geburt gezählt, dann die vollen Monate und zuletzt die restlichen Tage. Jeder Monat zählt mit seiner echten Länge, Schaltjahre werden berücksichtigt."],
+    ["Kann ich mein Alter an einem anderen Datum berechnen?", "Ja. Ändern Sie das Feld „Stichtag“. So prüfen Sie zum Beispiel Altersgrenzen für Führerschein, Rente oder Bewerbungen."],
+    ["Was gilt für Menschen, die am 29. Februar geboren sind?", "In Jahren ohne 29. Februar zählt der 28. Februar als Geburtstag. Die Berechnung der Tage bleibt dabei lückenlos."],
+    ["Wie wird mein Sternzeichen bestimmt?", "Das westliche Sternzeichen ergibt sich aus Tag und Monat Ihrer Geburt, zum Beispiel Widder vom 21. März bis 19. April."],
+    ["Wird mein Geburtsdatum gespeichert?", "Nein. Die Berechnung läuft vollständig in Ihrem Browser. Es werden keine Daten gesendet oder gespeichert."]
+  ]
+}
+-->
+<section class="hero" aria-labelledby="landing-title">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1 id="landing-title">Altersrechner</h1>
+      <p class="lede">Berechnen Sie Ihr genaues Alter und die Zeit bis zum Geburtstag.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tool" aria-label="Altersrechner">
+  <div class="wrap tool-grid">
+    <form class="panel" id="calc" novalidate autocomplete="on" onsubmit="return false">
+      <div>
+        <h2 class="landing-form-heading">Alter berechnen</h2>
+        <p class="landing-form-subtitle">Geburtsdatum eingeben und das Alter heute oder an einem beliebigen Stichtag sehen.</p>
+      </div>
+
+      <fieldset class="datefield" id="dob">
+        <legend>Geburtsdatum</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Tag</span><input type="text" inputmode="numeric" maxlength="2" placeholder="TT" data-part="d" name="dob_day" id="dob-day" autocomplete="bday-day"></label>
+          <label class="p-m"><span>Monat</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="dob_month" id="dob-month" autocomplete="bday-month"></label>
+          <label class="p-y"><span>Jahr</span><input type="text" inputmode="numeric" maxlength="4" placeholder="JJJJ" data-part="y" name="dob_year" id="dob-year" autocomplete="bday-year"></label>
+        </div>
+        <p class="field-error" hidden></p>
+      </fieldset>
+
+      <fieldset class="datefield" id="on">
+        <legend>Stichtag</legend>
+        <div class="dateparts">
+          <label class="p-d"><span>Tag</span><input type="text" inputmode="numeric" maxlength="2" placeholder="TT" data-part="d" name="on_day" id="on-day" autocomplete="off"></label>
+          <label class="p-m"><span>Monat</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" name="on_month" id="on-month" autocomplete="off"></label>
+          <label class="p-y"><span>Jahr</span><input type="text" inputmode="numeric" maxlength="4" placeholder="JJJJ" data-part="y" name="on_year" id="on-year" autocomplete="off"></label>
+        </div>
+        <p class="field-error" hidden></p>
+        <p class="hint">Standardmäßig heute. <button type="button" class="btn-link" id="reset-today">Auf heute setzen</button></p>
+      </fieldset>
+    </form>
+
+    <div class="result" id="result" data-state="empty" aria-live="polite">
+      <p class="result-empty"><strong>Hier erscheint Ihr Ergebnis</strong>Sobald Sie Ihr Geburtsdatum eingeben, wird Ihr Alter berechnet.</p>
+      <div class="result-body">
+        <p class="age-caption" id="r-caption"></p>
+        <p class="age-big"><span id="r-years"></span><span class="unit">Jahre</span></p>
+        <p class="age-sub" id="r-sub"></p>
+        <div class="ruler" id="r-ruler" role="img"><div class="ruler-track"></div><div class="ruler-legend"></div></div>
+        <div class="callout" id="r-note" hidden></div>
+        <dl class="stats" id="r-stats"></dl>
+        <div class="share-row"><button class="btn btn-tertiary" type="button" id="copy">Link kopieren</button><span class="copied" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ad-slot wrap" data-slot="after-tool"></div>
+
+<section class="content">
+  <div class="wrap prose">
+    <h2>So berechnet der Altersrechner Ihr Alter</h2>
+    <p>Gezählt werden zuerst die vollen Jahre seit Ihrer Geburt, danach die vollen Monate und zuletzt die restlichen Tage. Monate zählen mit ihrer echten Länge, und Schaltjahre fließen vollständig ein.</p>
+    <p>Beispiel: Wer am 15. August 1995 geboren ist, ist am 10. Oktober 2026 genau 31 Jahre, 1 Monat und 25 Tage alt.</p>
+
+    <h2>Sternzeichen und Countdown zum Geburtstag</h2>
+    <p>Neben dem Alter zeigt der Rechner Ihr westliches Sternzeichen, den Wochentag Ihrer Geburt und wie viele Tage es noch bis zum nächsten Geburtstag sind.</p>
+
+    <h2>Weitere Rechner</h2>
+    <ul>
+      <li><a href="/de/datumsrechner/">Datumsrechner und Tagerechner</a>: Tage zwischen zwei Daten und Arbeitstage zählen.</li>
+    </ul>
+
+    {{FAQ}}
+
+    {{RELATED}}
+
+    <p class="page-meta">Zuletzt aktualisiert <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></p>
+  </div>
+</section>
