@@ -63,25 +63,25 @@
    "bands": [
     {
      "id": "b27",
-     "label": "18–27 years (e.g. Auditor, Accountant, Tax Assistant, Postal Assistant)",
+     "label": "18 to 27 years (e.g. Auditor, Accountant, Tax Assistant, Postal Assistant)",
      "min": 18,
      "max": 27
     },
     {
      "id": "b30",
-     "label": "18–30 years (e.g. Inspector of Income Tax, Central Excise, Examiner, AEO)",
+     "label": "18 to 30 years (e.g. Inspector of Income Tax, Central Excise, Examiner, AEO)",
      "min": 18,
      "max": 30
     },
     {
      "id": "b32",
-     "label": "18–32 years (Junior Statistical Officer)",
+     "label": "18 to 32 years (Junior Statistical Officer)",
      "min": 18,
      "max": 32
     },
     {
      "id": "b2030",
-     "label": "20–30 years (e.g. Assistant Section Officer, Sub-Inspector CBI)",
+     "label": "20 to 30 years (e.g. Assistant Section Officer, Sub-Inspector CBI)",
      "min": 20,
      "max": 30
     }
@@ -179,25 +179,25 @@
    "bands": [
     {
      "id": "b27",
-     "label": "18–27 years (e.g. Auditor, Accountant, Tax Assistant, Postal Assistant)",
+     "label": "18 to 27 years (e.g. Auditor, Accountant, Tax Assistant, Postal Assistant)",
      "min": 18,
      "max": 27
     },
     {
      "id": "b30",
-     "label": "18–30 years (e.g. Inspector of Income Tax, Central Excise, Examiner, AEO)",
+     "label": "18 to 30 years (e.g. Inspector of Income Tax, Central Excise, Examiner, AEO)",
      "min": 18,
      "max": 30
     },
     {
      "id": "b32",
-     "label": "18–32 years (Junior Statistical Officer)",
+     "label": "18 to 32 years (Junior Statistical Officer)",
      "min": 18,
      "max": 32
     },
     {
      "id": "b2030",
-     "label": "20–30 years (e.g. Assistant Section Officer, Sub-Inspector CBI)",
+     "label": "20 to 30 years (e.g. Assistant Section Officer, Sub-Inspector CBI)",
      "min": 20,
      "max": 30
     }

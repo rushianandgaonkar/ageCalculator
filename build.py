@@ -727,7 +727,7 @@ def japanese_table(year):
         before = after - 1
         rows.append(
             f'<tr data-y="{y}"><td>{y}年</td><td>{era_label(y)}</td><td>{JA_ETO[(y - 4) % 12]}</td>'
-            f'<td>{after}歳</td><td>{"—" if before < 0 else str(before) + "歳"}</td></tr>')
+            f'<td>{after}歳</td><td>{"" if before < 0 else str(before) + "歳"}</td></tr>')
     return "\n".join(rows)
 
 
@@ -925,13 +925,13 @@ def exam_table(name):
                 rows = []
                 for cat in c["cats"]:
                     f, t = age_window(c["cutoff"], b["min"], b["max"] + cat["relax"])
-                    rows.append(f'<tr><td>{html.escape(cat["label"])}</td><td>{b["min"]} to under {b["max"] + cat["relax"]}</td><td class="nw">{fmt_date(f)} – {fmt_date(t)}</td></tr>')
+                    rows.append(f'<tr><td>{html.escape(cat["label"])}</td><td>{b["min"]} to under {b["max"] + cat["relax"]}</td><td class="nw">{fmt_date(f)} to {fmt_date(t)}</td></tr>')
                 head = "<tr><th scope=col>Category</th><th scope=col>Age on " + fmt_date(cut) + "</th><th scope=col>Born between</th></tr>"
             else:
                 rows = []
                 for b in c["bands"]:
                     f, t = age_window(c["cutoff"], b["min"], b["max"])
-                    rows.append(f'<tr><td>{html.escape(b["label"])}</td><td>{b["min"]} to under {b["max"]}</td><td class="nw">{fmt_date(f)} – {fmt_date(t)}</td></tr>')
+                    rows.append(f'<tr><td>{html.escape(b["label"])}</td><td>{b["min"]} to under {b["max"]}</td><td class="nw">{fmt_date(f)} to {fmt_date(t)}</td></tr>')
                 head = "<tr><th scope=col>Post group</th><th scope=col>Age on " + fmt_date(cut) + " (General)</th><th scope=col>Born between (General)</th></tr>"
             out.append(f'<div class="table-wrap auto"><table class="data wrap-cells"><thead>{head}</thead><tbody>{"".join(rows)}</tbody></table></div>')
             if len(c["bands"]) > 1:
@@ -941,7 +941,7 @@ def exam_table(name):
             rows = []
             for e in c["entries"]:
                 f, t = dt.date.fromisoformat(e["from"]), dt.date.fromisoformat(e["to"])
-                rows.append(f'<tr><td>{html.escape(e["label"])}</td><td class="nw">{fmt_date(f)} – {fmt_date(t)}</td><td>{html.escape(e.get("note", ""))}</td></tr>')
+                rows.append(f'<tr><td>{html.escape(e["label"])}</td><td class="nw">{fmt_date(f)} to {fmt_date(t)}</td><td>{html.escape(e.get("note", ""))}</td></tr>')
             out.append('<div class="table-wrap auto"><table class="data wrap-cells"><thead><tr><th scope=col>Entry</th><th scope=col>Born between (both dates included)</th><th scope=col>Who can apply</th></tr></thead>'
                        f'<tbody>{"".join(rows)}</tbody></table></div>')
     return "\n".join(out)
@@ -966,10 +966,10 @@ def choju_table(year):
     return "\n".join(rows)
 
 
-# ---------------- Arabic age tables (Umm al-Qura 1300–1600 AH) ----------------
+# ---------------- Arabic age tables (Umm al-Qura 1300 to 1600 AH) ----------------
 AR_MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
 HIJRI_EPOCH = dt.date(1882, 11, 12)  # 1 Muharram 1300 AH
-# Year lengths (354 + bit) for 1300–1600 AH from Unicode ICU islamic-umalqura
+# Year lengths (354 + bit) for 1300 to 1600 AH from Unicode ICU islamic-umalqura
 HIJRI_BITS = (
     "0010101000101010001101000101000101010001010000110100010110000101000101100001101000011000011010000101"
     "0001011000011010001010000110100001010001010100011001001101000011000101010000110000110100010101000101"
@@ -991,7 +991,7 @@ def hijri_year_of(d):
 
 def ar_years(n):
     if n < 0:
-        return "—"
+        return ""
     if n == 0:
         return "أقل من سنة"
     if n == 1:
@@ -1004,7 +1004,7 @@ def ar_years(n):
 
 
 def ar_year_range(a, b, suffix):
-    return f"{a} {suffix}" if a == b else f"{a}–{b} {suffix}"
+    return f"{a} {suffix}" if a == b else f"{a} و{b} {suffix}"
 
 
 def ar_hijri_table(h_year):
@@ -1014,7 +1014,7 @@ def ar_hijri_table(h_year):
         after, before = h_year - hy, h_year - hy - 1
         rows.append(
             f'<tr data-hy="{hy}"><td>{hy} هـ</td><td>{ar_year_range(s.year, e.year, "م")}</td>'
-            f'<td>{ar_years(after)}</td><td>{"—" if before < 0 else ar_years(before)}</td></tr>')
+            f'<td>{ar_years(after)}</td><td>{"" if before < 0 else ar_years(before)}</td></tr>')
     return "\n".join(rows)
 
 
@@ -1026,7 +1026,7 @@ def ar_gregorian_table(g_year):
         after, before = g_year - gy, g_year - gy - 1
         rows.append(
             f'<tr data-gy="{gy}"><td>{gy} م</td><td>{h_span}</td>'
-            f'<td>{ar_years(after)}</td><td>{"—" if before < 0 else ar_years(before)}</td></tr>')
+            f'<td>{ar_years(after)}</td><td>{"" if before < 0 else ar_years(before)}</td></tr>')
     return "\n".join(rows)
 
 

@@ -23,7 +23,7 @@
   }
   function dig(s) { return DC.toDigits(s, digits); }
   function ageLabel(n) {
-    if (n < 0) return "—";
+    if (n < 0) return "";
     if (n === 0) return "أقل من سنة";
     var f = FORMS.year, c = pr.select(n);
     if (c === "one") return f[0];
@@ -31,7 +31,7 @@
     return dig(n) + " " + (c === "few" ? f[2] : c === "many" ? f[3] : f[4]);
   }
   function yearRangeText(a, b, suffix) {
-    return a === b ? dig(a) + " " + suffix : dig(a) + "–" + dig(b) + " " + suffix;
+    return a === b ? dig(a) + " " + suffix : dig(a) + " و" + dig(b) + " " + suffix;
   }
 
   function hijriSpanForGreg(gy) {
