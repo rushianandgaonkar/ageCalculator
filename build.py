@@ -136,7 +136,33 @@ TOOL_LANG = {
 }
 # per-language home page and header menu (English is the fallback)
 HOME_PATH = {"ar": "/ar/", "ja": "/ja/", "tr": "/tr/", "de": "/de/", "id": "/id/", "pt": "/pt/", "ko": "/ko/"}
-LANG_NAV = {"ar": AR_NAV, "tr": TR_NAV, "de": DE_NAV, "id": ID_NAV, "pt": PT_NAV, "ko": KO_NAV}
+JA_NAV = [("ja", "/ja/", "年齢早見表"), ("gakunen", "/ja/gakunen/", "学年早見表"),
+          ("jadays", "/ja/days/", "日数計算"), ("jaera", "/ja/era/", "西暦和暦早見表")]
+LANG_NAV = {"ar": AR_NAV, "tr": TR_NAV, "de": DE_NAV, "id": ID_NAV, "pt": PT_NAV, "ko": KO_NAV, "ja": JA_NAV}
+# English header: grouped dropdown menus (key, label, intro, tool keys); names and blurbs come from RELATED["en"] and EXAMS
+NAV_GROUPS = [
+    ("age", "Age", "Exact age, age gaps and the milestones in between.",
+     ["home", "chrono", "diff", "birthyear", "generation", "experience"]),
+    ("dates", "Dates", "Count days, add dates and find working days.", ["days", "datecalc", "bizdays"]),
+    ("pets", "Pets", "Your dog’s or cat’s age in human years.", ["dogage", "catage"]),
+    ("exams", "Exams", "Age limits for Indian government exams, checked by date of birth.",
+     ["exam", "upsc", "ssc", "nda", "cds", "agniveer"]),
+]
+# Language switcher: (id, home path, native name, flag file or None, lang attribute).
+# Arabic and English span many countries, so they get no flag.
+LANGS = [
+    ("en", "/", "English", None, "en"),
+    ("ar", "/ar/", "العربية", None, "ar"),
+    ("de", "/de/", "Deutsch", "de", "de"),
+    ("id", "/id/", "Bahasa Indonesia", "id", "id"),
+    ("ja", "/ja/", "日本語", "jp", "ja"),
+    ("ko", "/ko/", "한국어", "kr", "ko"),
+    ("pt", "/pt/", "Português (Brasil)", "br", "pt"),
+    ("tr", "/tr/", "Türkçe", "tr", "tr"),
+    ("ne", "/nepali-age-calculator/", "Nepali calendar", "np", "en"),
+]
+LANG_FLAG = {code: flag for code, _, _, flag, _ in LANGS}
+KEY_FLAG = {"ne": "np", "neconv": "np"}  # tool keys whose flag isn't their UI language's
 
 RELATED = {
     "en": [
@@ -210,56 +236,56 @@ UI = {
         "about": "About", "privacy": "Privacy", "terms": "Terms", "contact": "Contact",
         "tagline": "Free date and age calculators in several languages and calendars. Everything is calculated in your browser; nothing you enter is sent or stored.",
         "faq": "Frequently asked questions", "related": "Other calculators", "updated": "Last updated",
-        "home": "Home", "theme": "Dark mode",
+        "home": "Home", "theme": "Dark mode", "language": "Language",
     },
     "ar": {
         "skip": "انتقل إلى الحاسبة", "tools": "الحاسبات", "site": "الموقع",
         "about": "من نحن", "privacy": "الخصوصية", "terms": "الشروط", "contact": "اتصل بنا",
         "tagline": "حاسبات مجانية للتاريخ والعمر بالتقويمين الهجري والميلادي. تتم جميع العمليات داخل متصفحك، ولا يُرسل أو يُحفظ أي شيء تدخله.",
         "faq": "أسئلة شائعة", "related": "حاسبات أخرى", "updated": "آخر تحديث",
-        "home": "الرئيسية", "theme": "الوضع الداكن",
+        "home": "الرئيسية", "theme": "الوضع الداكن", "language": "اللغة",
     },
     "ja": {
         "skip": "計算フォームへ移動", "tools": "計算ツール", "site": "サイト情報",
         "about": "About（英語）", "privacy": "プライバシー（英語）", "terms": "利用規約（英語）", "contact": "お問い合わせ（英語）",
         "tagline": "多言語・多暦対応の無料年齢計算ツール。計算はすべてブラウザ内で行われ、入力内容が送信・保存されることはありません。",
         "faq": "よくある質問", "related": "ほかの計算ツール", "updated": "最終更新",
-        "home": "ホーム", "theme": "ダークモード",
+        "home": "ホーム", "theme": "ダークモード", "language": "言語",
     },
     "tr": {
         "skip": "Hesaplayıcıya geç", "tools": "Hesaplayıcılar", "site": "Site",
         "about": "Hakkında", "privacy": "Gizlilik", "terms": "Kullanım Koşulları", "contact": "İletişim",
         "tagline": "Farklı takvimlerde ve dillerde ücretsiz yaş ve tarih hesaplayıcıları. Tüm hesaplamalar tarayıcınızda yapılır; hiçbir bilginiz gönderilmez veya saklanmaz.",
         "faq": "Sıkça sorulan sorular", "related": "Diğer hesaplayıcılar", "updated": "Son güncelleme",
-        "home": "Ana sayfa", "theme": "Karanlık mod",
+        "home": "Ana sayfa", "theme": "Karanlık mod", "language": "Dil",
     },
     "de": {
         "skip": "Zum Rechner springen", "tools": "Rechner", "site": "Website",
         "about": "Über uns (Englisch)", "privacy": "Datenschutz (Englisch)", "terms": "Nutzungsbedingungen (Englisch)", "contact": "Kontakt (Englisch)",
         "tagline": "Kostenlose Alters- und Datumsrechner in mehreren Sprachen. Alles wird in Ihrem Browser berechnet; Ihre Eingaben werden weder gesendet noch gespeichert.",
         "faq": "Häufig gestellte Fragen", "related": "Weitere Rechner", "updated": "Zuletzt aktualisiert",
-        "home": "Startseite", "theme": "Dunkelmodus",
+        "home": "Startseite", "theme": "Dunkelmodus", "language": "Sprache",
     },
     "id": {
         "skip": "Langsung ke kalkulator", "tools": "Kalkulator", "site": "Situs",
         "about": "Tentang (Inggris)", "privacy": "Privasi (Inggris)", "terms": "Ketentuan (Inggris)", "contact": "Kontak (Inggris)",
         "tagline": "Kalkulator umur dan tanggal gratis dalam beberapa bahasa dan kalender. Semua dihitung di browser Anda; data yang Anda masukkan tidak dikirim atau disimpan.",
         "faq": "Pertanyaan yang sering diajukan", "related": "Kalkulator lainnya", "updated": "Terakhir diperbarui",
-        "home": "Beranda", "theme": "Mode gelap",
+        "home": "Beranda", "theme": "Mode gelap", "language": "Bahasa",
     },
     "pt": {
         "skip": "Ir para a calculadora", "tools": "Calculadoras", "site": "Site",
         "about": "Sobre (inglês)", "privacy": "Privacidade (inglês)", "terms": "Termos (inglês)", "contact": "Contato (inglês)",
         "tagline": "Calculadoras gratuitas de idade e datas em vários idiomas. Tudo é calculado no seu navegador; nada do que você digita é enviado ou armazenado.",
         "faq": "Perguntas frequentes", "related": "Outras calculadoras", "updated": "Última atualização",
-        "home": "Início", "theme": "Modo escuro",
+        "home": "Início", "theme": "Modo escuro", "language": "Idioma",
     },
     "ko": {
         "skip": "계산기로 바로가기", "tools": "계산기", "site": "사이트",
         "about": "소개 (영어)", "privacy": "개인정보 처리방침 (영어)", "terms": "이용약관 (영어)", "contact": "문의 (영어)",
         "tagline": "여러 언어로 제공되는 무료 나이 및 날짜 계산기입니다. 모든 계산은 브라우저에서 이루어지며 입력한 내용은 전송되거나 저장되지 않습니다.",
         "faq": "자주 묻는 질문", "related": "다른 계산기", "updated": "최종 업데이트",
-        "home": "홈", "theme": "다크 모드",
+        "home": "홈", "theme": "다크 모드", "language": "언어",
     },
 }
 
@@ -302,16 +328,71 @@ def ui_lang(page):
     return page["lang"] if page["lang"] in UI else "en"
 
 
+CHEVRON = ('<svg class="nav-chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">'
+           '<path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+GLOBE = ('<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6">'
+         '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></g></svg>')
+
+
+def flag_img(code):
+    if not code:
+        return '<span class="flag flag-none" aria-hidden="true"></span>'
+    return f'<img class="flag" src="/assets/img/flags/{code}.svg" width="20" height="14" alt="" loading="lazy" decoding="async">'
+
+
+def current_lang(page):
+    return "ne" if page.get("nav") in ("ne", "neconv") else ui_lang(page)
+
+
 def render_nav(page):
+    """Header menu: grouped dropdowns for English pages, a flat list for other languages."""
     lang = ui_lang(page)
-    menu = LANG_NAV.get(lang, TOOLS)
+    t = UI[lang]
+    menu = LANG_NAV.get(lang)
+    if menu:
+        keys = {k for k, _, _ in menu}
+        own = page.get("id") if page.get("id") in keys else page.get("nav")
+        items = []
+        for key, path, label in menu:
+            cur = ' aria-current="page"' if key == own else ""
+            tl = TOOL_LANG.get(key, "en")
+            lang_attr = ' lang="ar" dir="rtl"' if tl == "ar" else f' lang="{tl}"'
+            items.append(f'<li><a href="{path}"{cur}{lang_attr}>{html.escape(label)}</a></li>')
+        return (f'<nav class="tool-nav" aria-label="{t["tools"]}">\n      <ul>\n' + "\n".join(items)
+                + '\n      </ul>\n    </nav>')
+    info = {k: (n, d) for k, n, d in RELATED["en"]}
+    info.update({k: (n, d) for k, _, n, d in EXAMS})
+    own = page.get("id") or page.get("nav")
+    groups = []
+    for gid, label, intro, keys in NAV_GROUPS:
+        links = []
+        for k in keys:
+            name, desc = info[k]
+            cur = ' aria-current="page"' if k == own else ""
+            links.append(f'<li><a href="{PATHS[k]}"{cur}><strong>{html.escape(name)}</strong>'
+                         f'<span>{html.escape(desc)}</span></a></li>')
+        is_cur = " is-current" if own in keys else ""
+        groups.append(
+            f'<li><details class="nav-group" name="site-menu"><summary class="nav-trigger{is_cur}">{label}{CHEVRON}</summary>'
+            f'<div class="mega" id="menu-{gid}"><div class="wrap mega-inner">'
+            f'<div class="mega-intro"><p class="mega-title">{label}</p><p>{html.escape(intro)}</p></div>'
+            f'<ul class="mega-links">{"".join(links)}</ul></div></div></details></li>')
+    return (f'<nav class="site-menu" aria-label="{t["tools"]}">\n      <ul>\n' + "\n".join(groups)
+            + '\n      </ul>\n    </nav>')
+
+
+def render_lang_menu(page):
+    t = UI[ui_lang(page)]
+    me = current_lang(page)
     items = []
-    for key, path, label in menu:
-        cur = ' aria-current="page"' if page.get("nav") == key else ""
-        tl = TOOL_LANG.get(key, "en")
-        lang_attr = ' lang="ar" dir="rtl"' if tl == "ar" else f' lang="{tl}"'
-        items.append(f'<li><a href="{path}"{cur}{lang_attr}>{html.escape(label)}</a></li>')
-    return "\n".join(items)
+    for code, path, name, flag, la in LANGS:
+        cur = ' aria-current="page"' if code == me else ""
+        dir_attr = ' dir="rtl"' if la == "ar" else ""
+        items.append(f'<li><a href="{path}" lang="{la}" hreflang="{la}"{cur}>{flag_img(flag)}<span{dir_attr}>{html.escape(name)}</span></a></li>')
+    short = "NE" if me == "ne" else me.upper()
+    return (f'<details class="lang-menu" name="site-menu"><summary class="nav-trigger lang-trigger">{GLOBE}'
+            f'<span aria-hidden="true">{short}</span><span class="visually-hidden">{t["language"]}</span>{CHEVRON}</summary>'
+            f'<ul class="lang-list">{"".join(items)}</ul></details>')
 
 
 def render_faq(page):
@@ -402,19 +483,13 @@ def render_related(page):
 FOOTER_SECTIONS = {
     "en": {
         "local_title": "English calculators",
-        "local": [
-            ("home", "Age calculator"),
-            ("days", "Days between dates"),
-            ("datecalc", "Date calculator"),
-            ("bizdays", "Business days"),
-            ("experience", "Experience calculator"),
-            ("birthyear", "Birth year calculator"),
-            ("catage", "Cat age"),
-            ("dogage", "Dog age"),
-            ("generation", "Generation calculator"),
-            ("diff", "Age difference"),
-            ("chrono", "Chronological age"),
-            ("exam", "Exam age limits"),
+        # two sub-columns, each sorted A to Z
+        "local_groups": [
+            ("Age", [("home", "Age calculator"), ("diff", "Age difference"), ("birthyear", "Birth year calculator"),
+                     ("chrono", "Chronological age"), ("experience", "Experience calculator"),
+                     ("generation", "Generation calculator")]),
+            ("Dates, pets and exams", [("bizdays", "Business days"), ("catage", "Cat age"), ("datecalc", "Date calculator"),
+                                       ("days", "Days between dates"), ("dogage", "Dog age"), ("exam", "Exam age limits")]),
         ],
         "other_title": "Other languages",
         "other": [("ar", "العربية (حاسبة العمر)"), ("ja", "日本語 (年齢早見表)"),
@@ -539,20 +614,27 @@ def footer_navigation(page):
     group = "ne" if page.get("nav") in ("ne", "neconv") else lang
     config = FOOTER_SECTIONS[group]
     language_for_link = TOOL_LANG
-    def render_links(entries):
+    def render_links(entries, flags=False):
         return "\n".join(
-            '<li><a href="{}" lang="{}" hreflang="{}">{}</a></li>'.format(
+            '<li><a href="{}" lang="{}" hreflang="{}">{}{}</a></li>'.format(
                 html.escape(PATHS[key], quote=True),
                 "en" if group == "ne" else lang,
                 language_for_link.get(key, "en"),
+                flag_img(KEY_FLAG.get(key, LANG_FLAG.get(language_for_link.get(key, "en")))) if flags else "",
                 html.escape(label))
             for key, label in entries
         )
+    if "local_groups" in config:
+        local = "\n".join(f'<div class="footer-sub"><h3>{html.escape(h)}</h3><ul>\n{render_links(e)}\n</ul></div>'
+                          for h, e in config["local_groups"])
+    else:
+        local = f'<ul>\n{render_links(config["local"])}\n</ul>'
     return {
         "local_heading": html.escape(config["local_title"]),
-        "local_links": render_links(config["local"]),
+        "local_links": local,
+        "local_cols": ' data-cols="2"' if "local_groups" in config else "",
         "other_heading": html.escape(config["other_title"]),
-        "other_links": render_links(config["other"]),
+        "other_links": render_links(config["other"], flags=True),
         "site_heading": html.escape(config["site_title"]),
         "foot_note": html.escape(config["foot_note"]),
     }
@@ -1072,11 +1154,8 @@ def page_html(page, pages, vers):
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="{brand_href}" lang="en">{BRAND_SVG}<span>{html.escape(SITE_NAME)}</span></a>
-    <nav class="tool-nav" aria-label="{t['tools']}">
-      <ul>
-{render_nav(page)}
-      </ul>
-    </nav>
+    {render_nav(page)}
+    {render_lang_menu(page)}
     <button class="theme-toggle" type="button" aria-label="{t['theme']}" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></button>
   </div>
 </header>
@@ -1084,6 +1163,7 @@ def page_html(page, pages, vers):
 {body.strip()}
 </main>
 <footer class="site-footer footer-v2 footer-rounded">
+  <div class="footer-wave" aria-hidden="true"><svg viewBox="0 0 1800 160" preserveAspectRatio="none" focusable="false"><path d="M0 60C150 20 300 20 450 60S750 100 900 60C1050 20 1200 20 1350 60S1650 100 1800 60V160H0Z"/><path d="M0 90C150 50 300 50 450 90S750 130 900 90C1050 50 1200 50 1350 90S1650 130 1800 90V160H0Z"/></svg></div>
   <div class="wrap footer-inner" data-slot="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand-column">
@@ -1091,11 +1171,9 @@ def page_html(page, pages, vers):
         <p class="footer-description">{t['tagline']}</p>
         <p class="footer-note">{footer['foot_note']}</p>
       </div>
-      <nav class="footer-column" aria-label="{footer['local_heading']}">
+      <nav class="footer-column" aria-label="{footer['local_heading']}"{footer['local_cols']}>
         <h2>{footer['local_heading']}</h2>
-        <ul>
 {footer['local_links']}
-        </ul>
       </nav>
       <nav class="footer-column" aria-label="{footer['other_heading']}">
         <h2>{footer['other_heading']}</h2>
@@ -1115,7 +1193,7 @@ def page_html(page, pages, vers):
       </nav>
     </div>
     <div class="footer-bottom">
-      <p class="footer-base" lang="en">© {BUILD_DATE.year} {html.escape(SITE_NAME)}. All rights reserved.</p>
+      <p class="footer-base" lang="en">© {BUILD_DATE.year} {html.escape(SITE_NAME)}</p>
       <nav class="footer-legal" aria-label="{t['site']}">
         <a href="{site_prefix}/terms/">{t['terms']}</a>
         <a href="{site_prefix}/privacy/">{t['privacy']}</a>
@@ -1125,6 +1203,7 @@ def page_html(page, pages, vers):
   </div>
 </footer>
 <script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){{var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){{n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}}}})();</script>
+<script>/* header dropdowns: one open at a time, close on outside click or Escape */(function(){{var ds=[].slice.call(document.querySelectorAll('details[name="site-menu"]'));function shut(keep){{ds.forEach(function(d){{if(d!==keep)d.open=false}})}}ds.forEach(function(d){{d.addEventListener('toggle',function(){{if(d.open)shut(d)}})}});document.addEventListener('click',function(e){{if(!e.target.closest('details[name="site-menu"]'))shut()}});document.addEventListener('keydown',function(e){{var o=ds.filter(function(d){{return d.open}})[0];if(e.key==='Escape'&&o){{o.open=false;o.querySelector('summary').focus()}}}})}})();</script>
 <script>(function(){{var b=document.querySelector('.theme-toggle'),r=document.documentElement;function s(){{b.setAttribute('aria-pressed',r.dataset.theme==='dark')}}s();b.addEventListener('click',function(){{r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';try{{localStorage.setItem('theme',r.dataset.theme)}}catch(e){{}}s()}})}})();</script>
 {scripts}
 </body>

@@ -148,6 +148,53 @@ a:hover { color: var(--primary-hover); }
 .theme-toggle svg { width: 20px; height: 20px; }
 html:not([data-theme]) .theme-toggle { display: none; } /* no JS: the button can't work */
 
+/* ---------- Header dropdowns (English grouped menu + language switcher) ----------
+   Native <details>: works without JS; a small inline script closes the others and handles Escape. */
+.site-header { position: relative; z-index: 20; }
+.site-menu { flex: 1; min-width: 0; }
+.site-menu > ul { display: flex; gap: var(--s-1); margin: 0; padding: 0; list-style: none; }
+.nav-trigger { display: inline-flex; align-items: center; gap: 6px; padding: 9px var(--s-3); border-radius: var(--radius);
+  font-size: 14px; line-height: 22px; color: var(--ink-muted); cursor: pointer; list-style: none; white-space: nowrap; user-select: none; }
+.nav-trigger::-webkit-details-marker { display: none; }
+.nav-trigger:hover, details[open] > .nav-trigger { color: var(--ink); background: var(--surface-1); }
+.nav-trigger.is-current { color: var(--primary); font-weight: 600; }
+.nav-chevron { flex: none; transition: transform .15s ease; }
+details[open] > .nav-trigger .nav-chevron { transform: rotate(180deg); }
+.mega { position: absolute; inset-inline: 0; inset-block-start: 100%; background: var(--canvas);
+  border-block: 1px solid var(--hairline); box-shadow: 0 18px 32px -18px color-mix(in srgb, var(--ink) 30%, transparent); }
+.site-header .mega-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); gap: var(--s-6); padding-block: var(--s-6); }
+.mega-title { margin: 0 0 var(--s-2); font-size: 22px; line-height: 1.25; font-weight: 600; color: var(--ink); }
+.mega-intro p:not(.mega-title) { margin: 0; max-width: 32ch; font-size: 14px; line-height: 1.6; color: var(--ink-muted); }
+.mega-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-1) var(--s-4); margin: 0; padding: 0; list-style: none; }
+.mega-links a { display: block; padding: var(--s-3); border-radius: var(--radius); color: var(--ink); text-decoration: none; }
+.mega-links a:hover { background: var(--surface-1); color: var(--ink); }
+.mega-links strong { display: block; font-size: 14px; font-weight: 600; line-height: 1.4; }
+.mega-links span { display: block; margin-block-start: 2px; font-size: 13px; line-height: 1.5; color: var(--ink-muted); }
+.mega-links a[aria-current="page"] strong { color: var(--primary); }
+.lang-menu { position: relative; flex: none; }
+.lang-trigger { padding-inline: 10px; font-size: 13px; font-weight: 600; letter-spacing: .4px; }
+.lang-list { position: absolute; inset-inline-end: 0; inset-block-start: calc(100% + var(--s-2)); min-inline-size: 230px; margin: 0; padding: 6px;
+  list-style: none; background: var(--canvas); border: 1px solid var(--hairline); border-radius: var(--radius-lg);
+  box-shadow: 0 18px 32px -18px color-mix(in srgb, var(--ink) 35%, transparent); }
+.lang-list a { display: flex; align-items: center; gap: 10px; padding: var(--s-2) 10px; border-radius: var(--radius);
+  font-size: 14px; color: var(--ink); text-decoration: none; }
+.lang-list a:hover { background: var(--surface-1); color: var(--ink); }
+.lang-list a[aria-current="page"] { font-weight: 600; color: var(--primary); }
+.flag { flex: none; inline-size: 20px; block-size: 14px; border-radius: 2px; box-shadow: 0 0 0 1px var(--hairline); object-fit: cover; }
+.flag-none { box-shadow: none; }
+@media (max-width: 899px) {
+  .site-header .wrap:has(.site-menu) { flex-wrap: wrap; row-gap: 0; }
+  .site-header .wrap:has(.site-menu) .brand { margin-inline-end: auto; }
+  .site-menu { order: 3; flex-basis: 100%; margin-inline: calc(var(--s-3) * -1); }
+  .site-menu > ul { gap: 0; }
+  .mega { max-block-size: calc(100dvh - 120px); overflow-y: auto; }
+  .site-header .mega-inner { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); padding-block: var(--s-4) var(--s-5); }
+  .mega-intro p:not(.mega-title) { display: none; }
+  .mega-title { font-size: 18px; margin: 0; }
+  .mega-links { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .nav-chevron { transition: none; } }
+
 /* ---------- Hero ---------- */
 .hero { background: var(--surface-1); padding-block: var(--s-6) var(--s-6); }
 @media (min-width: 672px) { .hero { padding-block: var(--s-7) var(--s-6); } }
@@ -414,7 +461,7 @@ table.data td.era-change { color: var(--ink-muted); font-size: 13px; }
 .page { padding-block: var(--s-6) var(--s-8); }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
-@media print { .theme-toggle, .site-header, .site-footer, .tool-nav, .share-row, .ad-slot { display: none !important; } }
+@media print { .theme-toggle, .site-header, .site-footer, .tool-nav, .site-menu, .lang-menu, .share-row, .ad-slot { display: none !important; } }
 
 /* ==========================================================================
    Phones (one-column layout, < 720px)
