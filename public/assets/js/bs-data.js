@@ -1,5 +1,5 @@
-/* bs-data.js — Bikram Sambat (Nepali) calendar data, shared by the Nepali pages.
-   Month lengths 2000–2090 BS, one digit per month (days − 29), Baisakh first.
+/* bs-data.js: Bikram Sambat (Nepali) calendar data, shared by the Nepali pages.
+   Month lengths 2000 to 2090 BS, one digit per month (days − 29), Baisakh first.
    Source: nepali-date-converter (MIT), cross-checked against it date by date.
    BS 2000-01-01 = 14 April 1943 AD. Extend TABLE when newer years are published. */
 (function () {

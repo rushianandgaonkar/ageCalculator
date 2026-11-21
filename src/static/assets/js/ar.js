@@ -1,11 +1,11 @@
-/* ar.js — Arabic age calculator: Hijri (Umm al-Qura) and Gregorian. */
+/* ar.js: Arabic age calculator: Hijri (Umm al-Qura) and Gregorian. */
 (function () {
   "use strict";
   var G = DC.Gregorian, H = DC.Hijri;
   var $ = function (id) { return document.getElementById(id); };
   var GM = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
   var HM = ["محرم", "صفر", "ربيع الأول", "ربيع الآخر", "جمادى الأولى", "جمادى الآخرة", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"];
-  var FORMS = { // [one, two, few (3–10), many (11–99), other]
+  var FORMS = { // [one, two, few (3 to 10), many (11 to 99), other]
     year: ["سنة واحدة", "سنتان", "سنوات", "سنة", "سنة"],
     month: ["شهر واحد", "شهران", "أشهر", "شهرًا", "شهر"],
     day: ["يوم واحد", "يومان", "أيام", "يومًا", "يوم"],
@@ -116,7 +116,7 @@
       hNote.hidden = false;
       hNote.innerHTML = "<p><strong>التاريخ الهجري غير معروض</strong></p><p>التواريخ قبل " +
         DC.esc(F.g.format(DC.dateObj(H.minDays))) + " أو بعد " + DC.esc(F.g.format(DC.dateObj(H.maxDays))) +
-        " تقع خارج النطاق الرسمي لتقويم أم القرى (" + DC.toDigits("1300", digits) + "–" + DC.toDigits("1600", digits) + " هـ).</p>";
+        " تقع خارج النطاق الرسمي لتقويم أم القرى (" + DC.toDigits("1300", digits) + " إلى " + DC.toDigits("1600", digits) + " هـ).</p>";
     } else hNote.hidden = true;
 
     var note = $("r-note");
@@ -125,7 +125,7 @@
     else note.hidden = true;
 
     function countdown(calObj, onDate, nb, fmt) {
-      if (!nb) return "–";
+      if (!nb) return "-";
       if (nb.isToday) return "اليوم";
       var rem = DC.age(calObj, onDate, nb.date);
       var months = rem ? rem.y * 12 + rem.m : 0;

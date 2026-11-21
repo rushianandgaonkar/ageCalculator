@@ -1,4 +1,4 @@
-/* arconv.js — Hijri ↔ Gregorian converter (Umm al-Qura) + Hijri year month-length table. */
+/* arconv.js: Hijri ↔ Gregorian converter (Umm al-Qura) + Hijri year month-length table. */
 (function () {
   "use strict";
   var G = DC.Gregorian, H = DC.Hijri;
@@ -93,7 +93,7 @@
     if (n === null) { field.error("هذا التاريخ غير موجود. تحقّق من اليوم والشهر."); return null; }
     if (!H.inRange(n)) {
       field.error("التواريخ المدعومة في تقويم أم القرى من " + F.g.format(DC.dateObj(H.minDays)) +
-        " إلى " + F.g.format(DC.dateObj(H.maxDays)) + " (" + dig("1300") + "–" + dig("1600") + " هـ).");
+        " إلى " + F.g.format(DC.dateObj(H.maxDays)) + " (" + dig("1300") + " إلى " + dig("1600") + " هـ).");
       return null;
     }
     field.error("");

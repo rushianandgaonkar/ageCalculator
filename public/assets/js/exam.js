@@ -1,8 +1,8 @@
-/* exam.js — exam age-limit eligibility (UPSC, SSC, NDA, CDS, Agniveer).
+/* exam.js: exam age-limit eligibility (UPSC, SSC, NDA, CDS, Agniveer).
    Rules come from <script type="application/json" id="exam-rules"> (built from src/data/exams/*.json).
    Two kinds of rule:
    - "age": min/max age on a cutoff date. Indian notices read the maximum as "must not have
-     reached": UPSC 21–32 on 1 Aug 2026 = born 2 Aug 1994 to 1 Aug 2005. Category relaxation adds years.
+     reached": UPSC 21 to 32 on 1 Aug 2026 = born 2 Aug 1994 to 1 Aug 2005. Category relaxation adds years.
    - "window": explicit "born not earlier than / not later than" dates (both inclusive). */
 (function () {
   "use strict";

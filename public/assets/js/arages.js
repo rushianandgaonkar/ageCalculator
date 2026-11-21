@@ -1,4 +1,4 @@
-/* arages.js — Arabic 100-year age lookup tables (Hijri & Gregorian) + quick year lookup. */
+/* arages.js: Arabic 100-year age lookup tables (Hijri & Gregorian) + quick year lookup. */
 (function () {
   "use strict";
   var G = DC.Gregorian, H = DC.Hijri;
@@ -35,13 +35,13 @@
   }
 
   function hijriSpanForGreg(gy) {
-    if (!hijriOK) return "–";
+    if (!hijriOK) return "-";
     var n1 = G.toDays(gy, 1, 1), n2 = G.toDays(gy, 12, 31);
     if (!H.inRange(n1) || !H.inRange(n2)) return "خارج نطاق أم القرى";
     return yearRangeText(H.fromDays(n1).y, H.fromDays(n2).y, "هـ");
   }
   function gregSpanForHijri(hy) {
-    if (!hijriOK || hy < 1300 || hy > 1600) return "–";
+    if (!hijriOK || hy < 1300 || hy > 1600) return "-";
     var s = G.fromDays(H.toDays(hy, 1, 1));
     var e = G.fromDays(H.toDays(hy, 12, H.dim(hy, 12)));
     return yearRangeText(s.y, e.y, "م");
@@ -54,7 +54,7 @@
       if (hy < 1300) break;
       var afterH = curHY - hy, beforeH = afterH - 1;
       hRows += '<tr data-hy="' + hy + '"><td>' + dig(hy) + " هـ</td><td>" + gregSpanForHijri(hy) +
-        "</td><td>" + ageLabel(afterH) + "</td><td>" + (beforeH < 0 ? "—" : ageLabel(beforeH)) + "</td></tr>";
+        "</td><td>" + ageLabel(afterH) + "</td><td>" + (beforeH < 0 ? "" : ageLabel(beforeH)) + "</td></tr>";
     }
     hBody.innerHTML = hRows;
     hBody.setAttribute("data-hyear", curHY);
@@ -62,7 +62,7 @@
     for (var gy = curGY; gy >= curGY - 100; gy--) {
       var afterG = curGY - gy, beforeG = afterG - 1;
       gRows += '<tr data-gy="' + gy + '"><td>' + dig(gy) + " م</td><td>" + hijriSpanForGreg(gy) +
-        "</td><td>" + ageLabel(afterG) + "</td><td>" + (beforeG < 0 ? "—" : ageLabel(beforeG)) + "</td></tr>";
+        "</td><td>" + ageLabel(afterG) + "</td><td>" + (beforeG < 0 ? "" : ageLabel(beforeG)) + "</td></tr>";
     }
     gBody.innerHTML = gRows;
     gBody.setAttribute("data-year", curGY);
@@ -122,19 +122,19 @@
     var otherSpan = mode === "h" ? gregSpanForHijri(y) : hijriSpanForGreg(y);
     var rows = [
       ["بعد عيد الميلاد", ageLabel(after)],
-      ["قبل عيد الميلاد", before < 0 ? "—" : ageLabel(before)],
+      ["قبل عيد الميلاد", before < 0 ? "-" : ageLabel(before)],
       ["الموافق في التقويم الآخر", otherSpan]
     ];
     if (mode === "h" && hijriOK && y >= 1300 && y <= 1600) {
       var gs = G.fromDays(H.toDays(y, 1, 1)).y;
       var ge = G.fromDays(H.toDays(y, 12, H.dim(y, 12))).y;
       var gMin = Math.max(0, curGY - ge), gMax = Math.max(0, curGY - gs);
-      rows.push(["العمر التقريبي بالميلادي", gMin === gMax ? ageLabel(gMin) : dig(gMin) + "–" + dig(gMax) + " سنة"]);
+      rows.push(["العمر التقريبي بالميلادي", gMin === gMax ? ageLabel(gMin) : dig(gMin) + " إلى " + dig(gMax) + " سنة"]);
     } else if (mode === "g" && hijriOK && H.inRange(G.toDays(y, 1, 1)) && H.inRange(G.toDays(y, 12, 31))) {
       var hs = H.fromDays(G.toDays(y, 1, 1)).y;
       var he = H.fromDays(G.toDays(y, 12, 31)).y;
       var hMin = Math.max(0, curHY - he), hMax = Math.max(0, curHY - hs);
-      rows.push(["العمر التقريبي بالهجري", hMin === hMax ? ageLabel(hMin) : dig(hMin) + "–" + dig(hMax) + " سنة"]);
+      rows.push(["العمر التقريبي بالهجري", hMin === hMax ? ageLabel(hMin) : dig(hMin) + " إلى " + dig(hMax) + " سنة"]);
     }
 
     $("r-stats").innerHTML = rows.map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + DC.esc(r[1]) + "</dd></div>"; }).join("");

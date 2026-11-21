@@ -1,4 +1,4 @@
-/* ja.js — 年齢計算 + 年齢早見表 (Japanese eras, 干支, 数え年). */
+/* ja.js: 年齢計算 + 年齢早見表 (Japanese eras, 干支, 数え年). */
 (function () {
   "use strict";
   var G = DC.Gregorian;
@@ -104,7 +104,7 @@
       ["生まれた曜日", wf.format(DC.dateObj(bn))],
       ["干支", eto(b.y)],
       ["数え年", (o.y - b.y + 1) + "歳"],
-      ["次の誕生日", nb ? (nb.isToday ? "今日" : jDate(nb.dayNum) + "（あと" + nf.format(nb.days) + "日）") : "–"],
+      ["次の誕生日", nb ? (nb.isToday ? "今日" : jDate(nb.dayNum) + "（あと" + nf.format(nb.days) + "日）") : "-"],
       ["月数で", nf.format(a.months) + "か月" + (a.d ? a.d + "日" : "")],
       ["週数で", nf.format(weeks) + "週" + (wd ? wd + "日" : "")],
       ["日数で", nf.format(a.days) + "日"]
@@ -137,7 +137,7 @@
     for (var y = year; y >= 1926; y--) {
       var after = year - y, before = after - 1;
       html += '<tr data-y="' + y + '"><td>' + y + "年</td><td>" + eraLabelForYear(y) + "</td><td>" + etoAnimal(y) +
-        "</td><td>" + after + "歳</td><td>" + (before < 0 ? "—" : before + "歳") + "</td></tr>";
+        "</td><td>" + after + "歳</td><td>" + (before < 0 ? "" : before + "歳") + "</td></tr>";
     }
     tbody.innerHTML = html;
     tbody.setAttribute("data-year", year);

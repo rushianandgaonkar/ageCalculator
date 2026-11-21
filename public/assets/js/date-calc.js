@@ -1,4 +1,4 @@
-/* date-calc.js — add or subtract days, weeks, months or years from any date. */
+/* date-calc.js: add or subtract days, weeks, months or years from any date. */
 (function () {
   "use strict";
   var G = DC.Gregorian;

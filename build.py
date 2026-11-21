@@ -1163,7 +1163,7 @@ def page_html(page, pages, vers):
 {body.strip()}
 </main>
 <footer class="site-footer footer-v2 footer-rounded">
-  <div class="footer-wave" aria-hidden="true"><svg viewBox="0 0 1800 160" preserveAspectRatio="none" focusable="false"><path d="M0 60C150 20 300 20 450 60S750 100 900 60C1050 20 1200 20 1350 60S1650 100 1800 60V160H0Z"/><path d="M0 90C150 50 300 50 450 90S750 130 900 90C1050 50 1200 50 1350 90S1650 130 1800 90V160H0Z"/></svg></div>
+  <div class="footer-wave" aria-hidden="true"><svg viewBox="0 0 1800 500" preserveAspectRatio="none" focusable="false"><path d="M0 250C150 110 300 110 450 250S750 390 900 250C1050 110 1200 110 1350 250S1650 390 1800 250V500H0Z"/><path d="M0 300C150 390 300 390 450 300S750 210 900 300C1050 390 1200 390 1350 300S1650 210 1800 300V500H0Z"/></svg></div>
   <div class="wrap footer-inner" data-slot="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand-column">

@@ -1,4 +1,4 @@
-/* pet-age.js — client logic for cat and dog age calculators.
+/* pet-age.js: client logic for cat and dog age calculators.
    Supports DateField (date of birth) and manual years/months entry.
    Veterinary life stage interpolation based on AAHA and AVMA standards. */
 (function () {

@@ -1,4 +1,4 @@
-/* gakunen.js — 学年早見表: school grade for the current 年度 (April–March) and 入学・卒業 years.
+/* gakunen.js: 学年早見表: school grade for the current 年度 (April to March) and 入学・卒業 years.
    Japanese school years group children born 2 April (year Y) to 1 April (Y+1); they enter
    elementary school in April of Y+7. 4月1日生まれ belongs to the earlier year (年齢計算ニ関スル法律). */
 (function () {

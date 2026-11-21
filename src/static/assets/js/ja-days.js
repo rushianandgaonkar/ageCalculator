@@ -1,4 +1,4 @@
-/* ja-days.js — 日数計算: 2つの日付間の日数計算と指定日数の計算（何日後・何日前） */
+/* ja-days.js: 日数計算: 2つの日付間の日数計算と指定日数の計算（何日後・何日前） */
 (function () {
   "use strict";
   var G = DC.Gregorian;

@@ -1,4 +1,4 @@
-/* home.js — English age calculator with exam age-limit check. */
+/* home.js: English age calculator with exam age-limit check. */
 (function () {
   "use strict";
   var G = DC.Gregorian;
@@ -73,8 +73,8 @@
     var minA = limitInt("min-age"), maxA = limitInt("max-age"), lim = $("r-limit");
     if (minA === null && maxA === null) lim.hidden = true;
     else {
-      var okMin = minA === null || a.y >= minA, okMax = maxA === null || a.y < maxA; // "21–32" in Indian notices = must not have reached 32
-      var range = minA !== null && maxA !== null ? minA + "–" + maxA + " years"
+      var okMin = minA === null || a.y >= minA, okMax = maxA === null || a.y < maxA; // "21 to 32" in Indian notices = must not have reached 32
+      var range = minA !== null && maxA !== null ? minA + " to " + maxA + " years"
         : (minA !== null ? "at least " + minA + " years" : "up to " + maxA + " years");
       var head = okMin && okMax ? "Within the age limit (" + range + ")"
         : (!okMin ? "Below the minimum age (" + range + ")" : "Above the maximum age (" + range + ")");
@@ -93,8 +93,8 @@
     var weeks = Math.floor(a.days / 7), wd = a.days % 7;
     var rows = [
       ["Born on", wf.format(DC.dateObj(bn)) + ", " + fmt(bn)],
-      ["Next birthday", nb ? (nb.isToday ? "Today" : fmt(nb.dayNum) + " (" + plural(nb.days, "day") + ")") : "–"],
-      ["Turning", nb ? ord(nb.isToday ? a.y : nb.turning) : "–"],
+      ["Next birthday", nb ? (nb.isToday ? "Today" : fmt(nb.dayNum) + " (" + plural(nb.days, "day") + ")") : "-"],
+      ["Turning", nb ? ord(nb.isToday ? a.y : nb.turning) : "-"],
       ["Age in months", plural(a.months, "month") + (a.d ? ", " + plural(a.d, "day") : "")],
       ["Age in weeks", plural(weeks, "week") + (wd ? ", " + plural(wd, "day") : "")],
       ["Age in days", plural(a.days, "day")],

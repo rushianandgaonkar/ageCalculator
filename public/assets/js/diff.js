@@ -1,4 +1,4 @@
-/* diff.js — age difference between two people. One script for the English page (/age-difference/)
+/* diff.js: age difference between two people. One script for the English page (/age-difference/)
    and the Arabic page (/ar/age-difference/, adds a Gregorian/Hijri switch and Hijri results). */
 (function () {
   "use strict";
@@ -89,7 +89,7 @@
           hNote.hidden = false;
           hNote.innerHTML = "<p><strong>التاريخ الهجري غير معروض</strong></p><p>التواريخ قبل " +
             DC.esc(df.format(DC.dateObj(H.minDays))) + " أو بعد " + DC.esc(df.format(DC.dateObj(H.maxDays))) +
-            " تقع خارج النطاق الرسمي لتقويم أم القرى (1300–1600 هـ).</p>";
+            " تقع خارج النطاق الرسمي لتقويم أم القرى (1300 إلى 1600 هـ).</p>";
         } else hNote.hidden = true;
       }
     }

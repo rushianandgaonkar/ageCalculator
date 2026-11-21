@@ -516,14 +516,15 @@ body.landing-v2 {
   gap: 12px 24px;
 }
 .landing-v2 .footer-v2 .footer-legal a { font-size: 12px; }
-/* Slow wave along the bottom of the footer (two offset layers, seamless 900px period) */
+/* Animated wave footer: two crossing wave layers behind the content (seamless 900-unit period) */
 .landing-v2 .footer-v2 .footer-wave {
   position: absolute; inset-inline: 0; inset-block-end: 0; z-index: -1;
-  block-size: 150px; overflow: hidden; pointer-events: none; color: var(--primary);
+  block-size: min(500px, 85%); overflow: hidden; pointer-events: none; color: var(--primary);
 }
-.landing-v2 .footer-v2 .footer-wave svg { inline-size: 200%; block-size: 100%; max-width: none; animation: footer-wave 36s linear infinite; }
-.landing-v2 .footer-v2 .footer-wave path { fill: currentColor; opacity: .06; }
-.landing-v2 .footer-v2 .footer-wave path + path { opacity: .09; }
+.landing-v2 .footer-v2 .footer-wave svg { inline-size: max(200%, 1800px); block-size: 100%; max-width: none; animation: footer-wave 40s linear infinite; }
+.landing-v2 .footer-v2 .footer-wave path { fill: currentColor; opacity: .05; }
+.landing-v2 .footer-v2 .footer-wave path + path { opacity: .1; }
+.landing-v2 .footer-v2 .footer-bottom { justify-content: center; text-align: center; }
 @keyframes footer-wave { to { transform: translateX(-50%); } }
 /* English calculators: one column split into two sorted sub-columns */
 .landing-v2 .footer-v2 .footer-grid:has([data-cols="2"]) {

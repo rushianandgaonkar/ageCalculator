@@ -1,4 +1,4 @@
-/* ar-today.js — Live Islamic Hijri & Gregorian today display and occasions countdown. */
+/* ar-today.js: Live Islamic Hijri & Gregorian today display and occasions countdown. */
 (function () {
   "use strict";
 

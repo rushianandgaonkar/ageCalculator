@@ -1,4 +1,4 @@
-/* generation.js — interactive generation and age range calculator */
+/* generation.js: interactive generation and age range calculator */
 (function (global) {
   "use strict";
 

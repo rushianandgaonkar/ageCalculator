@@ -1,4 +1,4 @@
-/* birth-year.js — client logic for birth year reverse lookup and days alive calculator.
+/* birth-year.js: client logic for birth year reverse lookup and days alive calculator.
    Supports:
    1. "What year was I born?" (reverse age calculation, generation, zodiac, milestone years)
    2. "How many days have I been alive?" (exact days, hours, minutes, day of week, milestones) */

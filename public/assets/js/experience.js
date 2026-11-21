@@ -1,4 +1,4 @@
-/* experience.js — client logic for work experience calculation across employments.
+/* experience.js: client logic for work experience calculation across employments.
    Handles single and multi-stint date math, aggregating years, months, and days
    cleanly without borrowing errors, and tracks career breaks and overlaps. */
 (function (global) {

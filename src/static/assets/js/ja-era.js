@@ -1,4 +1,4 @@
-/* ja-era.js — 西暦和暦変換と早見表: リアルタイム変換・満年齢・数え年・干支・厄年 */
+/* ja-era.js: 西暦和暦変換と早見表: リアルタイム変換・満年齢・数え年・干支・厄年 */
 (function () {
   "use strict";
   var G = DC.Gregorian;
@@ -182,7 +182,7 @@
         exactAgeStr = "まだ生まれていません";
       }
     } else {
-      exactAgeStr = (afterAge >= 0 ? afterAge + "歳（誕生日後）" : "0歳") + " / " + (beforeAge >= 0 ? beforeAge + "歳（誕生日前）" : "—");
+      exactAgeStr = (afterAge >= 0 ? afterAge + "歳（誕生日後）" : "0歳") + " / " + (beforeAge >= 0 ? beforeAge + "歳（誕生日前）" : "-");
     }
 
     var eraLabel = getEraLabel(gy);
@@ -223,7 +223,7 @@
     statsHtml += statRow("和暦表記", eraLabel);
     statsHtml += statRow("干支（十干十二支）", eto);
     statsHtml += statRow("満年齢", exactAgeStr);
-    statsHtml += statRow("数え年（伝統的年齢）", (kazoe >= 1 ? kazoe + "歳" : "—"));
+    statsHtml += statRow("数え年（伝統的年齢）", (kazoe >= 1 ? kazoe + "歳" : "-"));
 
     var yakuMaleStr = yaku.m ? '<span class="tag ' + (yaku.m.indexOf("大厄") !== -1 ? "danger" : "warning") + '">' + yaku.m + "</span>" : "該当なし";
     var yakuFemaleStr = yaku.f ? '<span class="tag ' + (yaku.f.indexOf("大厄") !== -1 ? "danger" : "warning") + '">' + yaku.f + "</span>" : "該当なし";

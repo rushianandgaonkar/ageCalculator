@@ -1,4 +1,4 @@
-/* chrono.js — chronological age (y;m;d) for test scoring, with corrected age. */
+/* chrono.js: chronological age (y;m;d) for test scoring, with corrected age. */
 (function () {
   "use strict";
   var G = DC.Gregorian;
@@ -58,7 +58,7 @@
 
     var rows = [
       ["Years;months", main.y + ";" + main.m],
-      [method() === "30" ? "Exact method" : "30-day method", other ? semi(other) : "–"],
+      [method() === "30" ? "Exact method" : "30-day method", other ? semi(other) : "-"],
       ["Total months", plural(exact.months, "month")],
       ["Total weeks", plural(Math.floor(exact.days / 7), "week") + (exact.days % 7 ? ", " + plural(exact.days % 7, "day") : "")],
       ["Total days", plural(exact.days, "day")],

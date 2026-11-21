@@ -1,4 +1,4 @@
-/* bizdays.js — calculate business days between dates or add/subtract working days. */
+/* bizdays.js: calculate business days between dates or add/subtract working days. */
 (function () {
   "use strict";
   var G = DC.Gregorian;

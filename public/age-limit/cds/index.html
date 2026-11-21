@@ -32,7 +32,7 @@
   <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")})();</script>
   <style>/* Hallmark */ html,body{overflow-x:clip}:focus-visible{outline:2px solid var(--focus);outline-offset:2px}:active{transform:none}:disabled{opacity:0.45;cursor:not-allowed}</style>
   <link rel="stylesheet" href="/assets/css/site.css?v=2e9b6d42ca">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=39f660a003">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=0158cfc3ab">
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -233,7 +233,7 @@
 </section>
 </main>
 <footer class="site-footer footer-v2 footer-rounded">
-  <div class="footer-wave" aria-hidden="true"><svg viewBox="0 0 1800 160" preserveAspectRatio="none" focusable="false"><path d="M0 60C150 20 300 20 450 60S750 100 900 60C1050 20 1200 20 1350 60S1650 100 1800 60V160H0Z"/><path d="M0 90C150 50 300 50 450 90S750 130 900 90C1050 50 1200 50 1350 90S1650 130 1800 90V160H0Z"/></svg></div>
+  <div class="footer-wave" aria-hidden="true"><svg viewBox="0 0 1800 500" preserveAspectRatio="none" focusable="false"><path d="M0 250C150 110 300 110 450 250S750 390 900 250C1050 110 1200 110 1350 250S1650 390 1800 250V500H0Z"/><path d="M0 300C150 390 300 390 450 300S750 210 900 300C1050 390 1200 390 1350 300S1650 210 1800 300V500H0Z"/></svg></div>
   <div class="wrap footer-inner" data-slot="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand-column">
@@ -298,7 +298,7 @@
 <script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}})();</script>
 <script>/* header dropdowns: one open at a time, close on outside click or Escape */(function(){var ds=[].slice.call(document.querySelectorAll('details[name="site-menu"]'));function shut(keep){ds.forEach(function(d){if(d!==keep)d.open=false})}ds.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)shut(d)})});document.addEventListener('click',function(e){if(!e.target.closest('details[name="site-menu"]'))shut()});document.addEventListener('keydown',function(e){var o=ds.filter(function(d){return d.open})[0];if(e.key==='Escape'&&o){o.open=false;o.querySelector('summary').focus()}})})();</script>
 <script>(function(){var b=document.querySelector('.theme-toggle'),r=document.documentElement;function s(){b.setAttribute('aria-pressed',r.dataset.theme==='dark')}s();b.addEventListener('click',function(){r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}s()})})();</script>
-<script src="/assets/js/datecore.js?v=ce0c93159b" defer></script>
-<script src="/assets/js/exam.js?v=4d63833520" defer></script>
+<script src="/assets/js/datecore.js?v=97205bd995" defer></script>
+<script src="/assets/js/exam.js?v=6b6335c814" defer></script>
 </body>
 </html>

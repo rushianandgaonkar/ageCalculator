@@ -1,4 +1,4 @@
-/* ar-calendar.js — Interactive monthly Hijri calendar viewer and year months table. */
+/* ar-calendar.js: Interactive monthly Hijri calendar viewer and year months table. */
 (function () {
   "use strict";
 

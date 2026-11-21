@@ -1,4 +1,4 @@
-/* ne.js — Nepali age calculator: Bikram Sambat (BS) and AD. Calendar data: bs-data.js */
+/* ne.js: Nepali age calculator: Bikram Sambat (BS) and AD. Calendar data: bs-data.js */
 (function () {
   "use strict";
   var BS = DC.BS;
@@ -23,7 +23,7 @@
   function dig(s) { return neDigits ? DC.toDigits(s, "deva") : String(s); }
   function bsText(n) {
     var b = BS.fromDays(n);
-    if (!b) return "–";
+    if (!b) return "-";
     var en = b.d + " " + BS_M[b.m - 1] + " " + b.y + " BS";
     var ne = DC.toDigits(b.y, "deva") + " " + BS_M_NE[b.m - 1] + " " + DC.toDigits(b.d, "deva");
     return (neDigits ? ne : en) + (neDigits ? "" : " (" + ne + ")");
@@ -46,7 +46,7 @@
     var n = cal().toDays(v.y, v.m, v.d);
     if (mode === "bs" && (v.y < 2000 || v.y > 2090)) { field.error("Enter a BS year between 2000 and 2090."); return null; }
     if (n === null) { field.error("That date doesn’t exist. " + (mode === "bs" ? "BS months have 29 to 32 days." : "Check the day and month.")); return null; }
-    if (n < MIN_N || n > MAX_N) { field.error("Supported dates: 14 April 1943 to " + adText(MAX_N) + " (2000–2090 BS)."); return null; }
+    if (n < MIN_N || n > MAX_N) { field.error("Supported dates: 14 April 1943 to " + adText(MAX_N) + " (2000 to 2090 BS)."); return null; }
     field.error("");
     return n;
   }
@@ -73,9 +73,9 @@
     $("r-ad-sub").textContent = plural(ag.m, "month") + ", " + plural(ag.d, "day");
 
     var nbB = DC.nextBirthday(BS, bB, bO), nbG = DC.nextBirthday(G, gB, gO), note = $("r-note");
-    if (nbB && nbB.isToday && ab.y > 0) { note.hidden = false; note.className = "callout ok"; note.innerHTML = "<p>जन्मदिनको शुभकामना! Happy birthday — you are " + ab.y + " today by the Nepali calendar.</p>"; }
+    if (nbB && nbB.isToday && ab.y > 0) { note.hidden = false; note.className = "callout ok"; note.innerHTML = "<p>जन्मदिनको शुभकामना! Happy birthday, you are " + ab.y + " today by the Nepali calendar.</p>"; }
     else note.hidden = true;
-    function nbText(nb, f) { return !nb ? "–" : nb.isToday ? "Today" : "In " + plural(nb.days, "day") + ": " + f(nb.dayNum); }
+    function nbText(nb, f) { return !nb ? "-" : nb.isToday ? "Today" : "In " + plural(nb.days, "day") + ": " + f(nb.dayNum); }
     var rows = [
       ["Date of birth (BS)", bsText(bn)],
       ["Date of birth (AD)", adText(bn)],

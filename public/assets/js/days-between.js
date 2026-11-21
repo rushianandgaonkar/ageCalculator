@@ -1,4 +1,4 @@
-/* days-between.js — calculate exact days, weeks, months and business days between two dates. */
+/* days-between.js: calculate exact days, weeks, months and business days between two dates. */
 (function () {
   "use strict";
   var G = DC.Gregorian;

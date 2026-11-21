@@ -1,4 +1,4 @@
-/* datecore.js — shared date maths and form helpers for every calculator page.
+/* datecore.js: shared date maths and form helpers for every calculator page.
    No dependencies. All dates are handled as whole days (UTC) so time zones and
    daylight saving can never shift a result by a day.
 
@@ -276,7 +276,7 @@
 
   /* ---------- Form: three-part date field ---------- */
   /* A part is "complete" when no further digit could make sense, so the cursor can move on
-     without a Done key (iOS number pads have none): day 4–9 or two digits, month 2–9 or two digits,
+     without a Done key (iOS number pads have none): day 4 to 9 or two digits, month 2 to 9 or two digits,
      year at its maxlength. */
   function partComplete(el) {
     if (el.tagName === "SELECT") return !!el.value;

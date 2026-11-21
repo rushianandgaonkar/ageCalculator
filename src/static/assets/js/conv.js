@@ -1,4 +1,4 @@
-/* conv.js — Nepali date converter: BS ↔ AD, plus today's Nepali date. Data: bs-data.js */
+/* conv.js: Nepali date converter: BS ↔ AD, plus today's Nepali date. Data: bs-data.js */
 (function () {
   "use strict";
   var BS = DC.BS, G = DC.Gregorian;
@@ -41,7 +41,7 @@
     if (mode === "bs" && (v.y < 2000 || v.y > 2090)) { field.error("Enter a BS year between 2000 and 2090."); return null; }
     var n = cal().toDays(v.y, v.m, v.d);
     if (n === null) { field.error(mode === "bs" ? "That date doesn’t exist. " + DC.BS_MONTHS[v.m - 1] + " " + v.y + " has " + BS.dim(v.y, v.m) + " days." : "That date doesn’t exist. Check the day and month."); return null; }
-    if (n < MIN_N || n > MAX_N) { field.error("Supported dates: 14 April 1943 to " + adText(MAX_N) + " (2000–2090 BS)."); return null; }
+    if (n < MIN_N || n > MAX_N) { field.error("Supported dates: 14 April 1943 to " + adText(MAX_N) + " (2000 to 2090 BS)."); return null; }
     field.error("");
     return n;
   }
