@@ -48,9 +48,9 @@ TOOLS = [  # top menu, in order; label is in the tool's own language
 ]
 EXAMS = [("upsc", "/age-limit/upsc/", "UPSC age limit", "Civil Services: 21 to under 32 on 1 August, plus category relaxation and attempts."),
          ("ssc", "/age-limit/ssc/", "SSC age limit", "SSC GD (18 to 23) and CGL post groups (18 to 27 or 18 to 32), with relaxation."),
-         ("nda", "/age-limit/nda/", "NDA age limit", "Born-between dates for NDA (I) and (II), for men and women."),
-         ("cds", "/age-limit/cds/", "CDS age limit", "IMA, INA, AFA and OTA date-of-birth windows, including the CPL relaxation."),
-         ("agniveer", "/age-limit/agniveer/", "Agniveer age limit", "Army Agniveer and Air Force Agniveervayu date-of-birth windows.")]
+         ("nda", "/age-limit/nda/", "NDA age limit", "Birth date windows for NDA (I) and (II), for men and women."),
+         ("cds", "/age-limit/cds/", "CDS age limit", "IMA, INA, AFA and OTA birth date windows, including the CPL relaxation."),
+         ("agniveer", "/age-limit/agniveer/", "Agniveer age limit", "Army Agniveer and Air Force Agniveervayu birth date windows.")]
 # every calculator page (menu items plus sub-pages), used by the footer and "related" lists
 ALL_TOOLS = [
     ("home",       "/",                              "Age calculator"),
