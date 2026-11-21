@@ -32,7 +32,7 @@
   <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")})();</script>
   <style>/* Hallmark */ html,body{overflow-x:clip}:focus-visible{outline:2px solid var(--focus);outline-offset:2px}:active{transform:none}:disabled{opacity:0.45;cursor:not-allowed}</style>
-  <link rel="stylesheet" href="/assets/css/site.css?v=2e9b6d42ca">
+  <link rel="stylesheet" href="/assets/css/site.css?v=275b6a12f9">
   <link rel="stylesheet" href="/assets/css/landing.css?v=0158cfc3ab">
   <script type="application/ld+json">
 {
@@ -444,7 +444,7 @@
   </div>
 </footer>
 <script>/* phones: scroll the current page's tab into view in the sideways menu */(function(){var n=document.querySelector('.tool-nav'),a=n&&n.querySelector('[aria-current]');if(n&&n.scrollWidth>n.clientWidth+1)n.classList.add('is-scrolling');if(a&&n.scrollWidth>n.clientWidth){n.scrollLeft+=a.getBoundingClientRect().left-n.getBoundingClientRect().left-(n.clientWidth-a.offsetWidth)/2;}})();</script>
-<script>/* header dropdowns: one open at a time, close on outside click or Escape */(function(){var ds=[].slice.call(document.querySelectorAll('details[name="site-menu"]'));function shut(keep){ds.forEach(function(d){if(d!==keep)d.open=false})}ds.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)shut(d)})});document.addEventListener('click',function(e){if(!e.target.closest('details[name="site-menu"]'))shut()});document.addEventListener('keydown',function(e){var o=ds.filter(function(d){return d.open})[0];if(e.key==='Escape'&&o){o.open=false;o.querySelector('summary').focus()}})})();</script>
+<script>/* header dropdowns: open on hover (mouse) or click/keyboard, one at a time, close on outside click or Escape */(function(){var ds=[].slice.call(document.querySelectorAll('details[name="site-menu"]'));function shut(keep){ds.forEach(function(d){if(d!==keep)d.open=false})}ds.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)shut(d)})});if(matchMedia('(hover:hover) and (pointer:fine)').matches)ds.forEach(function(d){var t;d.addEventListener('mouseenter',function(){clearTimeout(t);d.open=true});d.addEventListener('mouseleave',function(){t=setTimeout(function(){d.open=false},200)});d.querySelector('summary').addEventListener('click',function(e){if(e.detail&&d.open)e.preventDefault()})});document.addEventListener('click',function(e){if(!e.target.closest('details[name="site-menu"]'))shut()});document.addEventListener('keydown',function(e){var o=ds.filter(function(d){return d.open})[0];if(e.key==='Escape'&&o){o.open=false;o.querySelector('summary').focus()}})})();</script>
 <script>(function(){var b=document.querySelector('.theme-toggle'),r=document.documentElement;function s(){b.setAttribute('aria-pressed',r.dataset.theme==='dark')}s();b.addEventListener('click',function(){r.dataset.theme=r.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}s()})})();</script>
 <script src="/assets/js/datecore.js?v=97205bd995" defer></script>
 <script src="/assets/js/generation.js?v=30aff4f3db" defer></script>

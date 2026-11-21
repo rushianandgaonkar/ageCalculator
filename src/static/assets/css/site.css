@@ -149,7 +149,7 @@ a:hover { color: var(--primary-hover); }
 html:not([data-theme]) .theme-toggle { display: none; } /* no JS: the button can't work */
 
 /* ---------- Header dropdowns (English grouped menu + language switcher) ----------
-   Native <details>: works without JS; a small inline script closes the others and handles Escape. */
+   Native <details>: works without JS; a small inline script opens on hover for mouse users, closes the others and handles Escape. */
 .site-header { position: relative; z-index: 20; }
 .site-menu { flex: 1; min-width: 0; }
 .site-menu > ul { display: flex; gap: var(--s-1); margin: 0; padding: 0; list-style: none; }
