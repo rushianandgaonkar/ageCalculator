@@ -1255,7 +1255,6 @@ def main():
         urls.append(f"  <url>\n    <loc>{abs_url(p['path'])}</loc>\n    <lastmod>{BUILD_DATE.isoformat()}</lastmod>"
                     f"\n    <changefreq>{p.get('changefreq', 'monthly')}</changefreq>\n    <priority>{p.get('priority', '0.5')}</priority>{alts}\n  </url>")
     write(OUT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
-          '<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
           + "\n".join(urls) + "\n</urlset>\n")
 
@@ -1322,10 +1321,6 @@ def main():
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600, must-revalidate
-
-/sitemap.xsl
-  Content-Type: text/xsl; charset=utf-8
-  Cache-Control: public, max-age=86400
 """)
     print(f"Built {len(pages)} pages into {OUT}")
 
