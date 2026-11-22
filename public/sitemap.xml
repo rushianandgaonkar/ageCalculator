@@ -2,73 +2,123 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.ageason.com/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.ageason.com/de/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.ageason.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.ageason.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.ageason.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ageason.com/"/>
   </url>
   <url>
     <loc>https://www.ageason.com/de/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.ageason.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.ageason.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.ageason.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.ageason.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ageason.com/"/>
   </url>
   <url>
     <loc>https://www.ageason.com/id/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.ageason.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.ageason.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.ageason.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.ageason.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ageason.com/"/>
   </url>
   <url>
     <loc>https://www.ageason.com/ko/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.ageason.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.ageason.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.ageason.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.ageason.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ageason.com/"/>
   </url>
   <url>
     <loc>https://www.ageason.com/pt/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.ageason.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.ageason.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.ageason.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.ageason.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ageason.com/"/>
   </url>
   <url>
     <loc>https://www.ageason.com/tr/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.ageason.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.ageason.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.ageason.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.ageason.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ageason.com/"/>
   </url>
   <url>
     <loc>https://www.ageason.com/ar/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.ageason.com/de/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.ageason.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.ageason.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.ageason.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ageason.com/"/>
   </url>
   <url>
     <loc>https://www.ageason.com/ar/calendar/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ar/ramadan/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ar/today/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/birth-year-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/birth-year-calculator/"/>
@@ -76,7 +126,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/date-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/date-calculator/"/>
@@ -89,7 +139,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/days-between-dates/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/days-between-dates/"/>
@@ -97,7 +147,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/de/datumsrechner/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/date-calculator/"/>
@@ -110,7 +160,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/experience-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/experience-calculator/"/>
@@ -118,7 +168,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/id/hitung-hari/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/date-calculator/"/>
@@ -131,7 +181,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/id/kalender-hijriyah/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/kalender-hijriyah/"/>
@@ -139,25 +189,25 @@
   </url>
   <url>
     <loc>https://www.ageason.com/ja/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ja/days/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ja/era/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ko/date/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/date-calculator/"/>
@@ -170,7 +220,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/pt/calculadora-de-dias/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/date-calculator/"/>
@@ -183,7 +233,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/tr/hicri-takvim/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="id" href="https://www.ageason.com/id/kalender-hijriyah/"/>
@@ -191,7 +241,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/tr/tarih-hesaplama/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/date-calculator/"/>
@@ -204,7 +254,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/business-days-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/business-days-calculator/"/>
@@ -212,7 +262,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/age-difference/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/age-difference/"/>
@@ -221,61 +271,61 @@
   </url>
   <url>
     <loc>https://www.ageason.com/age-limit/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/age-limit/agniveer/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/age-limit/cds/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/age-limit/nda/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/age-limit/ssc/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/age-limit/upsc/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ar/ages/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ar/eid/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ar/hijri-converter/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/cat-age-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/cat-age-calculator/"/>
@@ -283,13 +333,13 @@
   </url>
   <url>
     <loc>https://www.ageason.com/chronological-age-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/dog-age-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/dog-age-calculator/"/>
@@ -297,7 +347,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/generation-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/generation-calculator/"/>
@@ -305,19 +355,19 @@
   </url>
   <url>
     <loc>https://www.ageason.com/nepali-age-calculator/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/nepali-date-converter/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/ar/age-difference/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/age-difference/"/>
@@ -326,13 +376,13 @@
   </url>
   <url>
     <loc>https://www.ageason.com/ja/gakunen/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.ageason.com/about/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/about/"/>
@@ -341,7 +391,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/ar/about/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ageason.com/about/"/>
@@ -350,7 +400,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/ar/contact/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/contact/"/>
@@ -359,7 +409,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/ar/privacy/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/privacy/"/>
@@ -368,7 +418,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/ar/terms/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/terms/"/>
@@ -377,7 +427,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/contact/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/contact/"/>
@@ -386,7 +436,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/privacy/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/privacy/"/>
@@ -395,7 +445,7 @@
   </url>
   <url>
     <loc>https://www.ageason.com/terms/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ageason.com/ar/terms/"/>

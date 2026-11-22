@@ -4,7 +4,7 @@
 
 ## Calculators
 
-- [Age Calculator: Years, Months & Days on Any Date](https://www.ageason.com/): Exact age from date of birth on any date, for exam & job cutoffs. Plus days & hours lived, the weekday you were born and your next birthday. Free.
+- [Age Calculator by Date of Birth: Exact Age on Any Date](https://www.ageason.com/): Exact age from date of birth on any date, for exam & job cutoffs. Plus days & hours lived, the weekday you were born and your next birthday. Free.
 - [Altersrechner: Wie alt bin ich, Geburtstag und Sternzeichen](https://www.ageason.com/de/): Alter berechnen: Ihr genaues Alter in Jahren, Monaten, Tagen und Stunden, die Tage bis zum nächsten Geburtstag und Ihr Sternzeichen.
 - [Kalkulator Umur: Hitung Usia dan Hari Ulang Tahun Berikutnya](https://www.ageason.com/id/): Kalkulator umur gratis: hitung umur Anda dalam tahun, bulan, hari dan jam, lihat zodiak dan hitung mundur ke ulang tahun berikutnya.
 - [만 나이 계산기: 법적 만 나이와 연 나이 및 세는나이 계산](https://www.ageason.com/ko/): 만 나이 계산기: 생년월일로 법적 만 나이, 연 나이, 세는나이와 띠를 계산하고 다음 생일 디데이와 태어난 지 며칠인지 확인하세요.
