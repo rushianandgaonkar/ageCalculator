@@ -4,7 +4,7 @@
 
 ## Calculators
 
-- [Age Calculator by Date of Birth: Exact Age on Any Date](https://www.ageason.com/): Exact age from date of birth on any date, for exam & job cutoffs. Plus days & hours lived, the weekday you were born and your next birthday. Free.
+- [Age Calculator by Date of Birth (DOB): Age on Specific Date](https://www.ageason.com/): Free online age calculator by date of birth (DOB). Calculate your exact age today or on any specific date/year in years, months, days, and total hours lived.
 - [Altersrechner: Wie alt bin ich, Geburtstag und Sternzeichen](https://www.ageason.com/de/): Alter berechnen: Ihr genaues Alter in Jahren, Monaten, Tagen und Stunden, die Tage bis zum nächsten Geburtstag und Ihr Sternzeichen.
 - [Kalkulator Umur: Hitung Usia dan Hari Ulang Tahun Berikutnya](https://www.ageason.com/id/): Kalkulator umur gratis: hitung umur Anda dalam tahun, bulan, hari dan jam, lihat zodiak dan hitung mundur ke ulang tahun berikutnya.
 - [만 나이 계산기: 법적 만 나이와 연 나이 및 세는나이 계산](https://www.ageason.com/ko/): 만 나이 계산기: 생년월일로 법적 만 나이, 연 나이, 세는나이와 띠를 계산하고 다음 생일 디데이와 태어난 지 며칠인지 확인하세요.
@@ -14,7 +14,7 @@
 - [كم باقي على رمضان: العداد التنازلي لرمضان 1448](https://www.ageason.com/ar/ramadan/): العداد التنازلي الدقيق لمعرفة كم يوم وساعة باقي على بداية شهر رمضان المبارك 1448 هـ فلكيا وتقويم أم القرى.
 - [التاريخ الهجري اليوم: تاريخ اليوم بالهجري والميلادي](https://www.ageason.com/ar/today/): اعرف تاريخ اليوم بالتقويمين الهجري (أم القرى) والميلادي بدقة مع اسم اليوم باللغة العربية والمناسبات الإسلامية القادمة.
 - [حساب العمر بالهجري والميلادي | حاسبة العمر الدقيقة](https://www.ageason.com/ar/): حساب العمر من تاريخ الميلاد بالهجري والميلادي: اكتشف كم عمرك بالسنوات والأشهر والأيام، واحسب عمرك بالأيام، واعرف كم باقي على عيد ميلادي القادم.
-- [Birth Year Calculator: What Year Was I Born and Days Alive](https://www.ageason.com/birth-year-calculator/): Find out what year you were born based on your current age, or calculate exactly how many days and hours you have been alive. Free and private.
+- [Birth Year & Age by Year Calculator: What Year Was I Born?](https://www.ageason.com/birth-year-calculator/): Calculate your birth year from age or find your exact age in any calendar year. Free online age-by-year calculator with total days alive and life milestones.
 - [Date Calculator: Add or Subtract Days from Any Date](https://www.ageason.com/date-calculator/): Add or subtract days, weeks, months, years or business days from any date. Instantly find the target calendar date and weekday.
 - [Days Between Dates: Calculate Days Between Two Dates](https://www.ageason.com/days-between-dates/): Calculate the exact number of days, weeks, months and business days between two dates. Free, instant and private in your browser.
 - [Datumsrechner und Tagerechner: Tage zwischen zwei Daten berechnen](https://www.ageason.com/de/datumsrechner/): Tagerechner: Tage zwischen zwei Daten zählen, Arbeitstage ohne Wochenenden berechnen oder Tage zu einem Datum addieren und subtrahieren.
@@ -38,7 +38,7 @@
 - [Dog Age Calculator: Dog Years to Human Years by Breed Size](https://www.ageason.com/dog-age-calculator/): Calculate your dog’s age in human years by weight and breed size using modern veterinary guidelines. Free, instant and private.
 - [Agniveer Age Limit 2026-27 Calculator: Army and Air Force](https://www.ageason.com/age-limit/agniveer/): Agniveer age limit by date of birth: Army Agniveer 2026-27 (17½ to 22, born 1 July 2005 to 1 July 2009) and Air Force Agniveervayu intakes 01/2027 and 02/2027.
 - [CDS Age Limit 2026-27 Calculator: IMA, INA, AFA and OTA](https://www.ageason.com/age-limit/cds/): CDS age limit by academy: IMA and INA 19 to 24, AFA 20 to 24 (26 with a CPL), OTA 19 to 25. Check your date of birth for CDS (I) 2027 and see the CDS (II) 2026 dates.
-- [NDA Age Limit 2026-27 Calculator: Date of Birth Eligibility](https://www.ageason.com/age-limit/nda/): NDA age limit by date of birth: NDA (II) 2026 needed births from 1 January 2008 to 1 January 2011. Check NDA (I) and (II) 2027 eligibility for boys and girls.
+- [NDA Age Calculator (2026-2027): Age Limit & DOB Eligibility Check](https://www.ageason.com/age-limit/nda/): Free NDA age calculator by date of birth (DOB). Check your age limit eligibility for UPSC NDA (I) & (II) 2026-2027 exams for male and female candidates instantly.
 - [SSC Age Limit 2026-27 Calculator: GD and CGL with Relaxation](https://www.ageason.com/age-limit/ssc/): SSC GD age limit 18 to 23 on 1 January and SSC CGL post groups 18 to 27, 18 to 30, 18 to 32 and 20 to 30 on 1 August. Check your eligibility with OBC, SC/ST and PwBD relaxation.
 - [UPSC Age Limit 2026-27 Calculator: Category Relaxation and Attempts](https://www.ageason.com/age-limit/upsc/): UPSC Civil Services age limit: 21 to under 32 on 1 August, plus 3 years for OBC, 5 for SC/ST and 10 for PwBD. Check your eligibility and exam years by date of birth.
 - [Generation Calculator: What Generation Am I by Birth Year](https://www.ageason.com/generation-calculator/): Find your generation name, age range and birth years. Detailed breakdown for Gen Alpha, Gen Z, Millennials, Gen X, Boomers and the Silent Generation.

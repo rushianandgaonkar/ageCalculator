@@ -6,17 +6,18 @@
   "kind": "tool",
   "hreflang": "age",
   "x_default": true,
-  "title": "Age Calculator by Date of Birth: Exact Age on Any Date",
-  "description": "Exact age from date of birth on any date, for exam & job cutoffs. Plus days & hours lived, the weekday you were born and your next birthday. Free.",
+  "title": "Age Calculator by Date of Birth (DOB): Age on Specific Date",
+  "description": "Free online age calculator by date of birth (DOB). Calculate your exact age today or on any specific date/year in years, months, days, and total hours lived.",
   "app_name": "Age calculator",
   "scripts": ["datecore.js", "home.js", "scroll-timeline.js"],
   "og": "og-home.png",
   "priority": "1.0",
   "changefreq": "monthly",
   "faq": [
-    ["How do I calculate my age from my date of birth?", "Enter your date of birth as day, month and year. The calculator shows your exact breakdown today in completed years, months and days, plus your totals in months, weeks, days and hours."],
-    ["How do I find my age as on a specific date?", "Change the “Age as on” date. Use it for exam and job applications that set an eligibility cutoff date, or to work out how old someone was on a past date."],
-    ["Is this online age calculator free to use?", "Yes, this age calculator is 100% free with no sign-up, registration, or download required. It runs privately in your browser and calculates your precise age in years, months, days, and total hours."],
+    ["How do I calculate my age from my date of birth (DOB)?", "Enter your date of birth (DOB) as day, month and year. The calculator shows your exact age today in completed years, months and days, plus your totals in months, weeks, days and hours."],
+    ["How do I find my age on a specific date or year?", "Change the “Age as on” date to any specific target date or calendar year. Use it for competitive exams and job applications with strict cutoff dates, or to work out how old you were on a past date."],
+    ["How do I find my age on today's date?", "By default, the calculator sets “Age as on” to today's date. As soon as you enter your date of birth, it instantly reveals your exact age today. You can reset to today at any time with one click."],
+    ["Is this online DOB age calculator free to use?", "Yes, this age calculator is 100% free with no sign-up, registration, or download required. It runs privately in your browser and calculates your precise age in years, months, days, and total hours."],
     ["Does the calculator count leap years?", "Yes. Every calendar day between the two dates is counted, including 29 February in leap years."],
     ["What if I was born on 29 February?", "In years that are not leap years, this calculator treats 28 February as your birthday. Some countries use 1 March for legal purposes, so check the rule that applies to you."],
     ["Can I use the result for an application form?", "The calculation is exact, but the organisation you are applying to sets the rules. Some count only completed years, and many state the cutoff date and any relaxation in their notification."],
@@ -28,7 +29,7 @@
   <div class="wrap">
     <div class="hero-copy">
       <h1 id="landing-title">Age Calculator: <span class="hero-title-accent">Calculate Your Exact Age</span></h1>
-      <p class="lede">Free online age calculator: find your exact age from date of birth in years, months, and days. Calculate how old you are today or as on any specific target date.</p>
+      <p class="lede">Free online age calculator by date of birth (DOB). Find your exact age in years, months, and days today, or calculate how old you are as on any specific target date or year.</p>
       <ul class="hero-benefits" aria-label="Calculator highlights">
         <li>Precise to the day</li>
         <li>Instant results</li>
@@ -42,11 +43,11 @@
   <div class="wrap tool-grid">
     <form class="panel" id="calc" novalidate autocomplete="on" onsubmit="return false">
       <div>
-        <h2 class="landing-form-heading">Calculate age by date of birth</h2>
-        <p class="landing-form-subtitle">Enter your birthday to calculate your exact age today or on a specific cutoff date.</p>
+        <h2 class="landing-form-heading">Calculate age by date of birth (DOB)</h2>
+        <p class="landing-form-subtitle">Enter your DOB to calculate your exact age today or on a specific cutoff date.</p>
       </div>
       <fieldset class="datefield" id="dob">
-        <legend>Date of birth</legend>
+        <legend>Date of birth (DOB)</legend>
         <div class="dateparts">
           <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="bday-day" aria-label="Day of birth"></label>
           <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="bday-month" aria-label="Month of birth"></label>
@@ -56,14 +57,14 @@
       </fieldset>
 
       <fieldset class="datefield" id="on">
-        <legend>Age as on</legend>
+        <legend>Age as on (Specific date / Today)</legend>
         <div class="dateparts">
           <label class="p-d"><span>Day</span><input type="text" inputmode="numeric" maxlength="2" placeholder="DD" data-part="d" autocomplete="off"></label>
           <label class="p-m"><span>Month</span><input type="text" inputmode="numeric" maxlength="2" placeholder="MM" data-part="m" autocomplete="off"></label>
           <label class="p-y"><span>Year</span><input type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" data-part="y" autocomplete="off"></label>
         </div>
         <p class="field-error" hidden></p>
-        <p class="hint">Today by default. <button type="button" class="btn-link" id="reset-today">Reset to today</button></p>
+        <p class="hint">Today by default. Calculate age on any date or year. <button type="button" class="btn-link" id="reset-today">Reset to today</button></p>
       </fieldset>
 
       <details class="more" id="limits">
@@ -172,20 +173,23 @@
 <section class="content">
   <div class="wrap prose">
     <h2>How the age calculator works</h2>
-    <p>The calculator counts whole years from your date of birth, then whole months, then the days left over. Someone born on 15 August 1994 is 32 years, 2 months and 24 days old on 8 November 2026.</p>
+    <p>The calculator counts whole years from your date of birth (DOB), then whole months, then the days left over. Someone born on 15 August 1994 is 32 years, 2 months and 24 days old on 8 November 2026.</p>
     <p>Months are counted to the same date each month. If that date doesn’t exist in a month (the 31st in a 30-day month, or 29 February in a normal year), the last day of the month is used instead. Totals in days, weeks and hours count every calendar day between the two dates, including leap days.</p>
 
-    <h2>Calculate age in years, months, days, weeks and hours</h2>
-    <p>Standard subtraction only gives your completed years. This free online age calculator also reveals your total life milestones: total days lived, completed weeks, total hours, and an exact countdown to your next upcoming birthday.</p>
+    <h2>Calculate age by date of birth (DOB) in years, months, days, weeks and hours</h2>
+    <p>Standard subtraction only gives your completed years. This free online DOB age calculator also reveals your total life milestones: total days lived, completed weeks, total hours, and an exact countdown to your next upcoming birthday.</p>
 
-    <h2>Calculate age on a specific date (exam &amp; job cutoff eligibility)</h2>
-    <p>Recruitment notices and application forms usually set an eligibility cutoff “as on” a fixed date, such as 1 January or 1 August of the exam year. To check yours:</p>
+    <h2>Calculate age on a specific date, year, or today (exam &amp; job cutoff eligibility)</h2>
+    <p>Whether you need to check your exact age on today's date, calculate how old you will be in a future calendar year, or verify eligibility for recruitment notices with fixed cutoff dates (such as 1 January or 1 August), simply adjust the target date:</p>
     <ol>
-      <li>Enter your date of birth.</li>
-      <li>Change “Age as on” to the cutoff date given in the notification.</li>
+      <li>Enter your date of birth (DOB).</li>
+      <li>Change “Age as on” to the specific target date or calendar year given in the notification.</li>
       <li>Open “Check eligibility limit” and enter the minimum and maximum limits.</li>
     </ol>
-    <p>The result shows whether you are within the cutoff limit and the range of birth dates that qualify. Indian exam notices read an upper limit as “must not have reached” that milestone: for UPSC 2026, “21 to 32 years” means born between 2 August 1994 and 1 August 2005, so someone who is exactly 32 on the cutoff date is not eligible. Confirm the exact wording and any category relaxation in the official notification, or use the ready-made calculators for <a href="/age-limit/">UPSC, SSC, NDA, CDS and Agniveer</a>.</p>
+    <p>The result immediately shows whether you meet the cutoff limit and the exact range of birth dates that qualify. To calculate your birth year from age or see what year you were born, use our <a href="/birth-year-calculator/">birth year calculator</a>. For major Indian competitive exams, use our ready-made calculators for <a href="/age-limit/">UPSC, SSC, NDA, CDS and Agniveer</a>.</p>
+
+    <h2>Age on calculator: why choose Ageason?</h2>
+    <p>Ageason is built specifically to answer "what is my age on this date?" accurately and instantly. With no account signup, no tracking cookies, and 100% private in-browser calculations, you get precise chronological results across multiple international calendars.</p>
 
     <h2>Birthdays on 29 February</h2>
     <p>If you were born on 29 February, this calculator treats 28 February as your birthday in years that aren’t leap years. Some countries use 1 March for legal purposes.</p>

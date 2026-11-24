@@ -48,7 +48,7 @@ TOOLS = [  # top menu, in order; label is in the tool's own language
 ]
 EXAMS = [("upsc", "/age-limit/upsc/", "UPSC age limit", "Civil Services: 21 to under 32 on 1 August, plus category relaxation and attempts."),
          ("ssc", "/age-limit/ssc/", "SSC age limit", "SSC GD (18 to 23) and CGL post groups (18 to 27 or 18 to 32), with relaxation."),
-         ("nda", "/age-limit/nda/", "NDA age limit", "Birth date windows for NDA (I) and (II), for men and women."),
+         ("nda", "/age-limit/nda/", "NDA age calculator", "Birth date windows for NDA (I) and (II), for men and women."),
          ("cds", "/age-limit/cds/", "CDS age limit", "IMA, INA, AFA and OTA birth date windows, including the CPL relaxation."),
          ("agniveer", "/age-limit/agniveer/", "Agniveer age limit", "Army Agniveer and Air Force Agniveervayu birth date windows.")]
 # every calculator page (menu items plus sub-pages), used by the footer and "related" lists
@@ -166,12 +166,12 @@ KEY_FLAG = {"ne": "np", "neconv": "np"}  # tool keys whose flag isn't their UI l
 
 RELATED = {
     "en": [
-        ("home", "Age calculator", "Exact age in years, months and days, on any date. Checks exam age limits."),
+        ("home", "Age calculator by DOB", "Exact age in years, months and days by date of birth on any specific date."),
         ("days", "Days between dates", "Calculate the exact number of days, weeks, months and business days between two dates."),
         ("datecalc", "Date calculator", "Add or subtract days, weeks, months or years from any calendar date."),
         ("bizdays", "Business days calculator", "Calculate working days between two dates or add business days to a date."),
         ("experience", "Experience calculator", "Calculate total work experience in years, months and days across multiple employments with career gap tracking."),
-        ("birthyear", "Birth year calculator", "Determine your birth year from age or calculate total days and hours alive with life milestones."),
+        ("birthyear", "Birth year & age by year", "Find your birth year from age or calculate your age in any calendar year."),
         ("catage", "Cat age calculator", "Calculate your cat’s exact age in human years using veterinary guidelines."),
         ("dogage", "Dog age calculator", "Calculate your dog’s age in human years based on size and weight."),
         ("generation", "Generation calculator", "Find your generation name, age range and birth years."),
